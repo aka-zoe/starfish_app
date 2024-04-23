@@ -1,0 +1,67 @@
+{
+    "data": [
+        {
+            "imageUrl": "https://n.sinaimg.cn/sinacn16/112/w1557h955/20180510/7270-haichqz7292785.jpg",
+            "id": "1",
+            "title": "铜雀台 押一付三",
+            "desc": "别墅 360m² 距地铁站500m",
+            "price": 2300.00,
+            "tags": [
+                {
+                    "type": 0,
+                    "text": "在线签约"
+                },
+                {
+                    "type": 1,
+                    "text": "近地铁"
+                },
+                {
+                    "type": 1,
+                    "text": "精装修"
+                }
+            ]
+        },
+        {
+            "imageUrl": "https://pic.616pic.com/photoone/00/06/56/61975de20f1487757.jpg",
+            "id": "1",
+            "title": "湖滨花园 可月付",
+            "desc": "别墅 360m² 距地铁站1.5km",
+            "price": 2300.00,
+            "tags": [
+                {
+                    "type": 0,
+                    "text": "在线签约"
+                },
+                {
+                    "type": 1,
+                    "text": "近地铁"
+                },
+                {
+                    "type": 1,
+                    "text": "精装修"
+                }
+            ]
+        },
+        {
+            "imageUrl": "https://pic.616pic.com/photoone/00/06/37/61975c8c74872813.jpg",
+            "id": "1",
+            "title": "翻斗花园 32幢 104室主卧",
+            "desc": "主卧 32m² 近地铁 可做饭",
+            "price": 2300.00,
+            "tags": [
+                {
+                    "type": 0,
+                    "text": "在线签约"
+                },
+                {
+                    "type": 1,
+                    "text": "近地铁"
+                },
+                {
+                    "type": 1,
+                    "text": "精装修"
+                }
+            ]
+        }
+    ]
+}

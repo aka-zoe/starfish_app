@@ -39,3 +39,11 @@ Q.idea/sonarlint/securityhotspotstore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a057
 K.dart_tool/flutter_build/5c4be5261aa2cd35019931897f9e4ae5/kernel_snapshot.d,6/9/695816aa721cddab933e92b9766c7a4cd9550ac0
 t
 D.dart_tool/flutter_build/5c4be5261aa2cd35019931897f9e4ae5/.filecache,4/5/45f1f9100ebecf0d08a6130bd10f75a642cc40b6
+@
+app/lib/app.dart,b/4/b4b344ef6c9d19f5943e3e0a5dee122735fec1c8
+N
+app/lib/mock/mock_builder.dart,0/a/0a90d7484d7d69909f3ec7023ceef1d8e3397123
+J
+app/lib/mock/mock_api.dart,e/6/e682ae1d5c12d649344e0e8be9be442e94483c47
+J
+assets/json/home_data.json,7/1/716f1f1961481b9189a1e61d7f4739ee172cba37

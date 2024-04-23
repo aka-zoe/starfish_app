@@ -54,3 +54,7 @@ dev_dependencies:
 flutter:
 
     uses-material-design: true
+    assets:
+        # 声明mock数据资源
+        - assets/json/home_banner_data.json
+

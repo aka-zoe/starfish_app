@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:starfish_tenement_app/pages/home/home_page.dart';
 
 import '../common_ui/navigation/navigation_bar_widget.dart';
 
@@ -37,7 +38,7 @@ class _TabPageState extends State<TabPage> {
   }
 
   void initTabPage() {
-    tabItems.add(const Text("首页"));
+    tabItems.add(HomePage());
     tabItems.add(const Text("房源"));
     tabItems.add(const Text("资讯"));
     tabItems.add(const Text("我的"));

@@ -1,0 +1,12 @@
+alias = key
+pwd = 123456
+
+
+
+运行cmd命令打开命令行窗口，进入JDK的bin目录，运行如下命令打包、加密签名密钥文件。
+java -jar pepk.jar --keystore sign-keystore.jks --alias sign --output=sign.zip --encryptionkey=034200041E224EE22B45D19B23DB91BA9F52DE0A06513E03A5821409B34976FDEED6E0A47DBA48CC249DD93734A6C5D9A0F43461F9E140F278A5D2860846C2CF5D2C3C02 --include-cert
+
+
+java -jar pepk.jar --keystore key --alias key --output=output.zip
+--encryptionkey MIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAjxjfpex40R4Bqs6qKbNBsBQocK6Sus
++y6l1lxvyjpNRoESA1Mg72IK9vr64qWnK1wHolkrJydWTg15+gO6MdCI31WJUSj6u9+lijjAIKmSd0FbqmkJXC2oK1z+nWmtSVoaWC9fe92a1BO5jPl/gV3/8dM3QnQpffU+qAXhx5zOPHQ/IR7r1923JgJ9eLV2LUGIBxCilfU70bvBhqmnfzRv9/HnzBTXC+dcuRRRMkZFvld7gdGYLf9CulmR86zX2UYFw5C1mbnWPDK86jlVW/pQCwKqUAzcko8YzX6xNaoFlXQlxzniMYqQj8lg/ro/9xE8YB5NVZzSVPUncX/k+LBI+JycYkQ4iV7zX2O08sX8JEWIXYASJ5HMW9WzE6ydmgBQYNgo2Z0d3e5XZfhdcz3le/DkZ6ho9xs0EG9lZ9OefMSWZ9fl1HqAwMueMtoZiuOSOVhSlVx1Ndp/sPcM7qBpnVf1hql/YRvQpFjUGfATNXoSxGt6EL3Kp3quhlp//AgMBAAE= --include-cert

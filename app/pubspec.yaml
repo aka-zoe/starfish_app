@@ -45,6 +45,10 @@ dependencies:
     flutter_html: ^3.0.0-alpha.6
     # 下拉刷新上拉加载
     pull_to_refresh: ^2.0.0
+    # 高德Flutter定位插件
+    amap_location_flutter_plugin:
+        git:
+            url: https://github.com/amap-demo/amap-location-flutter.git
 dev_dependencies:
     flutter_test:
         sdk: flutter

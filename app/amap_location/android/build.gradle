@@ -26,6 +26,12 @@ apply plugin: 'kotlin-android'
 apply from: "./resolve_dependencies.gradle"
 
 android {
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
     compileSdkVersion 31
 
     compileOptions {
@@ -37,22 +43,20 @@ android {
         jvmTarget = '1.8'
     }
 
-    sourceSets {
-        main.java.srcDirs += 'src/main/java'
-        test.java.srcDirs += 'src/test/kotlin'
-    }
-
     defaultConfig {
         minSdkVersion 16
     }
 
     dependencies {
+        implementation fileTree(include: ['*.jar'], dir: 'libs')
         testImplementation 'org.jetbrains.kotlin:kotlin-test'
         testImplementation 'org.mockito:mockito-core:5.0.0'
 
         //utils工具库
         implementation 'com.blankj:utilcodex:1.31.0'
-        implementation files('src/libs/AMap3DMap_10.0.600_AMapSearch_9.7.1_AMapLocation_6.4.3_20240314.jar')
+//        implementation('androidx.appcompat:appcompat:1.6.1')
+        //AMap3DMap_AMapSearch_AMapLocation.jar
+        implementation files('src/libs/AMap3DMap_AMapSearch_AMapLocation.jar')
     }
 
     testOptions {

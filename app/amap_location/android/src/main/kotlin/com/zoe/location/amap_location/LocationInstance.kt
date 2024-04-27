@@ -35,6 +35,12 @@ class LocationInstance private constructor() {
         fun onLocationChanged(location: AMapLocation?)
     }
 
+    fun updatePrivacy(context: Context){
+        //隐私合规更新
+        AMapLocationClient.updatePrivacyShow(context.applicationContext, true, true)
+        AMapLocationClient.updatePrivacyAgree(context.applicationContext, true)
+    }
+
     /**
      * 初始化定位组件
      * [context]   上下文
@@ -47,7 +53,9 @@ class LocationInstance private constructor() {
     ) {
 
         try {
+
             locationClient = AMapLocationClient(context.applicationContext)
+
             locationOption = getDefaultOption(option ?: buildDefaultOption())
             locationClient?.setLocationOption(locationOption)
             if (null != locationListener) {

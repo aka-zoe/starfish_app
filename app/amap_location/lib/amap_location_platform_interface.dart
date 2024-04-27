@@ -43,4 +43,9 @@ abstract class AmapLocationPlatform extends PlatformInterface {
       {Function? onError, void Function()? onDone, bool? cancelOnError})   {
     throw UnimplementedError('eventCallback() has not been implemented.');
   }
+
+  ///销毁定位
+  Future<bool?> updatePrivacy() {
+    throw UnimplementedError('updatePrivacy() has not been implemented.');
+  }
 }

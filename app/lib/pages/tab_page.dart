@@ -18,16 +18,16 @@ class _TabPageState extends State<TabPage> {
   final List<Widget> tabItems = [];
   final List<String> tabLabels = ["首页", "房源", "资讯", "我的"];
   final List<String> tabIcons = [
-    "assets/images/icon_home_grey.png",
-    "assets/images/icon_hot_key_grey.png",
-    "assets/images/icon_knowledge_grey.png",
-    "assets/images/icon_personal_grey.png"
+    "assets/images/icon_home_un.png",
+    "assets/images/icon_search_house_un.png",
+    "assets/images/icon_news_un.png",
+    "assets/images/icon_mine_un.png"
   ];
   final List<String> tabActiveIcons = [
-    "assets/images/icon_home_selected.png",
-    "assets/images/icon_hot_key_selected.png",
-    "assets/images/icon_knowledge_selected.png",
-    "assets/images/icon_personal_selected.png"
+    "assets/images/icon_home.png",
+    "assets/images/icon_search_house.png",
+    "assets/images/icon_news.png",
+    "assets/images/icon_mine.png"
   ];
 
   ///State生命周期，在组件渲染前回调

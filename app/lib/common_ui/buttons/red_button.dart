@@ -64,7 +64,7 @@ class AppButton extends StatelessWidget {
                   ? BorderRadius.all(Radius.circular(radius ?? 24.r))
                   : null,
               color:
-                  (type == AppButtonType.black) ? AppColors.blackBtnColor : AppColors.redBtnColor),
+                  (type == AppButtonType.black) ? AppColors.blackColor333 : AppColors.redBtnColor),
           alignment: textAlignment ?? Alignment.center,
           width: buttonWidth ?? double.infinity,
           height: buttonHeight ?? 49.h,

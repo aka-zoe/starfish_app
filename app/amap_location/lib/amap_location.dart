@@ -5,6 +5,11 @@ class AmapLocation {
 
   static AmapLocation instance = AmapLocation._();
 
+  ///更新用户隐私政策
+  Future<bool?> updatePrivacy() {
+    return AmapLocationPlatform.instance.updatePrivacy();
+  }
+
   ///初始化
   ///[interval]    定位间隔，默认2秒
   ///[httpTimeOut] 定位超时时间，默认30秒
@@ -31,6 +36,7 @@ class AmapLocation {
   Future locationEventCallback(void Function(dynamic event)? onData,
       {Function? onError, void Function()? onDone, bool? cancelOnError}) async {
     AmapLocationPlatform.instance.locationEventCallback((event) {
+      onData?.call(event);
       print(event);
     });
   }

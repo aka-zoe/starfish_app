@@ -1,3 +1,4 @@
+import 'package:amap_location/amap_location.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,6 +15,21 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  @override
+  void initState() {
+    super.initState();
+    AmapLocation.instance.updatePrivacy().then((value){
+      AmapLocation.instance.initLocation().then((value){
+        AmapLocation.instance.startLocation();
+        AmapLocation.instance.locationEventCallback((event) { });
+
+      });
+    });
+
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

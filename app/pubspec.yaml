@@ -45,10 +45,10 @@ dependencies:
     flutter_html: ^3.0.0-alpha.6
     # 下拉刷新上拉加载
     pull_to_refresh: ^2.0.0
-    # 高德Flutter定位插件
-    amap_location_flutter_plugin:
-        git:
-            url: https://github.com/amap-demo/amap-location-flutter.git
+    # 自己封装的高德定位插件
+    amap_location:
+        path: /Users/gongsensen/AndroidStudioProjects/Powersen_Personal/starfish_tenement_app/app/amap_location
+
 dev_dependencies:
     flutter_test:
         sdk: flutter
@@ -61,4 +61,6 @@ flutter:
     assets:
         # 声明mock数据资源
         - assets/json/home_banner_data.json
+        # 图片资源
+        - assets/images/
 

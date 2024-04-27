@@ -11,6 +11,7 @@ import com.zoe.location.amap_location.PluginConstants.METHOD_INIT_LOCATION
 import com.zoe.location.amap_location.PluginConstants.METHOD_NAME
 import com.zoe.location.amap_location.PluginConstants.METHOD_START_LOCATION
 import com.zoe.location.amap_location.PluginConstants.METHOD_STOP_LOCATION
+import com.zoe.location.amap_location.PluginConstants.METHOD_UPDATE_PRIVACY
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.EventChannel
@@ -37,6 +38,14 @@ class AmapLocationPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Stream
     override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
 
         when (call.method) {
+            //更新用户隐私政策
+            METHOD_UPDATE_PRIVACY -> {
+                context?.let {
+                    LocationInstance.instance().updatePrivacy(it)
+                }
+                result.success(true)
+            }
+
             //初始化
             METHOD_INIT_LOCATION -> {
 

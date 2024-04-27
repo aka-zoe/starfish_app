@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:starfish_tenement_app/styles/app_colors.dart';
 
 import 'navigation_bar_item.dart';
 
@@ -67,7 +68,7 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
   void initState() {
     super.initState();
     //第一次进入默认调用一次
-    // widget.onItemChange?.call(widget.currentIndex);
+    widget.onItemChange?.call(widget.currentIndex);
   }
 
   @override
@@ -77,28 +78,27 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
         //tab页面
         body: IndexedStack(index: widget.currentIndex, children: widget.tabItems),
         //底部导航栏
-        bottomNavigationBar: Theme(
-          data: widget.themeData ??
-              Theme.of(context).copyWith(
-                splashColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-              ),
-          child: BottomNavigationBar(
-              backgroundColor: Colors.white,
-              type: widget.bottomNavigationBarType ?? BottomNavigationBarType.fixed,
-              currentIndex: widget.currentIndex,
-              onTap: (index) {
-                //重复事件不处理
-                if (widget.currentIndex == index) {
-                  return;
-                }
-                //点击切换page事件
-                widget.onItemChange?.call(index);
-                widget.currentIndex = index;
-                setState(() {});
-              },
-              items: _barItemList()),
-        ));
+        bottomNavigationBar: BottomNavigationBar(
+            iconSize: 22.r,
+            selectedFontSize: 14.sp,
+            unselectedFontSize: 13.sp,
+            //已选择与未选中的字体颜色
+            unselectedItemColor: AppColors.blackColor333,
+            selectedItemColor: AppColors.blackColor333,
+            backgroundColor: Colors.white,
+            type: widget.bottomNavigationBarType ?? BottomNavigationBarType.fixed,
+            currentIndex: widget.currentIndex,
+            onTap: (index) {
+              //重复事件不处理
+              if (widget.currentIndex == index) {
+                return;
+              }
+              //点击切换page事件
+              widget.onItemChange?.call(index);
+              widget.currentIndex = index;
+              setState(() {});
+            },
+            items: _barItemList()));
   }
 
   ///底部导航栏集合
@@ -106,19 +106,22 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
     List<BottomNavigationBarItem> items = [];
     for (var i = 0; i < widget.tabItems.length; i++) {
       items.add(BottomNavigationBarItem(
-          activeIcon: NavigationBarItem(
-              builder: (_) => Image.asset(
-                    widget.tabActiveIcons[i],
-                    width: widget.bottomBarIconWidth ?? 32.w,
-                    height: widget.bottomBarIconHeight ?? 32.w,
-                  )),
-          icon: Image.asset(
-            widget.tabIcons[i],
-            width: widget.bottomBarIconWidth ?? 32.w,
-            height: widget.bottomBarIconHeight ?? 32.w,
-          ),
+          activeIcon: NavigationBarItem(builder: (context) {
+            return _iconContainer(widget.tabActiveIcons[i]);
+          }),
+          icon: _iconContainer(widget.tabIcons[i]),
           label: widget.tabLabels[i]));
     }
     return items;
+  }
+
+  Widget _iconContainer(String iconPath) {
+    return Container(
+        padding: EdgeInsets.only(top: 8.h, bottom: 5.h),
+        child: Image.asset(
+          iconPath,
+          width: widget.bottomBarIconWidth ?? 22.r,
+          height: widget.bottomBarIconHeight ?? 22.r,
+        ));
   }
 }

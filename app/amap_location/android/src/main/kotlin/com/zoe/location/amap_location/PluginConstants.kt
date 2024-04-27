@@ -5,6 +5,8 @@ object PluginConstants {
     const val METHOD_NAME = "method_location_name"
     const val EVENT_NAME = "event_location_name"
 
+    //更新用户隐私政策
+    const val METHOD_UPDATE_PRIVACY = "method_update_privacy"
 
     //初始化定位
     const val METHOD_INIT_LOCATION = "method_init_location"

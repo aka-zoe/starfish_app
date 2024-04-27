@@ -2,6 +2,9 @@ class LocationConstants {
   static const String METHOD_NAME = "method_location_name";
   static const String EVENT_NAME = "event_location_name";
 
+  //更新用户隐私政策
+  static const String METHOD_UPDATE_PRIVACY = "method_update_privacy";
+
   //初始化定位
   static const String METHOD_INIT_LOCATION = "method_init_location";
 

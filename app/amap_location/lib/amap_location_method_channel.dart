@@ -43,4 +43,10 @@ class MethodChannelAmapLocation extends AmapLocationPlatform {
         .receiveBroadcastStream()
         .listen(onData, onError: onError, onDone: onDone, cancelOnError: cancelOnError);
   }
+
+  ///更新用户隐私政策
+  @override
+  Future<bool?> updatePrivacy() {
+    return methodChannel.invokeMethod(LocationConstants.METHOD_UPDATE_PRIVACY);
+  }
 }

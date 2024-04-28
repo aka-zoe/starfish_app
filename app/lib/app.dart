@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:starfish_tenement_app/pages/debug/debug_page.dart';
 import 'package:starfish_tenement_app/route/RouteUtils.dart';
 import 'package:starfish_tenement_app/route/Routes.dart';
 
@@ -36,6 +37,33 @@ class MyApp extends StatelessWidget {
           navigatorKey: RouteUtils.navigatorKey,
           onGenerateRoute: Routes.generateRoute,
           initialRoute: RoutePath.tab,
+        );
+      },
+    ));
+  }
+}
+
+
+///调试App
+class DebugMyApp extends StatelessWidget {
+  const DebugMyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    //toast提示必须为APP的顶层组件
+    return OKToast(
+        //屏幕适配父组件组件
+        child: ScreenUtilInit(
+      designSize: designSize,
+      builder: (context, child) {
+        return MaterialApp(
+          theme: ThemeData(
+            useMaterial3: true,
+          ),
+          navigatorKey: RouteUtils.navigatorKey,
+          onGenerateRoute: Routes.generateRoute,
+          // initialRoute: RoutePath.tab,
+          home: DebugPage(),
         );
       },
     ));

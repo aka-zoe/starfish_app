@@ -33,7 +33,7 @@ class AppTitleBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
         width: double.infinity,
         height: 45.h,
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -44,20 +44,28 @@ class AppTitleBar extends StatelessWidget {
                 onBackTap?.call();
               },
               child: Container(
-                  margin: EdgeInsets.only(left: 10.w),
-                  width: 25.r,
-                  height: 25.r,
-                  color: Colors.grey)),
+                alignment: Alignment.center,
+                margin: EdgeInsets.only(left: 10.w),
+                width: 40.r,
+                height: 45.r,
+                child: Image.asset(
+                  "assets/images/icon_back_title.png",
+                  width: 15.w,
+                  height: 10.h,
+                ),
+              )),
           Text(title ?? "",
               style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500, color: Colors.black)),
           rightIcon == null
               ? GestureDetector(
                   onTap: onRightTap,
                   child: Container(
+                      alignment: Alignment.center,
                       margin: EdgeInsets.only(right: 10.w),
-                      height: 30.r,
-                      width: 30.r,
-                      child: Image.asset(rightIcon ?? "", height: 30.r, width: 30.r)))
+                      height: 40.r,
+                      width: 45.r,
+                      child: Image.asset(rightIcon ?? "assets/images/icon_message.png",
+                          height: 18.r, width: 18.r)))
               : const SizedBox()
         ]));
   }

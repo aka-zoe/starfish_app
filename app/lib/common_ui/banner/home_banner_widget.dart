@@ -1,47 +1,43 @@
-import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
+import 'package:starfish_tenement_app/styles/app_colors.dart';
 
-import 'banner_logic.dart';
-
-abstract class BaseBannerController {
-  void reload(bool load);
+///banner指示器形状
+enum BannerDotType {
+  //圆形
+  circle,
+  //方形
+  square
 }
-
-class BannerController extends BaseBannerController {
-  BannerLogic? logic;
-
-  @override
-  void reload(bool load) {
-    logic?.getBannerList();
-  }
-
-  void initState() {
-    //组件初始化阶段获取数据
-    logic ??= BannerLogic();
-    logic?.getBannerList();
-  }
-
-  void dispose() {
-    logic?.dispose();
-  }
-}
-
-typedef BannerClick = Function(String title, String url);
 
 class BannerWidget extends StatefulWidget {
-  const BannerWidget({
-    super.key,
-    this.itemClick,
-    required this.controller,
-  });
+  const BannerWidget(
+      {super.key,
+      required this.bannerData,
+      this.setRadius,
+      this.dotType,
+      this.bannerClick,
+      this.bannerRadius, this.height});
 
-  final BannerClick? itemClick;
-  final BannerController? controller;
+  //banner数据列表
+  final List<String?>? bannerData;
+
+  //是否设置圆角
+  final bool? setRadius;
+
+  //圆角弧度
+  final double? bannerRadius;
+
+  //指示器样式，默认圆形白色
+  final BannerDotType? dotType;
+
+  final double? height;
+
+  //点击事件
+  final ValueChanged<int>? bannerClick;
 
   @override
   State<StatefulWidget> createState() {
@@ -53,59 +49,64 @@ class _BannerWidgetState extends State<BannerWidget> {
   @override
   void initState() {
     super.initState();
-    widget.controller?.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-        initialData: widget.controller?.logic?.state,
-        stream: widget.controller?.logic?.getStream(),
-        builder: (context, AsyncSnapshot<BannerState> snapshot) {
-          // if (snapshot.data?.bannerList == null || snapshot.data?.bannerList?.isEmpty == true) {
-          //   return SizedBox(height: 20.h);
-          // }
-          return Container(
-              width: double.infinity,
-              height: 150.h,
-              margin: EdgeInsets.only(left: 23.w, right: 23.w, top: 20.h),
-              child: Swiper(
-                indicatorLayout: PageIndicatorLayout.NONE,
-                autoplayDelay: 5000,
-                duration: 800,
-                autoplay: true,
-                pagination: SwiperPagination(
-                    margin: EdgeInsets.all(5.r),
-                    builder: DotSwiperPaginationBuilder(
-                        size: 8.r, activeColor: Colors.blueAccent, color: Colors.grey)),
-                // control: SwiperControl(size: 5.r),
-                autoplayDisableOnInteraction: false,
-                onTap: (int index) {
-                  // var url = snapshot.data?.bannerList?[index]?.url ?? "";
-                  // var title = snapshot.data?.bannerList?[index]?.title ?? "";
-                  // log("BannerWidget banner点击 地址=$url");
-                  // widget.itemClick?.call(title, url);
-                },
-                itemBuilder: (BuildContext context, int index) {
-                  return ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(5.r)),
-                      child: CachedNetworkImage(
-                          fit: BoxFit.fill,
-                          placeholder: (context, url) {
-                            return const Center(
-                              child: CircularProgressIndicator(),
-                            );
-                          },
-                          imageUrl:  ""));
-                },
-                itemCount:  0,
-              ));
-        });
+    return Container(
+        width: double.infinity,
+        height: widget.height ?? 181.h,
+        margin: EdgeInsets.only(left: 19.w, right: 19.w),
+        child: Swiper(
+          indicatorLayout: PageIndicatorLayout.NONE,
+          autoplayDelay: 5000,
+          duration: 800,
+          autoplay: true,
+          pagination: _pagination(),
+          autoplayDisableOnInteraction: false,
+          onTap: (int index) {
+            widget.bannerClick?.call(index);
+          },
+          itemBuilder: (BuildContext context, int index) {
+            return ClipRRect(
+                borderRadius: widget.dotType == BannerDotType.circle
+                    ? BorderRadius.all(Radius.circular(5.r))
+                    : BorderRadius.zero,
+                child: CachedNetworkImage(
+                    fit: BoxFit.fill,
+                    placeholder: (context, url) {
+                      return const Center(
+                        //圆形进度条指示器
+                        child: CircularProgressIndicator(color: AppColors.redBtnColor),
+                      );
+                    },
+                    imageUrl: widget.bannerData?[index] ?? ""));
+          },
+          itemCount: widget.bannerData?.length ?? 0,
+        ));
   }
 
-  @override
-  void dispose() {
-    widget.controller?.dispose();
-    super.dispose();
+  ///指示器样式，默认圆形白色
+  SwiperPagination _pagination() {
+    if (widget.dotType == BannerDotType.square) {
+      //方形红色
+      return SwiperPagination(
+          margin: EdgeInsets.all(10.r),
+          builder: RectSwiperPaginationBuilder(
+              activeSize: Size(7.r, 7.r),
+              size: Size(7.r, 7.r),
+              space: 4.w,
+              activeColor: AppColors.redBtnColor,
+              color: Colors.white));
+    } else {
+      //圆形白色
+      return SwiperPagination(
+          margin: EdgeInsets.all(12.r),
+          builder: DotSwiperPaginationBuilder(
+              activeSize: 6.r,
+              size: 6.r,
+              activeColor: Colors.white,
+              color: AppColors.whiteColor80));
+    }
   }
 }

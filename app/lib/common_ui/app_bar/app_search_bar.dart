@@ -21,7 +21,9 @@ class AppSearchBar extends StatelessWidget {
       this.showLeftMenu,
       this.leftMenu,
       this.rightIcon,
-      this.onRightIconTap});
+      this.onRightIconTap,
+      this.margin,
+      this.rightIconPadding, this.hintText});
 
   TextEditingController? controller;
   final ValueChanged<String>? onChanged;
@@ -44,6 +46,10 @@ class AppSearchBar extends StatelessWidget {
   //右边icon按钮点击事件
   final GestureTapCallback? onRightIconTap;
 
+  final EdgeInsetsGeometry? margin;
+  final EdgeInsetsGeometry? rightIconPadding;
+  final String? hintText;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -52,7 +58,7 @@ class AppSearchBar extends StatelessWidget {
             child: Container(
                 alignment: Alignment.center,
                 padding: EdgeInsets.only(left: _getPaddingLeft()),
-                margin: EdgeInsets.only(left: 15.w, right: 15.w),
+                margin: margin ?? EdgeInsets.only(left: 15.w, right: 15.w),
                 height: 36.h,
                 decoration: BoxDecoration(
                     color: AppColors.searchBgColor,
@@ -100,7 +106,7 @@ class AppSearchBar extends StatelessWidget {
         //输入内容上下居中并且去掉下划线
         contentPadding: EdgeInsets.all(0),
         border: OutlineInputBorder(borderSide: BorderSide.none),
-        hintText: "寻找您的小窝~",
+        hintText: hintText ?? "寻找您的小窝~",
       ),
       textInputAction: TextInputAction.search,
     );
@@ -133,7 +139,7 @@ class AppSearchBar extends StatelessWidget {
     return GestureDetector(
         onTap: onRightIconTap,
         child: Container(
-            padding: EdgeInsets.only(left: 10.w, right: 20.w),
+            padding: rightIconPadding ?? EdgeInsets.only(left: 10.w, right: 20.w),
             child: rightIcon ??
                 Image.asset("assets/images/icon_message.png", width: 18.r, height: 18.r)));
   }

@@ -20,7 +20,9 @@ class BannerWidget extends StatefulWidget {
       this.setRadius,
       this.dotType,
       this.bannerClick,
-      this.bannerRadius, this.height});
+      this.bannerRadius,
+      this.height,
+      this.margin});
 
   //banner数据列表
   final List<String?>? bannerData;
@@ -35,6 +37,7 @@ class BannerWidget extends StatefulWidget {
   final BannerDotType? dotType;
 
   final double? height;
+  final EdgeInsetsGeometry? margin;
 
   //点击事件
   final ValueChanged<int>? bannerClick;
@@ -56,7 +59,7 @@ class _BannerWidgetState extends State<BannerWidget> {
     return Container(
         width: double.infinity,
         height: widget.height ?? 181.h,
-        margin: EdgeInsets.only(left: 19.w, right: 19.w),
+        margin: widget.margin,
         child: Swiper(
           indicatorLayout: PageIndicatorLayout.NONE,
           autoplayDelay: 5000,

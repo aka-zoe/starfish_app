@@ -11,13 +11,13 @@ class AppTitle extends StatelessWidget {
   const AppTitle({
     super.key,
     required this.title,
-    required this.type,
+    this.type,
     this.titleColor,
     this.fontWeight,
     this.fontSize,
   });
 
-  final AppTitleType type;
+  final AppTitleType? type;
   final String title;
   final Color? titleColor;
   final FontWeight? fontWeight;

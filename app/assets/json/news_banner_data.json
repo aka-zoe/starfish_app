@@ -1,0 +1,38 @@
+{
+    "data": {
+        "banner": [
+            {
+                "imageUrl": "https://q7.itc.cn/images01/20240312/ae5f3266aeb6408db22ad354f1168883.jpeg",
+                "id": "1",
+                "title": "最新咨询1",
+                "subTitle": "北京市场行情1",
+                "content": "开发商跑路啦开发商跑路啦开发商跑路啦开发商跑路啦开发商跑路啦开发商跑路啦",
+                "link": "https://www.baidu.com"
+            },
+            {
+                "imageUrl": "https://q9.itc.cn/images01/20240312/6012df31dff3413bb7815b136e98207e.png",
+                "id": "2",
+                "title": "最新咨询2",
+                "subTitle": "北京市场行情2",
+                "content": "开发商跑路啦开发商跑路啦开发商跑路啦开发商跑路啦开发商跑路啦开发商跑路啦",
+                "link": "https://www.baidu.com"
+            },
+            {
+                "imageUrl": "https://q7.itc.cn/images01/20240312/ae5f3266aeb6408db22ad354f1168883.jpeg",
+                "id": "3",
+                "title": "最新咨询3",
+                "subTitle": "北京市场行情3",
+                "content": "开发商跑路啦开发商跑路啦开发商跑路啦开发商跑路啦开发商跑路啦开发商跑路啦",
+                "link": "https://www.baidu.com"
+            },
+            {
+                "imageUrl": "https://q9.itc.cn/images01/20240312/6012df31dff3413bb7815b136e98207e.png",
+                "id": "4",
+                "title": "最新咨询4",
+                "subTitle": "北京市场行情4",
+                "content": "开发商跑路啦开发商跑路啦开发商跑路啦开发商跑路啦开发商跑路啦开发商跑路啦",
+                "link": "https://www.baidu.com"
+            }
+        ]
+    }
+}

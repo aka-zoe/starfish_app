@@ -29,10 +29,10 @@ class _FilterMenuWidgetState extends State<FilterMenuWidget> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              AppTitle(
-                  title: widget.name ?? "",
+              AppText(
+                  text: widget.name ?? "",
                   fontSize: 16.sp,
-                  titleColor:
+                  textColor:
                       widget.selected == true ? AppColors.titleColor3030 : AppColors.textColorAd),
               SizedBox(width: 5.w),
               Image.asset(

@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:starfish_tenement_app/common_ui/house_list/house_res_list_widget.dart';
+import 'package:starfish_tenement_app/common_ui/sliver/sliver_header.dart';
 import 'package:starfish_tenement_app/pages/house_res/house_resource_vm.dart';
 
 import '../../common_ui/app_bar/app_search_bar.dart';
 import '../../common_ui/banner/home_banner_widget.dart';
 import '../../common_ui/filter/filter_menu_widget.dart';
+import '../../common_ui/house_list/house_res_list_item.dart';
 import '../../common_ui/title/home_big_title.dart';
 import '../../datas/home_banner_data.dart';
 
@@ -40,31 +42,37 @@ class _HouseResourcePageState extends State<HouseResourcePage> {
             body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 14.w),
-            child: Expanded(child: ListView(children: [
-              //搜索栏
-              AppSearchBar(
-                hintText: "寻找附近房源",
-                margin: EdgeInsets.zero,
-                rightIconPadding: EdgeInsets.only(left: 25.w, right: 20.w),
-                searchType: SearchType.square,
-                showLeftMenu: false,
-                //消息按钮
-                showRightIcon: true,
-                onRightIconTap: () {
-                  //点击消息按钮
-                },
-              ),
-              SizedBox(height: 21.h),
-              _banner(),
-              HomeBigTitle(bigTitle: "新房源"),
-              _filterArea(),
-              // SliverToBoxAdapter(child: SliverAppBar(pinned: true, title: )),
-              //房源列表
-              HouseResListWidget(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-              )
-            ]),),
+            child: CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                    child: Column(children: [
+                  //搜索栏
+                  AppSearchBar(
+                    hintText: "寻找附近房源",
+                    margin: EdgeInsets.zero,
+                    rightIconPadding: EdgeInsets.only(left: 25.w, right: 20.w),
+                    searchType: SearchType.square,
+                    showLeftMenu: false,
+                    //消息按钮
+                    showRightIcon: true,
+                    onRightIconTap: () {
+                      //点击消息按钮
+                    },
+                  ),
+                  SizedBox(height: 21.h),
+                  _banner(),
+                ])),
+                SliverHeader(children: [
+                  HomeBigTitle(bigTitle: "新房源"),
+                  _filterArea(),
+                ]),
+                //房源列表
+                SliverList(
+                    delegate: SliverChildBuilderDelegate((context, index) {
+                  return const HouseListItem();
+                }, childCount: 20)),
+              ],
+            ),
           ),
         )));
   }

@@ -48,4 +48,10 @@ class RoutePath {
 
   //搜索页
   static const String search = "/search";
+
+  //咨询页
+  static const String newsListPage = "/newsListPage";
+
+  //房源列表页
+  static const String houseResourcePage = "/houseResourcePage";
 }

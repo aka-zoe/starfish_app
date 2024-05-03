@@ -20,6 +20,7 @@ class MockBuilder {
       }
       return json;
     } catch (e) {
+      print("loadJson e=$e");
       return "MockBuilder: Json mock error!";
     }
   }

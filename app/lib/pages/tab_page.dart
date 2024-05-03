@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:starfish_tenement_app/pages/home/home_page.dart';
 import 'package:starfish_tenement_app/pages/house_res/house_resource_page.dart';
+import 'package:starfish_tenement_app/pages/news/news_list_page.dart';
 
 import '../common_ui/navigation/navigation_bar_widget.dart';
 
@@ -41,7 +42,7 @@ class _TabPageState extends State<TabPage> {
   void initTabPage() {
     tabItems.add(HomePage());
     tabItems.add(HouseResourcePage());
-    tabItems.add(const Text("资讯"));
+    tabItems.add(NewsListPage());
     tabItems.add(const Text("我的"));
   }
 

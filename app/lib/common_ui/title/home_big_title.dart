@@ -8,16 +8,21 @@ import 'app_title.dart';
 class HomeBigTitle extends StatelessWidget {
   final String? bigTitle;
   final bool? showRight;
+  final double? titleSize;
   final GestureTapCallback? onRightTap;
-
-  const HomeBigTitle({super.key, this.bigTitle, this.showRight, this.onRightTap});
+  final EdgeInsetsGeometry? padding;
+  const HomeBigTitle({super.key, this.bigTitle, this.showRight, this.onRightTap, this.titleSize, this.padding});
 
   @override
   Widget build(BuildContext context) {
-    var title = AppTitle(type: AppTitleType.homeBigTitle, title: bigTitle ?? "");
+    var title = AppText(
+      type: AppTextType.homeBigTitle,
+      text: bigTitle ?? "",
+      fontSize: titleSize,
+    );
 
     return Container(
-        padding: EdgeInsets.only(top: 21.h, bottom: 26.h),
+        padding: padding ?? EdgeInsets.only(top: 21.h, bottom: 26.h),
         alignment: Alignment.centerLeft,
         child: showRight == true
             ? Row(
@@ -30,10 +35,10 @@ class HomeBigTitle extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          AppTitle(
-                            title: "更多",
+                          AppText(
+                            text: "更多",
                             fontSize: 14.sp,
-                            titleColor: AppColors.textColor7d,
+                            textColor: AppColors.textColor7d,
                           ),
                           SizedBox(width: 6.w),
                           Image.asset("assets/images/icon_right_arrow_grey.png",

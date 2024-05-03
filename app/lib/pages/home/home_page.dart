@@ -9,7 +9,9 @@ import 'package:starfish_tenement_app/common_ui/app_bar/app_search_bar.dart';
 import 'package:starfish_tenement_app/common_ui/app_bar/app_title_bar.dart';
 import 'package:starfish_tenement_app/common_ui/banner/home_banner_widget.dart';
 import 'package:starfish_tenement_app/common_ui/buttons/red_button.dart';
+import 'package:starfish_tenement_app/common_ui/house_list/house_res_list_item.dart';
 import 'package:starfish_tenement_app/common_ui/icon_text/icon_text.dart';
+import 'package:starfish_tenement_app/common_ui/sliver/sliver_header.dart';
 import 'package:starfish_tenement_app/common_ui/tag/tag_widget.dart';
 import 'package:starfish_tenement_app/common_ui/title/app_title.dart';
 import 'package:starfish_tenement_app/datas/home_banner_data.dart';
@@ -18,6 +20,7 @@ import 'package:starfish_tenement_app/styles/app_colors.dart';
 
 import '../../common_ui/filter/filter_menu_widget.dart';
 import '../../common_ui/house_list/house_res_list_widget.dart';
+import '../../common_ui/sliver/sliver_app_bar_delegate.dart';
 import '../../common_ui/title/home_big_title.dart';
 
 class HomePage extends StatefulWidget {
@@ -75,26 +78,18 @@ class _HomePageState extends State<HomePage> {
                 ),
 
                 //吸顶布局
-                SliverPersistentHeader(
-                    pinned: true,
-                    floating: true,
-                    delegate: _SliverAppBarDelegate(
-                        minHeight: 130.h,
-                        maxHeight: 130.h,
-                        child: Container(
-                            width: double.infinity,
-                            color: Colors.white,
-                            child: Column(children: [
-                              HomeBigTitle(bigTitle: "精选好房"),
-                              //筛选条件区域
-                              _filterArea()
-                            ])))),
-
+                SliverHeader(
+                  children: [
+                    HomeBigTitle(bigTitle: "精选好房"),
+                    //筛选条件区域
+                    _filterArea()
+                  ],
+                ),
                 //房源列表
                 SliverList(
                     delegate: SliverChildBuilderDelegate((context, index) {
-                  return _houseListItem();
-                }, childCount: 20)),
+                      return const HouseListItem();
+                    }, childCount: 20)),
               ])),
         )));
   }
@@ -277,16 +272,16 @@ class _HomePageState extends State<HomePage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      AppTitle(
-                        title: title ?? "",
+                      AppText(
+                        text: title ?? "",
                         fontSize: titleSize ?? 17.sp,
-                        titleColor: titleColor,
+                        textColor: titleColor,
                         fontWeight: titleWeight,
                       ),
-                      AppTitle(
-                        title: subTitle ?? "",
+                      AppText(
+                        text: subTitle ?? "",
                         fontSize: subTitleSize ?? 12.sp,
-                        titleColor: subTitleColor ?? AppColors.textColor78,
+                        textColor: subTitleColor ?? AppColors.textColor78,
                       )
                     ],
                   ))
@@ -297,7 +292,7 @@ class _HomePageState extends State<HomePage> {
 
   ///首页的大标题组件
   Widget _homeBigTitle({String? bigTitle, bool? showRight, GestureTapCallback? onRightTap}) {
-    var title = AppTitle(type: AppTitleType.homeBigTitle, title: bigTitle ?? "");
+    var title = AppText(type: AppTextType.homeBigTitle, text: bigTitle ?? "");
 
     return Container(
         padding: EdgeInsets.only(top: 21.h, bottom: 26.h),
@@ -313,10 +308,10 @@ class _HomePageState extends State<HomePage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          AppTitle(
-                            title: "更多",
+                          AppText(
+                            text: "更多",
                             fontSize: 14.sp,
-                            titleColor: AppColors.textColor7d,
+                            textColor: AppColors.textColor7d,
                           ),
                           SizedBox(width: 6.w),
                           Image.asset("assets/images/icon_right_arrow_grey.png",
@@ -346,79 +341,5 @@ class _HomePageState extends State<HomePage> {
       FilterMenuWidget(name: "户型"),
       FilterMenuWidget(name: "筛选")
     ]);
-  }
-
-  ///房源列表
-  Widget _houseListView() {
-    return HouseResListWidget(
-      shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
-    );
-  }
-
-  ///房源列表item
-  Widget _houseListItem() {
-    return Container(
-        //设置底部分割线
-        decoration: BoxDecoration(
-            border: Border(bottom: BorderSide(color: AppColors.lineColor, width: 1.r))),
-        padding: EdgeInsets.symmetric(vertical: 21.h),
-        width: double.infinity,
-        child: Row(children: [
-          Image.network("https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg",
-              width: 122.w, height: 96.h, fit: BoxFit.fill),
-          SizedBox(width: 17.w),
-          Expanded(
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            AppTitle(title: "翻斗花园二期主卧押一付三", titleColor: AppColors.textColor2b, fontSize: 19.sp),
-            AppTitle(
-                title: "套二 50m2 距西二旗地铁站1.2km", titleColor: AppColors.textColorB6, fontSize: 13.sp),
-            Row(
-              children: [
-                TagWidget(name: "在线签约", hot: true),
-                SizedBox(width: 10.w),
-                TagWidget(name: "近地铁", hot: false),
-                SizedBox(width: 10.w),
-                TagWidget(name: "精装修", hot: false),
-              ],
-            ),
-            Row(
-              children: [
-                AppTitle(title: "3000", titleColor: AppColors.textRedColor39, fontSize: 19.sp),
-                AppTitle(title: "元/月", titleColor: AppColors.textRedColor6d, fontSize: 11.sp)
-              ],
-            )
-          ]))
-        ]));
-  }
-}
-
-class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-  _SliverAppBarDelegate({
-    required this.minHeight,
-    required this.maxHeight,
-    required this.child,
-  });
-
-  final double minHeight;
-  final double maxHeight;
-  final Widget child;
-
-  @override
-  double get minExtent => minHeight;
-
-  @override
-  double get maxExtent => max(maxHeight, minHeight);
-
-  @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return SizedBox.expand(child: child);
-  }
-
-  @override
-  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
-    return maxHeight != oldDelegate.maxHeight ||
-        minHeight != oldDelegate.minHeight ||
-        child != oldDelegate.child;
   }
 }

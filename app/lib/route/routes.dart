@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:starfish_tenement_app/pages/news_type/news_type_page.dart';
 
 import '../pages/tab_page.dart';
 
@@ -10,6 +11,9 @@ class Routes {
       //首页tab
       case RoutePath.tab:
         return pageRoute(const TabPage(), settings: settings);
+      //资讯分类页
+      case RoutePath.newsTypePage:
+        return pageRoute(const NewsTypePage(), settings: settings);
     }
     return MaterialPageRoute(
         builder: (context) =>
@@ -54,4 +58,7 @@ class RoutePath {
 
   //房源列表页
   static const String houseResourcePage = "/houseResourcePage";
+
+  //资讯分类页
+  static const String newsTypePage = "/newsTypePage";
 }

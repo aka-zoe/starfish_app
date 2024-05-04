@@ -1,3 +1,5 @@
+import 'package:starfish_tenement_app/datas/news_type_data.dart';
+
 import '../datas/home_banner_data.dart';
 import '../datas/news_banner_data.dart';
 import 'mock_builder.dart';
@@ -24,13 +26,18 @@ class MockApi {
 
   ///咨询页banner数据
   Future<NewsBannerData> mockNewsBannerData() async {
-    try{
+    try {
       var json = await getJson("news_banner_data");
       print(json);
       return NewsBannerData.fromJson(json);
-    }catch(e){
+    } catch (e) {
       return NewsBannerData();
     }
+  }
 
+  ///资讯分类列表
+  Future<NewsTypeData> mockNewsTypeData() async {
+    var json = await getJson("news_type_list_data");
+    return NewsTypeData.fromJson(json);
   }
 }

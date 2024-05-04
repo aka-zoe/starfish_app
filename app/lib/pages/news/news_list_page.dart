@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 import 'package:starfish_tenement_app/common_ui/tag/tag_widget.dart';
 import 'package:starfish_tenement_app/common_ui/title/app_title.dart';
 import 'package:starfish_tenement_app/common_ui/title/home_big_title.dart';
+import 'package:starfish_tenement_app/route/Routes.dart';
+import 'package:starfish_tenement_app/route/route_utils.dart';
 import 'package:starfish_tenement_app/styles/app_colors.dart';
 
 import '../../datas/news_banner_data.dart';
@@ -67,7 +69,9 @@ class _NewsListPageState extends State<NewsListPage> {
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
-                  return _newsListItemView();
+                  return _newsListItemView(() {
+                    RouteUtils.pushForNamed(context, RoutePath.newsTypePage);
+                  });
                 },
                 itemCount: 20,
               )
@@ -76,48 +80,50 @@ class _NewsListPageState extends State<NewsListPage> {
         ))));
   }
 
-  Widget _newsListItemView() {
-    return Container(
-      padding: EdgeInsets.only(top: 20.h, bottom: 20.h),
-      margin: EdgeInsets.only(right: 15.w),
-      decoration: BoxDecoration(
-          border: Border(bottom: BorderSide(color: AppColors.lineColorF8, width: 1.r))),
-      child: Row(
-        children: [
-          ClipRRect(
-              borderRadius: BorderRadius.circular(8.r),
-              child: Image.network(
-                  "https://images.pexels.com/photos/101808/pexels-photo-101808.jpeg",
-                  width: 103.w,
-                  height: 76.h,
-                  fit: BoxFit.fill)),
-          14.horizontalSpace,
-          Expanded(
-              flex: 1,
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                AppText(
-                  maxLines: 2,
-                  text: "健康住宅“这个圈”如何才能画满360度？",
-                  textColor: AppColors.textColor7C,
-                  fontSize: 18.sp,
-                ),
-                Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-                  TagWidget(name: "房产新闻", color: AppColors.textRedColor3D),
-                  Expanded(child: SizedBox()),
-                  Image.asset("assets/images/icon_news_remark.png", width: 13.r, height: 13.r),
-                  6.horizontalSpace,
-                  AppText(text: "1234"),
-                  12.horizontalSpace,
-                  Image.asset("assets/images/icon_news_collect_grey.png",
-                      width: 13.r, height: 13.r),
-                  6.horizontalSpace,
-                  AppText(text: "300"),
-                  20.horizontalSpace,
-                ])
-              ]))
-        ],
-      ),
-    );
+  Widget _newsListItemView(GestureTapCallback? onTap) {
+    return GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: EdgeInsets.only(top: 20.h, bottom: 20.h),
+          margin: EdgeInsets.only(right: 15.w),
+          decoration: BoxDecoration(
+              border: Border(bottom: BorderSide(color: AppColors.lineColorF8, width: 1.r))),
+          child: Row(
+            children: [
+              ClipRRect(
+                  borderRadius: BorderRadius.circular(8.r),
+                  child: Image.network(
+                      "https://images.pexels.com/photos/101808/pexels-photo-101808.jpeg",
+                      width: 103.w,
+                      height: 76.h,
+                      fit: BoxFit.fill)),
+              14.horizontalSpace,
+              Expanded(
+                  flex: 1,
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    AppText(
+                      maxLines: 2,
+                      text: "健康住宅“这个圈”如何才能画满360度？",
+                      textColor: AppColors.textColor7C,
+                      fontSize: 18.sp,
+                    ),
+                    Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+                      TagWidget(name: "房产新闻", color: AppColors.textRedColor3D),
+                      Expanded(child: SizedBox()),
+                      Image.asset("assets/images/icon_news_remark.png", width: 13.r, height: 13.r),
+                      6.horizontalSpace,
+                      AppText(text: "1234"),
+                      12.horizontalSpace,
+                      Image.asset("assets/images/icon_news_collect_grey.png",
+                          width: 13.r, height: 13.r),
+                      6.horizontalSpace,
+                      AppText(text: "300"),
+                      20.horizontalSpace,
+                    ])
+                  ]))
+            ],
+          ),
+        ));
   }
 
   Widget _newsBannerWidget() {

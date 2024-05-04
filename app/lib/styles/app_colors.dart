@@ -22,6 +22,7 @@ class AppColors {
   static const verticalLimitColor = Color(0xFFd1d1d1);
   static const lineColor = Color(0xFFf5f4f4);
   static const lineColorF8 = Color(0xFFf8f8f8);
+  static const lineColorFA = Color(0xFFfafafa);
 
   //文本颜色
   static const textColor3a = Color(0xFF3a3a3a);
@@ -33,12 +34,14 @@ class AppColors {
   static const textColorA9 = Color(0xFF7ee2a9);
   static const textColor86 = Color(0xFF868686);
   static const textColor2b = Color(0xFF2b2b2b);
+  static const textColor20 = Color(0xFF202020);
   static const textColorB6 = Color(0xFFb6b6b6);
   static const textColor41 = Color(0xFF424241);
   static const textColor7A = Color(0xFF7a7a7a);
   static const textColor7C = Color(0xFF7c7c7c);
   static const textColorC0 = Color(0xFFc1c1c0);
   static const textColor9A = Color(0xFF9c9c9a);
+  static const textColorB7 = Color(0xFFb7b7b7);
   static const textRedColor39 = Color(0xFFff3739);
   static const textRedColor6d = Color(0xFFff6c6d);
   static const textRedColor3D = Color(0xFFff3b3d);

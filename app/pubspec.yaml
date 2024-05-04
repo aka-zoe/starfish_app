@@ -63,6 +63,7 @@ flutter:
         - assets/json/home_banner_data.json
         - assets/json/home_house_data.json
         - assets/json/news_banner_data.json
+        - assets/json/news_type_list_data.json
         # 图片资源
         - assets/images/
 

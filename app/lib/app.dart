@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:starfish_tenement_app/pages/debug/debug_page.dart';
-import 'package:starfish_tenement_app/route/RouteUtils.dart';
-import 'package:starfish_tenement_app/route/Routes.dart';
+import 'package:starfish_tenement_app/route/route_utils.dart';
+import 'package:starfish_tenement_app/route/routes.dart';
 
 /// 设计尺寸
 Size get designSize {

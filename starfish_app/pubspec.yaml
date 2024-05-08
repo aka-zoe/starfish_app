@@ -47,7 +47,7 @@ dependencies:
     pull_to_refresh: ^2.0.0
     # 自己封装的高德定位插件
     amap_location:
-        path: /Users/gongsensen/AndroidStudioProjects/Powersen_Personal/starfish_tenement_app/app/amap_location
+        path: /Users/gongsensen/AndroidStudioProjects/Powersen_Personal/starfish_tenement_app/starfish_app/amap_location
 
 dev_dependencies:
     flutter_test:

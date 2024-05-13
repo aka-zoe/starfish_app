@@ -1,0 +1,765 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zoe.starfish_server.mapper.HouseResourceMapper">
+  <resultMap id="BaseResultMap" type="com.zoe.starfish_server.domain.HouseResource">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="house_image_id" jdbcType="BIGINT" property="houseImageId" />
+    <result column="house_desc" jdbcType="VARCHAR" property="houseDesc" />
+    <result column="lease_type" jdbcType="INTEGER" property="leaseType" />
+    <result column="rent" jdbcType="DECIMAL" property="rent" />
+    <result column="service_charge" jdbcType="DECIMAL" property="serviceCharge" />
+    <result column="house_type_id" jdbcType="BIGINT" property="houseTypeId" />
+    <result column="house_type" jdbcType="INTEGER" property="houseType" />
+    <result column="direction" jdbcType="VARCHAR" property="direction" />
+    <result column="check_in_date" jdbcType="VARCHAR" property="checkInDate" />
+    <result column="total_floor" jdbcType="INTEGER" property="totalFloor" />
+    <result column="current_floor" jdbcType="INTEGER" property="currentFloor" />
+    <result column="house_area_id" jdbcType="BIGINT" property="houseAreaId" />
+    <result column="acreage" jdbcType="INTEGER" property="acreage" />
+    <result column="publish_date" jdbcType="VARCHAR" property="publishDate" />
+    <result column="fitment" jdbcType="VARCHAR" property="fitment" />
+    <result column="payment_type" jdbcType="INTEGER" property="paymentType" />
+    <result column="bed" jdbcType="INTEGER" property="bed" />
+    <result column="washing_machine" jdbcType="INTEGER" property="washingMachine" />
+    <result column="refrigerator" jdbcType="INTEGER" property="refrigerator" />
+    <result column="air_conditioner" jdbcType="INTEGER" property="airConditioner" />
+    <result column="wifi" jdbcType="INTEGER" property="wifi" />
+    <result column="sofa" jdbcType="INTEGER" property="sofa" />
+    <result column="table_chair" jdbcType="INTEGER" property="tableChair" />
+    <result column="tv" jdbcType="INTEGER" property="tv" />
+    <result column="water_heater" jdbcType="INTEGER" property="waterHeater" />
+    <result column="cook" jdbcType="INTEGER" property="cook" />
+    <result column="heating" jdbcType="INTEGER" property="heating" />
+    <result column="balcony" jdbcType="INTEGER" property="balcony" />
+    <result column="longitude" jdbcType="VARCHAR" property="longitude" />
+    <result column="latitude" jdbcType="VARCHAR" property="latitude" />
+    <result column="publisher" jdbcType="VARCHAR" property="publisher" />
+    <result column="publisher_number" jdbcType="VARCHAR" property="publisherNumber" />
+    <result column="tag_id" jdbcType="BIGINT" property="tagId" />
+    <result column="publisher_id" jdbcType="BIGINT" property="publisherId" />
+    <result column="publisher_type" jdbcType="VARCHAR" property="publisherType" />
+    <result column="publisher_head" jdbcType="VARCHAR" property="publisherHead" />
+    <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, image, house_image_id, house_desc, lease_type, rent, service_charge, house_type_id, 
+    house_type, direction, check_in_date, total_floor, current_floor, house_area_id, 
+    acreage, publish_date, fitment, payment_type, bed, washing_machine, refrigerator, 
+    air_conditioner, wifi, sofa, table_chair, tv, water_heater, cook, heating, balcony, 
+    longitude, latitude, publisher, publisher_number, tag_id, publisher_id, publisher_type, 
+    publisher_head, create_time, `status`
+  </sql>
+  <select id="selectByExample" parameterType="com.zoe.starfish_server.domain.HouseResourceExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from house_res
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from house_res
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from house_res
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zoe.starfish_server.domain.HouseResourceExample">
+    delete from house_res
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zoe.starfish_server.domain.HouseResource">
+    insert into house_res (id, image, house_image_id, 
+      house_desc, lease_type, rent, 
+      service_charge, house_type_id, house_type, 
+      direction, check_in_date, total_floor, 
+      current_floor, house_area_id, acreage, 
+      publish_date, fitment, payment_type, 
+      bed, washing_machine, refrigerator, 
+      air_conditioner, wifi, sofa, 
+      table_chair, tv, water_heater, 
+      cook, heating, balcony, 
+      longitude, latitude, publisher, 
+      publisher_number, tag_id, publisher_id, 
+      publisher_type, publisher_head, create_time, 
+      `status`)
+    values (#{id,jdbcType=BIGINT}, #{image,jdbcType=VARCHAR}, #{houseImageId,jdbcType=BIGINT}, 
+      #{houseDesc,jdbcType=VARCHAR}, #{leaseType,jdbcType=INTEGER}, #{rent,jdbcType=DECIMAL}, 
+      #{serviceCharge,jdbcType=DECIMAL}, #{houseTypeId,jdbcType=BIGINT}, #{houseType,jdbcType=INTEGER}, 
+      #{direction,jdbcType=VARCHAR}, #{checkInDate,jdbcType=VARCHAR}, #{totalFloor,jdbcType=INTEGER}, 
+      #{currentFloor,jdbcType=INTEGER}, #{houseAreaId,jdbcType=BIGINT}, #{acreage,jdbcType=INTEGER}, 
+      #{publishDate,jdbcType=VARCHAR}, #{fitment,jdbcType=VARCHAR}, #{paymentType,jdbcType=INTEGER}, 
+      #{bed,jdbcType=INTEGER}, #{washingMachine,jdbcType=INTEGER}, #{refrigerator,jdbcType=INTEGER}, 
+      #{airConditioner,jdbcType=INTEGER}, #{wifi,jdbcType=INTEGER}, #{sofa,jdbcType=INTEGER}, 
+      #{tableChair,jdbcType=INTEGER}, #{tv,jdbcType=INTEGER}, #{waterHeater,jdbcType=INTEGER}, 
+      #{cook,jdbcType=INTEGER}, #{heating,jdbcType=INTEGER}, #{balcony,jdbcType=INTEGER}, 
+      #{longitude,jdbcType=VARCHAR}, #{latitude,jdbcType=VARCHAR}, #{publisher,jdbcType=VARCHAR}, 
+      #{publisherNumber,jdbcType=VARCHAR}, #{tagId,jdbcType=BIGINT}, #{publisherId,jdbcType=BIGINT}, 
+      #{publisherType,jdbcType=VARCHAR}, #{publisherHead,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zoe.starfish_server.domain.HouseResource">
+    insert into house_res
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="image != null">
+        image,
+      </if>
+      <if test="houseImageId != null">
+        house_image_id,
+      </if>
+      <if test="houseDesc != null">
+        house_desc,
+      </if>
+      <if test="leaseType != null">
+        lease_type,
+      </if>
+      <if test="rent != null">
+        rent,
+      </if>
+      <if test="serviceCharge != null">
+        service_charge,
+      </if>
+      <if test="houseTypeId != null">
+        house_type_id,
+      </if>
+      <if test="houseType != null">
+        house_type,
+      </if>
+      <if test="direction != null">
+        direction,
+      </if>
+      <if test="checkInDate != null">
+        check_in_date,
+      </if>
+      <if test="totalFloor != null">
+        total_floor,
+      </if>
+      <if test="currentFloor != null">
+        current_floor,
+      </if>
+      <if test="houseAreaId != null">
+        house_area_id,
+      </if>
+      <if test="acreage != null">
+        acreage,
+      </if>
+      <if test="publishDate != null">
+        publish_date,
+      </if>
+      <if test="fitment != null">
+        fitment,
+      </if>
+      <if test="paymentType != null">
+        payment_type,
+      </if>
+      <if test="bed != null">
+        bed,
+      </if>
+      <if test="washingMachine != null">
+        washing_machine,
+      </if>
+      <if test="refrigerator != null">
+        refrigerator,
+      </if>
+      <if test="airConditioner != null">
+        air_conditioner,
+      </if>
+      <if test="wifi != null">
+        wifi,
+      </if>
+      <if test="sofa != null">
+        sofa,
+      </if>
+      <if test="tableChair != null">
+        table_chair,
+      </if>
+      <if test="tv != null">
+        tv,
+      </if>
+      <if test="waterHeater != null">
+        water_heater,
+      </if>
+      <if test="cook != null">
+        cook,
+      </if>
+      <if test="heating != null">
+        heating,
+      </if>
+      <if test="balcony != null">
+        balcony,
+      </if>
+      <if test="longitude != null">
+        longitude,
+      </if>
+      <if test="latitude != null">
+        latitude,
+      </if>
+      <if test="publisher != null">
+        publisher,
+      </if>
+      <if test="publisherNumber != null">
+        publisher_number,
+      </if>
+      <if test="tagId != null">
+        tag_id,
+      </if>
+      <if test="publisherId != null">
+        publisher_id,
+      </if>
+      <if test="publisherType != null">
+        publisher_type,
+      </if>
+      <if test="publisherHead != null">
+        publisher_head,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="houseImageId != null">
+        #{houseImageId,jdbcType=BIGINT},
+      </if>
+      <if test="houseDesc != null">
+        #{houseDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="leaseType != null">
+        #{leaseType,jdbcType=INTEGER},
+      </if>
+      <if test="rent != null">
+        #{rent,jdbcType=DECIMAL},
+      </if>
+      <if test="serviceCharge != null">
+        #{serviceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="houseTypeId != null">
+        #{houseTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="houseType != null">
+        #{houseType,jdbcType=INTEGER},
+      </if>
+      <if test="direction != null">
+        #{direction,jdbcType=VARCHAR},
+      </if>
+      <if test="checkInDate != null">
+        #{checkInDate,jdbcType=VARCHAR},
+      </if>
+      <if test="totalFloor != null">
+        #{totalFloor,jdbcType=INTEGER},
+      </if>
+      <if test="currentFloor != null">
+        #{currentFloor,jdbcType=INTEGER},
+      </if>
+      <if test="houseAreaId != null">
+        #{houseAreaId,jdbcType=BIGINT},
+      </if>
+      <if test="acreage != null">
+        #{acreage,jdbcType=INTEGER},
+      </if>
+      <if test="publishDate != null">
+        #{publishDate,jdbcType=VARCHAR},
+      </if>
+      <if test="fitment != null">
+        #{fitment,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentType != null">
+        #{paymentType,jdbcType=INTEGER},
+      </if>
+      <if test="bed != null">
+        #{bed,jdbcType=INTEGER},
+      </if>
+      <if test="washingMachine != null">
+        #{washingMachine,jdbcType=INTEGER},
+      </if>
+      <if test="refrigerator != null">
+        #{refrigerator,jdbcType=INTEGER},
+      </if>
+      <if test="airConditioner != null">
+        #{airConditioner,jdbcType=INTEGER},
+      </if>
+      <if test="wifi != null">
+        #{wifi,jdbcType=INTEGER},
+      </if>
+      <if test="sofa != null">
+        #{sofa,jdbcType=INTEGER},
+      </if>
+      <if test="tableChair != null">
+        #{tableChair,jdbcType=INTEGER},
+      </if>
+      <if test="tv != null">
+        #{tv,jdbcType=INTEGER},
+      </if>
+      <if test="waterHeater != null">
+        #{waterHeater,jdbcType=INTEGER},
+      </if>
+      <if test="cook != null">
+        #{cook,jdbcType=INTEGER},
+      </if>
+      <if test="heating != null">
+        #{heating,jdbcType=INTEGER},
+      </if>
+      <if test="balcony != null">
+        #{balcony,jdbcType=INTEGER},
+      </if>
+      <if test="longitude != null">
+        #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="publisher != null">
+        #{publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="publisherNumber != null">
+        #{publisherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="tagId != null">
+        #{tagId,jdbcType=BIGINT},
+      </if>
+      <if test="publisherId != null">
+        #{publisherId,jdbcType=BIGINT},
+      </if>
+      <if test="publisherType != null">
+        #{publisherType,jdbcType=VARCHAR},
+      </if>
+      <if test="publisherHead != null">
+        #{publisherHead,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zoe.starfish_server.domain.HouseResourceExample" resultType="java.lang.Long">
+    select count(*) from house_res
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update house_res
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.image != null">
+        image = #{record.image,jdbcType=VARCHAR},
+      </if>
+      <if test="record.houseImageId != null">
+        house_image_id = #{record.houseImageId,jdbcType=BIGINT},
+      </if>
+      <if test="record.houseDesc != null">
+        house_desc = #{record.houseDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leaseType != null">
+        lease_type = #{record.leaseType,jdbcType=INTEGER},
+      </if>
+      <if test="record.rent != null">
+        rent = #{record.rent,jdbcType=DECIMAL},
+      </if>
+      <if test="record.serviceCharge != null">
+        service_charge = #{record.serviceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.houseTypeId != null">
+        house_type_id = #{record.houseTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.houseType != null">
+        house_type = #{record.houseType,jdbcType=INTEGER},
+      </if>
+      <if test="record.direction != null">
+        direction = #{record.direction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkInDate != null">
+        check_in_date = #{record.checkInDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalFloor != null">
+        total_floor = #{record.totalFloor,jdbcType=INTEGER},
+      </if>
+      <if test="record.currentFloor != null">
+        current_floor = #{record.currentFloor,jdbcType=INTEGER},
+      </if>
+      <if test="record.houseAreaId != null">
+        house_area_id = #{record.houseAreaId,jdbcType=BIGINT},
+      </if>
+      <if test="record.acreage != null">
+        acreage = #{record.acreage,jdbcType=INTEGER},
+      </if>
+      <if test="record.publishDate != null">
+        publish_date = #{record.publishDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fitment != null">
+        fitment = #{record.fitment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymentType != null">
+        payment_type = #{record.paymentType,jdbcType=INTEGER},
+      </if>
+      <if test="record.bed != null">
+        bed = #{record.bed,jdbcType=INTEGER},
+      </if>
+      <if test="record.washingMachine != null">
+        washing_machine = #{record.washingMachine,jdbcType=INTEGER},
+      </if>
+      <if test="record.refrigerator != null">
+        refrigerator = #{record.refrigerator,jdbcType=INTEGER},
+      </if>
+      <if test="record.airConditioner != null">
+        air_conditioner = #{record.airConditioner,jdbcType=INTEGER},
+      </if>
+      <if test="record.wifi != null">
+        wifi = #{record.wifi,jdbcType=INTEGER},
+      </if>
+      <if test="record.sofa != null">
+        sofa = #{record.sofa,jdbcType=INTEGER},
+      </if>
+      <if test="record.tableChair != null">
+        table_chair = #{record.tableChair,jdbcType=INTEGER},
+      </if>
+      <if test="record.tv != null">
+        tv = #{record.tv,jdbcType=INTEGER},
+      </if>
+      <if test="record.waterHeater != null">
+        water_heater = #{record.waterHeater,jdbcType=INTEGER},
+      </if>
+      <if test="record.cook != null">
+        cook = #{record.cook,jdbcType=INTEGER},
+      </if>
+      <if test="record.heating != null">
+        heating = #{record.heating,jdbcType=INTEGER},
+      </if>
+      <if test="record.balcony != null">
+        balcony = #{record.balcony,jdbcType=INTEGER},
+      </if>
+      <if test="record.longitude != null">
+        longitude = #{record.longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.latitude != null">
+        latitude = #{record.latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publisher != null">
+        publisher = #{record.publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publisherNumber != null">
+        publisher_number = #{record.publisherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tagId != null">
+        tag_id = #{record.tagId,jdbcType=BIGINT},
+      </if>
+      <if test="record.publisherId != null">
+        publisher_id = #{record.publisherId,jdbcType=BIGINT},
+      </if>
+      <if test="record.publisherType != null">
+        publisher_type = #{record.publisherType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publisherHead != null">
+        publisher_head = #{record.publisherHead,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        `status` = #{record.status,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update house_res
+    set id = #{record.id,jdbcType=BIGINT},
+      image = #{record.image,jdbcType=VARCHAR},
+      house_image_id = #{record.houseImageId,jdbcType=BIGINT},
+      house_desc = #{record.houseDesc,jdbcType=VARCHAR},
+      lease_type = #{record.leaseType,jdbcType=INTEGER},
+      rent = #{record.rent,jdbcType=DECIMAL},
+      service_charge = #{record.serviceCharge,jdbcType=DECIMAL},
+      house_type_id = #{record.houseTypeId,jdbcType=BIGINT},
+      house_type = #{record.houseType,jdbcType=INTEGER},
+      direction = #{record.direction,jdbcType=VARCHAR},
+      check_in_date = #{record.checkInDate,jdbcType=VARCHAR},
+      total_floor = #{record.totalFloor,jdbcType=INTEGER},
+      current_floor = #{record.currentFloor,jdbcType=INTEGER},
+      house_area_id = #{record.houseAreaId,jdbcType=BIGINT},
+      acreage = #{record.acreage,jdbcType=INTEGER},
+      publish_date = #{record.publishDate,jdbcType=VARCHAR},
+      fitment = #{record.fitment,jdbcType=VARCHAR},
+      payment_type = #{record.paymentType,jdbcType=INTEGER},
+      bed = #{record.bed,jdbcType=INTEGER},
+      washing_machine = #{record.washingMachine,jdbcType=INTEGER},
+      refrigerator = #{record.refrigerator,jdbcType=INTEGER},
+      air_conditioner = #{record.airConditioner,jdbcType=INTEGER},
+      wifi = #{record.wifi,jdbcType=INTEGER},
+      sofa = #{record.sofa,jdbcType=INTEGER},
+      table_chair = #{record.tableChair,jdbcType=INTEGER},
+      tv = #{record.tv,jdbcType=INTEGER},
+      water_heater = #{record.waterHeater,jdbcType=INTEGER},
+      cook = #{record.cook,jdbcType=INTEGER},
+      heating = #{record.heating,jdbcType=INTEGER},
+      balcony = #{record.balcony,jdbcType=INTEGER},
+      longitude = #{record.longitude,jdbcType=VARCHAR},
+      latitude = #{record.latitude,jdbcType=VARCHAR},
+      publisher = #{record.publisher,jdbcType=VARCHAR},
+      publisher_number = #{record.publisherNumber,jdbcType=VARCHAR},
+      tag_id = #{record.tagId,jdbcType=BIGINT},
+      publisher_id = #{record.publisherId,jdbcType=BIGINT},
+      publisher_type = #{record.publisherType,jdbcType=VARCHAR},
+      publisher_head = #{record.publisherHead,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=VARCHAR},
+      `status` = #{record.status,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zoe.starfish_server.domain.HouseResource">
+    update house_res
+    <set>
+      <if test="image != null">
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="houseImageId != null">
+        house_image_id = #{houseImageId,jdbcType=BIGINT},
+      </if>
+      <if test="houseDesc != null">
+        house_desc = #{houseDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="leaseType != null">
+        lease_type = #{leaseType,jdbcType=INTEGER},
+      </if>
+      <if test="rent != null">
+        rent = #{rent,jdbcType=DECIMAL},
+      </if>
+      <if test="serviceCharge != null">
+        service_charge = #{serviceCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="houseTypeId != null">
+        house_type_id = #{houseTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="houseType != null">
+        house_type = #{houseType,jdbcType=INTEGER},
+      </if>
+      <if test="direction != null">
+        direction = #{direction,jdbcType=VARCHAR},
+      </if>
+      <if test="checkInDate != null">
+        check_in_date = #{checkInDate,jdbcType=VARCHAR},
+      </if>
+      <if test="totalFloor != null">
+        total_floor = #{totalFloor,jdbcType=INTEGER},
+      </if>
+      <if test="currentFloor != null">
+        current_floor = #{currentFloor,jdbcType=INTEGER},
+      </if>
+      <if test="houseAreaId != null">
+        house_area_id = #{houseAreaId,jdbcType=BIGINT},
+      </if>
+      <if test="acreage != null">
+        acreage = #{acreage,jdbcType=INTEGER},
+      </if>
+      <if test="publishDate != null">
+        publish_date = #{publishDate,jdbcType=VARCHAR},
+      </if>
+      <if test="fitment != null">
+        fitment = #{fitment,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentType != null">
+        payment_type = #{paymentType,jdbcType=INTEGER},
+      </if>
+      <if test="bed != null">
+        bed = #{bed,jdbcType=INTEGER},
+      </if>
+      <if test="washingMachine != null">
+        washing_machine = #{washingMachine,jdbcType=INTEGER},
+      </if>
+      <if test="refrigerator != null">
+        refrigerator = #{refrigerator,jdbcType=INTEGER},
+      </if>
+      <if test="airConditioner != null">
+        air_conditioner = #{airConditioner,jdbcType=INTEGER},
+      </if>
+      <if test="wifi != null">
+        wifi = #{wifi,jdbcType=INTEGER},
+      </if>
+      <if test="sofa != null">
+        sofa = #{sofa,jdbcType=INTEGER},
+      </if>
+      <if test="tableChair != null">
+        table_chair = #{tableChair,jdbcType=INTEGER},
+      </if>
+      <if test="tv != null">
+        tv = #{tv,jdbcType=INTEGER},
+      </if>
+      <if test="waterHeater != null">
+        water_heater = #{waterHeater,jdbcType=INTEGER},
+      </if>
+      <if test="cook != null">
+        cook = #{cook,jdbcType=INTEGER},
+      </if>
+      <if test="heating != null">
+        heating = #{heating,jdbcType=INTEGER},
+      </if>
+      <if test="balcony != null">
+        balcony = #{balcony,jdbcType=INTEGER},
+      </if>
+      <if test="longitude != null">
+        longitude = #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null">
+        latitude = #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="publisher != null">
+        publisher = #{publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="publisherNumber != null">
+        publisher_number = #{publisherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="tagId != null">
+        tag_id = #{tagId,jdbcType=BIGINT},
+      </if>
+      <if test="publisherId != null">
+        publisher_id = #{publisherId,jdbcType=BIGINT},
+      </if>
+      <if test="publisherType != null">
+        publisher_type = #{publisherType,jdbcType=VARCHAR},
+      </if>
+      <if test="publisherHead != null">
+        publisher_head = #{publisherHead,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zoe.starfish_server.domain.HouseResource">
+    update house_res
+    set image = #{image,jdbcType=VARCHAR},
+      house_image_id = #{houseImageId,jdbcType=BIGINT},
+      house_desc = #{houseDesc,jdbcType=VARCHAR},
+      lease_type = #{leaseType,jdbcType=INTEGER},
+      rent = #{rent,jdbcType=DECIMAL},
+      service_charge = #{serviceCharge,jdbcType=DECIMAL},
+      house_type_id = #{houseTypeId,jdbcType=BIGINT},
+      house_type = #{houseType,jdbcType=INTEGER},
+      direction = #{direction,jdbcType=VARCHAR},
+      check_in_date = #{checkInDate,jdbcType=VARCHAR},
+      total_floor = #{totalFloor,jdbcType=INTEGER},
+      current_floor = #{currentFloor,jdbcType=INTEGER},
+      house_area_id = #{houseAreaId,jdbcType=BIGINT},
+      acreage = #{acreage,jdbcType=INTEGER},
+      publish_date = #{publishDate,jdbcType=VARCHAR},
+      fitment = #{fitment,jdbcType=VARCHAR},
+      payment_type = #{paymentType,jdbcType=INTEGER},
+      bed = #{bed,jdbcType=INTEGER},
+      washing_machine = #{washingMachine,jdbcType=INTEGER},
+      refrigerator = #{refrigerator,jdbcType=INTEGER},
+      air_conditioner = #{airConditioner,jdbcType=INTEGER},
+      wifi = #{wifi,jdbcType=INTEGER},
+      sofa = #{sofa,jdbcType=INTEGER},
+      table_chair = #{tableChair,jdbcType=INTEGER},
+      tv = #{tv,jdbcType=INTEGER},
+      water_heater = #{waterHeater,jdbcType=INTEGER},
+      cook = #{cook,jdbcType=INTEGER},
+      heating = #{heating,jdbcType=INTEGER},
+      balcony = #{balcony,jdbcType=INTEGER},
+      longitude = #{longitude,jdbcType=VARCHAR},
+      latitude = #{latitude,jdbcType=VARCHAR},
+      publisher = #{publisher,jdbcType=VARCHAR},
+      publisher_number = #{publisherNumber,jdbcType=VARCHAR},
+      tag_id = #{tagId,jdbcType=BIGINT},
+      publisher_id = #{publisherId,jdbcType=BIGINT},
+      publisher_type = #{publisherType,jdbcType=VARCHAR},
+      publisher_head = #{publisherHead,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

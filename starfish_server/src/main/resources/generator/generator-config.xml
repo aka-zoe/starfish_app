@@ -43,5 +43,9 @@
         <table tableName="user" domainObjectName="User"/>
         <table tableName="banner" domainObjectName="Banner"/>
         <table tableName="better_choice" domainObjectName="BetterChoice"/>
+        <table tableName="house_res" domainObjectName="HouseResource"/>
+        <table tableName="house_img" domainObjectName="HouseImg"/>
+        <table tableName="house_tag" domainObjectName="HouseTag"/>
+        <table tableName="house_type" domainObjectName="HouseType"/>
     </context>
 </generatorConfiguration>

@@ -1,24 +1,58 @@
-drop table if exists `user`;
-create table `user`
+drop table if exists `house_res`;
+create table `house_res`
 (
-    `id`          bigint not null auto_increment comment 'id',
-    `name`        varchar(50) comment '用户名',
-    `password`    varchar(255) comment '密码',
-    `role`        varchar(50) comment '角色',
-    `create_time` varchar(255) comment '创建时间',
-    `work_number` varchar(50) comment '工号',
-    `email`       varchar(255) comment '邮箱',
-    `address`     varchar(255) comment '地址',
-    `phone`       varchar(255) comment '手机号',
-    `gender`      varchar(50) comment '性别',
-    `age`         int comment '年龄',
-    `status`      int comment '状态：0=正常 1=停用 -1=删除',
+    `id`               bigint not null auto_increment comment 'id',
+    `image`            varchar(255) comment '缩略图',
+    `house_image_id`   bigint comment '房源图片id',
+    `house_desc`       varchar(255) comment '比如近地铁、距离地铁1.5km等',
+    `lease_type`       int comment '0=整租、1=合租',
+    `rent`             decimal comment '租金,单位为元/月',
+    `service_charge`   decimal comment '中介费,单位为元',
+    `house_type_id`    bigint comment '户型id',
+    `house_type`       int comment '0=次卧、1=主卧、2=整租',
+    `direction`        varchar(50) comment '朝向',
+    `check_in_date`    varchar(50) comment '入住时间',
+    `total_floor`      int comment '总楼层',
+    `current_floor`    int comment '当前楼层',
+    `house_area_id`    bigint comment '小区id',
+    `acreage`          int comment '面积，单位为平方米',
+    `publish_date`     varchar(50) comment '发布时间',
+    `fitment`          varchar(50) comment '装修类型：精装修',
+    `payment_type`     int comment '0=押一付三，1=月付，2=押一付一，3=押一付二，4=整年租',
+    `bed`              int comment '床：0=true,1=false',
+    `washing_machine`  int comment '洗衣机：0=true,1=false',
+    `refrigerator`     int comment '冰箱：0=true,1=false',
+    `air_conditioner`  int comment '空调：0=true,1=false',
+    `wifi`             int comment 'wifi：0=true,1=false',
+    `sofa`             int comment '沙发：0=true,1=false',
+    `table_chair`      int comment '桌椅：0=true,1=false',
+    `tv`               int comment '电视：0=true,1=false',
+    `water_heater`     int comment '热水器：0=true,1=false',
+    `cook`             int comment '可做饭：0=true,1=false',
+    `heating`          int comment '暖气：0=true,1=false',
+    `balcony`          int comment '阳台：0=true,1=false',
+    `longitude`        varchar(50) comment '经度',
+    `latitude`         varchar(50) comment '纬度',
+    `publisher`        varchar(50) comment '发布人',
+    `publisher_number` varchar(50) comment '发布人电话',
+    `tag_id`           bigint comment '房源tag id',
+    `publisher_id`     bigint comment '发布人id',
+    `publisher_type`   varchar(50) comment '发布人类型',
+    `publisher_head`   varchar(255) comment '发布人头像',
+    `create_time`      varchar(50) comment '创建时间',
+    `status`           int comment '状态：0=正常 1=停用 -1=删除',
     primary key (`id`)
 
 ) engine = innodb
-  default charset = utf8mb4 comment '用户表';
+  default charset = utf8mb4 comment '房源表';
 
-insert into user (name, password, role, create_time, work_number, email, address, phone, gender, age, status)
-values ('Zoe', '123456', 'admin', '2023-10-21 22:24:00', '23789', 'sensen.gong@alpha-ess.com', '苏州', '15061442013',
-        '男', 25,
-        0);
+insert into house_res (image, house_image_id, house_desc, lease_type, rent, service_charge, house_type_id, house_type,
+                       direction, check_in_date, total_floor, current_floor, house_area_id, acreage, publish_date,
+                       fitment, payment_type, bed, washing_machine, refrigerator, air_conditioner, wifi,
+                       sofa, table_chair, tv, cook, heating, balcony, longitude, latitude, publisher, publisher_number,
+                       tag_id,
+                       publisher_id, publisher_type, publisher_head, create_time, status)
+values ('https://n.sinaimg.cn/sinacn16/112/w1557h955/20180510/7270-haichqz7292785.jpg', -1, '近地铁', 0, 3000, 150, 1,
+        2,
+        '朝南', '2024-06-14 12:12:12', 32, 10, -1, 110, '2024-04-13 00:00:00', '精装修', 0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
+        1, 1,  '经度', '纬度', '小明', '12344441111', -1, 1, '中介', '', '2024-05-13 11:43:00', 0);

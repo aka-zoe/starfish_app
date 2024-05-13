@@ -47,5 +47,6 @@
         <table tableName="house_img" domainObjectName="HouseImg"/>
         <table tableName="house_tag" domainObjectName="HouseTag"/>
         <table tableName="house_type" domainObjectName="HouseType"/>
+        <table tableName="living_area" domainObjectName="LivingArea"/>
     </context>
 </generatorConfiguration>

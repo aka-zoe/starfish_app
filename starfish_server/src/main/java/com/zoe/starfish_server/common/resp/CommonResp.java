@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 public class CommonResp<T> {
     public static String errorMsg = "error";
     public static String successMsg = "success";
+    public static int rspCode = 0;
+
 
     /**
      * 返回是否成功
@@ -23,6 +25,8 @@ public class CommonResp<T> {
      */
     private String message;
 
+    private int code = 0;
+
     /**
      * 返回成功的时候，返回的内容
      */
@@ -31,10 +35,11 @@ public class CommonResp<T> {
     public CommonResp() {
     }
 
-    public CommonResp(boolean isSuccess, String message, T content) {
+    public CommonResp(boolean isSuccess, String message, T content, int code) {
         this.isSuccess = isSuccess;
         this.message = message;
         this.content = content;
+        this.code = code;
     }
 
     public static String getErrorMsg() {
@@ -77,11 +82,23 @@ public class CommonResp<T> {
         this.content = content;
     }
 
-    public static CommonResp errorRsp() {
-        return new CommonResp(false, errorMsg, null);
+    public int getCode() {
+        return code;
     }
 
-    public static CommonResp successRsp(Object result){
-        return new CommonResp(true, successMsg, result);
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public static CommonResp errorRsp() {
+        return new CommonResp(false, errorMsg, null, -1);
+    }
+
+    public static CommonResp errorRsp(String errorMsg, int code) {
+        return new CommonResp(false, errorMsg, null, code);
+    }
+
+    public static CommonResp successRsp(Object result) {
+        return new CommonResp(true, successMsg, result, rspCode);
     }
 }

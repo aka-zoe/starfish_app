@@ -1,5 +1,6 @@
 package com.zoe.starfish_server.common.resp;
 
+import com.zoe.starfish_server.common.RespCodeEnum;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,60 +11,41 @@ import lombok.NoArgsConstructor;
  */
 @Data
 public class CommonResp<T> {
-    public static String errorMsg = "error";
-    public static String successMsg = "success";
-    public static int rspCode = 0;
-
-
-    /**
-     * 返回是否成功
-     */
-    private boolean isSuccess = true;
-
-    /**
-     * 返回失败时，返回的错误信息
-     */
+    //返回失败时，返回的错误信息
     private String message;
 
-    private int code = 0;
+    //返回的code
+    private int code;
 
-    /**
-     * 返回成功的时候，返回的内容
-     */
+    //返回成功的时候，返回的内容
     private T content;
+
+    //请求状态
+    private boolean success;
+
 
     public CommonResp() {
     }
 
-    public CommonResp(boolean isSuccess, String message, T content, int code) {
-        this.isSuccess = isSuccess;
+    public CommonResp(String message, int code, T content, boolean success) {
         this.message = message;
-        this.content = content;
         this.code = code;
+        this.content = content;
+        this.success = success;
     }
 
-    public static String getErrorMsg() {
-        return errorMsg;
+    public static CommonResp errorMsg(RespCodeEnum code, String message) {
+        CommonResp commonResp = new CommonResp(code.getMessage(), code.getCode(), null, false);
+        commonResp.setMessage(message);
+        return commonResp;
     }
 
-    public static void setErrorMsg(String errorMsg) {
-        CommonResp.errorMsg = errorMsg;
+    public static CommonResp error(RespCodeEnum code) {
+        return new CommonResp(code.getMessage(), code.getCode(), null, false);
     }
 
-    public static String getSuccessMsg() {
-        return successMsg;
-    }
-
-    public static void setSuccessMsg(String successMsg) {
-        CommonResp.successMsg = successMsg;
-    }
-
-    public boolean isSuccess() {
-        return isSuccess;
-    }
-
-    public void setSuccess(boolean success) {
-        isSuccess = success;
+    public static CommonResp success(Object content) {
+        return new CommonResp("success", 200, content, true);
     }
 
     public String getMessage() {
@@ -74,14 +56,6 @@ public class CommonResp<T> {
         this.message = message;
     }
 
-    public T getContent() {
-        return content;
-    }
-
-    public void setContent(T content) {
-        this.content = content;
-    }
-
     public int getCode() {
         return code;
     }
@@ -90,15 +64,19 @@ public class CommonResp<T> {
         this.code = code;
     }
 
-    public static CommonResp errorRsp() {
-        return new CommonResp(false, errorMsg, null, -1);
+    public T getContent() {
+        return content;
     }
 
-    public static CommonResp errorRsp(String errorMsg, int code) {
-        return new CommonResp(false, errorMsg, null, code);
+    public void setContent(T content) {
+        this.content = content;
     }
 
-    public static CommonResp successRsp(Object result) {
-        return new CommonResp(true, successMsg, result, rspCode);
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 }

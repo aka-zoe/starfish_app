@@ -1,5 +1,6 @@
 package com.zoe.starfish_server.controller;
 
+import com.zoe.starfish_server.common.RespCodeEnum;
 import com.zoe.starfish_server.common.resp.CommonResp;
 import com.zoe.starfish_server.domain.HouseTag;
 import com.zoe.starfish_server.service.HouseTagService;
@@ -17,30 +18,30 @@ public class HouseTagController {
 
     @GetMapping("/allTagList")
     public CommonResp allTagList() {
-        return CommonResp.successRsp(service.allTagList());
+        return CommonResp.success(service.allTagList());
     }
 
     @GetMapping("/tagListForHouse")
     public CommonResp tagListForHouse(@RequestParam(value = "id", required = true) Long id) {
-        return CommonResp.successRsp(service.tagListForHouse(id));
+        return CommonResp.success(service.tagListForHouse(id));
     }
 
     @PostMapping("/insertHouseTag")
     public CommonResp insertHouseTag(@RequestBody HouseTag houseTag) {
         int code = service.insertHouseTag(houseTag);
         if (code == -1) {
-            return CommonResp.errorRsp("数据已存在", code);
+            return CommonResp.error(RespCodeEnum.ALREADYEXIST);
         }
-        return CommonResp.successRsp(code);
+        return CommonResp.success(code);
     }
 
     @DeleteMapping("/deleteHouseTag")
     public CommonResp deleteHouseTag(@RequestParam(value = "id", required = true) Long id) {
-        return CommonResp.successRsp(service.deleteHouseTag(id));
+        return CommonResp.success(service.deleteHouseTag(id));
     }
 
     @PostMapping("/updateHouseTag")
     public CommonResp updateHouseTag(@RequestBody HouseTag houseTag) {
-        return CommonResp.successRsp(service.updateHouseTag(houseTag));
+        return CommonResp.success(service.updateHouseTag(houseTag));
     }
 }

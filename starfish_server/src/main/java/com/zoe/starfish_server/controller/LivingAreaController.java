@@ -1,5 +1,6 @@
 package com.zoe.starfish_server.controller;
 
+import com.zoe.starfish_server.common.RespCodeEnum;
 import com.zoe.starfish_server.common.resp.CommonResp;
 import com.zoe.starfish_server.domain.LivingArea;
 import com.zoe.starfish_server.service.LivingAreaService;
@@ -17,30 +18,30 @@ public class LivingAreaController {
 
     @GetMapping("/areaList")
     public CommonResp areaList() {
-        return CommonResp.successRsp(service.areaList());
+        return CommonResp.success(service.areaList());
     }
 
     @GetMapping("/getArea")
     public CommonResp getArea(@RequestParam(value = "id", required = true) Long id) {
-        return CommonResp.successRsp(service.getArea(id));
+        return CommonResp.success(service.getArea(id));
     }
 
     @PostMapping("/insertLivingArea")
     public CommonResp insertLivingArea(@RequestBody LivingArea livingArea) {
         int code = service.insertLivingArea(livingArea);
         if (code == -1) {
-            return CommonResp.errorRsp("数据已存在", code);
+            return CommonResp.error(RespCodeEnum.ALREADYEXIST);
         }
-        return CommonResp.successRsp(code);
+        return CommonResp.success(code);
     }
 
     @DeleteMapping("/deleteLivingArea")
     public CommonResp deleteLivingArea(@RequestParam(value = "id", required = true) Long id) {
-        return CommonResp.successRsp(service.deleteLivingArea(id));
+        return CommonResp.success(service.deleteLivingArea(id));
     }
 
     @PostMapping("/updateLivingArea")
     public CommonResp updateLivingArea(@RequestBody LivingArea livingArea) {
-        return CommonResp.successRsp(service.updateLivingArea(livingArea));
+        return CommonResp.success(service.updateLivingArea(livingArea));
     }
 }

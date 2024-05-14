@@ -1,5 +1,6 @@
 package com.zoe.starfish_server.controller;
 
+import com.zoe.starfish_server.common.RespCodeEnum;
 import com.zoe.starfish_server.common.req.ReqLogin;
 import com.zoe.starfish_server.common.req.ReqRegister;
 import com.zoe.starfish_server.common.resp.CommonResp;
@@ -26,17 +27,17 @@ public class UserController {
         List<User> users = userService.checkExistUser(name, password);
 
         //没有此用户或者密码错误
-        if(users==null || users.isEmpty()){
-            return CommonResp.errorRsp("没有此用户或者密码错误",-888);
+        if (users == null || users.isEmpty()) {
+            return CommonResp.error(RespCodeEnum.AUTHERROR);
         }
 
         //返回当前用户信息
         for (User user : users) {
             if (user.getName().equals(name) && user.getPassword().equals(password)) {
-                return CommonResp.successRsp(user);
+                return CommonResp.success(user);
             }
         }
-        return CommonResp.errorRsp();
+        return CommonResp.error(RespCodeEnum.FAIL);
     }
 
     /**
@@ -46,7 +47,7 @@ public class UserController {
      */
     @GetMapping("/userList")
     public CommonResp userList() {
-        return CommonResp.successRsp(userService.getUserList());
+        return CommonResp.success(userService.getUserList());
     }
 
     /**
@@ -57,7 +58,7 @@ public class UserController {
      */
     @GetMapping("/getUser/{id}")
     public CommonResp getUser(@PathVariable("id") Long id) {
-        return CommonResp.successRsp(userService.getUser(id));
+        return CommonResp.success(userService.getUser(id));
     }
 
     /**
@@ -72,13 +73,13 @@ public class UserController {
         String name = reqRegister.getName();
         String password = reqRegister.getPassword();
         //不能存在相同用户名
-        if (!userService.checkExistUser(name,password).isEmpty()) {
-            return CommonResp.errorRsp("name is already exist！", -999);
+        if (!userService.checkExistUser(name, password).isEmpty()) {
+            return CommonResp.error(RespCodeEnum.SAMEUSER);
         }
         User user = new User();
         user.setName(name);
         user.setPassword(password);
         //插入用户
-        return CommonResp.successRsp(userService.insertUser(user));
+        return CommonResp.success(userService.insertUser(user));
     }
 }

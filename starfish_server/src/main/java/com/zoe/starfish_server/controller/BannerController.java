@@ -1,5 +1,6 @@
 package com.zoe.starfish_server.controller;
 
+import com.zoe.starfish_server.common.RespCodeEnum;
 import com.zoe.starfish_server.common.resp.CommonResp;
 import com.zoe.starfish_server.domain.Banner;
 import com.zoe.starfish_server.service.BannerService;
@@ -17,25 +18,25 @@ public class BannerController {
 
     @GetMapping("/bannerList")
     public CommonResp bannerList() {
-        return CommonResp.successRsp(service.bannerList());
+        return CommonResp.success(service.bannerList());
     }
 
     @PostMapping("/insertBanner")
     public CommonResp insertBanner(@RequestBody Banner banner) {
         int code = service.insertBanner(banner);
         if (code == -1) {
-            return CommonResp.errorRsp("数据已存在", code);
+            return CommonResp.error(RespCodeEnum.ALREADYEXIST);
         }
-        return CommonResp.successRsp(code);
+        return CommonResp.success(code);
     }
 
     @DeleteMapping("/deleteBanner")
     public CommonResp deleteBanner(@RequestParam(value = "id", required = true) Long id) {
-        return CommonResp.successRsp(service.deleteBanner(id));
+        return CommonResp.success(service.deleteBanner(id));
     }
 
     @PostMapping("/updateBanner")
     public CommonResp updateBanner(@RequestBody Banner banner) {
-        return CommonResp.successRsp(service.updateBanner(banner));
+        return CommonResp.success(service.updateBanner(banner));
     }
 }

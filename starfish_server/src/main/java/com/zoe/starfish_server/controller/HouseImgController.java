@@ -1,5 +1,6 @@
 package com.zoe.starfish_server.controller;
 
+import com.zoe.starfish_server.common.RespCodeEnum;
 import com.zoe.starfish_server.common.resp.CommonResp;
 import com.zoe.starfish_server.domain.HouseImg;
 import com.zoe.starfish_server.service.HouseImgService;
@@ -17,36 +18,36 @@ public class HouseImgController {
 
     @GetMapping("/getImage")
     public CommonResp getImage(@RequestParam(value = "id", required = true) Long id){
-        return CommonResp.successRsp(service.getImage(id));
+        return CommonResp.success(service.getImage(id));
     }
 
 
     @GetMapping("/houseImgList")
     public CommonResp houseImgList() {
-        return CommonResp.successRsp(service.houseImgList());
+        return CommonResp.success(service.houseImgList());
     }
 
     @GetMapping("/imgForHouse")
     public CommonResp imgForHouse(@RequestParam(value = "id", required = true) Long id) {
-        return CommonResp.successRsp(service.imgForHouse(id));
+        return CommonResp.success(service.imgForHouse(id));
     }
 
     @PostMapping("/insertHouseImg")
     public CommonResp insertHouseImg(@RequestBody HouseImg houseImg) {
         int code = service.insertHouseImg(houseImg);
         if (code == -1) {
-            return CommonResp.errorRsp("数据已存在", code);
+            return CommonResp.error(RespCodeEnum.ALREADYEXIST);
         }
-        return CommonResp.successRsp(code);
+        return CommonResp.success(code);
     }
 
     @DeleteMapping("/deleteHouseImg")
     public CommonResp deleteHouseImg(@RequestParam(value = "id", required = true) Long id) {
-        return CommonResp.successRsp(service.deleteHouseImg(id));
+        return CommonResp.success(service.deleteHouseImg(id));
     }
 
     @PostMapping("/updateHouseImg")
     public CommonResp updateHouseImg(@RequestBody HouseImg houseImg) {
-        return CommonResp.successRsp(service.updateHouseImg(houseImg));
+        return CommonResp.success(service.updateHouseImg(houseImg));
     }
 }

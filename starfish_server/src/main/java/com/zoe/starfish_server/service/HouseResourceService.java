@@ -1,6 +1,7 @@
 package com.zoe.starfish_server.service;
 
 import com.zoe.starfish_server.domain.HouseResource;
+import com.zoe.starfish_server.domain.HouseResourceExample;
 import com.zoe.starfish_server.mapper.HouseResourceMapper;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +16,15 @@ public class HouseResourceService {
     @Resource
     private HouseResourceMapper resourceMapper;
 
-    public List<HouseResource> houseResources() {
-        return resourceMapper.selectByExample(null);
+    public List<HouseResource> houseResources(boolean all) {
+        if (all) {
+            return resourceMapper.selectByExample(null);
+        }
+        HouseResourceExample example = new HouseResourceExample();
+        HouseResourceExample.Criteria criteria = example.createCriteria();
+        //筛选正常状态的房源列表
+        criteria.andStatusEqualTo(0);
+        return resourceMapper.selectByExample(example);
     }
 
     public HouseResource houseResourceDetail(Long id) {

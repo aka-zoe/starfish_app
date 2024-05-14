@@ -1,5 +1,6 @@
 package com.zoe.starfish_server.common.error;
 
+import com.zoe.starfish_server.common.RespCodeEnum;
 import com.zoe.starfish_server.common.resp.CommonResp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,11 +29,8 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(value = BindException.class)
     @ResponseBody
     public CommonResp validExceptionHandler(BindException e) {
-        CommonResp commonResp = new CommonResp();
         LOG.warn("参数校验失败：{}", e.getBindingResult().getAllErrors().get(0).getDefaultMessage());
-        commonResp.setSuccess(false);
-        commonResp.setMessage(e.getBindingResult().getAllErrors().get(0).getDefaultMessage());
-        return commonResp;
+        return CommonResp.errorMsg(RespCodeEnum.PARAMERR, e.getBindingResult().getAllErrors().get(0).getDefaultMessage());
     }
 
     /**
@@ -44,11 +42,8 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(value = BusinessException.class)
     @ResponseBody
     public CommonResp validExceptionHandler(BusinessException e) {
-        CommonResp commonResp = new CommonResp();
         LOG.warn("业务异常：{}", e.getCode().getDesc());
-        commonResp.setSuccess(false);
-        commonResp.setMessage(e.getCode().getDesc());
-        return commonResp;
+        return CommonResp.errorMsg(RespCodeEnum.BUSINESSERR, e.getCode().getDesc());
     }
 
     /**
@@ -60,11 +55,8 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public CommonResp validExceptionHandler(Exception e) {
-        CommonResp commonResp = new CommonResp();
         LOG.error("系统异常：", e);
-        commonResp.setSuccess(false);
-        commonResp.setMessage("系统出现异常，请联系管理员");
-        return commonResp;
+        return CommonResp.errorMsg(RespCodeEnum.SYSERR, e.getMessage());
     }
 }
 

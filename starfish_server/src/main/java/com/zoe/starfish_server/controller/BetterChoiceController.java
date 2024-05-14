@@ -1,5 +1,6 @@
 package com.zoe.starfish_server.controller;
 
+import com.zoe.starfish_server.common.RespCodeEnum;
 import com.zoe.starfish_server.common.resp.CommonResp;
 import com.zoe.starfish_server.domain.BetterChoice;
 import com.zoe.starfish_server.service.BetterChoiceService;
@@ -18,25 +19,25 @@ public class BetterChoiceController {
 
     @GetMapping("/choiceList")
     public CommonResp choiceList() {
-        return CommonResp.successRsp(service.choiceList());
+        return CommonResp.success(service.choiceList());
     }
 
     @PostMapping("/insertChoice")
     public CommonResp insertChoice(@RequestBody BetterChoice choice) {
         int code = service.insertChoice(choice);
         if (code == -1) {
-            return CommonResp.errorRsp("数据已存在", code);
+            return CommonResp.error(RespCodeEnum.ALREADYEXIST);
         }
-        return CommonResp.successRsp(code);
+        return CommonResp.success(code);
     }
 
     @DeleteMapping("/deleteChoice")
     public CommonResp deleteChoice(@RequestParam(value = "id", required = true) Long id) {
-        return CommonResp.successRsp(service.deleteChoice(id));
+        return CommonResp.success(service.deleteChoice(id));
     }
 
     @PostMapping("/updateChoice")
     public CommonResp updateChoice(@RequestBody BetterChoice choice) {
-        return CommonResp.successRsp(service.updateChoice(choice));
+        return CommonResp.success(service.updateChoice(choice));
     }
 }

@@ -15,6 +15,7 @@ import 'package:starfish_tenement_app/common_ui/sliver/sliver_header.dart';
 import 'package:starfish_tenement_app/common_ui/tag/tag_widget.dart';
 import 'package:starfish_tenement_app/common_ui/title/app_title.dart';
 import 'package:starfish_tenement_app/datas/home_banner_data.dart';
+import 'package:starfish_tenement_app/http/socket/web_socket_instance.dart';
 import 'package:starfish_tenement_app/pages/home/home_vm.dart';
 import 'package:starfish_tenement_app/styles/app_colors.dart';
 
@@ -38,6 +39,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+
     _homeVM.getHomeData();
     AmapLocation.instance.updatePrivacy().then((value) {
       AmapLocation.instance.initLocation().then((value) {
@@ -45,6 +47,12 @@ class _HomePageState extends State<HomePage> {
         AmapLocation.instance.locationEventCallback((event) {});
       });
     });
+  }
+
+  @override
+  void dispose() {
+
+    super.dispose();
   }
 
   @override
@@ -105,6 +113,7 @@ class _HomePageState extends State<HomePage> {
           GestureDetector(
               onTap: () {
                 //点击切换当前位置
+                WebSocketInstance.instance.sendMessage("点击切换当前位置");
               },
               child: Container(
                   child: Row(children: [

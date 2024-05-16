@@ -10,7 +10,8 @@ public enum RespCodeEnum {
     AUTHERROR(205, "没有此用户或者密码错误"),
     SAMEUSER(206, "用户已存在"),
     BUSINESSERR(207, "业务异常"),
-    UPLOADFILEERR(208, "文件上传失败");
+    UPLOADFILEERR(208, "文件上传失败"),
+    SOCKETSENDERR(209, "Socket 发送失败");
 
     private Integer code;
 

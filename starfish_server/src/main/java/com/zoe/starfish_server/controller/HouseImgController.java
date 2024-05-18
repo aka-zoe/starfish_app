@@ -4,6 +4,7 @@ import com.zoe.starfish_server.common.RespCodeEnum;
 import com.zoe.starfish_server.common.resp.CommonResp;
 import com.zoe.starfish_server.domain.HouseImg;
 import com.zoe.starfish_server.service.HouseImgService;
+import com.zoe.starfish_server.utils.UserLoginToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,22 +17,25 @@ public class HouseImgController {
     @Autowired
     HouseImgService service;
 
+    @UserLoginToken
     @GetMapping("/getImage")
-    public CommonResp getImage(@RequestParam(value = "id", required = true) Long id){
+    public CommonResp getImage(@RequestParam(value = "id", required = true) Long id) {
         return CommonResp.success(service.getImage(id));
     }
 
-
+    @UserLoginToken
     @GetMapping("/houseImgList")
     public CommonResp houseImgList() {
         return CommonResp.success(service.houseImgList());
     }
 
+    @UserLoginToken
     @GetMapping("/imgForHouse")
     public CommonResp imgForHouse(@RequestParam(value = "id", required = true) Long id) {
         return CommonResp.success(service.imgForHouse(id));
     }
 
+    @UserLoginToken
     @PostMapping("/insertHouseImg")
     public CommonResp insertHouseImg(@RequestBody HouseImg houseImg) {
         int code = service.insertHouseImg(houseImg);
@@ -41,11 +45,13 @@ public class HouseImgController {
         return CommonResp.success(code);
     }
 
+    @UserLoginToken
     @DeleteMapping("/deleteHouseImg")
     public CommonResp deleteHouseImg(@RequestParam(value = "id", required = true) Long id) {
         return CommonResp.success(service.deleteHouseImg(id));
     }
 
+    @UserLoginToken
     @PostMapping("/updateHouseImg")
     public CommonResp updateHouseImg(@RequestBody HouseImg houseImg) {
         return CommonResp.success(service.updateHouseImg(houseImg));

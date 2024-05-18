@@ -7,6 +7,7 @@ import com.zoe.starfish_server.common.resp.HouseResourceDetailResp;
 import com.zoe.starfish_server.common.resp.HouseResourceResp;
 import com.zoe.starfish_server.domain.*;
 import com.zoe.starfish_server.service.*;
+import com.zoe.starfish_server.utils.UserLoginToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,6 +40,7 @@ public class HouseResourceController {
     @Autowired
     HouseTypeService typeService;
 
+    @UserLoginToken
     @GetMapping("/allHouseResources")
     public CommonResp allHouseResources() {
         //获取所有房源
@@ -46,6 +48,7 @@ public class HouseResourceController {
         return CommonResp.success(generResList(houseResources));
     }
 
+    @UserLoginToken
     @GetMapping("/houseResources")
     public CommonResp houseResources() {
         //获取所有房源:筛选正常状态的房源列表
@@ -53,6 +56,7 @@ public class HouseResourceController {
         return CommonResp.success(generResList(houseResources));
     }
 
+    @UserLoginToken
     @GetMapping("/houseResourceDetail")
     public CommonResp houseResourceDetail(@RequestParam(value = "id", required = true) Long id) {
         HouseResource resource = service.houseResourceDetail(id);
@@ -63,6 +67,7 @@ public class HouseResourceController {
         return CommonResp.success(resp);
     }
 
+    @UserLoginToken
     @PostMapping("/insertHouseResource")
     public CommonResp insertHouseResource(@RequestBody HouseResource houseResource) {
         int code = service.insertHouseResource(houseResource);
@@ -72,11 +77,13 @@ public class HouseResourceController {
         return CommonResp.success(code);
     }
 
+    @UserLoginToken
     @DeleteMapping("/deleteHouseResource")
     public CommonResp deleteHouseResource(@RequestParam(value = "id", required = true) Long id) {
         return CommonResp.success(service.deleteHouseResource(id));
     }
 
+    @UserLoginToken
     @PostMapping("/updateHouseResource")
     public CommonResp updateHouseResource(@RequestBody HouseResource houseResource) {
         return CommonResp.success(service.updateHouseResource(houseResource));

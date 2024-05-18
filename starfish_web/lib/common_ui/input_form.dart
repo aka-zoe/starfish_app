@@ -35,6 +35,7 @@ class InputForm extends StatelessWidget {
   Widget inputForm(
       {String? text,
       double? fontSize,
+      double? textWidth,
       double? formHeight,
       double? inputWidth,
       ValueChanged<String>? onInputChanged,
@@ -42,9 +43,12 @@ class InputForm extends StatelessWidget {
     return SizedBox(
         height: formHeight ?? 80.h,
         child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-          Text(
-            text ?? "请输入：",
-            style: TextStyle(fontSize: fontSize ?? 8.sp),
+          SizedBox(
+            width: textWidth ?? 50.w,
+            child: Text(
+              text ?? "请输入：",
+              style: TextStyle(fontSize: fontSize ?? 8.sp),
+            ),
           ),
           SizedBox(
               width: inputWidth ?? 200.w,

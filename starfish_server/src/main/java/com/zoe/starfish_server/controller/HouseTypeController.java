@@ -6,6 +6,7 @@ import com.zoe.starfish_server.domain.HouseTag;
 import com.zoe.starfish_server.domain.HouseType;
 import com.zoe.starfish_server.service.HouseTagService;
 import com.zoe.starfish_server.service.HouseTypeService;
+import com.zoe.starfish_server.utils.UserLoginToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,17 +19,19 @@ public class HouseTypeController {
     @Autowired
     HouseTypeService service;
 
+    @UserLoginToken
     @GetMapping("/houseTypeList")
     public CommonResp houseTypeList() {
         return CommonResp.success(service.houseTypeList());
     }
 
-
+    @UserLoginToken
     @GetMapping("/getType")
     public CommonResp getType(@RequestParam(value = "id", required = true) Long id) {
         return CommonResp.success(service.getType(id));
     }
 
+    @UserLoginToken
     @PostMapping("/insertHouseType")
     public CommonResp insertHouseType(@RequestBody HouseType houseType) {
         int code = service.insertHouseType(houseType);
@@ -38,11 +41,13 @@ public class HouseTypeController {
         return CommonResp.success(code);
     }
 
+    @UserLoginToken
     @DeleteMapping("/deleteHouseType")
     public CommonResp deleteHouseType(@RequestParam(value = "id", required = true) Long id) {
         return CommonResp.success(service.deleteHouseType(id));
     }
 
+    @UserLoginToken
     @PostMapping("/updateHouseType")
     public CommonResp updateHouseType(@RequestBody HouseType houseType) {
         return CommonResp.success(service.updateHouseType(houseType));

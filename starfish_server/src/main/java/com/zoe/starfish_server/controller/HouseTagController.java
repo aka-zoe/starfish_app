@@ -4,6 +4,7 @@ import com.zoe.starfish_server.common.RespCodeEnum;
 import com.zoe.starfish_server.common.resp.CommonResp;
 import com.zoe.starfish_server.domain.HouseTag;
 import com.zoe.starfish_server.service.HouseTagService;
+import com.zoe.starfish_server.utils.UserLoginToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,16 +17,19 @@ public class HouseTagController {
     @Autowired
     HouseTagService service;
 
+    @UserLoginToken
     @GetMapping("/allTagList")
     public CommonResp allTagList() {
         return CommonResp.success(service.allTagList());
     }
 
+    @UserLoginToken
     @GetMapping("/tagListForHouse")
     public CommonResp tagListForHouse(@RequestParam(value = "id", required = true) Long id) {
         return CommonResp.success(service.tagListForHouse(id));
     }
 
+    @UserLoginToken
     @PostMapping("/insertHouseTag")
     public CommonResp insertHouseTag(@RequestBody HouseTag houseTag) {
         int code = service.insertHouseTag(houseTag);
@@ -35,11 +39,13 @@ public class HouseTagController {
         return CommonResp.success(code);
     }
 
+    @UserLoginToken
     @DeleteMapping("/deleteHouseTag")
     public CommonResp deleteHouseTag(@RequestParam(value = "id", required = true) Long id) {
         return CommonResp.success(service.deleteHouseTag(id));
     }
 
+    @UserLoginToken
     @PostMapping("/updateHouseTag")
     public CommonResp updateHouseTag(@RequestBody HouseTag houseTag) {
         return CommonResp.success(service.updateHouseTag(houseTag));

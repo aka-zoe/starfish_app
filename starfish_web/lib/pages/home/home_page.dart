@@ -8,6 +8,7 @@ import 'package:starfish_web/pages/home/home_vm.dart';
 import 'package:starfish_web/styles/app_colors.dart';
 
 import '../../common_ui/expand_widget.dart';
+import '../better_choice/better_choice_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -49,7 +50,7 @@ class _HomePageState extends State<HomePage> {
           color: AppColors.menuBg,
           child: Column(
             children: [
-              20.verticalSpace,
+              40.verticalSpace,
               ClipRRect(
                   child: Image.asset(
                     "assets/images/head.png",
@@ -58,16 +59,11 @@ class _HomePageState extends State<HomePage> {
                   ),
                   borderRadius: BorderRadius.circular(40.r)),
               5.verticalSpace,
-              AppText(text: "海星租房", fontSize: 9.sp, textColor: AppColors.white),
+              AppText(text: "海星租房管理后台", fontSize: 9.sp, textColor: AppColors.white),
               40.verticalSpace,
               Consumer<HomeViewModel>(builder: (context, vm, child) {
                 return _menuList(vm.menuList);
-              }),
-              // Selector<HomeViewModel, List<MenuItem>>(builder: (context, value, child) {
-              //   return _menuList(value);
-              // }, selector: (context, vm) {
-              //   return vm.menuList;
-              // })
+              })
             ],
           ),
         ));
@@ -81,7 +77,7 @@ class _HomePageState extends State<HomePage> {
             index: vm.currentIndex,
             children: [
               AddBannerPage(),
-              Container(alignment: Alignment.center, child: AppText(text: "添加推荐")),
+              BetterChoicePage(),
               Container(alignment: Alignment.center, child: AppText(text: "添加房源")),
               Container(alignment: Alignment.center, child: AppText(text: "添加小区")),
               Container(alignment: Alignment.center, child: AppText(text: "添加房源图片")),

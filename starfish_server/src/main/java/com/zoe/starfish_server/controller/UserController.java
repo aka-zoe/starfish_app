@@ -6,6 +6,8 @@ import com.zoe.starfish_server.common.req.ReqRegister;
 import com.zoe.starfish_server.common.resp.CommonResp;
 import com.zoe.starfish_server.domain.User;
 import com.zoe.starfish_server.service.UserService;
+import com.zoe.starfish_server.utils.PassToken;
+import com.zoe.starfish_server.utils.UserLoginToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +22,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @PassToken
     @PostMapping("/login")
     public CommonResp login(@RequestBody ReqLogin reqLogin) {
         String name = reqLogin.getName();
@@ -45,6 +48,7 @@ public class UserController {
      *
      * @return
      */
+    @UserLoginToken
     @GetMapping("/userList")
     public CommonResp userList() {
         return CommonResp.success(userService.getUserList());
@@ -56,6 +60,7 @@ public class UserController {
      * @param id
      * @return
      */
+    @UserLoginToken
     @GetMapping("/getUser/{id}")
     public CommonResp getUser(@PathVariable("id") Long id) {
         return CommonResp.success(userService.getUser(id));

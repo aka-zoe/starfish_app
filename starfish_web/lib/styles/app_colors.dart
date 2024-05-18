@@ -1,7 +1,14 @@
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
+
 class AppColors {
   AppColors._();
+  static const menuBg = Color(0xFF3561FF);
+  static const buttonBg = Color(0xFF11B3F2);
+  static const menuItemSelectBg = Color(0x36FFFFFF);
+  static const transparent = Colors.transparent;
+
 
   //按钮红色背景
   static const redBtnColor = Color(0xFFFF3B3D);
@@ -21,6 +28,7 @@ class AppColors {
 
   //透明度80的白色
   static const whiteColor80 = Color(0x80FFFFFF);
+  static const white = Color(0xFFFFFFFF);
 
   //分割线灰色
   static const verticalLimitColor = Color(0xFFd1d1d1);

@@ -9,6 +9,8 @@ public class Banner {
 
     private Integer type;
 
+    private String activename;
+
     private Integer status;
 
     public Long getId() {
@@ -43,6 +45,14 @@ public class Banner {
         this.type = type;
     }
 
+    public String getActivename() {
+        return activename;
+    }
+
+    public void setActivename(String activename) {
+        this.activename = activename;
+    }
+
     public Integer getStatus() {
         return status;
     }
@@ -61,6 +71,7 @@ public class Banner {
         sb.append(", imgurl=").append(imgurl);
         sb.append(", link=").append(link);
         sb.append(", type=").append(type);
+        sb.append(", activename=").append(activename);
         sb.append(", status=").append(status);
         sb.append("]");
         return sb.toString();

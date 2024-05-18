@@ -14,7 +14,10 @@ TextStyle titleTextStyle15 = TextStyle(color: Colors.black, fontSize: 15.sp);
 TextStyle blackTextStyle13 = TextStyle(fontSize: 13.sp, color: Colors.black);
 //普通字体，只做判空处理
 Text normalText(String? text) {
-  return Text(text ?? "",style: titleTextStyle15,);
+  return Text(
+    text ?? "",
+    style: titleTextStyle15,
+  );
 }
 
 TextField commonInputText(
@@ -59,17 +62,4 @@ Widget outlineButton(String title, {GestureTapCallback? onTap}) {
           style: titleTextStyle15,
         ),
       ));
-}
-
-//收藏按钮
-Widget collectImage(bool? collect, {GestureTapCallback? onTap}) {
-  return GestureDetector(
-      onTap: onTap,
-      child: Image.asset(
-          collect == true
-              ? "assets/images/img_collect"
-                  ".png"
-              : "assets/images/img_collect_grey.png",
-          width: 25.r,
-          height: 25.r));
 }

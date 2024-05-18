@@ -4,7 +4,7 @@ import 'package:starfish_web/pages/login/gpt_login_page.dart';
 import 'package:starfish_web/pages/login/login_page.dart';
 import 'package:starfish_web/pages/login/register_page.dart';
 
-import '../pages/tab_page.dart';
+import '../pages/home/home_page.dart';
 
 ///路由注册管理类
 class Routes {
@@ -17,8 +17,8 @@ class Routes {
       case RoutePath.register:
         return pageRoute(const RegisterPage(), settings: settings);
       //首页
-      case RoutePath.tab:
-        return pageRoute(const TabPage(), settings: settings);
+      case RoutePath.homeTab:
+        return pageRoute(const HomePage(), settings: settings);
     }
     return MaterialPageRoute(
         builder: (context) =>
@@ -44,10 +44,10 @@ class Routes {
 ///路由地址
 class RoutePath {
   //登录
-  static const String login = "/";
+  static const String login = "/login";
 
   //首页tab
-  static const String tab = "/tab";
+  static const String homeTab = "/";
 
   //注册
   static const String register = "/register";

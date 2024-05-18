@@ -6,6 +6,7 @@
     <result column="imgUrl" jdbcType="VARCHAR" property="imgurl" />
     <result column="link" jdbcType="VARCHAR" property="link" />
     <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="activeName" jdbcType="VARCHAR" property="activename" />
     <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, imgUrl, link, `type`, `status`
+    id, imgUrl, link, `type`, activeName, `status`
   </sql>
   <select id="selectByExample" parameterType="com.zoe.starfish_server.domain.BannerExample" resultMap="BaseResultMap">
     select
@@ -101,9 +102,11 @@
   </delete>
   <insert id="insert" parameterType="com.zoe.starfish_server.domain.Banner">
     insert into banner (id, imgUrl, link, 
-      `type`, `status`)
+      `type`, activeName, `status`
+      )
     values (#{id,jdbcType=BIGINT}, #{imgurl,jdbcType=VARCHAR}, #{link,jdbcType=VARCHAR}, 
-      #{type,jdbcType=INTEGER}, #{status,jdbcType=INTEGER})
+      #{type,jdbcType=INTEGER}, #{activename,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.zoe.starfish_server.domain.Banner">
     insert into banner
@@ -119,6 +122,9 @@
       </if>
       <if test="type != null">
         `type`,
+      </if>
+      <if test="activename != null">
+        activeName,
       </if>
       <if test="status != null">
         `status`,
@@ -136,6 +142,9 @@
       </if>
       <if test="type != null">
         #{type,jdbcType=INTEGER},
+      </if>
+      <if test="activename != null">
+        #{activename,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
@@ -163,6 +172,9 @@
       <if test="record.type != null">
         `type` = #{record.type,jdbcType=INTEGER},
       </if>
+      <if test="record.activename != null">
+        activeName = #{record.activename,jdbcType=VARCHAR},
+      </if>
       <if test="record.status != null">
         `status` = #{record.status,jdbcType=INTEGER},
       </if>
@@ -177,6 +189,7 @@
       imgUrl = #{record.imgurl,jdbcType=VARCHAR},
       link = #{record.link,jdbcType=VARCHAR},
       `type` = #{record.type,jdbcType=INTEGER},
+      activeName = #{record.activename,jdbcType=VARCHAR},
       `status` = #{record.status,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -194,6 +207,9 @@
       <if test="type != null">
         `type` = #{type,jdbcType=INTEGER},
       </if>
+      <if test="activename != null">
+        activeName = #{activename,jdbcType=VARCHAR},
+      </if>
       <if test="status != null">
         `status` = #{status,jdbcType=INTEGER},
       </if>
@@ -205,6 +221,7 @@
     set imgUrl = #{imgurl,jdbcType=VARCHAR},
       link = #{link,jdbcType=VARCHAR},
       `type` = #{type,jdbcType=INTEGER},
+      activeName = #{activename,jdbcType=VARCHAR},
       `status` = #{status,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>

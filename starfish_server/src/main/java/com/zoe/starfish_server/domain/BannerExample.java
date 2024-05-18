@@ -364,6 +364,76 @@ public class BannerExample {
             return (Criteria) this;
         }
 
+        public Criteria andActivenameIsNull() {
+            addCriterion("activeName is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivenameIsNotNull() {
+            addCriterion("activeName is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivenameEqualTo(String value) {
+            addCriterion("activeName =", value, "activename");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivenameNotEqualTo(String value) {
+            addCriterion("activeName <>", value, "activename");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivenameGreaterThan(String value) {
+            addCriterion("activeName >", value, "activename");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivenameGreaterThanOrEqualTo(String value) {
+            addCriterion("activeName >=", value, "activename");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivenameLessThan(String value) {
+            addCriterion("activeName <", value, "activename");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivenameLessThanOrEqualTo(String value) {
+            addCriterion("activeName <=", value, "activename");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivenameLike(String value) {
+            addCriterion("activeName like", value, "activename");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivenameNotLike(String value) {
+            addCriterion("activeName not like", value, "activename");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivenameIn(List<String> values) {
+            addCriterion("activeName in", values, "activename");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivenameNotIn(List<String> values) {
+            addCriterion("activeName not in", values, "activename");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivenameBetween(String value1, String value2) {
+            addCriterion("activeName between", value1, value2, "activename");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivenameNotBetween(String value1, String value2) {
+            addCriterion("activeName not between", value1, value2, "activename");
+            return (Criteria) this;
+        }
+
         public Criteria andStatusIsNull() {
             addCriterion("`status` is null");
             return (Criteria) this;

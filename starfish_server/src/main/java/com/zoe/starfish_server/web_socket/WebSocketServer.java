@@ -41,6 +41,8 @@ public class WebSocketServer {
 
     private Timer heartBeatTimer;
 
+    private final ObjectMapper mapper = new ObjectMapper();
+
     /**
      * 连接建立成功调用的方法
      */
@@ -75,7 +77,6 @@ public class WebSocketServer {
         log.info("释放的客户端deviceId为：" + deviceId);
         //这里写你 释放的时候，要处理的业务
         log.info("有一连接关闭！当前在线客户端数为：" + getOnlineCount());
-
     }
 
     /**
@@ -87,9 +88,9 @@ public class WebSocketServer {
     public void onMessage(String message, Session session) {
         log.info("收到来自客户端：" + deviceId + " 的信息:" + message);
         try {
-            ObjectMapper mapper = new ObjectMapper();
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            WSResp wsResp = mapper.readValue(message, new TypeReference<WSResp<String>>(){});
+            WSResp wsResp = mapper.readValue(message, new TypeReference<WSResp<String>>() {
+            });
             if (wsResp.getCode() == WSResp.WSRespCode.heartBeat) {
                 if (wsResp.getBody().toString().equals(heartBeatId)) {
                     //心跳连接正常
@@ -101,15 +102,10 @@ public class WebSocketServer {
             }
         } catch (JsonProcessingException e) {
             e.printStackTrace();
-
         }
 
     }
-    public static <T> T JSONStringToObject(String str, TypeReference<T> valueTypeRef) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        return mapper.readValue(str, valueTypeRef);
-    }
+
     /**
      * @ Param session
      * @ Param error
@@ -124,7 +120,6 @@ public class WebSocketServer {
      * 实现服务器主动推送
      */
     public void sendMessage(WSResp message) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
         String respJson = mapper.writeValueAsString(message);
         this.session.getBasicRemote().sendText(respJson);
     }

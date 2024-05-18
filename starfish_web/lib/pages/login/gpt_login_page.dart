@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../route/route_utils.dart';
-import '../tab_page.dart';
+import '../home/home_page.dart';
 
 class GptLoginPage extends StatelessWidget {
   const GptLoginPage({super.key});
@@ -85,7 +85,7 @@ class GptLoginPage extends StatelessWidget {
                                     Expanded(
                                       child: ElevatedButton(
                                         onPressed: () {
-                                          RouteUtils.pushAndRemoveUntil(context, const TabPage());
+                                          RouteUtils.pushAndRemoveUntil(context, const HomePage());
                                         },
                                         child: Text('Login'),
                                       ),

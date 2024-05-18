@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 
-import '../../common_ui/common_styles.dart';
+import '../../common_ui/style/common_styles.dart';
 import 'auth_view_model.dart';
 
 class RegisterPage extends StatefulWidget {

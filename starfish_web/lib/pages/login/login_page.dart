@@ -6,9 +6,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:starfish_web/styles/app_colors.dart';
 
-import '../../common_ui/common_styles.dart';
+import '../../common_ui/style/common_styles.dart';
 import '../../route/route_utils.dart';
-import '../tab_page.dart';
+import '../home/home_page.dart';
 import 'auth_view_model.dart';
 
 class LoginPage extends StatefulWidget {
@@ -72,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
                 log("${model.inputPassword}");
                 // model.login().then((value) {
                 //   if (value) {
-                RouteUtils.pushAndRemoveUntil(context, const TabPage());
+                RouteUtils.pushAndRemoveUntil(context, const HomePage());
                 //   }
                 // });
               }),

@@ -35,11 +35,12 @@ class DioInstance {
         sendTimeout: sendTimeout ?? _defaultTimeout,
         responseType: responseType,
         contentType: contentType);
-    _dio.interceptors.add(CookieInterceptor());
+    // _dio.interceptors.add(CookieInterceptor());
     // final cookieJar = CookieJar();
     // _dio.interceptors.add(CookieManager(cookieJar));
-    _dio.interceptors.add(PrintLogInterceptor());
     _dio.interceptors.add(RspInterceptor());
+    _dio.interceptors.add(PrintLogInterceptor());
+
 
     _inited = true;
   }
@@ -76,6 +77,28 @@ class DioInstance {
       throw Exception("you should call initDio() first!");
     }
     return await _dio.post(path,
+        data: data,
+        queryParameters: queryParameters,
+        cancelToken: cancelToken,
+        options: options ??
+            Options(
+              method: HttpMethod.POST,
+              receiveTimeout: _defaultTimeout,
+              sendTimeout: _defaultTimeout,
+            ));
+  }
+
+  ///delete请求方式
+  Future<Response> delete(
+      {required String path,
+        Object? data,
+        Map<String, dynamic>? queryParameters,
+        Options? options,
+        CancelToken? cancelToken}) async {
+    if (!_inited) {
+      throw Exception("you should call initDio() first!");
+    }
+    return await _dio.delete(path,
         data: data,
         queryParameters: queryParameters,
         cancelToken: cancelToken,

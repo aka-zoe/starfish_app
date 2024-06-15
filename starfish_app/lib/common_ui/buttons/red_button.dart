@@ -35,6 +35,8 @@ class AppButton extends StatelessWidget {
   //按钮文字样式，默认17.sp 白色
   final TextStyle? buttonTextStyle;
 
+  final FontWeight? fontWeight;
+
   //按钮圆角度数
   final double? radius;
 
@@ -47,6 +49,7 @@ class AppButton extends StatelessWidget {
     this.onTap,
     this.buttonWidth,
     this.buttonHeight,
+    this.fontWeight,
     this.margin,
     this.textAlignment,
     this.buttonText,
@@ -76,7 +79,10 @@ class AppButton extends StatelessWidget {
           child: Text(
             buttonText ?? "确定",
             style: buttonTextStyle ??
-                TextStyle(fontSize: 17.sp, color: Colors.white, fontWeight: FontWeight.w500),
+                TextStyle(
+                    fontSize: 17.sp,
+                    color: Colors.white,
+                    fontWeight: fontWeight ?? FontWeight.w500),
           ),
         ));
   }

@@ -39,6 +39,7 @@ class _HouseResourcePageState extends State<HouseResourcePage> {
           return _resourceVm;
         },
         child: Scaffold(
+          backgroundColor: Colors.white,
             body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 14.w),

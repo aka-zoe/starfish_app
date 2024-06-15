@@ -12,7 +12,7 @@ class WebSocketInstance {
 
   void connectSocket() {
     socketChannel =
-        WebSocketChannel.connect(Uri.parse("ws://172.25.12.108:9900/api/websocket/99999"));
+        WebSocketChannel.connect(Uri.parse("ws://172.25.12.108:9025/api/websocket/12345678"));
     var stream = socketChannel?.stream;
     stream?.listen((event) {
       print("WebSocketInstance event=$event");
@@ -21,6 +21,8 @@ class WebSocketInstance {
         var socketResp = SocketResp.fromJson(jsonDecode(event));
         if (socketResp.code?.toInt() == 333) {
           sendMessage(event);
+        }else if(socketResp.code?.toInt() == 666){
+
         }
       } catch (e) {
         print("WebSocketInstance e=$e");

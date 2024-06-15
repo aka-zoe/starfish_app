@@ -2,9 +2,12 @@ package com.zoe.starfish_server.interceptor;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.exceptions.JWTDecodeException;
+import com.zoe.starfish_server.domain.User;
+import com.zoe.starfish_server.service.UserService;
 import com.zoe.starfish_server.utils.PassToken;
 import com.zoe.starfish_server.utils.UserLoginToken;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -20,6 +23,8 @@ import java.lang.reflect.Method;
 @Component
 public class LoginInterceptor implements HandlerInterceptor {
 
+    @Autowired
+    UserService userService;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -48,18 +53,19 @@ public class LoginInterceptor implements HandlerInterceptor {
                 }
                 // 获取 token 中的 user id
                 String username;
+                String password;
                 try {
                     username = JWT.decode(token).getClaim("username").asString();
+                    password = JWT.decode(token).getClaim("password").asString();
                 } catch (JWTDecodeException j) {
                     throw new RuntimeException("token不正确");
                 }
                 log.info("从token里获取username=" + username);
-                //查询数据库，看看是否存在此用户，方法要自己写
-//                UserInfoParam userInfoParam = testClientService.selectUserByPhone(phone);
-//                if (userInfoParam == null) {
-//                    throw new RuntimeException("用户不存在，请重新登录");
-//                }
-
+                log.info("从token里获取password=" + password);
+                User user = userService.selectUser(username, password);
+                if (user == null) {
+                    throw new RuntimeException("用户不存在，请重新登录");
+                }
                 // 验证 token
                 if (TokenUtils.verify(token)) {
                     return true;

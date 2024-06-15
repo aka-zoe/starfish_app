@@ -10,7 +10,7 @@ class SocketResp {
   });
 
   SocketResp.fromJson(dynamic json) {
-    if(json is Map){
+    if (json != null && json is Map) {
       code = json['code'];
       message = json['message'];
       body = json['body'];
@@ -19,7 +19,7 @@ class SocketResp {
 
   num? code;
   String? message;
-  String? body;
+  dynamic body;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

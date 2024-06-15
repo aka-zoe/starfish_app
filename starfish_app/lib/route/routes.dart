@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:starfish_tenement_app/pages/login/login_page.dart';
 import 'package:starfish_tenement_app/pages/news_type/news_type_page.dart';
 
 import '../pages/tab_page.dart';
@@ -14,6 +15,9 @@ class Routes {
       //资讯分类页
       case RoutePath.newsTypePage:
         return pageRoute(const NewsTypePage(), settings: settings);
+      //登录页
+      case RoutePath.login:
+        return pageRoute(const LoginPage(), settings: settings);
     }
     return MaterialPageRoute(
         builder: (context) =>

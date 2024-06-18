@@ -1,13 +1,21 @@
 import 'package:dio/dio.dart';
 import 'package:starfish_web/http/dio_instance.dart';
 import 'package:starfish_web/repository/data/better_choice_data.dart';
-
+import 'package:starfish_web/repository/data/user_info_data.dart';
 import 'data/banner_list_data.dart';
 
 class Api {
   static Api api = Api._();
 
   Api._();
+
+  ///登录
+  Future<UserInfoData> login(String name, String pwd) async {
+    Response res = await DioInstance.instance()
+        .post(path: "/auth/user/login", data: {"name": name, "password": pwd});
+    var userInfoData = UserInfoData.fromJson(res.data);
+    return userInfoData;
+  }
 
   ///banner列表
   Future<List<BannerListItemData>?> bannerList() async {
@@ -66,8 +74,8 @@ class Api {
 
   //更新本期优选
   Future<bool?> updateBetterChoice(BetterChoiceData? itemData) async {
-    Response response =
-        await DioInstance.instance().post(path: "/betterChoice/updateChoice", data: itemData?.toJson());
+    Response response = await DioInstance.instance()
+        .post(path: "/betterChoice/updateChoice", data: itemData?.toJson());
     return boolCallback(response.data);
   }
 

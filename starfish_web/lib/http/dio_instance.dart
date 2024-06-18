@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 import 'http_method.dart';
-import 'interceptor/cookie_interceptor.dart';
+import 'interceptor/token_interceptor.dart';
 import 'interceptor/print_log_interceptor.dart';
 import 'interceptor/rsp_interceptor.dart';
 
@@ -35,12 +35,9 @@ class DioInstance {
         sendTimeout: sendTimeout ?? _defaultTimeout,
         responseType: responseType,
         contentType: contentType);
-    // _dio.interceptors.add(CookieInterceptor());
-    // final cookieJar = CookieJar();
-    // _dio.interceptors.add(CookieManager(cookieJar));
+    _dio.interceptors.add(TokenInterceptor());
     _dio.interceptors.add(RspInterceptor());
     _dio.interceptors.add(PrintLogInterceptor());
-
 
     _inited = true;
   }
@@ -91,10 +88,10 @@ class DioInstance {
   ///delete请求方式
   Future<Response> delete(
       {required String path,
-        Object? data,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken}) async {
+      Object? data,
+      Map<String, dynamic>? queryParameters,
+      Options? options,
+      CancelToken? cancelToken}) async {
     if (!_inited) {
       throw Exception("you should call initDio() first!");
     }

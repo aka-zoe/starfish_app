@@ -25,6 +25,16 @@ public class User {
 
     private Integer status;
 
+    private String token;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     public Long getId() {
         return id;
     }
@@ -123,23 +133,20 @@ public class User {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", name=").append(name);
-        sb.append(", password=").append(password);
-        sb.append(", role=").append(role);
-        sb.append(", createTime=").append(createTime);
-        sb.append(", workNumber=").append(workNumber);
-        sb.append(", email=").append(email);
-        sb.append(", address=").append(address);
-        sb.append(", phone=").append(phone);
-        sb.append(", gender=").append(gender);
-        sb.append(", age=").append(age);
-        sb.append(", status=").append(status);
-        sb.append("]");
-        return sb.toString();
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                ", createTime='" + createTime + '\'' +
+                ", workNumber='" + workNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", gender='" + gender + '\'' +
+                ", age=" + age +
+                ", status=" + status +
+                ", token='" + token + '\'' +
+                '}';
     }
 }

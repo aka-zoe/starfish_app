@@ -7,6 +7,7 @@ import com.zoe.starfish_server.common.resp.CommonResp;
 import com.zoe.starfish_server.domain.User;
 import com.zoe.starfish_server.service.UserService;
 import com.zoe.starfish_server.utils.PassToken;
+import com.zoe.starfish_server.utils.TokenUtils;
 import com.zoe.starfish_server.utils.UserLoginToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -37,6 +38,8 @@ public class UserController {
         //返回当前用户信息
         for (User user : users) {
             if (user.getName().equals(name) && user.getPassword().equals(password)) {
+                String token = TokenUtils.token(user.getName(), user.getPassword());
+                user.setToken(token);
                 return CommonResp.success(user);
             }
         }

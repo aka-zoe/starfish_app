@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:starfish_web/pages/login/gpt_login_page.dart';
-import 'package:starfish_web/pages/login/login_page.dart';
-import 'package:starfish_web/pages/login/register_page.dart';
+import 'package:starfish_web/pages/login/auth_login_page.dart';
 
 import '../pages/home/home_page.dart';
 
@@ -12,10 +10,7 @@ class Routes {
     switch (settings.name) {
       //登录
       case RoutePath.login:
-        return pageRoute(const GptLoginPage(), settings: settings);
-      //注册
-      case RoutePath.register:
-        return pageRoute(const RegisterPage(), settings: settings);
+        return pageRoute(const LoginPage(), settings: settings);
       //首页
       case RoutePath.homeTab:
         return pageRoute(const HomePage(), settings: settings);
@@ -44,10 +39,10 @@ class Routes {
 ///路由地址
 class RoutePath {
   //登录
-  static const String login = "/login";
+  static const String login = "/";
 
   //首页tab
-  static const String homeTab = "/";
+  static const String homeTab = "/homeTab";
 
   //注册
   static const String register = "/register";

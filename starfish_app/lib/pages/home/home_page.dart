@@ -13,16 +13,19 @@ import 'package:starfish_tenement_app/common_ui/house_list/house_res_list_item.d
 import 'package:starfish_tenement_app/common_ui/icon_text/icon_text.dart';
 import 'package:starfish_tenement_app/common_ui/sliver/sliver_header.dart';
 import 'package:starfish_tenement_app/common_ui/tag/tag_widget.dart';
-import 'package:starfish_tenement_app/common_ui/title/app_title.dart';
+import 'package:starfish_tenement_app/common_ui/title/app_text.dart';
 import 'package:starfish_tenement_app/datas/home_banner_data.dart';
 import 'package:starfish_tenement_app/http/socket/web_socket_instance.dart';
+import 'package:starfish_tenement_app/pages/apartment/apartment_page.dart';
 import 'package:starfish_tenement_app/pages/home/home_vm.dart';
+import 'package:starfish_tenement_app/route/route_utils.dart';
 import 'package:starfish_tenement_app/styles/app_colors.dart';
 
 import '../../common_ui/filter/filter_menu_widget.dart';
 import '../../common_ui/house_list/house_res_list_widget.dart';
 import '../../common_ui/sliver/sliver_app_bar_delegate.dart';
-import '../../common_ui/title/home_big_title.dart';
+import '../../common_ui/title/big_title.dart';
+import '../subscribe/subscribe_house_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -51,7 +54,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void dispose() {
-
     super.dispose();
   }
 
@@ -67,28 +69,27 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.only(left: 16.w, right: 15.w),
               child: CustomScrollView(slivers: [
                 SliverToBoxAdapter(
-                  child: Column(children: [
-                    //位置、搜索栏、扫码
-                    _titleBar(),
-                    22.verticalSpace,
-                    //banner轮播
-                    _banner(),
-                    21.verticalSpace,
-                    //金刚位按钮
-                    _jinGangView(),
-                    HomeBigTitle(bigTitle: "本期优选"),
-                    //本期优选
-                    _betterChoice(),
-                    HomeBigTitle(bigTitle: "周边推荐", showRight: true, onRightTap: () {}),
-                    //地图缩略图占位
-                    _mapView(),
-                  ]),
-                ),
+                    child: Column(children: [
+                  //位置、搜索栏、扫码
+                  _titleBar(),
+                  22.verticalSpace,
+                  //banner轮播
+                  _banner(),
+                  21.verticalSpace,
+                  //金刚位按钮
+                  _jinGangView(),
+                  BigTitle(bigTitle: "本期优选"),
+                  //本期优选
+                  _betterChoice(),
+                  BigTitle(bigTitle: "周边推荐", showRight: true, onRightTap: () {}),
+                  //地图缩略图
+                  _mapView(),
+                ])),
 
                 //吸顶布局
                 SliverHeader(
                   children: [
-                    HomeBigTitle(bigTitle: "精选好房"),
+                    BigTitle(bigTitle: "精选好房"),
                     //筛选条件区域
                     _filterArea()
                   ],
@@ -96,8 +97,12 @@ class _HomePageState extends State<HomePage> {
                 //房源列表
                 SliverList(
                     delegate: SliverChildBuilderDelegate((context, index) {
-                      return const HouseListItem();
-                    }, childCount: 20)),
+                  return HouseListItem(
+                    onTap: () {
+                      RouteUtils.push(context, SubscribeHousePage());
+                    },
+                  );
+                }, childCount: 20)),
               ])),
         )));
   }
@@ -205,7 +210,10 @@ class _HomePageState extends State<HomePage> {
                 titleSize: 17.sp,
                 subTitle: "舒适的环境",
                 subTitleSize: 12.sp,
-                subTitleColor: AppColors.textColor78),
+                subTitleColor: AppColors.textColor78,
+                onTap: () {
+                  RouteUtils.push(context, ApartmentPage());
+                }),
             SizedBox(width: 9.w),
             Expanded(
                 child: Column(
@@ -332,14 +340,15 @@ class _HomePageState extends State<HomePage> {
             : title);
   }
 
-  ///地图缩略图占位
+  ///地图缩略图
   Widget _mapView() {
     return Container(
         color: Colors.grey,
         height: 162.h,
         width: double.infinity,
         alignment: Alignment.center,
-        child: Text("地图缩略图占位"));
+        child: Image.asset("assets/images/image_map.png",
+            width: double.infinity, height: double.infinity, fit: BoxFit.fill));
   }
 
   ///筛选条件区域

@@ -26,6 +26,8 @@ class AppColors {
 
   //文本颜色
   static const textColor3a = Color(0xFF3a3a3a);
+  static const textColor4a = Color(0xFF4a4a4a);
+  static const textColor4D = Color(0xFF4d4d4d);
   static const textColor33 = Color(0xFF333333);
   static const textColor5a = Color(0xFF5a5a5a);
   static const textColor5e = Color(0xFF5e5e5e);
@@ -35,6 +37,7 @@ class AppColors {
   static const textColorA9 = Color(0xFF7ee2a9);
   static const textColor86 = Color(0xFF868686);
   static const textColor8B = Color(0xFF8b8b8b);
+  static const textColorB8 = Color(0xFFB8B8B8);
   static const textColor2b = Color(0xFF2b2b2b);
   static const textColor20 = Color(0xFF202020);
   static const textColorB6 = Color(0xFFb6b6b6);
@@ -45,11 +48,13 @@ class AppColors {
   static const textColor9A = Color(0xFF9c9c9a);
   static const textColorB7 = Color(0xFFb7b7b7);
   static const textColor40 = Color(0xFF404040);
+  static const textColor59 = Color(0xFF595959);
   static const textColorF6 = Color(0xFFf6f6f6);
   static const textColor62 = Color(0xFFfb6c62);
   static const textColorAE = Color(0xFFb0b0ae);
   static const textRedColor39 = Color(0xFFff3739);
   static const textRedColor6d = Color(0xFFff6c6d);
   static const textRedColor3D = Color(0xFFff3b3d);
+  static const textRedColor30 = Color(0xFFff2e30);
   static const textColor7c = Color(0xFFfbac7c);
 }

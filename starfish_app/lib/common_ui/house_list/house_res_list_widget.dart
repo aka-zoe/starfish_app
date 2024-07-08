@@ -5,7 +5,7 @@ import 'package:starfish_tenement_app/common_ui/house_list/house_res_list_item.d
 
 import '../../styles/app_colors.dart';
 import '../tag/tag_widget.dart';
-import '../title/app_title.dart';
+import '../title/app_text.dart';
 
 class HouseResListWidget extends StatefulWidget {
   const HouseResListWidget({super.key, this.shrinkWrap, this.physics});

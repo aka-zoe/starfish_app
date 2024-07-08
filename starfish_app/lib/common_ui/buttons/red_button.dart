@@ -6,7 +6,7 @@ import 'package:starfish_tenement_app/styles/app_colors.dart';
 enum AppButtonType {
   //红色按钮
   red,
-  //黑色安妮
+  //黑色按钮
   black,
   //红色圆角按钮
   redCorner

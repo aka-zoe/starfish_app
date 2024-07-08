@@ -1,0 +1,29 @@
+资讯表：
+标题：title
+副标题：subtitle
+类型：type 1=最新咨询、2=热门资讯  int
+tag：房产新闻（随填写内容，需做长度判断，不能超过6个字）
+点赞：dianZan   int
+评论数：pingLun   int
+图片链接：imageUrl
+url：contentUrl
+状态：status 1=正常、-1=隐藏/下架
+创建时间：createTime  时间戳
+修改时间：operationTime  时间戳
+创建人：createBy 用户id
+修改人：editBy  用户id
+
+点赞：
+createTime：点赞时间
+createBy：点赞人
+newsId：资讯id
+type：1=资讯、2=评论
+
+评论表：
+createTime：评论时间
+createBy：评论人
+newsId：资讯id（type=1才有）
+pingLunId：评论id（type=2，评论的评论才有）
+userId：被评论的用户id（type=2，评论的评论才有）
+content：评论内容
+type：1=资讯、2=评论

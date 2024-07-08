@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:starfish_tenement_app/pages/house_res/detail/house_res_detail_page.dart';
 import 'package:starfish_tenement_app/pages/login/login_page.dart';
 import 'package:starfish_tenement_app/pages/news_type/news_type_page.dart';
+import 'package:starfish_tenement_app/pages/subscribe/subscribe_house_page.dart';
 
+import '../pages/apartment/apartment_page.dart';
 import '../pages/tab_page.dart';
 
 ///路由注册管理类
@@ -18,6 +21,15 @@ class Routes {
       //登录页
       case RoutePath.login:
         return pageRoute(const LoginPage(), settings: settings);
+      //房源明细页
+      case RoutePath.houseResourceDetailPage:
+        return pageRoute(const HouseResDetailPage(), settings: settings);
+      //品牌公寓页面
+      case RoutePath.apartmentPage:
+        return pageRoute(const ApartmentPage(), settings: settings);
+      //房源预定页
+      case RoutePath.subscribeHousePage:
+        return pageRoute(SubscribeHousePage(), settings: settings);
     }
     return MaterialPageRoute(
         builder: (context) =>
@@ -63,6 +75,15 @@ class RoutePath {
   //房源列表页
   static const String houseResourcePage = "/houseResourcePage";
 
+  //房源明细页
+  static const String houseResourceDetailPage = "/houseResourceDetailPage";
+
   //资讯分类页
   static const String newsTypePage = "/newsTypePage";
+
+  //品牌公寓页
+  static const String apartmentPage = "/apartmentPage";
+
+  //房源预定页
+  static const String subscribeHousePage = "/subscribeHousePage";
 }

@@ -4,13 +4,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:starfish_tenement_app/common_ui/house_list/house_res_list_widget.dart';
 import 'package:starfish_tenement_app/common_ui/sliver/sliver_header.dart';
+import 'package:starfish_tenement_app/pages/house_res/detail/house_res_detail_page.dart';
 import 'package:starfish_tenement_app/pages/house_res/house_resource_vm.dart';
+import 'package:starfish_tenement_app/route/route_utils.dart';
 
 import '../../common_ui/app_bar/app_search_bar.dart';
 import '../../common_ui/banner/home_banner_widget.dart';
 import '../../common_ui/filter/filter_menu_widget.dart';
 import '../../common_ui/house_list/house_res_list_item.dart';
-import '../../common_ui/title/home_big_title.dart';
+import '../../common_ui/title/big_title.dart';
 import '../../datas/home_banner_data.dart';
 
 ///房源列表页面
@@ -64,13 +66,15 @@ class _HouseResourcePageState extends State<HouseResourcePage> {
                   _banner(),
                 ])),
                 SliverHeader(children: [
-                  HomeBigTitle(bigTitle: "新房源"),
+                  BigTitle(bigTitle: "新房源"),
                   _filterArea(),
                 ]),
                 //房源列表
                 SliverList(
                     delegate: SliverChildBuilderDelegate((context, index) {
-                  return const HouseListItem();
+                  return  HouseListItem(onTap:(){
+                    RouteUtils.push(context, HouseResDetailPage());
+                  });
                 }, childCount: 20)),
               ],
             ),

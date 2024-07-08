@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:starfish_tenement_app/common_ui/app_bar/app_title_bar.dart';
-import 'package:starfish_tenement_app/common_ui/title/app_title.dart';
+import 'package:starfish_tenement_app/common_ui/title/app_text.dart';
 import 'package:starfish_tenement_app/styles/app_colors.dart';
 
 import '../../datas/news_type_data.dart';

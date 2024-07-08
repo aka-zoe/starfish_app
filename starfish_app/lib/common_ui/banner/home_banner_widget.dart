@@ -10,7 +10,9 @@ enum BannerDotType {
   //圆形
   circle,
   //方形
-  square
+  square,
+  //无指示器
+  none
 }
 
 class BannerWidget extends StatefulWidget {
@@ -65,7 +67,7 @@ class _BannerWidgetState extends State<BannerWidget> {
           autoplayDelay: 5000,
           duration: 800,
           autoplay: true,
-          pagination: _pagination(),
+          pagination: widget.dotType == BannerDotType.none ? null : _pagination(),
           autoplayDisableOnInteraction: false,
           onTap: (int index) {
             widget.bannerClick?.call(index);

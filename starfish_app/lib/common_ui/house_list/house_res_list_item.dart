@@ -3,14 +3,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../styles/app_colors.dart';
 import '../tag/tag_widget.dart';
-import '../title/app_title.dart';
+import '../title/app_text.dart';
 
 class HouseListItem extends StatelessWidget {
-  const HouseListItem({super.key});
+  const HouseListItem({super.key, this.onTap});
+  final GestureTapCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return _houseListItem();
+    return GestureDetector(onTap: onTap,child: _houseListItem());
   }
 
   ///房源列表item

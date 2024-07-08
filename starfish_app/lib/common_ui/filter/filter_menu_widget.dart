@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:starfish_tenement_app/common_ui/title/app_title.dart';
+import 'package:starfish_tenement_app/common_ui/title/app_text.dart';
 import 'package:starfish_tenement_app/styles/app_colors.dart';
 
 ///条件过滤菜单组件
@@ -9,8 +9,16 @@ class FilterMenuWidget extends StatefulWidget {
   final bool? selected;
   final GestureTapCallback? onTap;
   final EdgeInsetsGeometry? padding;
+  final Color? backgroundColor;
 
-  const FilterMenuWidget({super.key, this.name, this.selected, this.onTap, this.padding});
+  const FilterMenuWidget({
+    super.key,
+    this.name,
+    this.selected,
+    this.onTap,
+    this.padding,
+    this.backgroundColor,
+  });
 
   @override
   State<StatefulWidget> createState() {
@@ -25,7 +33,7 @@ class _FilterMenuWidgetState extends State<FilterMenuWidget> {
         onTap: widget.onTap,
         child: Container(
           padding: EdgeInsets.only(left: 15.w, right: 17.w, top: 11.h, bottom: 11.h),
-          color: AppColors.searchBgColor,
+          color: widget.backgroundColor ?? AppColors.searchBgColor,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

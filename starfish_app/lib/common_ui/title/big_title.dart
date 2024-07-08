@@ -2,16 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../styles/app_colors.dart';
-import 'app_title.dart';
+import 'app_text.dart';
 
 ///大标题组件
-class HomeBigTitle extends StatelessWidget {
+class BigTitle extends StatelessWidget {
   final String? bigTitle;
   final bool? showRight;
   final double? titleSize;
   final GestureTapCallback? onRightTap;
   final EdgeInsetsGeometry? padding;
-  const HomeBigTitle({super.key, this.bigTitle, this.showRight, this.onRightTap, this.titleSize, this.padding});
+  const BigTitle({super.key, this.bigTitle, this.showRight, this.onRightTap, this.titleSize, this.padding});
 
   @override
   Widget build(BuildContext context) {

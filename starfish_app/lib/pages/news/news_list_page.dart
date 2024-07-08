@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:provider/provider.dart';
 import 'package:starfish_tenement_app/common_ui/tag/tag_widget.dart';
-import 'package:starfish_tenement_app/common_ui/title/app_title.dart';
-import 'package:starfish_tenement_app/common_ui/title/home_big_title.dart';
+import 'package:starfish_tenement_app/common_ui/title/app_text.dart';
+import 'package:starfish_tenement_app/common_ui/title/big_title.dart';
 import 'package:starfish_tenement_app/route/Routes.dart';
 import 'package:starfish_tenement_app/route/route_utils.dart';
 import 'package:starfish_tenement_app/styles/app_colors.dart';
@@ -45,7 +45,7 @@ class _NewsListPageState extends State<NewsListPage> {
           child: SingleChildScrollView(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               //大标题
-              HomeBigTitle(
+              BigTitle(
                 bigTitle: "房产资讯",
                 titleSize: 24.sp,
                 padding: EdgeInsets.only(top: 21.h, bottom: 17.h),
@@ -63,7 +63,7 @@ class _NewsListPageState extends State<NewsListPage> {
               //热门资讯标题
               Container(
                   padding: EdgeInsets.only(right: 18.w),
-                  child: HomeBigTitle(bigTitle: "热门资讯", showRight: true, onRightTap: () {})),
+                  child: BigTitle(bigTitle: "热门资讯", showRight: true, onRightTap: () {})),
               //资讯列表
               ListView.builder(
                 shrinkWrap: true,

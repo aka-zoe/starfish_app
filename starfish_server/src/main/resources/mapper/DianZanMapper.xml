@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zoe.starfish_server.mapper.DianZanMapper">
+  <resultMap id="BaseResultMap" type="com.zoe.starfish_server.domain.DianZan">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="createTime" jdbcType="BIGINT" property="createtime" />
+    <result column="createBy" jdbcType="BIGINT" property="createby" />
+    <result column="newsId" jdbcType="BIGINT" property="newsid" />
+    <result column="pingLunId" jdbcType="BIGINT" property="pinglunid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, `type`, createTime, createBy, newsId, pingLunId
+  </sql>
+  <select id="selectByExample" parameterType="com.zoe.starfish_server.domain.DianZanExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dianzan
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dianzan
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from dianzan
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zoe.starfish_server.domain.DianZanExample">
+    delete from dianzan
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zoe.starfish_server.domain.DianZan">
+    insert into dianzan (id, `type`, createTime, 
+      createBy, newsId, pingLunId
+      )
+    values (#{id,jdbcType=BIGINT}, #{type,jdbcType=INTEGER}, #{createtime,jdbcType=BIGINT}, 
+      #{createby,jdbcType=BIGINT}, #{newsid,jdbcType=BIGINT}, #{pinglunid,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zoe.starfish_server.domain.DianZan">
+    insert into dianzan
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="createby != null">
+        createBy,
+      </if>
+      <if test="newsid != null">
+        newsId,
+      </if>
+      <if test="pinglunid != null">
+        pingLunId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=BIGINT},
+      </if>
+      <if test="createby != null">
+        #{createby,jdbcType=BIGINT},
+      </if>
+      <if test="newsid != null">
+        #{newsid,jdbcType=BIGINT},
+      </if>
+      <if test="pinglunid != null">
+        #{pinglunid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zoe.starfish_server.domain.DianZanExample" resultType="java.lang.Long">
+    select count(*) from dianzan
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update dianzan
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.type != null">
+        `type` = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.createtime != null">
+        createTime = #{record.createtime,jdbcType=BIGINT},
+      </if>
+      <if test="record.createby != null">
+        createBy = #{record.createby,jdbcType=BIGINT},
+      </if>
+      <if test="record.newsid != null">
+        newsId = #{record.newsid,jdbcType=BIGINT},
+      </if>
+      <if test="record.pinglunid != null">
+        pingLunId = #{record.pinglunid,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update dianzan
+    set id = #{record.id,jdbcType=BIGINT},
+      `type` = #{record.type,jdbcType=INTEGER},
+      createTime = #{record.createtime,jdbcType=BIGINT},
+      createBy = #{record.createby,jdbcType=BIGINT},
+      newsId = #{record.newsid,jdbcType=BIGINT},
+      pingLunId = #{record.pinglunid,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zoe.starfish_server.domain.DianZan">
+    update dianzan
+    <set>
+      <if test="type != null">
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=BIGINT},
+      </if>
+      <if test="createby != null">
+        createBy = #{createby,jdbcType=BIGINT},
+      </if>
+      <if test="newsid != null">
+        newsId = #{newsid,jdbcType=BIGINT},
+      </if>
+      <if test="pinglunid != null">
+        pingLunId = #{pinglunid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zoe.starfish_server.domain.DianZan">
+    update dianzan
+    set `type` = #{type,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=BIGINT},
+      createBy = #{createby,jdbcType=BIGINT},
+      newsId = #{newsid,jdbcType=BIGINT},
+      pingLunId = #{pinglunid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

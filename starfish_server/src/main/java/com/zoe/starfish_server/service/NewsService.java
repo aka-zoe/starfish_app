@@ -63,6 +63,7 @@ public class NewsService {
 
     /**
      * 更新资讯内容
+     *
      * @param news
      * @return
      */
@@ -70,6 +71,34 @@ public class NewsService {
         return mapper.updateByPrimaryKey(news) == 1;
     }
 
+    /**
+     * 点赞
+     *
+     * @param newsId
+     * @param cancel 取消点赞
+     * @return
+     */
+    public Boolean dianZan(Long newsId, Boolean cancel) {
+        News news = mapper.selectByPrimaryKey(newsId);
+        //获取点赞数
+        Long dianzan = news.getDianzan();
+        if (cancel) {
+            //取消点赞
+            if (dianzan >= 1) {
+                news.setDianzan(dianzan - 1);
+            }
+        } else {
+            news.setDianzan(dianzan + 1);
+        }
 
+        return mapper.updateByPrimaryKey(news) == 1;
+    }
 
+    public Boolean pingLun(Long newsId) {
+        News news = mapper.selectByPrimaryKey(newsId);
+        //获取评论数
+        Long pinglun = news.getPinglun();
+        news.setPinglun(pinglun + 1);
+        return mapper.updateByPrimaryKey(news) == 1;
+    }
 }

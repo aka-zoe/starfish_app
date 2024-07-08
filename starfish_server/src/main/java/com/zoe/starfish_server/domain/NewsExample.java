@@ -444,52 +444,52 @@ public class NewsExample {
             return (Criteria) this;
         }
 
-        public Criteria andDianzanEqualTo(Integer value) {
+        public Criteria andDianzanEqualTo(Long value) {
             addCriterion("dianZan =", value, "dianzan");
             return (Criteria) this;
         }
 
-        public Criteria andDianzanNotEqualTo(Integer value) {
+        public Criteria andDianzanNotEqualTo(Long value) {
             addCriterion("dianZan <>", value, "dianzan");
             return (Criteria) this;
         }
 
-        public Criteria andDianzanGreaterThan(Integer value) {
+        public Criteria andDianzanGreaterThan(Long value) {
             addCriterion("dianZan >", value, "dianzan");
             return (Criteria) this;
         }
 
-        public Criteria andDianzanGreaterThanOrEqualTo(Integer value) {
+        public Criteria andDianzanGreaterThanOrEqualTo(Long value) {
             addCriterion("dianZan >=", value, "dianzan");
             return (Criteria) this;
         }
 
-        public Criteria andDianzanLessThan(Integer value) {
+        public Criteria andDianzanLessThan(Long value) {
             addCriterion("dianZan <", value, "dianzan");
             return (Criteria) this;
         }
 
-        public Criteria andDianzanLessThanOrEqualTo(Integer value) {
+        public Criteria andDianzanLessThanOrEqualTo(Long value) {
             addCriterion("dianZan <=", value, "dianzan");
             return (Criteria) this;
         }
 
-        public Criteria andDianzanIn(List<Integer> values) {
+        public Criteria andDianzanIn(List<Long> values) {
             addCriterion("dianZan in", values, "dianzan");
             return (Criteria) this;
         }
 
-        public Criteria andDianzanNotIn(List<Integer> values) {
+        public Criteria andDianzanNotIn(List<Long> values) {
             addCriterion("dianZan not in", values, "dianzan");
             return (Criteria) this;
         }
 
-        public Criteria andDianzanBetween(Integer value1, Integer value2) {
+        public Criteria andDianzanBetween(Long value1, Long value2) {
             addCriterion("dianZan between", value1, value2, "dianzan");
             return (Criteria) this;
         }
 
-        public Criteria andDianzanNotBetween(Integer value1, Integer value2) {
+        public Criteria andDianzanNotBetween(Long value1, Long value2) {
             addCriterion("dianZan not between", value1, value2, "dianzan");
             return (Criteria) this;
         }
@@ -504,52 +504,52 @@ public class NewsExample {
             return (Criteria) this;
         }
 
-        public Criteria andPinglunEqualTo(Integer value) {
+        public Criteria andPinglunEqualTo(Long value) {
             addCriterion("pingLun =", value, "pinglun");
             return (Criteria) this;
         }
 
-        public Criteria andPinglunNotEqualTo(Integer value) {
+        public Criteria andPinglunNotEqualTo(Long value) {
             addCriterion("pingLun <>", value, "pinglun");
             return (Criteria) this;
         }
 
-        public Criteria andPinglunGreaterThan(Integer value) {
+        public Criteria andPinglunGreaterThan(Long value) {
             addCriterion("pingLun >", value, "pinglun");
             return (Criteria) this;
         }
 
-        public Criteria andPinglunGreaterThanOrEqualTo(Integer value) {
+        public Criteria andPinglunGreaterThanOrEqualTo(Long value) {
             addCriterion("pingLun >=", value, "pinglun");
             return (Criteria) this;
         }
 
-        public Criteria andPinglunLessThan(Integer value) {
+        public Criteria andPinglunLessThan(Long value) {
             addCriterion("pingLun <", value, "pinglun");
             return (Criteria) this;
         }
 
-        public Criteria andPinglunLessThanOrEqualTo(Integer value) {
+        public Criteria andPinglunLessThanOrEqualTo(Long value) {
             addCriterion("pingLun <=", value, "pinglun");
             return (Criteria) this;
         }
 
-        public Criteria andPinglunIn(List<Integer> values) {
+        public Criteria andPinglunIn(List<Long> values) {
             addCriterion("pingLun in", values, "pinglun");
             return (Criteria) this;
         }
 
-        public Criteria andPinglunNotIn(List<Integer> values) {
+        public Criteria andPinglunNotIn(List<Long> values) {
             addCriterion("pingLun not in", values, "pinglun");
             return (Criteria) this;
         }
 
-        public Criteria andPinglunBetween(Integer value1, Integer value2) {
+        public Criteria andPinglunBetween(Long value1, Long value2) {
             addCriterion("pingLun between", value1, value2, "pinglun");
             return (Criteria) this;
         }
 
-        public Criteria andPinglunNotBetween(Integer value1, Integer value2) {
+        public Criteria andPinglunNotBetween(Long value1, Long value2) {
             addCriterion("pingLun not between", value1, value2, "pinglun");
             return (Criteria) this;
         }
@@ -704,52 +704,52 @@ public class NewsExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeEqualTo(Integer value) {
+        public Criteria andCreatetimeEqualTo(Long value) {
             addCriterion("createTime =", value, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeNotEqualTo(Integer value) {
+        public Criteria andCreatetimeNotEqualTo(Long value) {
             addCriterion("createTime <>", value, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeGreaterThan(Integer value) {
+        public Criteria andCreatetimeGreaterThan(Long value) {
             addCriterion("createTime >", value, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeGreaterThanOrEqualTo(Integer value) {
+        public Criteria andCreatetimeGreaterThanOrEqualTo(Long value) {
             addCriterion("createTime >=", value, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeLessThan(Integer value) {
+        public Criteria andCreatetimeLessThan(Long value) {
             addCriterion("createTime <", value, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeLessThanOrEqualTo(Integer value) {
+        public Criteria andCreatetimeLessThanOrEqualTo(Long value) {
             addCriterion("createTime <=", value, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeIn(List<Integer> values) {
+        public Criteria andCreatetimeIn(List<Long> values) {
             addCriterion("createTime in", values, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeNotIn(List<Integer> values) {
+        public Criteria andCreatetimeNotIn(List<Long> values) {
             addCriterion("createTime not in", values, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeBetween(Integer value1, Integer value2) {
+        public Criteria andCreatetimeBetween(Long value1, Long value2) {
             addCriterion("createTime between", value1, value2, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeNotBetween(Integer value1, Integer value2) {
+        public Criteria andCreatetimeNotBetween(Long value1, Long value2) {
             addCriterion("createTime not between", value1, value2, "createtime");
             return (Criteria) this;
         }
@@ -764,52 +764,52 @@ public class NewsExample {
             return (Criteria) this;
         }
 
-        public Criteria andOperationtimeEqualTo(Integer value) {
+        public Criteria andOperationtimeEqualTo(Long value) {
             addCriterion("operationTime =", value, "operationtime");
             return (Criteria) this;
         }
 
-        public Criteria andOperationtimeNotEqualTo(Integer value) {
+        public Criteria andOperationtimeNotEqualTo(Long value) {
             addCriterion("operationTime <>", value, "operationtime");
             return (Criteria) this;
         }
 
-        public Criteria andOperationtimeGreaterThan(Integer value) {
+        public Criteria andOperationtimeGreaterThan(Long value) {
             addCriterion("operationTime >", value, "operationtime");
             return (Criteria) this;
         }
 
-        public Criteria andOperationtimeGreaterThanOrEqualTo(Integer value) {
+        public Criteria andOperationtimeGreaterThanOrEqualTo(Long value) {
             addCriterion("operationTime >=", value, "operationtime");
             return (Criteria) this;
         }
 
-        public Criteria andOperationtimeLessThan(Integer value) {
+        public Criteria andOperationtimeLessThan(Long value) {
             addCriterion("operationTime <", value, "operationtime");
             return (Criteria) this;
         }
 
-        public Criteria andOperationtimeLessThanOrEqualTo(Integer value) {
+        public Criteria andOperationtimeLessThanOrEqualTo(Long value) {
             addCriterion("operationTime <=", value, "operationtime");
             return (Criteria) this;
         }
 
-        public Criteria andOperationtimeIn(List<Integer> values) {
+        public Criteria andOperationtimeIn(List<Long> values) {
             addCriterion("operationTime in", values, "operationtime");
             return (Criteria) this;
         }
 
-        public Criteria andOperationtimeNotIn(List<Integer> values) {
+        public Criteria andOperationtimeNotIn(List<Long> values) {
             addCriterion("operationTime not in", values, "operationtime");
             return (Criteria) this;
         }
 
-        public Criteria andOperationtimeBetween(Integer value1, Integer value2) {
+        public Criteria andOperationtimeBetween(Long value1, Long value2) {
             addCriterion("operationTime between", value1, value2, "operationtime");
             return (Criteria) this;
         }
 
-        public Criteria andOperationtimeNotBetween(Integer value1, Integer value2) {
+        public Criteria andOperationtimeNotBetween(Long value1, Long value2) {
             addCriterion("operationTime not between", value1, value2, "operationtime");
             return (Criteria) this;
         }
@@ -824,52 +824,52 @@ public class NewsExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreatebyEqualTo(Integer value) {
+        public Criteria andCreatebyEqualTo(Long value) {
             addCriterion("createBy =", value, "createby");
             return (Criteria) this;
         }
 
-        public Criteria andCreatebyNotEqualTo(Integer value) {
+        public Criteria andCreatebyNotEqualTo(Long value) {
             addCriterion("createBy <>", value, "createby");
             return (Criteria) this;
         }
 
-        public Criteria andCreatebyGreaterThan(Integer value) {
+        public Criteria andCreatebyGreaterThan(Long value) {
             addCriterion("createBy >", value, "createby");
             return (Criteria) this;
         }
 
-        public Criteria andCreatebyGreaterThanOrEqualTo(Integer value) {
+        public Criteria andCreatebyGreaterThanOrEqualTo(Long value) {
             addCriterion("createBy >=", value, "createby");
             return (Criteria) this;
         }
 
-        public Criteria andCreatebyLessThan(Integer value) {
+        public Criteria andCreatebyLessThan(Long value) {
             addCriterion("createBy <", value, "createby");
             return (Criteria) this;
         }
 
-        public Criteria andCreatebyLessThanOrEqualTo(Integer value) {
+        public Criteria andCreatebyLessThanOrEqualTo(Long value) {
             addCriterion("createBy <=", value, "createby");
             return (Criteria) this;
         }
 
-        public Criteria andCreatebyIn(List<Integer> values) {
+        public Criteria andCreatebyIn(List<Long> values) {
             addCriterion("createBy in", values, "createby");
             return (Criteria) this;
         }
 
-        public Criteria andCreatebyNotIn(List<Integer> values) {
+        public Criteria andCreatebyNotIn(List<Long> values) {
             addCriterion("createBy not in", values, "createby");
             return (Criteria) this;
         }
 
-        public Criteria andCreatebyBetween(Integer value1, Integer value2) {
+        public Criteria andCreatebyBetween(Long value1, Long value2) {
             addCriterion("createBy between", value1, value2, "createby");
             return (Criteria) this;
         }
 
-        public Criteria andCreatebyNotBetween(Integer value1, Integer value2) {
+        public Criteria andCreatebyNotBetween(Long value1, Long value2) {
             addCriterion("createBy not between", value1, value2, "createby");
             return (Criteria) this;
         }
@@ -884,52 +884,52 @@ public class NewsExample {
             return (Criteria) this;
         }
 
-        public Criteria andEditbyEqualTo(Integer value) {
+        public Criteria andEditbyEqualTo(Long value) {
             addCriterion("editBy =", value, "editby");
             return (Criteria) this;
         }
 
-        public Criteria andEditbyNotEqualTo(Integer value) {
+        public Criteria andEditbyNotEqualTo(Long value) {
             addCriterion("editBy <>", value, "editby");
             return (Criteria) this;
         }
 
-        public Criteria andEditbyGreaterThan(Integer value) {
+        public Criteria andEditbyGreaterThan(Long value) {
             addCriterion("editBy >", value, "editby");
             return (Criteria) this;
         }
 
-        public Criteria andEditbyGreaterThanOrEqualTo(Integer value) {
+        public Criteria andEditbyGreaterThanOrEqualTo(Long value) {
             addCriterion("editBy >=", value, "editby");
             return (Criteria) this;
         }
 
-        public Criteria andEditbyLessThan(Integer value) {
+        public Criteria andEditbyLessThan(Long value) {
             addCriterion("editBy <", value, "editby");
             return (Criteria) this;
         }
 
-        public Criteria andEditbyLessThanOrEqualTo(Integer value) {
+        public Criteria andEditbyLessThanOrEqualTo(Long value) {
             addCriterion("editBy <=", value, "editby");
             return (Criteria) this;
         }
 
-        public Criteria andEditbyIn(List<Integer> values) {
+        public Criteria andEditbyIn(List<Long> values) {
             addCriterion("editBy in", values, "editby");
             return (Criteria) this;
         }
 
-        public Criteria andEditbyNotIn(List<Integer> values) {
+        public Criteria andEditbyNotIn(List<Long> values) {
             addCriterion("editBy not in", values, "editby");
             return (Criteria) this;
         }
 
-        public Criteria andEditbyBetween(Integer value1, Integer value2) {
+        public Criteria andEditbyBetween(Long value1, Long value2) {
             addCriterion("editBy between", value1, value2, "editby");
             return (Criteria) this;
         }
 
-        public Criteria andEditbyNotBetween(Integer value1, Integer value2) {
+        public Criteria andEditbyNotBetween(Long value1, Long value2) {
             addCriterion("editBy not between", value1, value2, "editby");
             return (Criteria) this;
         }

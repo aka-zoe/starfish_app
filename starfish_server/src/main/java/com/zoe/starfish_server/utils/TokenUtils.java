@@ -6,6 +6,7 @@ import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +17,7 @@ public class TokenUtils {
     //token秘钥
     private static final String TOKEN_SECRET = "ZCfasfhuaUUHufguGuwu2020BQWf";
 
-    public static String token(String username, String password) {
+    public static String token(String username, Long userId) {
 
         String token = "";
         try {
@@ -32,7 +33,7 @@ public class TokenUtils {
             token = JWT.create()
                     .withHeader(header)
                     .withClaim("username", username)
-                    .withClaim("password", password).withExpiresAt(date)
+                    .withClaim("userId", userId).withExpiresAt(date)
                     .sign(algorithm);
 
         } catch (Exception e) {
@@ -59,10 +60,26 @@ public class TokenUtils {
         }
     }
 
+    /**
+     * 从token中获取用户id
+     *
+     * @param servletRequest
+     * @return
+     */
+    public static Long getUserId(HttpServletRequest servletRequest) {
+        try {
+            String token = servletRequest.getHeader("token");
+            return JWT.decode(token).getClaim("userId").asLong();
+        } catch (Exception exception) {
+            return -1L;
+        }
+
+    }
+
     public static void main(String[] args) {
         String username = "gongsensen";
-        String password = "123456";
-        String token = token(username, password);
+        Long userId = 1L;
+        String token = token(username, userId);
         System.out.println(token);
         boolean b = verify("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXNzd29yZCI6IjEyMzQ1NiIsImV4cCI6MTcxNjA0NDI3MiwidXNlcm5hbWUiOiJnb25nc2Vuc2VuIn0.kPZ8tIhHPmEz-9a7N8LdMKdWK9lEyff8URdt9lNOHsY");
         Claim username1 = JWT.decode("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXNzd29yZCI6IjEyMzQ1NiIsImV4cCI6MTcxNjA0NDI3MiwidXNlcm5hbWUiOiJnb25nc2Vuc2VuIn0.kPZ8tIhHPmEz-9a7N8LdMKdWK9lEyff8URdt9lNOHsY").getClaim("username");

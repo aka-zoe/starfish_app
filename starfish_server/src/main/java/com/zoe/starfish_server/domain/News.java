@@ -11,21 +11,21 @@ public class News {
 
     private String tag;
 
-    private Integer dianzan;
+    private Long dianzan;
 
-    private Integer pinglun;
+    private Long pinglun;
 
     private String imageurl;
 
     private String contenturl;
 
-    private Integer createtime;
+    private Long createtime;
 
-    private Integer operationtime;
+    private Long operationtime;
 
-    private Integer createby;
+    private Long createby;
 
-    private Integer editby;
+    private Long editby;
 
     private Integer status;
 
@@ -69,19 +69,19 @@ public class News {
         this.tag = tag;
     }
 
-    public Integer getDianzan() {
+    public Long getDianzan() {
         return dianzan;
     }
 
-    public void setDianzan(Integer dianzan) {
+    public void setDianzan(Long dianzan) {
         this.dianzan = dianzan;
     }
 
-    public Integer getPinglun() {
+    public Long getPinglun() {
         return pinglun;
     }
 
-    public void setPinglun(Integer pinglun) {
+    public void setPinglun(Long pinglun) {
         this.pinglun = pinglun;
     }
 
@@ -101,35 +101,35 @@ public class News {
         this.contenturl = contenturl;
     }
 
-    public Integer getCreatetime() {
+    public Long getCreatetime() {
         return createtime;
     }
 
-    public void setCreatetime(Integer createtime) {
+    public void setCreatetime(Long createtime) {
         this.createtime = createtime;
     }
 
-    public Integer getOperationtime() {
+    public Long getOperationtime() {
         return operationtime;
     }
 
-    public void setOperationtime(Integer operationtime) {
+    public void setOperationtime(Long operationtime) {
         this.operationtime = operationtime;
     }
 
-    public Integer getCreateby() {
+    public Long getCreateby() {
         return createby;
     }
 
-    public void setCreateby(Integer createby) {
+    public void setCreateby(Long createby) {
         this.createby = createby;
     }
 
-    public Integer getEditby() {
+    public Long getEditby() {
         return editby;
     }
 
-    public void setEditby(Integer editby) {
+    public void setEditby(Long editby) {
         this.editby = editby;
     }
 

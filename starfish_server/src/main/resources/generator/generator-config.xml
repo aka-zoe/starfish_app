@@ -48,6 +48,8 @@
 <!--        <table tableName="house_tag" domainObjectName="HouseTag"/>-->
 <!--        <table tableName="house_type" domainObjectName="HouseType"/>-->
 <!--        <table tableName="living_area" domainObjectName="LivingArea"/>-->
-        <table tableName="news" domainObjectName="News"/>
+<!--        <table tableName="news" domainObjectName="News"/>-->
+<!--        <table tableName="dianzan" domainObjectName="DianZan"/>-->
+        <table tableName="pinglun" domainObjectName="PingLun"/>
     </context>
 </generatorConfiguration>

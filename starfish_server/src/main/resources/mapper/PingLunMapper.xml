@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zoe.starfish_server.mapper.NewsMapper">
-  <resultMap id="BaseResultMap" type="com.zoe.starfish_server.domain.News">
+<mapper namespace="com.zoe.starfish_server.mapper.PingLunMapper">
+  <resultMap id="BaseResultMap" type="com.zoe.starfish_server.domain.PingLun">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="subTitle" jdbcType="VARCHAR" property="subtitle" />
     <result column="type" jdbcType="INTEGER" property="type" />
-    <result column="tag" jdbcType="VARCHAR" property="tag" />
     <result column="dianZan" jdbcType="BIGINT" property="dianzan" />
-    <result column="pingLun" jdbcType="BIGINT" property="pinglun" />
-    <result column="imageUrl" jdbcType="VARCHAR" property="imageurl" />
-    <result column="contentUrl" jdbcType="VARCHAR" property="contenturl" />
     <result column="createTime" jdbcType="BIGINT" property="createtime" />
-    <result column="operationTime" jdbcType="BIGINT" property="operationtime" />
     <result column="createBy" jdbcType="BIGINT" property="createby" />
-    <result column="editBy" jdbcType="BIGINT" property="editby" />
-    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="newsId" jdbcType="BIGINT" property="newsid" />
+    <result column="userId" jdbcType="BIGINT" property="userid" />
+    <result column="pingLunId" jdbcType="BIGINT" property="pinglunid" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -76,16 +71,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, title, subTitle, `type`, tag, dianZan, pingLun, imageUrl, contentUrl, createTime, 
-    operationTime, createBy, editBy, `status`
+    id, `type`, dianZan, createTime, createBy, newsId, userId, pingLunId, content
   </sql>
-  <select id="selectByExample" parameterType="com.zoe.starfish_server.domain.NewsExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.zoe.starfish_server.domain.PingLunExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from news
+    from pinglun
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -96,172 +90,125 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from news
+    from pinglun
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from news
+    delete from pinglun
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.zoe.starfish_server.domain.NewsExample">
-    delete from news
+  <delete id="deleteByExample" parameterType="com.zoe.starfish_server.domain.PingLunExample">
+    delete from pinglun
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.zoe.starfish_server.domain.News">
-    insert into news (id, title, subTitle, 
-      `type`, tag, dianZan, 
-      pingLun, imageUrl, contentUrl, 
-      createTime, operationTime, createBy, 
-      editBy, `status`)
-    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{subtitle,jdbcType=VARCHAR}, 
-      #{type,jdbcType=INTEGER}, #{tag,jdbcType=VARCHAR}, #{dianzan,jdbcType=BIGINT}, 
-      #{pinglun,jdbcType=BIGINT}, #{imageurl,jdbcType=VARCHAR}, #{contenturl,jdbcType=VARCHAR}, 
-      #{createtime,jdbcType=BIGINT}, #{operationtime,jdbcType=BIGINT}, #{createby,jdbcType=BIGINT}, 
-      #{editby,jdbcType=BIGINT}, #{status,jdbcType=INTEGER})
+  <insert id="insert" parameterType="com.zoe.starfish_server.domain.PingLun">
+    insert into pinglun (id, `type`, dianZan, 
+      createTime, createBy, newsId, 
+      userId, pingLunId, content
+      )
+    values (#{id,jdbcType=BIGINT}, #{type,jdbcType=INTEGER}, #{dianzan,jdbcType=BIGINT}, 
+      #{createtime,jdbcType=BIGINT}, #{createby,jdbcType=BIGINT}, #{newsid,jdbcType=BIGINT}, 
+      #{userid,jdbcType=BIGINT}, #{pinglunid,jdbcType=BIGINT}, #{content,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.zoe.starfish_server.domain.News">
-    insert into news
+  <insert id="insertSelective" parameterType="com.zoe.starfish_server.domain.PingLun">
+    insert into pinglun
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="title != null">
-        title,
-      </if>
-      <if test="subtitle != null">
-        subTitle,
-      </if>
       <if test="type != null">
         `type`,
-      </if>
-      <if test="tag != null">
-        tag,
       </if>
       <if test="dianzan != null">
         dianZan,
       </if>
-      <if test="pinglun != null">
-        pingLun,
-      </if>
-      <if test="imageurl != null">
-        imageUrl,
-      </if>
-      <if test="contenturl != null">
-        contentUrl,
-      </if>
       <if test="createtime != null">
         createTime,
-      </if>
-      <if test="operationtime != null">
-        operationTime,
       </if>
       <if test="createby != null">
         createBy,
       </if>
-      <if test="editby != null">
-        editBy,
+      <if test="newsid != null">
+        newsId,
       </if>
-      <if test="status != null">
-        `status`,
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="pinglunid != null">
+        pingLunId,
+      </if>
+      <if test="content != null">
+        content,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="title != null">
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="subtitle != null">
-        #{subtitle,jdbcType=VARCHAR},
-      </if>
       <if test="type != null">
         #{type,jdbcType=INTEGER},
-      </if>
-      <if test="tag != null">
-        #{tag,jdbcType=VARCHAR},
       </if>
       <if test="dianzan != null">
         #{dianzan,jdbcType=BIGINT},
       </if>
-      <if test="pinglun != null">
-        #{pinglun,jdbcType=BIGINT},
-      </if>
-      <if test="imageurl != null">
-        #{imageurl,jdbcType=VARCHAR},
-      </if>
-      <if test="contenturl != null">
-        #{contenturl,jdbcType=VARCHAR},
-      </if>
       <if test="createtime != null">
         #{createtime,jdbcType=BIGINT},
-      </if>
-      <if test="operationtime != null">
-        #{operationtime,jdbcType=BIGINT},
       </if>
       <if test="createby != null">
         #{createby,jdbcType=BIGINT},
       </if>
-      <if test="editby != null">
-        #{editby,jdbcType=BIGINT},
+      <if test="newsid != null">
+        #{newsid,jdbcType=BIGINT},
       </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="pinglunid != null">
+        #{pinglunid,jdbcType=BIGINT},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.zoe.starfish_server.domain.NewsExample" resultType="java.lang.Long">
-    select count(*) from news
+  <select id="countByExample" parameterType="com.zoe.starfish_server.domain.PingLunExample" resultType="java.lang.Long">
+    select count(*) from pinglun
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update news
+    update pinglun
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.title != null">
-        title = #{record.title,jdbcType=VARCHAR},
-      </if>
-      <if test="record.subtitle != null">
-        subTitle = #{record.subtitle,jdbcType=VARCHAR},
-      </if>
       <if test="record.type != null">
         `type` = #{record.type,jdbcType=INTEGER},
-      </if>
-      <if test="record.tag != null">
-        tag = #{record.tag,jdbcType=VARCHAR},
       </if>
       <if test="record.dianzan != null">
         dianZan = #{record.dianzan,jdbcType=BIGINT},
       </if>
-      <if test="record.pinglun != null">
-        pingLun = #{record.pinglun,jdbcType=BIGINT},
-      </if>
-      <if test="record.imageurl != null">
-        imageUrl = #{record.imageurl,jdbcType=VARCHAR},
-      </if>
-      <if test="record.contenturl != null">
-        contentUrl = #{record.contenturl,jdbcType=VARCHAR},
-      </if>
       <if test="record.createtime != null">
         createTime = #{record.createtime,jdbcType=BIGINT},
-      </if>
-      <if test="record.operationtime != null">
-        operationTime = #{record.operationtime,jdbcType=BIGINT},
       </if>
       <if test="record.createby != null">
         createBy = #{record.createby,jdbcType=BIGINT},
       </if>
-      <if test="record.editby != null">
-        editBy = #{record.editby,jdbcType=BIGINT},
+      <if test="record.newsid != null">
+        newsId = #{record.newsid,jdbcType=BIGINT},
       </if>
-      <if test="record.status != null">
-        `status` = #{record.status,jdbcType=INTEGER},
+      <if test="record.userid != null">
+        userId = #{record.userid,jdbcType=BIGINT},
+      </if>
+      <if test="record.pinglunid != null">
+        pingLunId = #{record.pinglunid,jdbcType=BIGINT},
+      </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -269,85 +216,60 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update news
+    update pinglun
     set id = #{record.id,jdbcType=BIGINT},
-      title = #{record.title,jdbcType=VARCHAR},
-      subTitle = #{record.subtitle,jdbcType=VARCHAR},
       `type` = #{record.type,jdbcType=INTEGER},
-      tag = #{record.tag,jdbcType=VARCHAR},
       dianZan = #{record.dianzan,jdbcType=BIGINT},
-      pingLun = #{record.pinglun,jdbcType=BIGINT},
-      imageUrl = #{record.imageurl,jdbcType=VARCHAR},
-      contentUrl = #{record.contenturl,jdbcType=VARCHAR},
       createTime = #{record.createtime,jdbcType=BIGINT},
-      operationTime = #{record.operationtime,jdbcType=BIGINT},
       createBy = #{record.createby,jdbcType=BIGINT},
-      editBy = #{record.editby,jdbcType=BIGINT},
-      `status` = #{record.status,jdbcType=INTEGER}
+      newsId = #{record.newsid,jdbcType=BIGINT},
+      userId = #{record.userid,jdbcType=BIGINT},
+      pingLunId = #{record.pinglunid,jdbcType=BIGINT},
+      content = #{record.content,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zoe.starfish_server.domain.News">
-    update news
+  <update id="updateByPrimaryKeySelective" parameterType="com.zoe.starfish_server.domain.PingLun">
+    update pinglun
     <set>
-      <if test="title != null">
-        title = #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="subtitle != null">
-        subTitle = #{subtitle,jdbcType=VARCHAR},
-      </if>
       <if test="type != null">
         `type` = #{type,jdbcType=INTEGER},
-      </if>
-      <if test="tag != null">
-        tag = #{tag,jdbcType=VARCHAR},
       </if>
       <if test="dianzan != null">
         dianZan = #{dianzan,jdbcType=BIGINT},
       </if>
-      <if test="pinglun != null">
-        pingLun = #{pinglun,jdbcType=BIGINT},
-      </if>
-      <if test="imageurl != null">
-        imageUrl = #{imageurl,jdbcType=VARCHAR},
-      </if>
-      <if test="contenturl != null">
-        contentUrl = #{contenturl,jdbcType=VARCHAR},
-      </if>
       <if test="createtime != null">
         createTime = #{createtime,jdbcType=BIGINT},
-      </if>
-      <if test="operationtime != null">
-        operationTime = #{operationtime,jdbcType=BIGINT},
       </if>
       <if test="createby != null">
         createBy = #{createby,jdbcType=BIGINT},
       </if>
-      <if test="editby != null">
-        editBy = #{editby,jdbcType=BIGINT},
+      <if test="newsid != null">
+        newsId = #{newsid,jdbcType=BIGINT},
       </if>
-      <if test="status != null">
-        `status` = #{status,jdbcType=INTEGER},
+      <if test="userid != null">
+        userId = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="pinglunid != null">
+        pingLunId = #{pinglunid,jdbcType=BIGINT},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zoe.starfish_server.domain.News">
-    update news
-    set title = #{title,jdbcType=VARCHAR},
-      subTitle = #{subtitle,jdbcType=VARCHAR},
-      `type` = #{type,jdbcType=INTEGER},
-      tag = #{tag,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKey" parameterType="com.zoe.starfish_server.domain.PingLun">
+    update pinglun
+    set `type` = #{type,jdbcType=INTEGER},
       dianZan = #{dianzan,jdbcType=BIGINT},
-      pingLun = #{pinglun,jdbcType=BIGINT},
-      imageUrl = #{imageurl,jdbcType=VARCHAR},
-      contentUrl = #{contenturl,jdbcType=VARCHAR},
       createTime = #{createtime,jdbcType=BIGINT},
-      operationTime = #{operationtime,jdbcType=BIGINT},
       createBy = #{createby,jdbcType=BIGINT},
-      editBy = #{editby,jdbcType=BIGINT},
-      `status` = #{status,jdbcType=INTEGER}
+      newsId = #{newsid,jdbcType=BIGINT},
+      userId = #{userid,jdbcType=BIGINT},
+      pingLunId = #{pinglunid,jdbcType=BIGINT},
+      content = #{content,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

@@ -26,7 +26,11 @@ public class DianZanService {
      * @return
      */
     public Boolean cancel(Integer type, Long newsId, Long pingLunId) {
-        Long id = getDianZan(type, newsId, pingLunId).getId();
+        DianZan dianZan = getDianZan(type, newsId, pingLunId);
+        if (dianZan == null) {
+            return false;
+        }
+        Long id = dianZan.getId();
         //取消点赞
         return mapper.deleteByPrimaryKey(id) == 1;
     }

@@ -20,13 +20,13 @@ public class HouseTypeController {
     HouseTypeService service;
 
     @UserLoginToken
-    @GetMapping("/houseTypeList")
+    @PostMapping("/houseTypeList")
     public CommonResp houseTypeList() {
         return CommonResp.success(service.houseTypeList());
     }
 
     @UserLoginToken
-    @GetMapping("/getType")
+    @PostMapping("/getType")
     public CommonResp getType(@RequestParam(value = "id", required = true) Long id) {
         return CommonResp.success(service.getType(id));
     }
@@ -42,7 +42,7 @@ public class HouseTypeController {
     }
 
     @UserLoginToken
-    @DeleteMapping("/deleteHouseType")
+    @PostMapping("/deleteHouseType")
     public CommonResp deleteHouseType(@RequestParam(value = "id", required = true) Long id) {
         return CommonResp.success(service.deleteHouseType(id));
     }

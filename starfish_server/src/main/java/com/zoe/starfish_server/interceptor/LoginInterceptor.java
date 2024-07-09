@@ -60,8 +60,8 @@ public class LoginInterceptor implements HandlerInterceptor {
                 } catch (JWTDecodeException j) {
                     throw new RuntimeException("token不正确");
                 }
-                log.info("从token里获取username=" + username);
-                log.info("从token里获取password=" + password);
+//                log.info("从token里获取username=" + username);
+//                log.info("从token里获取password=" + password);
                 User user = userService.selectUser(username, password);
                 if (user == null) {
                     throw new RuntimeException("用户不存在，请重新登录");
@@ -86,7 +86,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView
             modelAndView) throws Exception {
-        System.out.println("postHandle执行{}");
+//        System.out.println("postHandle执行{}");
 
     }
 
@@ -98,7 +98,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception
             ex) throws Exception {
-        System.out.println("afterCompletion执行异常");
+//        System.out.println("afterCompletion执行异常");
 
     }
 

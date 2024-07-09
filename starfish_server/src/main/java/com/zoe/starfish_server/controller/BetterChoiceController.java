@@ -19,7 +19,7 @@ public class BetterChoiceController {
     BetterChoiceService service;
 
     @UserLoginToken
-    @GetMapping("/choiceList")
+    @PostMapping("/choiceList")
     public CommonResp choiceList() {
         return CommonResp.success(service.choiceList());
     }
@@ -35,7 +35,7 @@ public class BetterChoiceController {
     }
 
     @UserLoginToken
-    @DeleteMapping("/deleteChoice")
+    @PostMapping("/deleteChoice")
     public CommonResp deleteChoice(@RequestParam(value = "id", required = true) Long id) {
         return CommonResp.success(service.deleteChoice(id) == 1);
     }

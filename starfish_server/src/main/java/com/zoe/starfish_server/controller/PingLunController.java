@@ -52,6 +52,7 @@ public class PingLunController {
             //资讯的评论数增加
             newsService.pingLun(pingLun.getNewsid());
         }
+        //被评论人不能为空
         if (type == 2 && pingLun.getPinglunid() == null || pingLun.getUserid() == null) {
             return CommonResp.error(RespCodeEnum.PARAMERR);
         }

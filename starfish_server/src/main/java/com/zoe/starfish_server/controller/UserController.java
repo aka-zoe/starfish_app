@@ -38,7 +38,7 @@ public class UserController {
         //返回当前用户信息
         for (User user : users) {
             if (user.getName().equals(name) && user.getPassword().equals(password)) {
-                String token = TokenUtils.token(user.getName(), user.getId());
+                String token = TokenUtils.token(user.getName(), user.getPassword(), user.getId());
                 user.setToken(token);
                 return CommonResp.success(user);
             }
@@ -52,7 +52,7 @@ public class UserController {
      * @return
      */
     @UserLoginToken
-    @GetMapping("/userList")
+    @PostMapping("/userList")
     public CommonResp userList() {
         return CommonResp.success(userService.getUserList());
     }
@@ -64,7 +64,7 @@ public class UserController {
      * @return
      */
     @UserLoginToken
-    @GetMapping("/getUser/{id}")
+    @PostMapping("/getUser/{id}")
     public CommonResp getUser(@PathVariable("id") Long id) {
         return CommonResp.success(userService.getUser(id));
     }

@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * 房源图片控制器
+ * 房源小区控制器
  */
 @RestController
 @RequestMapping("/livingArea")
@@ -18,13 +18,13 @@ public class LivingAreaController {
     LivingAreaService service;
 
     @UserLoginToken
-    @GetMapping("/areaList")
+    @PostMapping("/areaList")
     public CommonResp areaList() {
         return CommonResp.success(service.areaList());
     }
 
     @UserLoginToken
-    @GetMapping("/getArea")
+    @PostMapping("/getArea")
     public CommonResp getArea(@RequestParam(value = "id", required = true) Long id) {
         return CommonResp.success(service.getArea(id));
     }
@@ -40,7 +40,7 @@ public class LivingAreaController {
     }
 
     @UserLoginToken
-    @DeleteMapping("/deleteLivingArea")
+    @PostMapping("/deleteLivingArea")
     public CommonResp deleteLivingArea(@RequestParam(value = "id", required = true) Long id) {
         return CommonResp.success(service.deleteLivingArea(id));
     }

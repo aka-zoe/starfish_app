@@ -17,7 +17,7 @@ public class TokenUtils {
     //token秘钥
     private static final String TOKEN_SECRET = "ZCfasfhuaUUHufguGuwu2020BQWf";
 
-    public static String token(String username, Long userId) {
+    public static String token(String username, String password, Long userId) {
 
         String token = "";
         try {
@@ -33,6 +33,7 @@ public class TokenUtils {
             token = JWT.create()
                     .withHeader(header)
                     .withClaim("username", username)
+                    .withClaim("password", password)
                     .withClaim("userId", userId).withExpiresAt(date)
                     .sign(algorithm);
 
@@ -78,8 +79,9 @@ public class TokenUtils {
 
     public static void main(String[] args) {
         String username = "gongsensen";
+        String password = "123456";
         Long userId = 1L;
-        String token = token(username, userId);
+        String token = token(username, password, userId);
         System.out.println(token);
         boolean b = verify("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXNzd29yZCI6IjEyMzQ1NiIsImV4cCI6MTcxNjA0NDI3MiwidXNlcm5hbWUiOiJnb25nc2Vuc2VuIn0.kPZ8tIhHPmEz-9a7N8LdMKdWK9lEyff8URdt9lNOHsY");
         Claim username1 = JWT.decode("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXNzd29yZCI6IjEyMzQ1NiIsImV4cCI6MTcxNjA0NDI3MiwidXNlcm5hbWUiOiJnb25nc2Vuc2VuIn0.kPZ8tIhHPmEz-9a7N8LdMKdWK9lEyff8URdt9lNOHsY").getClaim("username");

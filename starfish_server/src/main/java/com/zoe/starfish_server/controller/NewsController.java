@@ -91,13 +91,4 @@ public class NewsController {
         news.setEditby(userId);
         return CommonResp.success(service.updateNews(news));
     }
-
-
-
-    @UserLoginToken
-    @PostMapping("pingLun")
-    public CommonResp pingLun(HttpServletRequest request, @RequestParam Long newsId, @RequestParam String content) {
-        //TODO 评论要存到单独的评论表里
-        return CommonResp.success(service.pingLun(newsId));
-    }
 }

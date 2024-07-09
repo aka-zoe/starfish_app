@@ -14,13 +14,12 @@ create table `banner`
 
 insert into banner (imgUrl, link, type, activeName, status)
 values ('https://q7.itc.cn/images01/20240312/ae5f3266aeb6408db22ad354f1168883.jpeg', 'https://www.baidu.com',
+        0, '搞笑活动', 0),
+       ('https://q9.itc.cn/images01/20240312/6012df31dff3413bb7815b136e98207e.png', 'https://www.baidu.com',
+        0, '搞笑活动', 0),
+       ('https://q7.itc.cn/images01/20240312/ae5f3266aeb6408db22ad354f1168883.jpeg', 'https://www.baidu.com',
+        0, '搞笑活动', 0),
+       ('https://q9.itc.cn/images01/20240312/6012df31dff3413bb7815b136e98207e.png', 'https://www.baidu.com',
         0, '搞笑活动', 0);
-insert into banner (imgUrl, link, type, activeName, status)
-values ('https://q9.itc.cn/images01/20240312/6012df31dff3413bb7815b136e98207e.png', 'https://www.baidu.com',
-        0, '搞笑活动', 0);
-insert into banner (imgUrl, link, type, activeName, status)
-values ('https://q7.itc.cn/images01/20240312/ae5f3266aeb6408db22ad354f1168883.jpeg', 'https://www.baidu.com',
-        0, '搞笑活动', 0);
-insert into banner (imgUrl, link, type, activeName, status)
-values ('https://q9.itc.cn/images01/20240312/6012df31dff3413bb7815b136e98207e.png', 'https://www.baidu.com',
-        0, '搞笑活动', 0);
+
+# select * from banner where id=1;

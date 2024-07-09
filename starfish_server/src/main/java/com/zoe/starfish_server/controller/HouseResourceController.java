@@ -41,7 +41,7 @@ public class HouseResourceController {
     HouseTypeService typeService;
 
     @UserLoginToken
-    @GetMapping("/allHouseResources")
+    @PostMapping("/allHouseResources")
     public CommonResp allHouseResources() {
         //获取所有房源
         List<HouseResource> houseResources = service.houseResources(true);
@@ -49,7 +49,7 @@ public class HouseResourceController {
     }
 
     @UserLoginToken
-    @GetMapping("/houseResources")
+    @PostMapping("/houseResources")
     public CommonResp houseResources() {
         //获取所有房源:筛选正常状态的房源列表
         List<HouseResource> houseResources = service.houseResources(false);
@@ -57,7 +57,7 @@ public class HouseResourceController {
     }
 
     @UserLoginToken
-    @GetMapping("/houseResourceDetail")
+    @PostMapping("/houseResourceDetail")
     public CommonResp houseResourceDetail(@RequestParam(value = "id", required = true) Long id) {
         HouseResource resource = service.houseResourceDetail(id);
         if (resource == null) {
@@ -78,7 +78,7 @@ public class HouseResourceController {
     }
 
     @UserLoginToken
-    @DeleteMapping("/deleteHouseResource")
+    @PostMapping("/deleteHouseResource")
     public CommonResp deleteHouseResource(@RequestParam(value = "id", required = true) Long id) {
         return CommonResp.success(service.deleteHouseResource(id));
     }

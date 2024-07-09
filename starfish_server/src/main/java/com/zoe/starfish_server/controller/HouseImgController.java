@@ -18,19 +18,19 @@ public class HouseImgController {
     HouseImgService service;
 
     @UserLoginToken
-    @GetMapping("/getImage")
+    @PostMapping("/getImage")
     public CommonResp getImage(@RequestParam(value = "id", required = true) Long id) {
         return CommonResp.success(service.getImage(id));
     }
 
     @UserLoginToken
-    @GetMapping("/houseImgList")
+    @PostMapping("/houseImgList")
     public CommonResp houseImgList() {
         return CommonResp.success(service.houseImgList());
     }
 
     @UserLoginToken
-    @GetMapping("/imgForHouse")
+    @PostMapping("/imgForHouse")
     public CommonResp imgForHouse(@RequestParam(value = "id", required = true) Long id) {
         return CommonResp.success(service.imgForHouse(id));
     }
@@ -46,7 +46,7 @@ public class HouseImgController {
     }
 
     @UserLoginToken
-    @DeleteMapping("/deleteHouseImg")
+    @PostMapping("/deleteHouseImg")
     public CommonResp deleteHouseImg(@RequestParam(value = "id", required = true) Long id) {
         return CommonResp.success(service.deleteHouseImg(id));
     }

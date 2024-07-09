@@ -18,13 +18,13 @@ public class HouseTagController {
     HouseTagService service;
 
     @UserLoginToken
-    @GetMapping("/allTagList")
+    @PostMapping("/allTagList")
     public CommonResp allTagList() {
         return CommonResp.success(service.allTagList());
     }
 
     @UserLoginToken
-    @GetMapping("/tagListForHouse")
+    @PostMapping("/tagListForHouse")
     public CommonResp tagListForHouse(@RequestParam(value = "id", required = true) Long id) {
         return CommonResp.success(service.tagListForHouse(id));
     }
@@ -40,7 +40,7 @@ public class HouseTagController {
     }
 
     @UserLoginToken
-    @DeleteMapping("/deleteHouseTag")
+    @PostMapping("/deleteHouseTag")
     public CommonResp deleteHouseTag(@RequestParam(value = "id", required = true) Long id) {
         return CommonResp.success(service.deleteHouseTag(id));
     }

@@ -42,13 +42,18 @@ public class DianZanController {
         dianZan.setCreateby(userId);
         //1=资讯、2=评论
         if (type == 1) {
+            if (dianZan.getNewsid() == null) {
+                return CommonResp.error(RespCodeEnum.PARAMERR);
+            }
             //资讯点赞数量增加
             newsService.dianZan(dianZan.getNewsid(), false);
         } else if (type == 2) {
+            if (dianZan.getPinglunid() == null) {
+                return CommonResp.error(RespCodeEnum.PARAMERR);
+            }
             //评论点赞数量增加
             pingLunService.dianZan(dianZan.getPinglunid(), false);
         }
-
 
         //保存点赞数据
         return CommonResp.success(service.saveDianZan(dianZan));

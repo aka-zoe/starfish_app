@@ -18,7 +18,7 @@ public class BannerController {
     BannerService service;
 
     @UserLoginToken
-    @RequestMapping(value = "/bannerList", method = RequestMethod.GET)
+    @PostMapping(value = "/bannerList")
     public CommonResp bannerList() {
         return CommonResp.success(service.bannerList());
     }
@@ -35,7 +35,7 @@ public class BannerController {
     }
 
     @UserLoginToken
-    @DeleteMapping("/deleteBanner")
+    @PostMapping("/deleteBanner")
     public CommonResp deleteBanner(@RequestParam(value = "id", required = true) Long id) {
         return CommonResp.success(service.deleteBanner(id) == 1);
     }

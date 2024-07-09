@@ -82,6 +82,9 @@ public class NewsService {
         News news = mapper.selectByPrimaryKey(newsId);
         //获取点赞数
         Long dianzan = news.getDianzan();
+        if (dianzan == null) {
+            dianzan = 0L;
+        }
         if (cancel) {
             //取消点赞
             if (dianzan >= 1) {
@@ -98,6 +101,9 @@ public class NewsService {
         News news = mapper.selectByPrimaryKey(newsId);
         //获取评论数
         Long pinglun = news.getPinglun();
+        if (pinglun == null) {
+            pinglun = 0L;
+        }
         news.setPinglun(pinglun + 1);
         return mapper.updateByPrimaryKey(news) == 1;
     }

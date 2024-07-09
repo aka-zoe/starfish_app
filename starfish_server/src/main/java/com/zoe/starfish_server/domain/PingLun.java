@@ -9,10 +9,12 @@ public class PingLun {
 
     private Long createtime;
 
+    //提交评论的人
     private Long createby;
 
     private Long newsid;
 
+    //被评论人
     private Long userid;
 
     private Long pinglunid;

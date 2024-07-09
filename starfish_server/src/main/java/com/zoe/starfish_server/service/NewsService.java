@@ -42,22 +42,19 @@ public class NewsService {
     }
 
     /**
-     * 获取资讯列表：热门或者最新
+     * 获取资讯列表
      *
-     * @param hotNews 是否热门资讯
+     * @param type 1=最新咨询、2=热门资讯、3=雷区、4=行情、5=科普
      * @return
      */
-    public List<News> newsList(boolean hotNews) {
+    public List<News> newsList(Integer type) {
         NewsExample example = new NewsExample();
         NewsExample.Criteria criteria = example.createCriteria();
         //1=正常、-1=隐藏/下架
         criteria.andStatusEqualTo(1);
-        //1=最新咨询、2=热门资讯
-        if (hotNews) {
-            criteria.andTypeEqualTo(2);
-        } else {
-            criteria.andTypeEqualTo(1);
-        }
+        //1=最新咨询、2=热门资讯、3=雷区、4=行情、5=科普
+        criteria.andTypeEqualTo(type);
+
         return mapper.selectByExample(example);
     }
 

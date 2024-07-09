@@ -7,6 +7,7 @@ public class News {
 
     private String subtitle;
 
+    //1=最新咨询、2=热门资讯、3=雷区、4=行情、5=科普
     private Integer type;
 
     private String tag;

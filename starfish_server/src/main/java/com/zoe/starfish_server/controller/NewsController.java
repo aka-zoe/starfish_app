@@ -1,5 +1,6 @@
 package com.zoe.starfish_server.controller;
 
+import com.zoe.starfish_server.common.RespCodeEnum;
 import com.zoe.starfish_server.common.resp.CommonResp;
 import com.zoe.starfish_server.domain.News;
 import com.zoe.starfish_server.service.NewsService;
@@ -55,25 +56,18 @@ public class NewsController {
     }
 
     /**
-     * 热门资讯
+     * 根据类型获取资讯列表
      *
      * @return
      */
     @UserLoginToken
-    @PostMapping("getHotNews")
-    public CommonResp getHotNews() {
-        return CommonResp.success(service.newsList(true));
-    }
-
-    /**
-     * 最新资讯
-     *
-     * @return
-     */
-    @UserLoginToken
-    @PostMapping("getBannerNews")
-    public CommonResp getBannerNews() {
-        return CommonResp.success(service.newsList(false));
+    @PostMapping("getNewList")
+    public CommonResp getNewList(@RequestBody News news) {
+        if (news.getType() == null) {
+            return CommonResp.error(RespCodeEnum.PARAMERR);
+        }
+        //1=最新咨询、2=热门资讯、3=雷区、4=行情、5=科普
+        return CommonResp.success(service.newsList(news.getType()));
     }
 
     /**

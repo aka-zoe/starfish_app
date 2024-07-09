@@ -4,7 +4,7 @@ create table `news`
     `id`            bigint not null auto_increment comment 'id',
     `title`         varchar(50) comment '标题',
     `subTitle`      varchar(50) comment '副标题',
-    `type`          int comment '1=最新咨询、2=热门资讯',
+    `type`          int comment '1=最新咨询、2=热门资讯、3=雷区、4=行情、5=科普',
     `tag`           varchar(50) comment '房产新闻（随填写内容，需做长度判断，不能超过6个字）',
     `dianZan`       bigint comment '点赞',
     `pingLun`       bigint comment '评论数',

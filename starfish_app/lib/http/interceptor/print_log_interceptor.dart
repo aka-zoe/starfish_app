@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
@@ -6,36 +7,45 @@ import 'package:dio/dio.dart';
 class PrintLogInterceptor extends InterceptorsWrapper {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    log("\nrequest-------------->");
-    options.headers?.forEach((key, value) {
-      log("请求头信息：key=$key  value=${value.toString()}");
+    print("\nrequest-------------->");
+    options.headers.forEach((key, value) {
+      print("请求头信息：$key : ${value.toString()}");
     });
-    log("path:${options.uri}");
-    log("method:${options.method}");
-    log("data:${options.data}");
-    log("queryParameters:${options.queryParameters.toString()}");
-    log("<--------------request\n");
+    print("path:${options.uri}");
+    print("method:${options.method}");
+    try{
+      print("data:${jsonEncode(options.data)}");
+    }catch(e){
+      print("data:${options.data}");
+    }
+
+    print("queryParameters:${options.queryParameters.toString()}");
+    print("<--------------request\n");
     super.onRequest(options, handler);
   }
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    log("\nresponse-------------->");
-    log("path:${response.realUri}");
-    log("headers:${response.headers.toString()}");
-    log("statusMessage:${response.statusMessage}");
-    log("statusCode:${response.statusCode}");
-    log("extra:${response.extra.toString()}");
-    log("data:${response.data}");
-    log("<--------------response\n");
+    print("\nresponse-------------->");
+    print("path:${response.realUri}");
+    print("headers:${response.headers.toString()}");
+    print("statusMessage:${response.statusMessage}");
+    print("statusCode:${response.statusCode}");
+    print("extra:${response.extra.toString()}");
+    try{
+      print("data:${jsonEncode(response.data)}");
+    }catch(e){
+      print("data:${response.data}");
+    }
+    print("<--------------response\n");
     super.onResponse(response, handler);
   }
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
-    log("\nonError-------------->");
-    log("error:${err.toString()}");
-    log("<--------------onError\n");
+    print("\nonError-------------->");
+    print("error:${err.toString()}");
+    print("<--------------onError\n");
     super.onError(err, handler);
   }
 }

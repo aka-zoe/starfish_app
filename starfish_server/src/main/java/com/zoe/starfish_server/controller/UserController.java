@@ -75,6 +75,7 @@ public class UserController {
      * @param reqRegister
      * @return
      */
+    @PassToken
     @PostMapping("/register")
     public CommonResp register(@RequestBody ReqRegister reqRegister) {
 
@@ -88,6 +89,6 @@ public class UserController {
         user.setName(name);
         user.setPassword(password);
         //插入用户
-        return CommonResp.success(userService.insertUser(user));
+        return CommonResp.success(userService.insertUser(user) == 1);
     }
 }

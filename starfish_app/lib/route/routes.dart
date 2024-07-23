@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:starfish_tenement_app/pages/house_res/detail/house_res_detail_page.dart';
-import 'package:starfish_tenement_app/pages/login/login_page.dart';
+import 'package:starfish_tenement_app/pages/login/auth_page.dart';
 import 'package:starfish_tenement_app/pages/news_type/news_type_page.dart';
 import 'package:starfish_tenement_app/pages/subscribe/subscribe_house_page.dart';
 
@@ -19,8 +19,8 @@ class Routes {
       case RoutePath.newsTypePage:
         return pageRoute(const NewsTypePage(), settings: settings);
       //登录页
-      case RoutePath.login:
-        return pageRoute(const LoginPage(), settings: settings);
+      case RoutePath.auth:
+        return pageRoute(const AuthPage(), settings: settings);
       //房源明细页
       case RoutePath.houseResourceDetailPage:
         return pageRoute(const HouseResDetailPage(), settings: settings);
@@ -57,8 +57,8 @@ class RoutePath {
   //首页tab
   static const String tab = "/";
 
-  //登录
-  static const String login = "/login";
+  //登录/注册
+  static const String auth = "/auth";
 
   //注册
   static const String register = "/register";

@@ -5,7 +5,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-    sdk: '>=3.0.3 <4.0.0'
+    sdk: '>=2.19.6 <4.0.0'
 
 dependencies:
     flutter:
@@ -16,7 +16,7 @@ dependencies:
     # 状态管理
     provider: ^6.1.2
     # 屏幕适配相关
-    flutter_screenutil: ^5.9.0-beta
+    flutter_screenutil: 5.7.0
     # 网络请求
     dio: ^5.3.4
     # cookie持久化

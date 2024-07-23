@@ -1,20 +1,17 @@
-import 'dart:math';
-
 import 'package:amap_location/amap_location.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:starfish_tenement_app/api/models/better_choice_data.dart';
+import 'package:starfish_tenement_app/api/models/home_banner_data.dart';
+import 'package:starfish_tenement_app/api/models/house_res_data.dart';
 import 'package:starfish_tenement_app/common_ui/app_bar/app_search_bar.dart';
-import 'package:starfish_tenement_app/common_ui/app_bar/app_title_bar.dart';
 import 'package:starfish_tenement_app/common_ui/banner/home_banner_widget.dart';
-import 'package:starfish_tenement_app/common_ui/buttons/red_button.dart';
 import 'package:starfish_tenement_app/common_ui/house_list/house_res_list_item.dart';
 import 'package:starfish_tenement_app/common_ui/icon_text/icon_text.dart';
 import 'package:starfish_tenement_app/common_ui/sliver/sliver_header.dart';
-import 'package:starfish_tenement_app/common_ui/tag/tag_widget.dart';
 import 'package:starfish_tenement_app/common_ui/title/app_text.dart';
-import 'package:starfish_tenement_app/datas/home_banner_data.dart';
 import 'package:starfish_tenement_app/http/socket/web_socket_instance.dart';
 import 'package:starfish_tenement_app/pages/apartment/apartment_page.dart';
 import 'package:starfish_tenement_app/pages/home/home_vm.dart';
@@ -22,8 +19,6 @@ import 'package:starfish_tenement_app/route/route_utils.dart';
 import 'package:starfish_tenement_app/styles/app_colors.dart';
 
 import '../../common_ui/filter/filter_menu_widget.dart';
-import '../../common_ui/house_list/house_res_list_widget.dart';
-import '../../common_ui/sliver/sliver_app_bar_delegate.dart';
 import '../../common_ui/title/big_title.dart';
 import '../subscribe/subscribe_house_page.dart';
 
@@ -44,6 +39,9 @@ class _HomePageState extends State<HomePage> {
     super.initState();
 
     _homeVM.getHomeData();
+    _homeVM.getBetterChoice();
+    _homeVM.getHouseRes();
+
     AmapLocation.instance.updatePrivacy().then((value) {
       AmapLocation.instance.initLocation().then((value) {
         AmapLocation.instance.startLocation();
@@ -95,14 +93,19 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
                 //房源列表
-                SliverList(
-                    delegate: SliverChildBuilderDelegate((context, index) {
-                  return HouseListItem(
-                    onTap: () {
-                      RouteUtils.push(context, SubscribeHousePage());
-                    },
-                  );
-                }, childCount: 20)),
+                Selector<HomeVM, List<HouseResData>?>(builder: (context, houseResList, child) {
+                  return SliverList(
+                      delegate: SliverChildBuilderDelegate((context, index) {
+                    return HouseListItem(
+                      data: houseResList?[index],
+                      onTap: () {
+                        RouteUtils.push(context, SubscribeHousePage());
+                      },
+                    );
+                  }, childCount: houseResList?.length ?? 0));
+                }, selector: (context, vm) {
+                  return vm.houseResList;
+                }),
               ])),
         )));
   }
@@ -148,7 +151,8 @@ class _HomePageState extends State<HomePage> {
 
   ///banner轮播
   Widget _banner() {
-    return Selector<HomeVM, List<HomeBanner>?>(builder: (context, List<HomeBanner>? bList, child) {
+    return Selector<HomeVM, List<HomeBannerData>?>(
+        builder: (context, List<HomeBannerData>? bList, child) {
       return BannerWidget(
           dotType: BannerDotType.circle,
           bannerData: _homeVM.generalBannerList(bList),
@@ -198,35 +202,40 @@ class _HomePageState extends State<HomePage> {
     return SizedBox(
         width: double.infinity,
         height: 172.h,
-        child: Row(
-          children: [
-            _commonBetterChoiceView(
-                height: 172.h,
-                width: 172.w,
-                imgHeight: 172.h,
-                imgWidth: 172.w,
-                imgPath: "https://images.pexels.com/photos/2501965/pexels-photo-2501965.jpeg",
-                title: "精品装修",
-                titleSize: 17.sp,
-                subTitle: "舒适的环境",
-                subTitleSize: 12.sp,
-                subTitleColor: AppColors.textColor78,
-                onTap: () {
-                  RouteUtils.push(context, ApartmentPage());
-                }),
-            SizedBox(width: 9.w),
-            Expanded(
-                child: Column(
-              children: [
+        child: Selector<HomeVM, List<BetterChoiceData>?>(
+          builder: (context, List<BetterChoiceData>? choiceList, child) {
+            var data0 = _homeVM.generalBetterChoiceData(0);
+            var data1 = _homeVM.generalBetterChoiceData(1);
+            var data2 = _homeVM.generalBetterChoiceData(2);
+            return Row(children: [
+              _commonBetterChoiceView(
+                  height: 172.h,
+                  width: 172.w,
+                  imgHeight: 172.h,
+                  imgWidth: 172.w,
+                  imgPath: data0?.imgurl ??
+                      "https://images.pexels.com/photos/2501965/pexels-photo-2501965.jpeg",
+                  title: data0?.title ?? "精品装修",
+                  titleSize: 17.sp,
+                  subTitle: data0?.subtitle ?? "舒适的环境",
+                  subTitleSize: 12.sp,
+                  subTitleColor: AppColors.textColor78,
+                  onTap: () {
+                    RouteUtils.push(context, ApartmentPage());
+                  }),
+              SizedBox(width: 9.w),
+              Expanded(
+                  child: Column(children: [
                 Expanded(
                   child: _commonBetterChoiceView(
                       height: 80.h,
                       imgHeight: 80.h,
                       imgWidth: double.infinity,
-                      imgPath: "https://images.pexels.com/photos/101808/pexels-photo-101808.jpeg",
-                      title: "温馨小窝",
+                      imgPath: data1?.imgurl ??
+                          "https://images.pexels.com/photos/101808/pexels-photo-101808.jpeg",
+                      title: data1?.title ?? "温馨小窝",
                       titleSize: 17.sp,
-                      subTitle: "惬意的生活",
+                      subTitle: data1?.subtitle ?? "惬意的生活",
                       subTitleSize: 12.sp,
                       titleColor: Colors.white,
                       subTitleColor: Colors.white,
@@ -239,19 +248,23 @@ class _HomePageState extends State<HomePage> {
                       height: 80.h,
                       imgHeight: 80.h,
                       imgWidth: double.infinity,
-                      imgPath: "https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg",
-                      title: "大牌商圈",
+                      imgPath: data2?.imgurl ??
+                          "https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg",
+                      title: data2?.title ?? "大牌商圈",
                       titleSize: 17.sp,
-                      subTitle: "选择更多",
+                      subTitle: data2?.subtitle ?? "选择更多",
                       subTitleSize: 12.sp,
                       titleColor: Colors.white,
                       subTitleColor: Colors.white,
                       textPadding: EdgeInsets.only(left: 16.w, top: 13.h),
                       titleWeight: FontWeight.w600),
-                ),
-              ],
-            ))
-          ],
+                )
+              ]))
+            ]);
+          },
+          selector: (context, vm) {
+            return vm.betterChoice;
+          },
         ));
   }
 

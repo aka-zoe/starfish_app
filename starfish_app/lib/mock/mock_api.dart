@@ -1,7 +1,7 @@
-import 'package:starfish_tenement_app/datas/news_type_data.dart';
+import 'package:starfish_tenement_app/mock/datas/home_banner_data.dart';
+import 'package:starfish_tenement_app/mock/datas/news_banner_data.dart';
+import 'package:starfish_tenement_app/mock/datas/news_type_data.dart';
 
-import '../datas/home_banner_data.dart';
-import '../datas/news_banner_data.dart';
 import 'mock_builder.dart';
 
 class MockApi {

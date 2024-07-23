@@ -7,7 +7,7 @@ import 'app.dart';
 import 'http/dio_instance.dart';
 
 void main() async{
-  DioInstance.instance().initDio(baseUrl: "https://www.wanandroid.com/");
+  DioInstance.instance().initDio(baseUrl: "http://172.25.10.120:9900/");
   await ScreenUtil.ensureScreenSize();
   if(kDebugMode&& openDebugPage){
     runApp(const DebugMyApp());

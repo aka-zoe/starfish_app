@@ -13,8 +13,10 @@ class TagWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      alignment: Alignment.center,
+      height: 30.h,
       color: AppColors.searchBgColor,
-      padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 2.h),
+      padding: EdgeInsets.symmetric(horizontal: 7.w),
       child: AppText(
         text: name ?? "",
         textColor: color ?? AppColors.textColor86,

@@ -14,7 +14,7 @@ Size get designSize {
   // 逻辑长边
   final logicalLongestSide = firstView.physicalSize.longestSide / firstView.devicePixelRatio;
   // 缩放比例 designSize越小，元素越大
-  const scaleFactor = 0.95;
+  const scaleFactor = 1;
   // 缩放后的逻辑短边和长边
   return Size(logicalShortestSide * scaleFactor, logicalLongestSide * scaleFactor);
 }
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           ),
           navigatorKey: RouteUtils.navigatorKey,
           onGenerateRoute: Routes.generateRoute,
-          initialRoute: RoutePath.tab,
+          initialRoute: RoutePath.auth,
         );
       },
     ));

@@ -6,11 +6,11 @@ import 'package:provider/provider.dart';
 import 'package:starfish_tenement_app/common_ui/tag/tag_widget.dart';
 import 'package:starfish_tenement_app/common_ui/title/app_text.dart';
 import 'package:starfish_tenement_app/common_ui/title/big_title.dart';
+import 'package:starfish_tenement_app/mock/datas/news_banner_data.dart';
 import 'package:starfish_tenement_app/route/Routes.dart';
 import 'package:starfish_tenement_app/route/route_utils.dart';
 import 'package:starfish_tenement_app/styles/app_colors.dart';
 
-import '../../datas/news_banner_data.dart';
 import 'news_list_vm.dart';
 
 ///资讯页

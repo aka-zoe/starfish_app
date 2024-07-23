@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:starfish_tenement_app/http/interceptor/token_interceptor.dart';
 
 import 'http_method.dart';
-import 'interceptor/cookie_interceptor.dart';
 import 'interceptor/print_log_interceptor.dart';
 import 'interceptor/rsp_interceptor.dart';
 
@@ -35,9 +35,7 @@ class DioInstance {
         sendTimeout: sendTimeout ?? _defaultTimeout,
         responseType: responseType,
         contentType: contentType);
-    _dio.interceptors.add(CookieInterceptor());
-    // final cookieJar = CookieJar();
-    // _dio.interceptors.add(CookieManager(cookieJar));
+    _dio.interceptors.add(TokenInterceptor());
     _dio.interceptors.add(PrintLogInterceptor());
     _dio.interceptors.add(RspInterceptor());
 

@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
-import '../loading.dart';
+import '../dialog/loading.dart';
 
 ///需要加载的内容类型
 enum WebViewType {

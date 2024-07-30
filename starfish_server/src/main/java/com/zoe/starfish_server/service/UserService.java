@@ -66,4 +66,15 @@ public class UserService {
     public int insertUser(User user) {
         return userMapper.insert(user);
     }
+
+    /**
+     * 更新用户信息
+     * @param user
+     * @return
+     */
+    public int updateUser(User user) {
+        return userMapper.updateByPrimaryKey(user);
+    }
+
+
 }

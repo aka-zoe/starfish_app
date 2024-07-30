@@ -12,6 +12,8 @@
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="gender" jdbcType="VARCHAR" property="gender" />
+    <result column="um_token" jdbcType="VARCHAR" property="umToken" />
+    <result column="tag" jdbcType="VARCHAR" property="tag" />
     <result column="age" jdbcType="INTEGER" property="age" />
     <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
@@ -75,7 +77,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, `name`, `password`, `role`, create_time, work_number, email, address, phone, 
-    gender, age, `status`
+    gender, um_token, tag, age, `status`
   </sql>
   <select id="selectByExample" parameterType="com.zoe.starfish_server.domain.UserExample" resultMap="BaseResultMap">
     select
@@ -111,13 +113,13 @@
     insert into user (id, `name`, `password`, 
       `role`, create_time, work_number, 
       email, address, phone, 
-      gender, age, `status`
-      )
+      gender, um_token, tag, 
+      age, `status`)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{role,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{workNumber,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
-      #{gender,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}
-      )
+      #{gender,jdbcType=VARCHAR}, #{umToken,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR}, 
+      #{age,jdbcType=INTEGER}, #{status,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.zoe.starfish_server.domain.User">
     insert into user
@@ -151,6 +153,12 @@
       </if>
       <if test="gender != null">
         gender,
+      </if>
+      <if test="umToken != null">
+        um_token,
+      </if>
+      <if test="tag != null">
+        tag,
       </if>
       <if test="age != null">
         age,
@@ -189,6 +197,12 @@
       </if>
       <if test="gender != null">
         #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="umToken != null">
+        #{umToken,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null">
+        #{tag,jdbcType=VARCHAR},
       </if>
       <if test="age != null">
         #{age,jdbcType=INTEGER},
@@ -237,6 +251,12 @@
       <if test="record.gender != null">
         gender = #{record.gender,jdbcType=VARCHAR},
       </if>
+      <if test="record.umToken != null">
+        um_token = #{record.umToken,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tag != null">
+        tag = #{record.tag,jdbcType=VARCHAR},
+      </if>
       <if test="record.age != null">
         age = #{record.age,jdbcType=INTEGER},
       </if>
@@ -260,6 +280,8 @@
       address = #{record.address,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
       gender = #{record.gender,jdbcType=VARCHAR},
+      um_token = #{record.umToken,jdbcType=VARCHAR},
+      tag = #{record.tag,jdbcType=VARCHAR},
       age = #{record.age,jdbcType=INTEGER},
       `status` = #{record.status,jdbcType=INTEGER}
     <if test="_parameter != null">
@@ -296,6 +318,12 @@
       <if test="gender != null">
         gender = #{gender,jdbcType=VARCHAR},
       </if>
+      <if test="umToken != null">
+        um_token = #{umToken,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null">
+        tag = #{tag,jdbcType=VARCHAR},
+      </if>
       <if test="age != null">
         age = #{age,jdbcType=INTEGER},
       </if>
@@ -316,6 +344,8 @@
       address = #{address,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
       gender = #{gender,jdbcType=VARCHAR},
+      um_token = #{umToken,jdbcType=VARCHAR},
+      tag = #{tag,jdbcType=VARCHAR},
       age = #{age,jdbcType=INTEGER},
       `status` = #{status,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}

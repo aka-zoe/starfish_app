@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:model_viewer_plus/model_viewer_plus.dart';
 import 'package:starfish_tenement_app/styles/app_colors.dart';
 
 import '../../common_ui/app_bar/app_search_bar.dart';
@@ -23,6 +24,18 @@ class _DebugPageState extends State<DebugPage> {
           child: Expanded(
               child: Column(
         children: [
+
+          Container(height: 400.h,child: ModelViewer(
+            backgroundColor:Color.fromARGB(0xFF, 0xEE, 0xEE, 0xEE),
+            src: "assets/glb/arch.glb",
+            alt: 'A 3D model of an astronaut',
+            // ar: true,
+            // arModes: ['scene-viewer', 'webxr', 'quick-look'],
+            autoRotate: true,
+            disableZoom: true,
+          ),),
+
+
           AppTitleBar(title: "我是标题",),
           5.verticalSpace,
           AppButton(type: AppButtonType.red, buttonText: "下一步"),

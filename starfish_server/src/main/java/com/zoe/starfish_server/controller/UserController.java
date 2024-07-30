@@ -7,11 +7,13 @@ import com.zoe.starfish_server.common.resp.CommonResp;
 import com.zoe.starfish_server.domain.User;
 import com.zoe.starfish_server.service.UserService;
 import com.zoe.starfish_server.utils.PassToken;
+import com.zoe.starfish_server.utils.StringUtils;
 import com.zoe.starfish_server.utils.TokenUtils;
 import com.zoe.starfish_server.utils.UserLoginToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -90,5 +92,35 @@ public class UserController {
         user.setPassword(password);
         //插入用户
         return CommonResp.success(userService.insertUser(user) == 1);
+    }
+
+    /**
+     * 绑定友盟token信息
+     *
+     * @param servletRequest
+     * @param umToken
+     * @param tag
+     * @return
+     */
+    @UserLoginToken
+    @PostMapping("/bindToken")
+    public CommonResp bindToken(HttpServletRequest servletRequest,
+                                @RequestParam("umToken") String umToken,
+                                @RequestParam("tag") String tag) {
+        Long userId = TokenUtils.getUserId(servletRequest);
+        if (userId == null || StringUtils.isEmpty(umToken)) {
+            return CommonResp.error(RespCodeEnum.PARAMERR);
+        }
+        User user = userService.getUser(userId);
+        user.setUmToken(umToken);
+        if (!StringUtils.isEmpty(tag)) {
+            if (StringUtils.isNotEmpty(user.getTag())) {
+                user.setTag(user.getTag() + "|" + tag);
+            } else {
+                user.setTag(tag);
+            }
+        }
+        return CommonResp.success(userService.updateUser(user) == 1);
+
     }
 }

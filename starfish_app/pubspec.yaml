@@ -51,6 +51,8 @@ dependencies:
     # 自己封装的高德定位插件
     amap_location:
         path: /Users/gongsensen/AndroidStudioProjects/Powersen_Personal/starfish_tenement_app/starfish_app/amap_location
+    # 显示3D模型
+    model_viewer_plus: ^1.5.1
 
 dev_dependencies:
     flutter_test:
@@ -69,4 +71,6 @@ flutter:
         - assets/json/news_type_list_data.json
         # 图片资源
         - assets/images/
+        # 3D模型资源
+        - assets/glb/
 

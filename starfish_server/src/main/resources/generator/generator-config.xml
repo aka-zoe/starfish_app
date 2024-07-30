@@ -22,9 +22,10 @@
         </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/ZoeDB?useUnicode=true&amp;characterEncoding=utf-8"
+                        connectionURL="jdbc:mysql://localhost:3306/starfish?useUnicode=true&amp;characterEncoding=utf-8"
                         userId="root"
                         password="Gss123...">
+            <property name="nullCatalogMeansCurrent" value="true"/>
         </jdbcConnection>
 
         <!-- domain类的位置 -->
@@ -40,7 +41,7 @@
                              targetPackage="com.zoe.starfish_server.mapper"
                              type="XMLMAPPER"/>
 
-<!--        <table tableName="user" domainObjectName="User"/>-->
+        <table tableName="user" domainObjectName="User"/>
 <!--        <table tableName="banner" domainObjectName="Banner"/>-->
 <!--        <table tableName="better_choice" domainObjectName="BetterChoice"/>-->
 <!--        <table tableName="house_res" domainObjectName="HouseResource"/>-->
@@ -51,6 +52,6 @@
 <!--        <table tableName="news" domainObjectName="News"/>-->
 <!--        <table tableName="dianzan" domainObjectName="DianZan"/>-->
 <!--        <table tableName="pinglun" domainObjectName="PingLun"/>-->
-        <table tableName="booked_house" domainObjectName="BookedHouse"/>
+<!--        <table tableName="booked_house" domainObjectName="BookedHouse"/>-->
     </context>
 </generatorConfiguration>

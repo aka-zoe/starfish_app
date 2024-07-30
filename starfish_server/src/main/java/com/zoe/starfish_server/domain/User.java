@@ -21,6 +21,10 @@ public class User {
 
     private String gender;
 
+    private String umToken;
+
+    private String tag;
+
     private Integer age;
 
     private Integer status;
@@ -115,6 +119,22 @@ public class User {
         this.gender = gender;
     }
 
+    public String getUmToken() {
+        return umToken;
+    }
+
+    public void setUmToken(String umToken) {
+        this.umToken = umToken;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
     public Integer getAge() {
         return age;
     }
@@ -133,20 +153,26 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", role='" + role + '\'' +
-                ", createTime='" + createTime + '\'' +
-                ", workNumber='" + workNumber + '\'' +
-                ", email='" + email + '\'' +
-                ", address='" + address + '\'' +
-                ", phone='" + phone + '\'' +
-                ", gender='" + gender + '\'' +
-                ", age=" + age +
-                ", status=" + status +
-                ", token='" + token + '\'' +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", name=").append(name);
+        sb.append(", password=").append(password);
+        sb.append(", role=").append(role);
+        sb.append(", createTime=").append(createTime);
+        sb.append(", workNumber=").append(workNumber);
+        sb.append(", email=").append(email);
+        sb.append(", address=").append(address);
+        sb.append(", phone=").append(phone);
+        sb.append(", gender=").append(gender);
+        sb.append(", umToken=").append(umToken);
+        sb.append(", tag=").append(tag);
+        sb.append(", age=").append(age);
+        sb.append(", status=").append(status);
+        sb.append(", token=").append(token);
+        sb.append("]");
+        return sb.toString();
     }
 }

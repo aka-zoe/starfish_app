@@ -794,6 +794,146 @@ public class UserExample {
             return (Criteria) this;
         }
 
+        public Criteria andUmTokenIsNull() {
+            addCriterion("um_token is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUmTokenIsNotNull() {
+            addCriterion("um_token is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUmTokenEqualTo(String value) {
+            addCriterion("um_token =", value, "umToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUmTokenNotEqualTo(String value) {
+            addCriterion("um_token <>", value, "umToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUmTokenGreaterThan(String value) {
+            addCriterion("um_token >", value, "umToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUmTokenGreaterThanOrEqualTo(String value) {
+            addCriterion("um_token >=", value, "umToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUmTokenLessThan(String value) {
+            addCriterion("um_token <", value, "umToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUmTokenLessThanOrEqualTo(String value) {
+            addCriterion("um_token <=", value, "umToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUmTokenLike(String value) {
+            addCriterion("um_token like", value, "umToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUmTokenNotLike(String value) {
+            addCriterion("um_token not like", value, "umToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUmTokenIn(List<String> values) {
+            addCriterion("um_token in", values, "umToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUmTokenNotIn(List<String> values) {
+            addCriterion("um_token not in", values, "umToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUmTokenBetween(String value1, String value2) {
+            addCriterion("um_token between", value1, value2, "umToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUmTokenNotBetween(String value1, String value2) {
+            addCriterion("um_token not between", value1, value2, "umToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagIsNull() {
+            addCriterion("tag is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagIsNotNull() {
+            addCriterion("tag is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagEqualTo(String value) {
+            addCriterion("tag =", value, "tag");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagNotEqualTo(String value) {
+            addCriterion("tag <>", value, "tag");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagGreaterThan(String value) {
+            addCriterion("tag >", value, "tag");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagGreaterThanOrEqualTo(String value) {
+            addCriterion("tag >=", value, "tag");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagLessThan(String value) {
+            addCriterion("tag <", value, "tag");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagLessThanOrEqualTo(String value) {
+            addCriterion("tag <=", value, "tag");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagLike(String value) {
+            addCriterion("tag like", value, "tag");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagNotLike(String value) {
+            addCriterion("tag not like", value, "tag");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagIn(List<String> values) {
+            addCriterion("tag in", values, "tag");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagNotIn(List<String> values) {
+            addCriterion("tag not in", values, "tag");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagBetween(String value1, String value2) {
+            addCriterion("tag between", value1, value2, "tag");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagNotBetween(String value1, String value2) {
+            addCriterion("tag not between", value1, value2, "tag");
+            return (Criteria) this;
+        }
+
         public Criteria andAgeIsNull() {
             addCriterion("age is null");
             return (Criteria) this;

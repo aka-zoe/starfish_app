@@ -53,6 +53,8 @@ dependencies:
         path: /Users/gongsensen/AndroidStudioProjects/Powersen_Personal/starfish_tenement_app/starfish_app/amap_location
     # 显示3D模型
     model_viewer_plus: ^1.5.1
+    # 友盟推送、埋点
+    umeng_push_sdk: ^2.3.0
 
 dev_dependencies:
     flutter_test:

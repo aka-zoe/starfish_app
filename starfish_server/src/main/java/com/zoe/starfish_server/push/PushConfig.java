@@ -5,13 +5,16 @@ import java.security.NoSuchAlgorithmException;
 
 public class PushConfig {
     //友盟的域名
-    public static String UMHost = "https://msgapi.umeng.com";
+//    public static String UMHost = "https://msgapi.umeng.com";
+    public static String UMHost = "";
 
     //友盟应用注册后的MasterSecret
-    public static String APPMasterSecret = "amonmll8fkzbqbab0f7vz5xptyobd3x1";
+//    public static String APPMasterSecret = "amonmll8fkzbqbab0f7vz5xptyobd3x1";
+    public static String APPMasterSecret = "";
 
     //友盟应用注册后的APPKey
-    public static String APPKey = "66a64da0192e0574e74d5585";
+//    public static String APPKey = "66a64da0192e0574e74d5585";
+    public static String APPKey = "";
 
     //友盟默认的请求方法都是POST，这里拼接秘钥准备
     private static String Method = "POST";

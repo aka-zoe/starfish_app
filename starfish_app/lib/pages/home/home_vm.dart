@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:starfish_tenement_app/api/home_api.dart';
+import 'package:starfish_tenement_app/api/api_home.dart';
+import 'package:starfish_tenement_app/api/api_house.dart';
 import 'package:starfish_tenement_app/api/models/better_choice_data.dart';
 import 'package:starfish_tenement_app/api/models/home_banner_data.dart';
 import 'package:starfish_tenement_app/api/models/house_res_data.dart';
@@ -11,7 +12,7 @@ class HomeVM extends ChangeNotifier {
 
   ///首页banner
   Future getHomeData() async {
-    HomeBannerListData data = await HomeApi.api.getHomeBanner();
+    HomeBannerListData data = await ApiHome.api.getHomeBanner();
     if (data.bannerList != null) {
       if (data.bannerList?.isNotEmpty == true) {
         banner = data.bannerList;
@@ -22,7 +23,7 @@ class HomeVM extends ChangeNotifier {
 
   ///首页本期优选
   Future getBetterChoice() async {
-    BetterChoiceListData data = await HomeApi.api.getBetterChoice();
+    BetterChoiceListData data = await ApiHome.api.getBetterChoice();
     if (data.choiceList != null) {
       if (data.choiceList?.isNotEmpty == true) {
         betterChoice = data.choiceList;
@@ -33,7 +34,7 @@ class HomeVM extends ChangeNotifier {
 
   ///获取房源
   Future getHouseRes() async {
-    HouseResListData data = await HomeApi.api.getHouseRes();
+    HouseResListData data = await ApiHouse.api.getHouseRes();
     if (data.houseResList != null) {
       if (data.houseResList?.isNotEmpty == true) {
         houseResList = data.houseResList;

@@ -91,7 +91,7 @@ public class HouseResourceController {
 
     private HouseResourceDetailResp generalDetail(HouseResource resource) {
         HouseResourceDetailResp resp = new HouseResourceDetailResp();
-
+        resp.setId(resource.getId());
         //房源图片
         resp.setImageList(getImgList(imgService.imgForHouse(resource.getId())));
         //说明
@@ -135,29 +135,31 @@ public class HouseResourceController {
         //支付类型
         resp.setPaymentType(resource.getPaymentType());
         //床
-        resp.setBed(resource.getBed() == 0);
+        resp.setBed(resource.getBed() == 1);
         //洗衣机
-        resp.setWashingMachine(resource.getWashingMachine() == 0);
+        resp.setWashingMachine(resource.getWashingMachine() == 1);
         //冰箱
-        resp.setRefrigerator(resource.getRefrigerator() == 0);
+        resp.setRefrigerator(resource.getRefrigerator() == 1);
         //空调
-        resp.setAirConditioner(resource.getAirConditioner() == 0);
+        resp.setAirConditioner(resource.getAirConditioner() == 1);
         //wifi
-        resp.setWifi(resource.getWifi() == 0);
+        resp.setWifi(resource.getWifi() == 1);
         //沙发
-        resp.setSofa(resource.getSofa() == 0);
+        resp.setSofa(resource.getSofa() == 1);
         //桌椅
-        resp.setTableChair(resource.getTableChair() == 0);
+        resp.setTableChair(resource.getTableChair() == 1);
         //电视
-        resp.setTv(resource.getTv() == 0);
+        resp.setTv(resource.getTv() == 1);
         //热水器
-        resp.setWaterHeater(resource.getWaterHeater() == 0);
+        resp.setWaterHeater(resource.getWaterHeater() == 1);
         //可做饭
-        resp.setCook(resource.getCook() == 0);
+        resp.setCook(resource.getCook() == 1);
         //暖气
-        resp.setHeating(resource.getHeating() == 0);
+        resp.setHeating(resource.getHeating() == 1);
         //阳台
-        resp.setBalcony(resource.getBalcony() == 0);
+        resp.setBalcony(resource.getBalcony() == 1);
+        //车位
+        resp.setCarport(resource.getCarport() == 1);
         //经度
         resp.setLongitude(resource.getLongitude());
         //纬度

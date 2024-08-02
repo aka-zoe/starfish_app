@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zoe.starfish_server.mapper.AppConfigMapper">
+  <resultMap id="BaseResultMap" type="com.zoe.starfish_server.domain.AppConfig">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="um_host" jdbcType="VARCHAR" property="umHost" />
+    <result column="um_app_master_secret" jdbcType="VARCHAR" property="umAppMasterSecret" />
+    <result column="um_app_key" jdbcType="VARCHAR" property="umAppKey" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, um_host, um_app_master_secret, um_app_key
+  </sql>
+  <select id="selectByExample" parameterType="com.zoe.starfish_server.domain.AppConfigExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from config
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from config
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zoe.starfish_server.domain.AppConfigExample">
+    delete from config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zoe.starfish_server.domain.AppConfig">
+    insert into config (id, um_host, um_app_master_secret, 
+      um_app_key)
+    values (#{id,jdbcType=BIGINT}, #{umHost,jdbcType=VARCHAR}, #{umAppMasterSecret,jdbcType=VARCHAR}, 
+      #{umAppKey,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zoe.starfish_server.domain.AppConfig">
+    insert into config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="umHost != null">
+        um_host,
+      </if>
+      <if test="umAppMasterSecret != null">
+        um_app_master_secret,
+      </if>
+      <if test="umAppKey != null">
+        um_app_key,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="umHost != null">
+        #{umHost,jdbcType=VARCHAR},
+      </if>
+      <if test="umAppMasterSecret != null">
+        #{umAppMasterSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="umAppKey != null">
+        #{umAppKey,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zoe.starfish_server.domain.AppConfigExample" resultType="java.lang.Long">
+    select count(*) from config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update config
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.umHost != null">
+        um_host = #{record.umHost,jdbcType=VARCHAR},
+      </if>
+      <if test="record.umAppMasterSecret != null">
+        um_app_master_secret = #{record.umAppMasterSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="record.umAppKey != null">
+        um_app_key = #{record.umAppKey,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update config
+    set id = #{record.id,jdbcType=BIGINT},
+      um_host = #{record.umHost,jdbcType=VARCHAR},
+      um_app_master_secret = #{record.umAppMasterSecret,jdbcType=VARCHAR},
+      um_app_key = #{record.umAppKey,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zoe.starfish_server.domain.AppConfig">
+    update config
+    <set>
+      <if test="umHost != null">
+        um_host = #{umHost,jdbcType=VARCHAR},
+      </if>
+      <if test="umAppMasterSecret != null">
+        um_app_master_secret = #{umAppMasterSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="umAppKey != null">
+        um_app_key = #{umAppKey,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zoe.starfish_server.domain.AppConfig">
+    update config
+    set um_host = #{umHost,jdbcType=VARCHAR},
+      um_app_master_secret = #{umAppMasterSecret,jdbcType=VARCHAR},
+      um_app_key = #{umAppKey,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

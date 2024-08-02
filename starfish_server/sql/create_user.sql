@@ -23,5 +23,5 @@ create table `user`
 insert into user (name, password, role, create_time, work_number, email, address, phone, gender, um_token, tag, age,
                   status)
 values ('Zoe', '123456', 'admin', '2023-10-21 22:24:00', '23789', 'sensen.gong@alpha-ess.com', '苏州', '15061442013',
-        '男', 'sajdaslkdjaljdla', 'normal', 25,
+        '男', 'AjVGvmpMkTnTwdMFopxl1k-aBT2gLAuhcPjli2v1EbgK', 'normal', 25,
         0);

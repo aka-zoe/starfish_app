@@ -19,6 +19,8 @@ public class StarfishServerApplication implements InitializingBean {
     }
 
     public static void main(String[] args) {
+        //解决在调用https接口时报错：javax.net.ssl.SSLHandshakeException：在 Web 服务通信期间握手期间远程主机关闭连接
+        System.setProperty("https.protocols", "TLSv1,TLSv1.1,TLSv1.2");
         SpringApplication.run(StarfishServerApplication.class, args);
     }
 

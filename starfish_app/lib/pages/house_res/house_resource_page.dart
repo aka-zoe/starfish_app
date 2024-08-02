@@ -75,10 +75,11 @@ class _HouseResourcePageState extends State<HouseResourcePage> {
                         builder: (context, houseResList, child) {
                       return SliverList(
                           delegate: SliverChildBuilderDelegate((context, index) {
+                        HouseResData? item = houseResList?[index];
                         return HouseListItem(
-                          data: houseResList?[index],
+                          data: item,
                           onTap: () {
-                            RouteUtils.push(context, HouseResDetailPage());
+                            RouteUtils.push(context, HouseResDetailPage(id: item?.id));
                           },
                         );
                       }, childCount: houseResList?.length ?? 0));

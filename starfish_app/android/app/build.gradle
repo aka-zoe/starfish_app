@@ -65,6 +65,32 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+
+        ndk {
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+        }
+
+        manifestPlaceholders = [
+            UMENG_APPKEY: '66a64da0192e0574e74d5585',
+            UMENG_MESSAGE_SECRET: '7331b564a2a0a49cd576addeec74c024',
+            UMENG_CHANNEL: 'Android',
+
+            HUAWEI_APP_ID: '您申请的华为通道appid',
+
+            HONOR_APP_ID: '您申请的荣耀通道appid',
+
+            XIAOMI_APP_ID: '您申请的小米通道appid',
+            XIAOMI_APP_KEY: '您申请的小米通道appkey',
+
+            OPPO_APP_KEY: '您申请的OPPO通道appkey',
+            OPPO_APP_SECRET: '您申请的OPPO通道app secret',
+
+            VIVO_APP_ID: '您申请的VIVO通道appid',
+            VIVO_APP_KEY: '您申请的VIVO通道appkey',
+
+            MEIZU_APP_ID: '您申请的魅族通道appid',
+            MEIZU_APP_KEY: '您申请的魅族通道appkey',
+        ]
     }
 
     buildTypes {

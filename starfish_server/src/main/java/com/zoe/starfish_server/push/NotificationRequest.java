@@ -142,7 +142,7 @@ public class NotificationRequest implements Serializable {
         private String text;
         private String ticker;
         private String big_body;
-        private int re_pop;
+//        private int re_pop;
         private String icon;
         private String img;
         private String expand_image;
@@ -167,7 +167,6 @@ public class NotificationRequest implements Serializable {
                     ", text='" + text + '\'' +
                     ", ticker='" + ticker + '\'' +
                     ", big_body='" + big_body + '\'' +
-                    ", re_pop=" + re_pop +
                     ", icon='" + icon + '\'' +
                     ", img='" + img + '\'' +
                     ", expand_image='" + expand_image + '\'' +
@@ -215,14 +214,6 @@ public class NotificationRequest implements Serializable {
 
         public void setBig_body(String big_body) {
             this.big_body = big_body;
-        }
-
-        public int getRe_pop() {
-            return re_pop;
-        }
-
-        public void setRe_pop(int re_pop) {
-            this.re_pop = re_pop;
         }
 
         public String getIcon() {

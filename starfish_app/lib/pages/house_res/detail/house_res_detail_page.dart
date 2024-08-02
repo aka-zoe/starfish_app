@@ -1,18 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import 'package:starfish_tenement_app/api/models/house_res_detail_data.dart';
 import 'package:starfish_tenement_app/common_ui/banner/home_banner_widget.dart';
 import 'package:starfish_tenement_app/common_ui/buttons/red_button.dart';
 import 'package:starfish_tenement_app/common_ui/house_list/house_res_list_item.dart';
 import 'package:starfish_tenement_app/common_ui/title/app_text.dart';
 import 'package:starfish_tenement_app/common_ui/title/big_title.dart';
+import 'package:starfish_tenement_app/pages/house_res/detail/house_res_detail_vm.dart';
 import 'package:starfish_tenement_app/pages/subscribe/subscribe_house_page.dart';
 import 'package:starfish_tenement_app/route/route_utils.dart';
 import 'package:starfish_tenement_app/styles/app_colors.dart';
 
 ///房源明细页
 class HouseResDetailPage extends StatefulWidget {
-  const HouseResDetailPage({super.key});
+  const HouseResDetailPage({super.key, this.id});
+
+  final num? id;
 
   @override
   State createState() {
@@ -21,47 +26,64 @@ class HouseResDetailPage extends StatefulWidget {
 }
 
 class _HouseResDetailPageState extends State<HouseResDetailPage> {
+  HouseResDetailViewModel viewModel = HouseResDetailViewModel();
+
+  @override
+  void initState() {
+    super.initState();
+
+    ///获取房源明细
+    viewModel.getDetailData(widget.id);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SafeArea(
+    return ChangeNotifierProvider(
+      create: (context) {
+        return viewModel;
+      },
       child: Scaffold(
-          body: SingleChildScrollView(
-              child: Column(children: [
-            SizedBox(
-                height: 210.h,
-                child: Stack(children: [
-                  //房源图片banner
-                  _banner(),
-                  //顶部关闭、分享、收藏按钮
-                  _titleOperationBar(),
-                  //banner组件的页码指示器
-                  _bannerPageCount()
-                ])),
-            //顶部房源信息
-            _totalHouseInfo(),
-            BigTitle(bigTitle: "基本信息", padding: EdgeInsets.only(left: 14.w)),
-            //房源基本信息
-            _houseBasicInfo(),
-            BigTitle(bigTitle: "配套设施", padding: EdgeInsets.only(left: 14.w)),
-            //配套设施网格布局
-            _facilityGridWidget(),
-            BigTitle(bigTitle: "附近位置", padding: EdgeInsets.only(left: 14.w)),
-            //地图缩略图
-            _mapView(),
-            BigTitle(bigTitle: "附近房源", padding: EdgeInsets.only(left: 14.w)),
-            //附近房源列表
-            _nearbyHouseResList()
-          ])),
+          body: SafeArea(
+        child: Scaffold(
+            body: SingleChildScrollView(
+                child: Column(children: [
+              SizedBox(
+                  height: 210.h,
+                  child: Stack(children: [
+                    //房源图片banner
+                    _banner(),
+                    //顶部关闭、分享、收藏按钮
+                    _titleOperationBar(),
+                    //banner组件的页码指示器
+                    _bannerPageCount()
+                  ])),
+              //顶部房源信息
+              _totalHouseInfo(),
+              BigTitle(bigTitle: "基本信息", padding: EdgeInsets.only(left: 14.w)),
+              //房源基本信息
+              _houseBasicInfo(),
+              BigTitle(bigTitle: "配套设施", padding: EdgeInsets.only(left: 14.w)),
+              //配套设施网格布局
+              Consumer<HouseResDetailViewModel>(builder: (context, vm, child) {
+                return _facilityGridWidget(vm.detailData);
+              }),
+              BigTitle(bigTitle: "附近位置", padding: EdgeInsets.only(left: 14.w)),
+              //地图缩略图
+              _mapView(),
+              BigTitle(bigTitle: "附近房源", padding: EdgeInsets.only(left: 14.w)),
+              //附近房源列表
+              _nearbyHouseResList()
+            ])),
 
-          //底部按钮操作栏
-          bottomNavigationBar: Container(
-              decoration: BoxDecoration(
-                  border: Border(top: BorderSide(width: 1.h, color: Color(0xFFf5f4f4)))),
-              height: 51.h,
-              //房源联系人以及电话资讯和立即预约
-              child: _callOrSubscribe())),
-    ));
+            //底部按钮操作栏
+            bottomNavigationBar: Container(
+                decoration: BoxDecoration(
+                    border: Border(top: BorderSide(width: 1.h, color: Color(0xFFf5f4f4)))),
+                height: 51.h,
+                //房源联系人以及电话资讯和立即预约
+                child: _callOrSubscribe())),
+      )),
+    );
   }
 
   ///顶部关闭、分享、收藏按钮
@@ -93,34 +115,42 @@ class _HouseResDetailPageState extends State<HouseResDetailPage> {
 
   ///房源图片banner
   Widget _banner() {
-    return BannerWidget(
-      bannerData: [
-        "https://q7.itc.cn/images01/20240312/ae5f3266aeb6408db22ad354f1168883.jpeg",
-        "https://q9.itc.cn/images01/20240312/6012df31dff3413bb7815b136e98207e.png",
-        "https://q7.itc.cn/images01/20240312/ae5f3266aeb6408db22ad354f1168883.jpeg",
-        "https://q9.itc.cn/images01/20240312/6012df31dff3413bb7815b136e98207e.png",
-      ],
-      dotType: BannerDotType.none,
-      height: 210.h,
-    );
+    return Consumer<HouseResDetailViewModel>(builder: (context, vm, child) {
+      return BannerWidget(
+        bannerData: vm.detailData?.imageList,
+        dotType: BannerDotType.none,
+        height: 210.h,
+      );
+    });
   }
 
   ///banner组件的页码指示器
   Widget _bannerPageCount() {
     return Align(
         alignment: Alignment.bottomRight,
-        child: Container(
-            margin: EdgeInsets.only(bottom: 26.h, right: 23.w),
-            width: 44.w,
-            height: 23.h,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(11.r)),
-                color: const Color(0x4d000000)),
-            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              AppText(text: "1", textColor: Colors.white, fontSize: 15.sp),
-              AppText(text: "/", textColor: Colors.white, fontSize: 15.sp),
-              AppText(text: "9", textColor: Colors.white, fontSize: 15.sp)
-            ])));
+        child: Consumer<HouseResDetailViewModel>(
+          builder: (context, vm, child) {
+            //没有banner数据返回时不展示页码
+            if (vm.detailData?.imageList?.isEmpty == true) {
+              return const SizedBox();
+            }
+            return Container(
+                margin: EdgeInsets.only(bottom: 26.h, right: 23.w),
+                width: 44.w,
+                height: 23.h,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(11.r)),
+                    color: const Color(0x4d000000)),
+                child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  AppText(text: "1", textColor: Colors.white, fontSize: 15.sp),
+                  AppText(text: "/", textColor: Colors.white, fontSize: 15.sp),
+                  AppText(
+                      text: "${vm.detailData?.imageList?.length ?? 0}",
+                      textColor: Colors.white,
+                      fontSize: 15.sp)
+                ]));
+          },
+        ));
   }
 
   ///顶部房源信息
@@ -135,57 +165,76 @@ class _HouseResDetailPageState extends State<HouseResDetailPage> {
               BoxShadow(
                   color: Color(0x80d9d9d9), offset: Offset(0, 0.9), blurRadius: 5, spreadRadius: 2)
             ]),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          AppText(text: "翻斗花园二期主卧押一付三", textColor: AppColors.textColor2b, fontSize: 19.sp),
-          AppText(text: "套二 50m2 距西二旗地铁站1.2km", textColor: AppColors.textColorB6, fontSize: 13.sp),
-          8.verticalSpace,
-          Row(
-            children: [
-              AppText(text: "3000", textColor: AppColors.textRedColor39, fontSize: 19.sp),
-              AppText(text: "元/月", textColor: AppColors.textRedColor6d, fontSize: 11.sp),
-              Expanded(child: SizedBox()),
-              AppText(text: "服务费：3000元", textColor: AppColors.textColorB6, fontSize: 13.sp),
-            ],
-          )
-        ]));
+        child: Consumer<HouseResDetailViewModel>(
+          builder: (context, vm, child) {
+            return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              AppText(
+                  text: vm.generateCardTitle(), textColor: AppColors.textColor2b, fontSize: 19.sp),
+              AppText(
+                  text: vm.generateCardDesc(), textColor: AppColors.textColorB6, fontSize: 13.sp),
+              8.verticalSpace,
+              Row(
+                children: [
+                  AppText(
+                      text: "${vm.detailData?.rent}",
+                      textColor: AppColors.textRedColor39,
+                      fontSize: 19.sp),
+                  AppText(text: "元/月", textColor: AppColors.textRedColor6d, fontSize: 11.sp),
+                  const Expanded(child: SizedBox()),
+                  AppText(
+                      text: "服务费：${vm.detailData?.serviceCharge}元",
+                      textColor: AppColors.textColorB6,
+                      fontSize: 13.sp),
+                ],
+              )
+            ]);
+          },
+        ));
   }
 
   ///房源基本信息
   ///[checkAreaOnTap] 查看小区
   Widget _houseBasicInfo({GestureTapCallback? checkAreaOnTap}) {
-    return Container(
-        padding: EdgeInsets.only(top: 20.h, left: 14.w, right: 16.w, bottom: 25.h),
-        child: Column(children: [
-          _basicInfoRow(_basicInfo("入住", "随时入住"), _basicInfo("面积", "52m2")),
-          10.verticalSpace,
-          _basicInfoRow(_basicInfo("户型", "1室1厅1卫"), _basicInfo("发布", "2019-08-08")),
-          10.verticalSpace,
-          _basicInfoRow(_basicInfo("楼层", "8/27楼"), _basicInfo("装修", "精装修")),
-          10.verticalSpace,
-          _basicInfoRow(_basicInfo("车位", "有车位"), _basicInfo("付款", "押一付三")),
-          10.verticalSpace,
-          _basicInfoRow(
-              _basicInfo("小区", "翻斗花园"),
-              GestureDetector(
-                  onTap: checkAreaOnTap,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      AppText(
-                          text: "查看小区",
-                          fontSize: 14.sp,
-                          textColor: AppColors.textRedColor30,
-                          fontWeight: FontWeight.w600),
-                      14.horizontalSpace,
-                      Image.asset(
-                        "assets/images/icon_right_arrow_grey.png",
-                        width: 7.w,
-                        height: 12.h,
-                        color: Color(0xff8a8a8a),
-                      ),
-                    ],
-                  ))),
-        ]));
+    return Consumer<HouseResDetailViewModel>(builder: (context, vm, child) {
+      return Container(
+          padding: EdgeInsets.only(top: 20.h, left: 14.w, right: 16.w, bottom: 25.h),
+          child: Column(children: [
+            _basicInfoRow(_basicInfo("入住", vm.detailData?.checkInDate),
+                _basicInfo("面积", "${vm.detailData?.acreage}m²")),
+            10.verticalSpace,
+            _basicInfoRow(_basicInfo("户型", vm.detailData?.houseTypeName),
+                _basicInfo("发布", vm.detailData?.publishDate)),
+            10.verticalSpace,
+            _basicInfoRow(
+                _basicInfo("楼层", "${vm.detailData?.currentFloor}/${vm.detailData?.totalFloor}楼"),
+                _basicInfo("装修", vm.detailData?.fitment)),
+            10.verticalSpace,
+            _basicInfoRow(_basicInfo("车位", vm.detailData?.carport == true ? "有车位" : "无"),
+                _basicInfo("付款", vm.getPaymentType(vm.detailData?.paymentType))),
+            10.verticalSpace,
+            _basicInfoRow(
+                _basicInfo("小区", vm.detailData?.houseArea),
+                GestureDetector(
+                    onTap: checkAreaOnTap,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        AppText(
+                            text: "查看小区",
+                            fontSize: 14.sp,
+                            textColor: AppColors.textRedColor30,
+                            fontWeight: FontWeight.w600),
+                        14.horizontalSpace,
+                        Image.asset(
+                          "assets/images/icon_right_arrow_grey.png",
+                          width: 7.w,
+                          height: 12.h,
+                          color: Color(0xff8a8a8a),
+                        ),
+                      ],
+                    ))),
+          ]));
+    });
   }
 
   ///房源基本信息左右结构组件
@@ -203,20 +252,48 @@ class _HouseResDetailPageState extends State<HouseResDetailPage> {
   }
 
   ///配套设施网格布局
-  Widget _facilityGridWidget() {
+  Widget _facilityGridWidget(HouseResDetailData? detailData) {
+    //`bed`              int comment '床：1=true,0=false',
+    //     `washing_machine`  int comment '洗衣机：1=true,0=false',
+    //     `refrigerator`     int comment '冰箱：1=true,0=false',
+    //     `air_conditioner`  int comment '空调：1=true,0=false',
+    //     `wifi`             int comment 'wifi：1=true,0=false',
+    //     `sofa`             int comment '沙发：1=true,0=false',
+    //     `table_chair`      int comment '桌椅：1=true,0=false',
+    //     `tv`               int comment '电视：1=true,0=false',
+    //     `water_heater`     int comment '热水器：1=true,0=false',
+    //     `cook`             int comment '可做饭：1=true,0=false',
+    //     `heating`          int comment '暖气：1=true,0=false',
+    //     `balcony`          int comment '阳台：1=true,0=false',
     var data = [
-      ["床", "assets/images/icon_house_detail_chuang.png"],
-      ["洗衣机", "assets/images/icon_house_detail_xiyiji.png"],
-      ["冰箱", "assets/images/icon_house_detail_bingxiang.png"],
-      ["空调", "assets/images/icon_house_detail_kongtiao.png"],
-      ["WIFI", "assets/images/icon_house_detail_wifi.png"],
-      ["沙发", "assets/images/icon_house_detail_shafa.png"],
-      ["桌椅", "assets/images/icon_house_detail_zhuoyi.png"],
-      ["电视", "assets/images/icon_house_detail_tv.png"],
-      ["热水器", "assets/images/icon_house_detail_reshuiqi.png"],
-      ["可做饭", "assets/images/icon_house_detail_cook.png"],
-      ["暖气", "assets/images/icon_house_detail_nuanqi.png"],
-      ["阳台", "assets/images/icon_house_detail_yangtai.png"],
+      ["床", "assets/images/icon_house_detail_chuang.png", "${detailData?.bed ?? false}"],
+      [
+        "洗衣机",
+        "assets/images/icon_house_detail_xiyiji.png",
+        "${detailData?.washingMachine ?? false}"
+      ],
+      [
+        "冰箱",
+        "assets/images/icon_house_detail_bingxiang.png",
+        "${detailData?.refrigerator ?? false}"
+      ],
+      [
+        "空调",
+        "assets/images/icon_house_detail_kongtiao.png",
+        "${detailData?.airConditioner ?? false}"
+      ],
+      ["WIFI", "assets/images/icon_house_detail_wifi.png", "${detailData?.wifi ?? false}"],
+      ["沙发", "assets/images/icon_house_detail_shafa.png", "${detailData?.sofa ?? false}"],
+      ["桌椅", "assets/images/icon_house_detail_zhuoyi.png", "${detailData?.tableChair ?? false}"],
+      ["电视", "assets/images/icon_house_detail_tv.png", "${detailData?.tv ?? false}"],
+      [
+        "热水器",
+        "assets/images/icon_house_detail_reshuiqi.png",
+        "${detailData?.waterHeater ?? false}"
+      ],
+      ["可做饭", "assets/images/icon_house_detail_cook.png", "${detailData?.cook ?? false}"],
+      ["暖气", "assets/images/icon_house_detail_nuanqi.png", "${detailData?.heating ?? false}"],
+      ["阳台", "assets/images/icon_house_detail_yangtai.png", "${detailData?.balcony ?? false}"],
     ];
     return Container(
         padding: EdgeInsets.only(top: 15.h, bottom: 15.h),
@@ -229,22 +306,23 @@ class _HouseResDetailPageState extends State<HouseResDetailPage> {
               return _facilityWidget(
                 title: data[index][0],
                 imgPath: data[index][1],
+                exist: data[index][2] == 'true',
               );
             }));
   }
 
   ///配套设施组件
-  Widget _facilityWidget({
-    required String title,
-    required String imgPath,
-  }) {
+  Widget _facilityWidget({required String title, required String imgPath, required bool exist}) {
     return SizedBox(
         width: 35.w,
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(width: 32.w, height: 32.h, child: Image.asset(imgPath)),
+              SizedBox(
+                  width: 32.w,
+                  height: 32.h,
+                  child: Image.asset(imgPath, color: exist ? Colors.amber : Colors.black)),
               7.verticalSpace,
               AppText(text: title, fontSize: 13.sp, textColor: AppColors.textColor59)
             ]));
@@ -294,7 +372,7 @@ class _HouseResDetailPageState extends State<HouseResDetailPage> {
               type: AppButtonType.red,
               buttonText: "立即预约",
               margin: EdgeInsets.zero,
-              onTap: (){
+              onTap: () {
                 RouteUtils.push(context, SubscribeHousePage());
               },
             ))

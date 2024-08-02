@@ -1964,6 +1964,66 @@ public class HouseResourceExample {
             return (Criteria) this;
         }
 
+        public Criteria andCarportIsNull() {
+            addCriterion("carport is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarportIsNotNull() {
+            addCriterion("carport is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarportEqualTo(Integer value) {
+            addCriterion("carport =", value, "carport");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarportNotEqualTo(Integer value) {
+            addCriterion("carport <>", value, "carport");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarportGreaterThan(Integer value) {
+            addCriterion("carport >", value, "carport");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarportGreaterThanOrEqualTo(Integer value) {
+            addCriterion("carport >=", value, "carport");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarportLessThan(Integer value) {
+            addCriterion("carport <", value, "carport");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarportLessThanOrEqualTo(Integer value) {
+            addCriterion("carport <=", value, "carport");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarportIn(List<Integer> values) {
+            addCriterion("carport in", values, "carport");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarportNotIn(List<Integer> values) {
+            addCriterion("carport not in", values, "carport");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarportBetween(Integer value1, Integer value2) {
+            addCriterion("carport between", value1, value2, "carport");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarportNotBetween(Integer value1, Integer value2) {
+            addCriterion("carport not between", value1, value2, "carport");
+            return (Criteria) this;
+        }
+
         public Criteria andLongitudeIsNull() {
             addCriterion("longitude is null");
             return (Criteria) this;

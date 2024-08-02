@@ -100,6 +100,10 @@ public class HouseResourceDetailResp {
     //阳台
     private boolean balcony;
 
+    //车位
+    private boolean carport;
+
+
     //经度
     private String longitude;
 
@@ -123,6 +127,51 @@ public class HouseResourceDetailResp {
 
     //发布人头像
     private String publisherHead;
+
+
+    @Override
+    public String toString() {
+        return "HouseResourceDetailResp{" +
+                "id=" + id +
+                ", imageList=" + imageList +
+                ", houseDesc='" + houseDesc + '\'' +
+                ", leaseType=" + leaseType +
+                ", rent=" + rent +
+                ", serviceCharge=" + serviceCharge +
+                ", houseTypeName='" + houseTypeName + '\'' +
+                ", houseType=" + houseType +
+                ", direction='" + direction + '\'' +
+                ", checkInDate='" + checkInDate + '\'' +
+                ", totalFloor=" + totalFloor +
+                ", currentFloor=" + currentFloor +
+                ", houseArea='" + houseArea + '\'' +
+                ", acreage=" + acreage +
+                ", publishDate='" + publishDate + '\'' +
+                ", fitment='" + fitment + '\'' +
+                ", paymentType=" + paymentType +
+                ", bed=" + bed +
+                ", washingMachine=" + washingMachine +
+                ", refrigerator=" + refrigerator +
+                ", airConditioner=" + airConditioner +
+                ", wifi=" + wifi +
+                ", sofa=" + sofa +
+                ", tableChair=" + tableChair +
+                ", tv=" + tv +
+                ", waterHeater=" + waterHeater +
+                ", cook=" + cook +
+                ", heating=" + heating +
+                ", balcony=" + balcony +
+                ", carport=" + carport +
+                ", longitude='" + longitude + '\'' +
+                ", latitude='" + latitude + '\'' +
+                ", publisher='" + publisher + '\'' +
+                ", publisherNumber='" + publisherNumber + '\'' +
+                ", tagList=" + tagList +
+                ", publisherId=" + publisherId +
+                ", publisherType='" + publisherType + '\'' +
+                ", publisherHead='" + publisherHead + '\'' +
+                '}';
+    }
 
     public Long getId() {
         return id;
@@ -420,4 +469,11 @@ public class HouseResourceDetailResp {
         this.publisherHead = publisherHead;
     }
 
+    public boolean isCarport() {
+        return carport;
+    }
+
+    public void setCarport(boolean carport) {
+        this.carport = carport;
+    }
 }

@@ -61,6 +61,8 @@ public class HouseResource {
 
     private Integer balcony;
 
+    private Integer carport;
+
     private String longitude;
 
     private String latitude;
@@ -321,6 +323,14 @@ public class HouseResource {
         this.balcony = balcony;
     }
 
+    public Integer getCarport() {
+        return carport;
+    }
+
+    public void setCarport(Integer carport) {
+        this.carport = carport;
+    }
+
     public String getLongitude() {
         return longitude;
     }
@@ -437,6 +447,7 @@ public class HouseResource {
         sb.append(", cook=").append(cook);
         sb.append(", heating=").append(heating);
         sb.append(", balcony=").append(balcony);
+        sb.append(", carport=").append(carport);
         sb.append(", longitude=").append(longitude);
         sb.append(", latitude=").append(latitude);
         sb.append(", publisher=").append(publisher);

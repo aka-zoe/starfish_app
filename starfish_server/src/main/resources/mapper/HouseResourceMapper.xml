@@ -32,6 +32,7 @@
     <result column="cook" jdbcType="INTEGER" property="cook" />
     <result column="heating" jdbcType="INTEGER" property="heating" />
     <result column="balcony" jdbcType="INTEGER" property="balcony" />
+    <result column="carport" jdbcType="INTEGER" property="carport" />
     <result column="longitude" jdbcType="VARCHAR" property="longitude" />
     <result column="latitude" jdbcType="VARCHAR" property="latitude" />
     <result column="publisher" jdbcType="VARCHAR" property="publisher" />
@@ -106,8 +107,8 @@
     house_type, direction, check_in_date, total_floor, current_floor, house_area_id, 
     acreage, publish_date, fitment, payment_type, bed, washing_machine, refrigerator, 
     air_conditioner, wifi, sofa, table_chair, tv, water_heater, cook, heating, balcony, 
-    longitude, latitude, publisher, publisher_number, tag_id, publisher_id, publisher_type, 
-    publisher_head, create_time, `status`
+    carport, longitude, latitude, publisher, publisher_number, tag_id, publisher_id, 
+    publisher_type, publisher_head, create_time, `status`
   </sql>
   <select id="selectByExample" parameterType="com.zoe.starfish_server.domain.HouseResourceExample" resultMap="BaseResultMap">
     select
@@ -150,10 +151,10 @@
       air_conditioner, wifi, sofa, 
       table_chair, tv, water_heater, 
       cook, heating, balcony, 
-      longitude, latitude, publisher, 
-      publisher_number, tag_id, publisher_id, 
-      publisher_type, publisher_head, create_time, 
-      `status`)
+      carport, longitude, latitude, 
+      publisher, publisher_number, tag_id, 
+      publisher_id, publisher_type, publisher_head, 
+      create_time, `status`)
     values (#{id,jdbcType=BIGINT}, #{image,jdbcType=VARCHAR}, #{houseImageId,jdbcType=BIGINT}, 
       #{houseDesc,jdbcType=VARCHAR}, #{leaseType,jdbcType=INTEGER}, #{rent,jdbcType=DECIMAL}, 
       #{serviceCharge,jdbcType=DECIMAL}, #{houseTypeId,jdbcType=BIGINT}, #{houseType,jdbcType=INTEGER}, 
@@ -164,10 +165,10 @@
       #{airConditioner,jdbcType=INTEGER}, #{wifi,jdbcType=INTEGER}, #{sofa,jdbcType=INTEGER}, 
       #{tableChair,jdbcType=INTEGER}, #{tv,jdbcType=INTEGER}, #{waterHeater,jdbcType=INTEGER}, 
       #{cook,jdbcType=INTEGER}, #{heating,jdbcType=INTEGER}, #{balcony,jdbcType=INTEGER}, 
-      #{longitude,jdbcType=VARCHAR}, #{latitude,jdbcType=VARCHAR}, #{publisher,jdbcType=VARCHAR}, 
-      #{publisherNumber,jdbcType=VARCHAR}, #{tagId,jdbcType=BIGINT}, #{publisherId,jdbcType=BIGINT}, 
-      #{publisherType,jdbcType=VARCHAR}, #{publisherHead,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, 
-      #{status,jdbcType=INTEGER})
+      #{carport,jdbcType=INTEGER}, #{longitude,jdbcType=VARCHAR}, #{latitude,jdbcType=VARCHAR}, 
+      #{publisher,jdbcType=VARCHAR}, #{publisherNumber,jdbcType=VARCHAR}, #{tagId,jdbcType=BIGINT}, 
+      #{publisherId,jdbcType=BIGINT}, #{publisherType,jdbcType=VARCHAR}, #{publisherHead,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.zoe.starfish_server.domain.HouseResource">
     insert into house_res
@@ -261,6 +262,9 @@
       </if>
       <if test="balcony != null">
         balcony,
+      </if>
+      <if test="carport != null">
+        carport,
       </if>
       <if test="longitude != null">
         longitude,
@@ -383,6 +387,9 @@
       </if>
       <if test="balcony != null">
         #{balcony,jdbcType=INTEGER},
+      </if>
+      <if test="carport != null">
+        #{carport,jdbcType=INTEGER},
       </if>
       <if test="longitude != null">
         #{longitude,jdbcType=VARCHAR},
@@ -515,6 +522,9 @@
       <if test="record.balcony != null">
         balcony = #{record.balcony,jdbcType=INTEGER},
       </if>
+      <if test="record.carport != null">
+        carport = #{record.carport,jdbcType=INTEGER},
+      </if>
       <if test="record.longitude != null">
         longitude = #{record.longitude,jdbcType=VARCHAR},
       </if>
@@ -582,6 +592,7 @@
       cook = #{record.cook,jdbcType=INTEGER},
       heating = #{record.heating,jdbcType=INTEGER},
       balcony = #{record.balcony,jdbcType=INTEGER},
+      carport = #{record.carport,jdbcType=INTEGER},
       longitude = #{record.longitude,jdbcType=VARCHAR},
       latitude = #{record.latitude,jdbcType=VARCHAR},
       publisher = #{record.publisher,jdbcType=VARCHAR},
@@ -686,6 +697,9 @@
       <if test="balcony != null">
         balcony = #{balcony,jdbcType=INTEGER},
       </if>
+      <if test="carport != null">
+        carport = #{carport,jdbcType=INTEGER},
+      </if>
       <if test="longitude != null">
         longitude = #{longitude,jdbcType=VARCHAR},
       </if>
@@ -750,6 +764,7 @@
       cook = #{cook,jdbcType=INTEGER},
       heating = #{heating,jdbcType=INTEGER},
       balcony = #{balcony,jdbcType=INTEGER},
+      carport = #{carport,jdbcType=INTEGER},
       longitude = #{longitude,jdbcType=VARCHAR},
       latitude = #{latitude,jdbcType=VARCHAR},
       publisher = #{publisher,jdbcType=VARCHAR},

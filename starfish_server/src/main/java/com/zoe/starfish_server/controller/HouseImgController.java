@@ -4,6 +4,7 @@ import com.zoe.starfish_server.common.RespCodeEnum;
 import com.zoe.starfish_server.common.resp.CommonResp;
 import com.zoe.starfish_server.domain.HouseImg;
 import com.zoe.starfish_server.service.HouseImgService;
+import com.zoe.starfish_server.utils.PassToken;
 import com.zoe.starfish_server.utils.UserLoginToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,19 +18,19 @@ public class HouseImgController {
     @Autowired
     HouseImgService service;
 
-    @UserLoginToken
+    @PassToken
     @PostMapping("/getImage")
     public CommonResp getImage(@RequestParam(value = "id", required = true) Long id) {
         return CommonResp.success(service.getImage(id));
     }
 
-    @UserLoginToken
+    @PassToken
     @PostMapping("/houseImgList")
     public CommonResp houseImgList() {
         return CommonResp.success(service.houseImgList());
     }
 
-    @UserLoginToken
+    @PassToken
     @PostMapping("/imgForHouse")
     public CommonResp imgForHouse(@RequestParam(value = "id", required = true) Long id) {
         return CommonResp.success(service.imgForHouse(id));

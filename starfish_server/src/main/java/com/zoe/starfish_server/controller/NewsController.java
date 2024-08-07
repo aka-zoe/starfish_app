@@ -4,6 +4,7 @@ import com.zoe.starfish_server.common.RespCodeEnum;
 import com.zoe.starfish_server.common.resp.CommonResp;
 import com.zoe.starfish_server.domain.News;
 import com.zoe.starfish_server.service.NewsService;
+import com.zoe.starfish_server.utils.PassToken;
 import com.zoe.starfish_server.utils.TimeUtils;
 import com.zoe.starfish_server.utils.TokenUtils;
 import com.zoe.starfish_server.utils.UserLoginToken;
@@ -60,7 +61,7 @@ public class NewsController {
      *
      * @return
      */
-    @UserLoginToken
+    @PassToken
     @PostMapping("getNewList")
     public CommonResp getNewList(@RequestBody News news) {
         if (news.getType() == null) {

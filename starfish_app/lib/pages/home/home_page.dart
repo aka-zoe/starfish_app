@@ -15,12 +15,13 @@ import 'package:starfish_tenement_app/common_ui/title/app_text.dart';
 import 'package:starfish_tenement_app/http/socket/web_socket_instance.dart';
 import 'package:starfish_tenement_app/pages/apartment/apartment_page.dart';
 import 'package:starfish_tenement_app/pages/home/home_vm.dart';
+import 'package:starfish_tenement_app/pages/house_res/detail/house_res_detail_page.dart';
 import 'package:starfish_tenement_app/route/route_utils.dart';
 import 'package:starfish_tenement_app/styles/app_colors.dart';
 
 import '../../common_ui/filter/filter_menu_widget.dart';
 import '../../common_ui/title/big_title.dart';
-import '../subscribe/subscribe_house_page.dart';
+import '../booked/booked_house_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -96,10 +97,11 @@ class _HomePageState extends State<HomePage> {
                 Selector<HomeVM, List<HouseResData>?>(builder: (context, houseResList, child) {
                   return SliverList(
                       delegate: SliverChildBuilderDelegate((context, index) {
+                    var item = houseResList?[index];
                     return HouseListItem(
-                      data: houseResList?[index],
+                      data: item,
                       onTap: () {
-                        RouteUtils.push(context, SubscribeHousePage());
+                        RouteUtils.push(context, HouseResDetailPage(id: item?.id));
                       },
                     );
                   }, childCount: houseResList?.length ?? 0));

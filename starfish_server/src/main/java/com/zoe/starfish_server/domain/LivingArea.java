@@ -9,6 +9,8 @@ public class LivingArea {
 
     private String areaDesc;
 
+    private String areaAddress;
+
     private String longitude;
 
     private String latitude;
@@ -41,6 +43,14 @@ public class LivingArea {
 
     public void setAreaDesc(String areaDesc) {
         this.areaDesc = areaDesc;
+    }
+
+    public String getAreaAddress() {
+        return areaAddress;
+    }
+
+    public void setAreaAddress(String areaAddress) {
+        this.areaAddress = areaAddress;
     }
 
     public String getLongitude() {
@@ -92,6 +102,7 @@ public class LivingArea {
         sb.append(", id=").append(id);
         sb.append(", areaName=").append(areaName);
         sb.append(", areaDesc=").append(areaDesc);
+        sb.append(", areaAddress=").append(areaAddress);
         sb.append(", longitude=").append(longitude);
         sb.append(", latitude=").append(latitude);
         sb.append(", buildDate=").append(buildDate);

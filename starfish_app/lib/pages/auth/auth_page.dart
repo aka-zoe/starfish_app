@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:starfish_tenement_app/common_ui/input/app_input.dart';
 import 'package:starfish_tenement_app/common_ui/buttons/red_button.dart';
 import 'package:starfish_tenement_app/common_ui/title/app_text.dart';
-import 'package:starfish_tenement_app/pages/login/auth_vm.dart';
+import 'package:starfish_tenement_app/pages/auth/auth_vm.dart';
 import 'package:starfish_tenement_app/pages/tab_page.dart';
 import 'package:starfish_tenement_app/route/Routes.dart';
 import 'package:starfish_tenement_app/route/route_utils.dart';
@@ -26,14 +26,14 @@ class _AuthPageState extends State<AuthPage> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      viewModel.checkAutoLogin().then((value) {
-        if (value) {
-          //登录成功，进入首页
-          RouteUtils.pushNamedAndRemoveUntil(context, RoutePath.tab);
-        }
-      });
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    //   viewModel.checkAutoLogin().then((value) {
+    //     if (value) {
+    //       //登录成功，进入首页
+    //       RouteUtils.pushNamedAndRemoveUntil(context, RoutePath.tab);
+    //     }
+    //   });
+    // });
 
     /// 初始化
     WidgetsBinding.instance.addObserver(this);

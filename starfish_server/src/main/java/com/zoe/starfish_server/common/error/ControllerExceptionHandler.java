@@ -47,6 +47,18 @@ public class ControllerExceptionHandler {
     }
 
     /**
+     * 需要登录
+     *
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(value = NeedLoginException.class)
+    @ResponseBody
+    public CommonResp validExceptionHandler(NeedLoginException e) {
+        return CommonResp.error(RespCodeEnum.NEEDLOGIN);
+    }
+
+    /**
      * 校验异常统一处理
      *
      * @param e

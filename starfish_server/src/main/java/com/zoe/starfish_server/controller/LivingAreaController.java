@@ -4,6 +4,7 @@ import com.zoe.starfish_server.common.RespCodeEnum;
 import com.zoe.starfish_server.common.resp.CommonResp;
 import com.zoe.starfish_server.domain.LivingArea;
 import com.zoe.starfish_server.service.LivingAreaService;
+import com.zoe.starfish_server.utils.PassToken;
 import com.zoe.starfish_server.utils.UserLoginToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,13 +18,13 @@ public class LivingAreaController {
     @Autowired
     LivingAreaService service;
 
-    @UserLoginToken
+    @PassToken
     @PostMapping("/areaList")
     public CommonResp areaList() {
         return CommonResp.success(service.areaList());
     }
 
-    @UserLoginToken
+    @PassToken
     @PostMapping("/getArea")
     public CommonResp getArea(@RequestParam(value = "id", required = true) Long id) {
         return CommonResp.success(service.getArea(id));

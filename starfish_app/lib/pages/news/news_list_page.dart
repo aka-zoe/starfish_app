@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:provider/provider.dart';
+import 'package:starfish_tenement_app/api/models/app_news_data.dart';
 import 'package:starfish_tenement_app/common_ui/tag/tag_widget.dart';
 import 'package:starfish_tenement_app/common_ui/title/app_text.dart';
 import 'package:starfish_tenement_app/common_ui/title/big_title.dart';
@@ -29,7 +30,9 @@ class _NewsListPageState extends State<NewsListPage> {
   @override
   void initState() {
     super.initState();
-    _vm.getBanner();
+    _vm.getBannerNews();
+    _vm.getHotNews();
+    // _vm.getBanner();
   }
 
   @override
@@ -65,22 +68,30 @@ class _NewsListPageState extends State<NewsListPage> {
                   padding: EdgeInsets.only(right: 18.w),
                   child: BigTitle(bigTitle: "热门资讯", showRight: true, onRightTap: () {})),
               //资讯列表
-              ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return _newsListItemView(() {
-                    RouteUtils.pushForNamed(context, RoutePath.newsTypePage);
-                  });
-                },
-                itemCount: 20,
-              )
+              _hotNewsListView(),
             ]),
           ),
         ))));
   }
 
-  Widget _newsListItemView(GestureTapCallback? onTap) {
+  ///热门资讯列表
+  Widget _hotNewsListView() {
+    return Consumer<NewsListViewModel>(builder: (context, vm, child) {
+      return ListView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (context, index) {
+          var item = vm.hotNews?[index];
+          return _newsListItemView(item, () {
+            RouteUtils.pushForNamed(context, RoutePath.newsTypePage);
+          });
+        },
+        itemCount: vm.hotNews?.length ?? 0,
+      );
+    });
+  }
+
+  Widget _newsListItemView(AppNewsItemData? item, GestureTapCallback? onTap) {
     return GestureDetector(
         onTap: onTap,
         child: Container(
@@ -92,32 +103,31 @@ class _NewsListPageState extends State<NewsListPage> {
             children: [
               ClipRRect(
                   borderRadius: BorderRadius.circular(8.r),
-                  child: Image.network(
-                      "https://images.pexels.com/photos/101808/pexels-photo-101808.jpeg",
-                      width: 103.w,
-                      height: 76.h,
-                      fit: BoxFit.fill)),
+                  child: Image.network(item?.imageurl ?? "",
+                      width: 103.w, height: 76.h, fit: BoxFit.fill)),
               14.horizontalSpace,
               Expanded(
                   flex: 1,
                   child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                     AppText(
                       maxLines: 2,
-                      text: "健康住宅“这个圈”如何才能画满360度？",
+                      text: item?.title ?? "",
                       textColor: AppColors.textColor7C,
                       fontSize: 18.sp,
                     ),
                     Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-                      TagWidget(name: "房产新闻", color: AppColors.textRedColor3D),
+                      TagWidget(name: item?.tag, color: AppColors.textRedColor3D),
                       Expanded(child: SizedBox()),
                       Image.asset("assets/images/icon_news_remark.png", width: 13.r, height: 13.r),
                       6.horizontalSpace,
-                      AppText(text: "1234"),
+                      //评论数
+                      AppText(text: "${item?.pinglun ?? 0}"),
                       12.horizontalSpace,
                       Image.asset("assets/images/icon_news_collect_grey.png",
                           width: 13.r, height: 13.r),
                       6.horizontalSpace,
-                      AppText(text: "300"),
+                      //点赞数
+                      AppText(text: "${item?.dianzan ?? 0}"),
                       20.horizontalSpace,
                     ])
                   ]))
@@ -135,20 +145,20 @@ class _NewsListPageState extends State<NewsListPage> {
           //右侧下一页显示一点
           viewportFraction: 0.96,
           itemBuilder: (context, index) {
-            return _bannerItemView(vm.banner?[index], index, vm.banner?.length ?? 0);
+            return _bannerItemView(vm.bannerNews?[index], index, vm.bannerNews?.length ?? 0);
           },
-          itemCount: vm.banner?.length ?? 0,
+          itemCount: vm.bannerNews?.length ?? 0,
         ),
       );
     });
   }
 
-  Widget _bannerItemView(NewsBanner? item, int index, int itemCount) {
+  Widget _bannerItemView(AppNewsItemData? item, int index, int itemCount) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       12.verticalSpace,
       Row(
         children: [
-          AppText(text: item?.title ?? "", fontSize: 14.sp, textColor: AppColors.textColor7c),
+          AppText(text: item?.tag ?? "", fontSize: 14.sp, textColor: AppColors.textColor7c),
           const Expanded(child: SizedBox()),
           AppText(text: "0${index + 1}/", fontSize: 15.sp, textColor: AppColors.textColor7A),
           AppText(text: "0$itemCount", fontSize: 15.sp, textColor: AppColors.textColorC0),
@@ -156,10 +166,10 @@ class _NewsListPageState extends State<NewsListPage> {
         ],
       ),
       12.verticalSpace,
-      AppText(text: item?.subTitle ?? "", fontSize: 21.sp, textColor: AppColors.textColor41),
+      AppText(text: item?.title ?? "", fontSize: 21.sp, textColor: AppColors.textColor41),
       12.verticalSpace,
       AppText(
-        text: item?.content ?? "",
+        text: item?.subtitle ?? "",
         fontSize: 16.sp,
         textColor: AppColors.textColor9A,
         maxLines: 1,
@@ -170,7 +180,7 @@ class _NewsListPageState extends State<NewsListPage> {
           child: ClipRRect(
               borderRadius: BorderRadius.circular(8.r),
               child: Image.network(
-                item?.imageUrl ?? "",
+                item?.imageurl ?? "",
                 height: 201.h,
                 width: double.infinity,
                 fit: BoxFit.fill,

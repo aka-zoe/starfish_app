@@ -2,6 +2,8 @@ package com.zoe.starfish_server.interceptor;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.exceptions.JWTDecodeException;
+import com.zoe.starfish_server.common.RespCodeEnum;
+import com.zoe.starfish_server.common.error.NeedLoginException;
 import com.zoe.starfish_server.domain.User;
 import com.zoe.starfish_server.service.UserService;
 import com.zoe.starfish_server.utils.PassToken;
@@ -49,7 +51,8 @@ public class LoginInterceptor implements HandlerInterceptor {
             if (userLoginToken.required()) {
                 // 执行认证
                 if (token == null) {
-                    throw new RuntimeException("无token，请重新登录");
+//                    throw new RuntimeException("无token，请重新登录");
+                    throw new NeedLoginException(RespCodeEnum.NEEDLOGIN);
                 }
                 // 获取 token 中的 user id
                 String username;
@@ -58,19 +61,22 @@ public class LoginInterceptor implements HandlerInterceptor {
                     username = JWT.decode(token).getClaim("username").asString();
                     password = JWT.decode(token).getClaim("password").asString();
                 } catch (JWTDecodeException j) {
-                    throw new RuntimeException("token不正确");
+//                    throw new RuntimeException("token不正确");
+                    throw new NeedLoginException(RespCodeEnum.NEEDLOGIN);
                 }
 //                log.info("从token里获取username=" + username);
 //                log.info("从token里获取password=" + password);
                 User user = userService.selectUser(username, password);
                 if (user == null) {
-                    throw new RuntimeException("用户不存在，请重新登录");
+//                    throw new RuntimeException("用户不存在，请重新登录");
+                    throw new NeedLoginException(RespCodeEnum.NEEDLOGIN);
                 }
                 // 验证 token
                 if (TokenUtils.verify(token)) {
                     return true;
                 } else {
-                    throw new RuntimeException("token过期或不正确，请重新登录");
+//                    throw new RuntimeException("token过期或不正确，请重新登录");
+                    throw new NeedLoginException(RespCodeEnum.NEEDLOGIN);
                 }
 
             }

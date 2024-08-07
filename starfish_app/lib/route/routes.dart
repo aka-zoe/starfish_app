@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:starfish_tenement_app/pages/house_res/detail/house_res_detail_page.dart';
-import 'package:starfish_tenement_app/pages/login/auth_page.dart';
+import 'package:starfish_tenement_app/pages/auth/auth_page.dart';
 import 'package:starfish_tenement_app/pages/news_type/news_type_page.dart';
-import 'package:starfish_tenement_app/pages/subscribe/subscribe_house_page.dart';
+import 'package:starfish_tenement_app/pages/booked/booked_house_page.dart';
 
 import '../pages/apartment/apartment_page.dart';
 import '../pages/tab_page.dart';

@@ -7,6 +7,7 @@ import com.zoe.starfish_server.common.resp.HouseResourceDetailResp;
 import com.zoe.starfish_server.common.resp.HouseResourceResp;
 import com.zoe.starfish_server.domain.*;
 import com.zoe.starfish_server.service.*;
+import com.zoe.starfish_server.utils.PassToken;
 import com.zoe.starfish_server.utils.UserLoginToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -40,7 +41,7 @@ public class HouseResourceController {
     @Autowired
     HouseTypeService typeService;
 
-    @UserLoginToken
+    @PassToken
     @PostMapping("/allHouseResources")
     public CommonResp allHouseResources() {
         //获取所有房源
@@ -48,7 +49,7 @@ public class HouseResourceController {
         return CommonResp.success(generResList(houseResources));
     }
 
-    @UserLoginToken
+    @PassToken
     @PostMapping("/houseResources")
     public CommonResp houseResources() {
         //获取所有房源:筛选正常状态的房源列表
@@ -56,7 +57,7 @@ public class HouseResourceController {
         return CommonResp.success(generResList(houseResources));
     }
 
-    @UserLoginToken
+    @PassToken
     @PostMapping("/houseResourceDetail")
     public CommonResp houseResourceDetail(@RequestParam(value = "id", required = true) Long id) {
         HouseResource resource = service.houseResourceDetail(id);
@@ -123,8 +124,10 @@ public class HouseResourceController {
         LivingArea area = areaService.getArea(resource.getHouseAreaId());
         if (area != null) {
             resp.setHouseArea(area.getAreaName());
+            resp.setHouseAreaAddress(area.getAreaAddress());
         } else {
             resp.setHouseArea("");
+            resp.setHouseAreaAddress("");
         }
         //面积
         resp.setAcreage(resource.getAcreage());

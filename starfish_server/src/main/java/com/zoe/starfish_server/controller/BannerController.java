@@ -4,6 +4,7 @@ import com.zoe.starfish_server.common.RespCodeEnum;
 import com.zoe.starfish_server.common.resp.CommonResp;
 import com.zoe.starfish_server.domain.Banner;
 import com.zoe.starfish_server.service.BannerService;
+import com.zoe.starfish_server.utils.PassToken;
 import com.zoe.starfish_server.utils.UserLoginToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class BannerController {
     @Autowired
     BannerService service;
 
-    @UserLoginToken
+    @PassToken
     @PostMapping(value = "/bannerList")
     public CommonResp bannerList() {
         return CommonResp.success(service.bannerList());

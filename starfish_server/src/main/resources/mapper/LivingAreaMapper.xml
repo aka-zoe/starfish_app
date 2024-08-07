@@ -5,6 +5,7 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="area_name" jdbcType="VARCHAR" property="areaName" />
     <result column="area_desc" jdbcType="VARCHAR" property="areaDesc" />
+    <result column="area_address" jdbcType="VARCHAR" property="areaAddress" />
     <result column="longitude" jdbcType="VARCHAR" property="longitude" />
     <result column="latitude" jdbcType="VARCHAR" property="latitude" />
     <result column="build_date" jdbcType="VARCHAR" property="buildDate" />
@@ -70,7 +71,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, area_name, area_desc, longitude, latitude, build_date, create_time, `status`
+    id, area_name, area_desc, area_address, longitude, latitude, build_date, create_time, 
+    `status`
   </sql>
   <select id="selectByExample" parameterType="com.zoe.starfish_server.domain.LivingAreaExample" resultMap="BaseResultMap">
     select
@@ -104,11 +106,13 @@
   </delete>
   <insert id="insert" parameterType="com.zoe.starfish_server.domain.LivingArea">
     insert into living_area (id, area_name, area_desc, 
-      longitude, latitude, build_date, 
-      create_time, `status`)
+      area_address, longitude, latitude, 
+      build_date, create_time, `status`
+      )
     values (#{id,jdbcType=BIGINT}, #{areaName,jdbcType=VARCHAR}, #{areaDesc,jdbcType=VARCHAR}, 
-      #{longitude,jdbcType=VARCHAR}, #{latitude,jdbcType=VARCHAR}, #{buildDate,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=DATE}, #{status,jdbcType=INTEGER})
+      #{areaAddress,jdbcType=VARCHAR}, #{longitude,jdbcType=VARCHAR}, #{latitude,jdbcType=VARCHAR}, 
+      #{buildDate,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{status,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.zoe.starfish_server.domain.LivingArea">
     insert into living_area
@@ -121,6 +125,9 @@
       </if>
       <if test="areaDesc != null">
         area_desc,
+      </if>
+      <if test="areaAddress != null">
+        area_address,
       </if>
       <if test="longitude != null">
         longitude,
@@ -147,6 +154,9 @@
       </if>
       <if test="areaDesc != null">
         #{areaDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="areaAddress != null">
+        #{areaAddress,jdbcType=VARCHAR},
       </if>
       <if test="longitude != null">
         #{longitude,jdbcType=VARCHAR},
@@ -183,6 +193,9 @@
       <if test="record.areaDesc != null">
         area_desc = #{record.areaDesc,jdbcType=VARCHAR},
       </if>
+      <if test="record.areaAddress != null">
+        area_address = #{record.areaAddress,jdbcType=VARCHAR},
+      </if>
       <if test="record.longitude != null">
         longitude = #{record.longitude,jdbcType=VARCHAR},
       </if>
@@ -208,6 +221,7 @@
     set id = #{record.id,jdbcType=BIGINT},
       area_name = #{record.areaName,jdbcType=VARCHAR},
       area_desc = #{record.areaDesc,jdbcType=VARCHAR},
+      area_address = #{record.areaAddress,jdbcType=VARCHAR},
       longitude = #{record.longitude,jdbcType=VARCHAR},
       latitude = #{record.latitude,jdbcType=VARCHAR},
       build_date = #{record.buildDate,jdbcType=VARCHAR},
@@ -225,6 +239,9 @@
       </if>
       <if test="areaDesc != null">
         area_desc = #{areaDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="areaAddress != null">
+        area_address = #{areaAddress,jdbcType=VARCHAR},
       </if>
       <if test="longitude != null">
         longitude = #{longitude,jdbcType=VARCHAR},
@@ -248,6 +265,7 @@
     update living_area
     set area_name = #{areaName,jdbcType=VARCHAR},
       area_desc = #{areaDesc,jdbcType=VARCHAR},
+      area_address = #{areaAddress,jdbcType=VARCHAR},
       longitude = #{longitude,jdbcType=VARCHAR},
       latitude = #{latitude,jdbcType=VARCHAR},
       build_date = #{buildDate,jdbcType=VARCHAR},

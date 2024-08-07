@@ -4,6 +4,7 @@ import com.zoe.starfish_server.common.RespCodeEnum;
 import com.zoe.starfish_server.common.resp.CommonResp;
 import com.zoe.starfish_server.domain.BetterChoice;
 import com.zoe.starfish_server.service.BetterChoiceService;
+import com.zoe.starfish_server.utils.PassToken;
 import com.zoe.starfish_server.utils.UserLoginToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class BetterChoiceController {
     @Autowired
     BetterChoiceService service;
 
-    @UserLoginToken
+    @PassToken
     @PostMapping("/choiceList")
     public CommonResp choiceList() {
         return CommonResp.success(service.choiceList());

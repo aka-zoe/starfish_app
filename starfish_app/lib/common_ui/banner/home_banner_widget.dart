@@ -24,7 +24,8 @@ class BannerWidget extends StatefulWidget {
       this.bannerClick,
       this.bannerRadius,
       this.height,
-      this.margin});
+      this.margin,
+      this.onIndexChanged});
 
   //banner数据列表
   final List<String?>? bannerData;
@@ -43,6 +44,8 @@ class BannerWidget extends StatefulWidget {
 
   //点击事件
   final ValueChanged<int>? bannerClick;
+
+  final ValueChanged<int>? onIndexChanged;
 
   @override
   State<StatefulWidget> createState() {
@@ -67,12 +70,14 @@ class _BannerWidgetState extends State<BannerWidget> {
           autoplayDelay: 5000,
           duration: 800,
           autoplay: true,
+          onIndexChanged: widget.onIndexChanged,
           pagination: widget.dotType == BannerDotType.none ? null : _pagination(),
           autoplayDisableOnInteraction: false,
           onTap: (int index) {
             widget.bannerClick?.call(index);
           },
           itemBuilder: (BuildContext context, int index) {
+            // widget.onIndexChanged?.call(index);
             return ClipRRect(
                 borderRadius: widget.dotType == BannerDotType.circle
                     ? BorderRadius.all(Radius.circular(5.r))

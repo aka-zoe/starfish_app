@@ -40,6 +40,8 @@ class _DateTimeSelectorState extends State<DateTimeSelector> {
         onSelectedItemChanged: (index) {
           setState(() {
             selectedDateIndex = index;
+            //示例：2024-08-09 20:50:55.086911
+            print(dateTimeModels[selectedDateIndex].date);
           });
         },
         childDelegate: ListWheelChildBuilderDelegate(
@@ -68,6 +70,9 @@ class _DateTimeSelectorState extends State<DateTimeSelector> {
         onSelectedItemChanged: (index) {
           setState(() {
             selectedTimeIndex = index;
+
+            //示例：08:30
+            print(dateTimeModels[selectedDateIndex].times[selectedTimeIndex]);
           });
         },
         childDelegate: ListWheelChildBuilderDelegate(

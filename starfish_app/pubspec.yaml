@@ -55,7 +55,10 @@ dependencies:
     model_viewer_plus: ^1.5.1
     # 友盟推送、埋点
     umeng_push_sdk: ^2.3.0
-
+    # 工具类库
+    flustars: ^2.0.1
+#     显示3D模型
+#    flutter_model_viewer: ^0.0.7
 dev_dependencies:
     flutter_test:
         sdk: flutter

@@ -1,7 +1,7 @@
 package com.zoe.starfish_server.common;
 
 public enum RespCodeEnum {
-    SUCCESS(200,"成功"),
+    SUCCESS(200, "成功"),
     FAIL(201, "失败"),
     SYSERR(202, "系统错误"),
     PARAMERR(203, "参数校验失败"),
@@ -11,7 +11,8 @@ public enum RespCodeEnum {
     SAMEUSER(206, "用户已存在"),
     BUSINESSERR(207, "业务异常"),
     UPLOADFILEERR(208, "文件上传失败"),
-    SOCKETSENDERR(209, "Socket 发送失败");
+    SOCKETSENDERR(209, "Socket 发送失败"),
+    NEEDLOGIN(210, "请先登录");
 
     private Integer code;
 

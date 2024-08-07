@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:starfish_tenement_app/api/models/house_res_data.dart';
 import 'package:starfish_tenement_app/api/models/house_res_detail_data.dart';
 import 'package:starfish_tenement_app/common_ui/banner/home_banner_widget.dart';
 import 'package:starfish_tenement_app/common_ui/buttons/red_button.dart';
@@ -9,7 +10,7 @@ import 'package:starfish_tenement_app/common_ui/house_list/house_res_list_item.d
 import 'package:starfish_tenement_app/common_ui/title/app_text.dart';
 import 'package:starfish_tenement_app/common_ui/title/big_title.dart';
 import 'package:starfish_tenement_app/pages/house_res/detail/house_res_detail_vm.dart';
-import 'package:starfish_tenement_app/pages/subscribe/subscribe_house_page.dart';
+import 'package:starfish_tenement_app/pages/booked/booked_house_page.dart';
 import 'package:starfish_tenement_app/route/route_utils.dart';
 import 'package:starfish_tenement_app/styles/app_colors.dart';
 
@@ -32,8 +33,10 @@ class _HouseResDetailPageState extends State<HouseResDetailPage> {
   void initState() {
     super.initState();
 
-    ///获取房源明细
+    //获取房源明细
     viewModel.getDetailData(widget.id);
+    //附近房源
+    viewModel.getHouseRes();
   }
 
   @override
@@ -120,6 +123,9 @@ class _HouseResDetailPageState extends State<HouseResDetailPage> {
         bannerData: vm.detailData?.imageList,
         dotType: BannerDotType.none,
         height: 210.h,
+        onIndexChanged: (index) {
+          vm.bannerIndexChange(index);
+        },
       );
     });
   }
@@ -142,7 +148,12 @@ class _HouseResDetailPageState extends State<HouseResDetailPage> {
                     borderRadius: BorderRadius.all(Radius.circular(11.r)),
                     color: const Color(0x4d000000)),
                 child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  AppText(text: "1", textColor: Colors.white, fontSize: 15.sp),
+                  // Selector<HouseResDetailViewModel, int>(builder: (context, child, index) {
+                  //   return AppText(text: "$index", textColor: Colors.white, fontSize: 15.sp);
+                  // }, selector: (context, vm) {
+                  //   return vm.currBannerIndex;
+                  // }),
+                  AppText(text: "${vm.currBannerIndex}", textColor: Colors.white, fontSize: 15.sp),
                   AppText(text: "/", textColor: Colors.white, fontSize: 15.sp),
                   AppText(
                       text: "${vm.detailData?.imageList?.length ?? 0}",
@@ -199,11 +210,11 @@ class _HouseResDetailPageState extends State<HouseResDetailPage> {
       return Container(
           padding: EdgeInsets.only(top: 20.h, left: 14.w, right: 16.w, bottom: 25.h),
           child: Column(children: [
-            _basicInfoRow(_basicInfo("入住", vm.detailData?.checkInDate),
+            _basicInfoRow(_basicInfo("入住", vm.getDate(vm.detailData?.checkInDate)),
                 _basicInfo("面积", "${vm.detailData?.acreage}m²")),
             10.verticalSpace,
             _basicInfoRow(_basicInfo("户型", vm.detailData?.houseTypeName),
-                _basicInfo("发布", vm.detailData?.publishDate)),
+                _basicInfo("发布", vm.getDate(vm.detailData?.publishDate))),
             10.verticalSpace,
             _basicInfoRow(
                 _basicInfo("楼层", "${vm.detailData?.currentFloor}/${vm.detailData?.totalFloor}楼"),
@@ -319,10 +330,7 @@ class _HouseResDetailPageState extends State<HouseResDetailPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
-                  width: 32.w,
-                  height: 32.h,
-                  child: Image.asset(imgPath, color: exist ? Colors.amber : Colors.black)),
+              SizedBox(width: 32.w, height: 32.h, child: Image.asset(imgPath)),
               7.verticalSpace,
               AppText(text: title, fontSize: 13.sp, textColor: AppColors.textColor59)
             ]));
@@ -344,13 +352,19 @@ class _HouseResDetailPageState extends State<HouseResDetailPage> {
   Widget _nearbyHouseResList() {
     return Container(
         padding: EdgeInsets.only(left: 15.w, right: 15.w),
-        child: ListView.builder(
-            itemCount: 3,
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              return HouseListItem();
-            }));
+        child: Consumer<HouseResDetailViewModel>(builder: (context, vm, child) {
+          return ListView.builder(
+              itemCount: vm.houseResList?.length ?? 0,
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                HouseResData? item = vm.houseResList?[index];
+                return HouseListItem(
+                  data: item,
+                  onTap: () {},
+                );
+              });
+        }));
   }
 
   ///房源联系人以及电话资讯和立即预约
@@ -373,7 +387,7 @@ class _HouseResDetailPageState extends State<HouseResDetailPage> {
               buttonText: "立即预约",
               margin: EdgeInsets.zero,
               onTap: () {
-                RouteUtils.push(context, SubscribeHousePage());
+                RouteUtils.push(context, SubscribeHousePage(detailData: viewModel.detailData));
               },
             ))
       ],

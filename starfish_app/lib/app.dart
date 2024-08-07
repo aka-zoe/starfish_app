@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           ),
           navigatorKey: RouteUtils.navigatorKey,
           onGenerateRoute: Routes.generateRoute,
-          initialRoute: RoutePath.auth,
+          initialRoute: RoutePath.tab,
         );
       },
     ));

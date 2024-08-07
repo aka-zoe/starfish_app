@@ -52,6 +52,10 @@ public class HouseResourceDetailResp {
     //小区名称
     private String houseArea;
 
+    //小区地址
+    private String houseAreaAddress;
+
+
     //面积
     private Integer acreage;
 
@@ -145,6 +149,7 @@ public class HouseResourceDetailResp {
                 ", totalFloor=" + totalFloor +
                 ", currentFloor=" + currentFloor +
                 ", houseArea='" + houseArea + '\'' +
+                ", houseAreaAddress='" + houseAreaAddress + '\'' +
                 ", acreage=" + acreage +
                 ", publishDate='" + publishDate + '\'' +
                 ", fitment='" + fitment + '\'' +
@@ -171,6 +176,14 @@ public class HouseResourceDetailResp {
                 ", publisherType='" + publisherType + '\'' +
                 ", publisherHead='" + publisherHead + '\'' +
                 '}';
+    }
+
+    public String getHouseAreaAddress() {
+        return houseAreaAddress;
+    }
+
+    public void setHouseAreaAddress(String houseAreaAddress) {
+        this.houseAreaAddress = houseAreaAddress;
     }
 
     public Long getId() {

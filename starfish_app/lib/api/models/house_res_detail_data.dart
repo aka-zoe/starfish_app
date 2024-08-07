@@ -52,6 +52,7 @@ class HouseResDetailData {
     this.totalFloor,
     this.currentFloor,
     this.houseArea,
+    this.houseAreaAddress,
     this.acreage,
     this.publishDate,
     this.fitment,
@@ -97,6 +98,7 @@ class HouseResDetailData {
     totalFloor = json['totalFloor'];
     currentFloor = json['currentFloor'];
     houseArea = json['houseArea'];
+    houseAreaAddress = json['houseAreaAddress'];
     acreage = json['acreage'];
     publishDate = json['publishDate'];
     fitment = json['fitment'];
@@ -144,6 +146,7 @@ class HouseResDetailData {
   num? totalFloor;
   num? currentFloor;
   String? houseArea;
+  String? houseAreaAddress;
   num? acreage;
   String? publishDate;
   String? fitment;
@@ -185,6 +188,7 @@ class HouseResDetailData {
     map['totalFloor'] = totalFloor;
     map['currentFloor'] = currentFloor;
     map['houseArea'] = houseArea;
+    map['houseAreaAddress'] = houseAreaAddress;
     map['acreage'] = acreage;
     map['publishDate'] = publishDate;
     map['fitment'] = fitment;

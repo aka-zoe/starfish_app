@@ -6,6 +6,7 @@ import com.zoe.starfish_server.domain.HouseTag;
 import com.zoe.starfish_server.domain.HouseType;
 import com.zoe.starfish_server.service.HouseTagService;
 import com.zoe.starfish_server.service.HouseTypeService;
+import com.zoe.starfish_server.utils.PassToken;
 import com.zoe.starfish_server.utils.UserLoginToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,13 +20,13 @@ public class HouseTypeController {
     @Autowired
     HouseTypeService service;
 
-    @UserLoginToken
+    @PassToken
     @PostMapping("/houseTypeList")
     public CommonResp houseTypeList() {
         return CommonResp.success(service.houseTypeList());
     }
 
-    @UserLoginToken
+    @PassToken
     @PostMapping("/getType")
     public CommonResp getType(@RequestParam(value = "id", required = true) Long id) {
         return CommonResp.success(service.getType(id));

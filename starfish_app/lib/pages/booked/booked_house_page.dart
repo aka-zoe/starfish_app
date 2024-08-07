@@ -7,12 +7,15 @@ import 'package:starfish_tenement_app/common_ui/date_selector/date_selector_widg
 import 'package:starfish_tenement_app/common_ui/title/big_title.dart';
 import 'package:starfish_tenement_app/utils/string_utils.dart';
 
+import '../../api/models/house_res_detail_data.dart';
 import '../../common_ui/title/app_text.dart';
 import '../../styles/app_colors.dart';
 
 ///房源预定页
 class SubscribeHousePage extends StatefulWidget {
-  const SubscribeHousePage({super.key});
+  final HouseResDetailData? detailData;
+
+  const SubscribeHousePage({super.key, this.detailData});
 
   @override
   State createState() {
@@ -61,7 +64,7 @@ class _SubscribeHousePageState extends State<SubscribeHousePage> {
               buttonText: "立即预约",
             ),
             AppText(
-              text: "地址:北京市海淀区宋家庄地铁站B出口500米",
+              text: "地址:${widget.detailData?.houseAreaAddress}",
               fontSize: 13.sp,
               textColor: const Color(0xFFafafac),
             )
@@ -90,7 +93,10 @@ class _SubscribeHousePageState extends State<SubscribeHousePage> {
             ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(4.r)),
                 child: Image.network(
-                    "https://q7.itc.cn/images01/20240312/ae5f3266aeb6408db22ad354f1168883.jpeg",
+                    //图片列表不为空就取第一张图，否则空字符串
+                    ((widget.detailData?.imageList?.length ?? 0) > 0 == true)
+                        ? (widget.detailData?.imageList?[0] ?? "")
+                        : "",
                     width: 98.w,
                     height: 74.h,
                     fit: BoxFit.fill)),
@@ -98,16 +104,27 @@ class _SubscribeHousePageState extends State<SubscribeHousePage> {
             Expanded(
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               AppText(
-                  text: StringUtils.limitString(content: "翻斗花园二期主卧押一付三", limits: 11),
+                  text: StringUtils.limitString(
+                      content: "${widget.detailData?.houseArea}${widget.detailData?.houseTypeName}",
+                      limits: 11),
                   textColor: AppColors.textColor2b,
                   fontSize: 19.sp),
-              AppText(text: "套二 50m2", textColor: AppColors.textColorB6, fontSize: 13.sp),
+              AppText(
+                  text: "${widget.detailData?.houseTypeName}${widget.detailData?.acreage}m²",
+                  textColor: AppColors.textColorB6,
+                  fontSize: 13.sp),
               Row(
                 children: [
-                  AppText(text: "3000", textColor: AppColors.textRedColor39, fontSize: 18.sp),
+                  AppText(
+                      text: "${widget.detailData?.rent}",
+                      textColor: AppColors.textRedColor39,
+                      fontSize: 18.sp),
                   AppText(text: "元/月", textColor: AppColors.textRedColor6d, fontSize: 11.sp),
                   Expanded(child: SizedBox()),
-                  AppText(text: "服务费：3000元", textColor: AppColors.textColorB6, fontSize: 14.sp),
+                  AppText(
+                      text: "服务费：${widget.detailData?.serviceCharge}元",
+                      textColor: AppColors.textColorB6,
+                      fontSize: 14.sp),
                 ],
               )
             ]))

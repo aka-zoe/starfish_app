@@ -332,6 +332,76 @@ public class LivingAreaExample {
             return (Criteria) this;
         }
 
+        public Criteria andAreaAddressIsNull() {
+            addCriterion("area_address is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAreaAddressIsNotNull() {
+            addCriterion("area_address is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAreaAddressEqualTo(String value) {
+            addCriterion("area_address =", value, "areaAddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andAreaAddressNotEqualTo(String value) {
+            addCriterion("area_address <>", value, "areaAddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andAreaAddressGreaterThan(String value) {
+            addCriterion("area_address >", value, "areaAddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andAreaAddressGreaterThanOrEqualTo(String value) {
+            addCriterion("area_address >=", value, "areaAddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andAreaAddressLessThan(String value) {
+            addCriterion("area_address <", value, "areaAddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andAreaAddressLessThanOrEqualTo(String value) {
+            addCriterion("area_address <=", value, "areaAddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andAreaAddressLike(String value) {
+            addCriterion("area_address like", value, "areaAddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andAreaAddressNotLike(String value) {
+            addCriterion("area_address not like", value, "areaAddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andAreaAddressIn(List<String> values) {
+            addCriterion("area_address in", values, "areaAddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andAreaAddressNotIn(List<String> values) {
+            addCriterion("area_address not in", values, "areaAddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andAreaAddressBetween(String value1, String value2) {
+            addCriterion("area_address between", value1, value2, "areaAddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andAreaAddressNotBetween(String value1, String value2) {
+            addCriterion("area_address not between", value1, value2, "areaAddress");
+            return (Criteria) this;
+        }
+
         public Criteria andLongitudeIsNull() {
             addCriterion("longitude is null");
             return (Criteria) this;

@@ -994,6 +994,66 @@ public class UserExample {
             return (Criteria) this;
         }
 
+        public Criteria andOpenMsgIsNull() {
+            addCriterion("open_msg is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenMsgIsNotNull() {
+            addCriterion("open_msg is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenMsgEqualTo(Integer value) {
+            addCriterion("open_msg =", value, "openMsg");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenMsgNotEqualTo(Integer value) {
+            addCriterion("open_msg <>", value, "openMsg");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenMsgGreaterThan(Integer value) {
+            addCriterion("open_msg >", value, "openMsg");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenMsgGreaterThanOrEqualTo(Integer value) {
+            addCriterion("open_msg >=", value, "openMsg");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenMsgLessThan(Integer value) {
+            addCriterion("open_msg <", value, "openMsg");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenMsgLessThanOrEqualTo(Integer value) {
+            addCriterion("open_msg <=", value, "openMsg");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenMsgIn(List<Integer> values) {
+            addCriterion("open_msg in", values, "openMsg");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenMsgNotIn(List<Integer> values) {
+            addCriterion("open_msg not in", values, "openMsg");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenMsgBetween(Integer value1, Integer value2) {
+            addCriterion("open_msg between", value1, value2, "openMsg");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenMsgNotBetween(Integer value1, Integer value2) {
+            addCriterion("open_msg not between", value1, value2, "openMsg");
+            return (Criteria) this;
+        }
+
         public Criteria andStatusIsNull() {
             addCriterion("`status` is null");
             return (Criteria) this;

@@ -3,6 +3,7 @@
 <mapper namespace="com.zoe.starfish_server.mapper.HouseResourceMapper">
   <resultMap id="BaseResultMap" type="com.zoe.starfish_server.domain.HouseResource">
     <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="image" jdbcType="VARCHAR" property="image" />
     <result column="house_image_id" jdbcType="BIGINT" property="houseImageId" />
     <result column="house_desc" jdbcType="VARCHAR" property="houseDesc" />
@@ -103,11 +104,11 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, image, house_image_id, house_desc, lease_type, rent, service_charge, house_type_id, 
-    house_type, direction, check_in_date, total_floor, current_floor, house_area_id, 
-    acreage, publish_date, fitment, payment_type, bed, washing_machine, refrigerator, 
-    air_conditioner, wifi, sofa, table_chair, tv, water_heater, cook, heating, balcony, 
-    carport, longitude, latitude, publisher, publisher_number, tag_id, publisher_id, 
+    id, `name`, image, house_image_id, house_desc, lease_type, rent, service_charge, 
+    house_type_id, house_type, direction, check_in_date, total_floor, current_floor, 
+    house_area_id, acreage, publish_date, fitment, payment_type, bed, washing_machine, 
+    refrigerator, air_conditioner, wifi, sofa, table_chair, tv, water_heater, cook, heating, 
+    balcony, carport, longitude, latitude, publisher, publisher_number, tag_id, publisher_id, 
     publisher_type, publisher_head, create_time, `status`
   </sql>
   <select id="selectByExample" parameterType="com.zoe.starfish_server.domain.HouseResourceExample" resultMap="BaseResultMap">
@@ -141,40 +142,45 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.zoe.starfish_server.domain.HouseResource">
-    insert into house_res (id, image, house_image_id, 
-      house_desc, lease_type, rent, 
-      service_charge, house_type_id, house_type, 
-      direction, check_in_date, total_floor, 
-      current_floor, house_area_id, acreage, 
-      publish_date, fitment, payment_type, 
-      bed, washing_machine, refrigerator, 
-      air_conditioner, wifi, sofa, 
-      table_chair, tv, water_heater, 
-      cook, heating, balcony, 
-      carport, longitude, latitude, 
-      publisher, publisher_number, tag_id, 
-      publisher_id, publisher_type, publisher_head, 
-      create_time, `status`)
-    values (#{id,jdbcType=BIGINT}, #{image,jdbcType=VARCHAR}, #{houseImageId,jdbcType=BIGINT}, 
-      #{houseDesc,jdbcType=VARCHAR}, #{leaseType,jdbcType=INTEGER}, #{rent,jdbcType=DECIMAL}, 
-      #{serviceCharge,jdbcType=DECIMAL}, #{houseTypeId,jdbcType=BIGINT}, #{houseType,jdbcType=INTEGER}, 
-      #{direction,jdbcType=VARCHAR}, #{checkInDate,jdbcType=VARCHAR}, #{totalFloor,jdbcType=INTEGER}, 
-      #{currentFloor,jdbcType=INTEGER}, #{houseAreaId,jdbcType=BIGINT}, #{acreage,jdbcType=INTEGER}, 
-      #{publishDate,jdbcType=VARCHAR}, #{fitment,jdbcType=VARCHAR}, #{paymentType,jdbcType=INTEGER}, 
-      #{bed,jdbcType=INTEGER}, #{washingMachine,jdbcType=INTEGER}, #{refrigerator,jdbcType=INTEGER}, 
-      #{airConditioner,jdbcType=INTEGER}, #{wifi,jdbcType=INTEGER}, #{sofa,jdbcType=INTEGER}, 
-      #{tableChair,jdbcType=INTEGER}, #{tv,jdbcType=INTEGER}, #{waterHeater,jdbcType=INTEGER}, 
-      #{cook,jdbcType=INTEGER}, #{heating,jdbcType=INTEGER}, #{balcony,jdbcType=INTEGER}, 
-      #{carport,jdbcType=INTEGER}, #{longitude,jdbcType=VARCHAR}, #{latitude,jdbcType=VARCHAR}, 
-      #{publisher,jdbcType=VARCHAR}, #{publisherNumber,jdbcType=VARCHAR}, #{tagId,jdbcType=BIGINT}, 
-      #{publisherId,jdbcType=BIGINT}, #{publisherType,jdbcType=VARCHAR}, #{publisherHead,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER})
+    insert into house_res (id, `name`, image, 
+      house_image_id, house_desc, lease_type, 
+      rent, service_charge, house_type_id, 
+      house_type, direction, check_in_date, 
+      total_floor, current_floor, house_area_id, 
+      acreage, publish_date, fitment, 
+      payment_type, bed, washing_machine, 
+      refrigerator, air_conditioner, wifi, 
+      sofa, table_chair, tv, 
+      water_heater, cook, heating, 
+      balcony, carport, longitude, 
+      latitude, publisher, publisher_number, 
+      tag_id, publisher_id, publisher_type, 
+      publisher_head, create_time, `status`
+      )
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
+      #{houseImageId,jdbcType=BIGINT}, #{houseDesc,jdbcType=VARCHAR}, #{leaseType,jdbcType=INTEGER}, 
+      #{rent,jdbcType=DECIMAL}, #{serviceCharge,jdbcType=DECIMAL}, #{houseTypeId,jdbcType=BIGINT}, 
+      #{houseType,jdbcType=INTEGER}, #{direction,jdbcType=VARCHAR}, #{checkInDate,jdbcType=VARCHAR}, 
+      #{totalFloor,jdbcType=INTEGER}, #{currentFloor,jdbcType=INTEGER}, #{houseAreaId,jdbcType=BIGINT}, 
+      #{acreage,jdbcType=INTEGER}, #{publishDate,jdbcType=VARCHAR}, #{fitment,jdbcType=VARCHAR}, 
+      #{paymentType,jdbcType=INTEGER}, #{bed,jdbcType=INTEGER}, #{washingMachine,jdbcType=INTEGER}, 
+      #{refrigerator,jdbcType=INTEGER}, #{airConditioner,jdbcType=INTEGER}, #{wifi,jdbcType=INTEGER}, 
+      #{sofa,jdbcType=INTEGER}, #{tableChair,jdbcType=INTEGER}, #{tv,jdbcType=INTEGER}, 
+      #{waterHeater,jdbcType=INTEGER}, #{cook,jdbcType=INTEGER}, #{heating,jdbcType=INTEGER}, 
+      #{balcony,jdbcType=INTEGER}, #{carport,jdbcType=INTEGER}, #{longitude,jdbcType=VARCHAR}, 
+      #{latitude,jdbcType=VARCHAR}, #{publisher,jdbcType=VARCHAR}, #{publisherNumber,jdbcType=VARCHAR}, 
+      #{tagId,jdbcType=BIGINT}, #{publisherId,jdbcType=BIGINT}, #{publisherType,jdbcType=VARCHAR}, 
+      #{publisherHead,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.zoe.starfish_server.domain.HouseResource">
     insert into house_res
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
+      </if>
+      <if test="name != null">
+        `name`,
       </if>
       <if test="image != null">
         image,
@@ -300,6 +306,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
       </if>
       <if test="image != null">
         #{image,jdbcType=VARCHAR},
@@ -435,6 +444,9 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
+      <if test="record.name != null">
+        `name` = #{record.name,jdbcType=VARCHAR},
+      </if>
       <if test="record.image != null">
         image = #{record.image,jdbcType=VARCHAR},
       </if>
@@ -563,6 +575,7 @@
   <update id="updateByExample" parameterType="map">
     update house_res
     set id = #{record.id,jdbcType=BIGINT},
+      `name` = #{record.name,jdbcType=VARCHAR},
       image = #{record.image,jdbcType=VARCHAR},
       house_image_id = #{record.houseImageId,jdbcType=BIGINT},
       house_desc = #{record.houseDesc,jdbcType=VARCHAR},
@@ -610,6 +623,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.zoe.starfish_server.domain.HouseResource">
     update house_res
     <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
       <if test="image != null">
         image = #{image,jdbcType=VARCHAR},
       </if>
@@ -735,7 +751,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zoe.starfish_server.domain.HouseResource">
     update house_res
-    set image = #{image,jdbcType=VARCHAR},
+    set `name` = #{name,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
       house_image_id = #{houseImageId,jdbcType=BIGINT},
       house_desc = #{houseDesc,jdbcType=VARCHAR},
       lease_type = #{leaseType,jdbcType=INTEGER},

@@ -16,6 +16,8 @@ import java.util.List;
 public class HouseResourceDetailResp {
     private Long id;
 
+    private String name;
+
     //banner图
     private List<String> imageList;
 
@@ -132,11 +134,14 @@ public class HouseResourceDetailResp {
     //发布人头像
     private String publisherHead;
 
+    //是否被收藏
+    private boolean collected;
 
     @Override
     public String toString() {
         return "HouseResourceDetailResp{" +
                 "id=" + id +
+                ", name='" + name + '\'' +
                 ", imageList=" + imageList +
                 ", houseDesc='" + houseDesc + '\'' +
                 ", leaseType=" + leaseType +
@@ -175,7 +180,25 @@ public class HouseResourceDetailResp {
                 ", publisherId=" + publisherId +
                 ", publisherType='" + publisherType + '\'' +
                 ", publisherHead='" + publisherHead + '\'' +
+                ", collected=" + collected +
                 '}';
+    }
+
+
+    public boolean isCollected() {
+        return collected;
+    }
+
+    public void setCollected(boolean collected) {
+        this.collected = collected;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getHouseAreaAddress() {

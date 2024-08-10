@@ -8,12 +8,15 @@ import com.zoe.starfish_server.common.resp.HouseResourceResp;
 import com.zoe.starfish_server.domain.*;
 import com.zoe.starfish_server.service.*;
 import com.zoe.starfish_server.utils.PassToken;
+import com.zoe.starfish_server.utils.TokenUtils;
 import com.zoe.starfish_server.utils.UserLoginToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 房源控制器
@@ -41,6 +44,9 @@ public class HouseResourceController {
     @Autowired
     HouseTypeService typeService;
 
+    @Autowired
+    CollectService collectService;
+
     @PassToken
     @PostMapping("/allHouseResources")
     public CommonResp allHouseResources() {
@@ -59,12 +65,12 @@ public class HouseResourceController {
 
     @PassToken
     @PostMapping("/houseResourceDetail")
-    public CommonResp houseResourceDetail(@RequestParam(value = "id", required = true) Long id) {
+    public CommonResp houseResourceDetail(HttpServletRequest request, @RequestParam(value = "id", required = true) Long id) {
         HouseResource resource = service.houseResourceDetail(id);
         if (resource == null) {
             return CommonResp.error(RespCodeEnum.EMPTYDATA);
         }
-        HouseResourceDetailResp resp = generalDetail(resource);
+        HouseResourceDetailResp resp = generalDetail(request, resource);
         return CommonResp.success(resp);
     }
 
@@ -90,9 +96,11 @@ public class HouseResourceController {
         return CommonResp.success(service.updateHouseResource(houseResource));
     }
 
-    private HouseResourceDetailResp generalDetail(HouseResource resource) {
+    private HouseResourceDetailResp generalDetail(HttpServletRequest request, HouseResource resource) {
         HouseResourceDetailResp resp = new HouseResourceDetailResp();
         resp.setId(resource.getId());
+        //房源名称
+        resp.setName(resource.getName());
         //房源图片
         resp.setImageList(getImgList(imgService.imgForHouse(resource.getId())));
         //说明
@@ -180,6 +188,21 @@ public class HouseResourceController {
         resp.setPublisherType(resource.getPublisherType());
         //发布人头像
         resp.setPublisherHead(resource.getPublisherHead());
+        //获取当前方式否是被收藏状态
+        Long userId = TokenUtils.getUserId(request);
+        boolean collected = false;
+        if (userId != null) {
+            List<Collect> collects = collectService.collectList(userId, 1);
+            if (collects != null) {
+                for (Collect collect : collects){
+                    if(Objects.equals(collect.getHouseresid(), resource.getId())){
+                        collected = true;
+                    }
+                }
+            }
+        }
+        resp.setCollected(collected);
+
         return resp;
     }
 
@@ -207,35 +230,37 @@ public class HouseResourceController {
             for (HouseResource resource : houseResources) {
                 HouseResourceResp resp = new HouseResourceResp();
                 //房租支付方式
-                Integer paymentType = resource.getPaymentType();
-                String payType = "";
-                switch (paymentType) {
-                    case 0:
-                        payType = ConstantsField.paymentType0;
-                        break;
-                    case 1:
-                        payType = ConstantsField.paymentType1;
-                        break;
-                    case 2:
-                        payType = ConstantsField.paymentType2;
-                        break;
-                    case 3:
-                        payType = ConstantsField.paymentType3;
-                        break;
-                    default:
-
-                }
+//                Integer paymentType = resource.getPaymentType();
+//                String payType = "";
+//                switch (paymentType) {
+//                    case 0:
+//                        payType = ConstantsField.paymentType0;
+//                        break;
+//                    case 1:
+//                        payType = ConstantsField.paymentType1;
+//                        break;
+//                    case 2:
+//                        payType = ConstantsField.paymentType2;
+//                        break;
+//                    case 3:
+//                        payType = ConstantsField.paymentType3;
+//                        break;
+//                    default:
+//
+//                }
                 //小区名称
-                LivingArea area = areaService.getArea(resource.getId());
-                if (area != null) {
-                    String areaName = area.getAreaName();
-                    //标题
-                    resp.setTitle(areaName + payType);
-                } else {
-                    //标题
-                    resp.setTitle(payType);
-                }
+//                LivingArea area = areaService.getArea(resource.getId());
+//                if (area != null) {
+//                    String areaName = area.getAreaName();
+//                    //标题
+//                    resp.setTitle(areaName + payType);
+//                } else {
+//                    //标题
+//                    resp.setTitle(payType);
+//                }
 
+                //房源名称
+                resp.setTitle(resource.getName());
                 //户型
                 HouseType type = typeService.getType(resource.getHouseTypeId());
                 if (type != null) {

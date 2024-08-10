@@ -14,6 +14,7 @@ create table `user`
     `um_token`    varchar(255) comment '友盟token',
     `tag`         varchar(50) comment '推送用户tag',
     `age`         int comment '年龄',
+    `open_msg`    int comment '是否开启消息：0 关闭，1 开启',
     `status`      int comment '状态：0=正常 1=停用 -1=删除',
     primary key (`id`)
 
@@ -21,7 +22,7 @@ create table `user`
   default charset = utf8mb4 comment '用户表';
 
 insert into user (name, password, role, create_time, work_number, email, address, phone, gender, um_token, tag, age,
-                  status)
+                  open_msg, status)
 values ('Zoe', '123456', 'admin', '2023-10-21 22:24:00', '23789', 'sensen.gong@alpha-ess.com', '苏州', '15061442013',
         '男', 'AjVGvmpMkTnTwdMFopxl1k-aBT2gLAuhcPjli2v1EbgK', 'normal', 25,
-        0);
+        0, 0);

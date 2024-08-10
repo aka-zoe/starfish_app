@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zoe.starfish_server.mapper.CollectMapper">
+  <resultMap id="BaseResultMap" type="com.zoe.starfish_server.domain.Collect">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="collectType" jdbcType="INTEGER" property="collecttype" />
+    <result column="collectTime" jdbcType="BIGINT" property="collecttime" />
+    <result column="houseResId" jdbcType="BIGINT" property="houseresid" />
+    <result column="newsId" jdbcType="BIGINT" property="newsid" />
+    <result column="userId" jdbcType="BIGINT" property="userid" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, collectType, collectTime, houseResId, newsId, userId, title
+  </sql>
+  <select id="selectByExample" parameterType="com.zoe.starfish_server.domain.CollectExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from my_collect
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from my_collect
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from my_collect
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zoe.starfish_server.domain.CollectExample">
+    delete from my_collect
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zoe.starfish_server.domain.Collect">
+    insert into my_collect (id, collectType, collectTime, 
+      houseResId, newsId, userId, 
+      title)
+    values (#{id,jdbcType=BIGINT}, #{collecttype,jdbcType=INTEGER}, #{collecttime,jdbcType=BIGINT}, 
+      #{houseresid,jdbcType=BIGINT}, #{newsid,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, 
+      #{title,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zoe.starfish_server.domain.Collect">
+    insert into my_collect
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="collecttype != null">
+        collectType,
+      </if>
+      <if test="collecttime != null">
+        collectTime,
+      </if>
+      <if test="houseresid != null">
+        houseResId,
+      </if>
+      <if test="newsid != null">
+        newsId,
+      </if>
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="collecttype != null">
+        #{collecttype,jdbcType=INTEGER},
+      </if>
+      <if test="collecttime != null">
+        #{collecttime,jdbcType=BIGINT},
+      </if>
+      <if test="houseresid != null">
+        #{houseresid,jdbcType=BIGINT},
+      </if>
+      <if test="newsid != null">
+        #{newsid,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zoe.starfish_server.domain.CollectExample" resultType="java.lang.Long">
+    select count(*) from my_collect
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update my_collect
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.collecttype != null">
+        collectType = #{record.collecttype,jdbcType=INTEGER},
+      </if>
+      <if test="record.collecttime != null">
+        collectTime = #{record.collecttime,jdbcType=BIGINT},
+      </if>
+      <if test="record.houseresid != null">
+        houseResId = #{record.houseresid,jdbcType=BIGINT},
+      </if>
+      <if test="record.newsid != null">
+        newsId = #{record.newsid,jdbcType=BIGINT},
+      </if>
+      <if test="record.userid != null">
+        userId = #{record.userid,jdbcType=BIGINT},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update my_collect
+    set id = #{record.id,jdbcType=BIGINT},
+      collectType = #{record.collecttype,jdbcType=INTEGER},
+      collectTime = #{record.collecttime,jdbcType=BIGINT},
+      houseResId = #{record.houseresid,jdbcType=BIGINT},
+      newsId = #{record.newsid,jdbcType=BIGINT},
+      userId = #{record.userid,jdbcType=BIGINT},
+      title = #{record.title,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zoe.starfish_server.domain.Collect">
+    update my_collect
+    <set>
+      <if test="collecttype != null">
+        collectType = #{collecttype,jdbcType=INTEGER},
+      </if>
+      <if test="collecttime != null">
+        collectTime = #{collecttime,jdbcType=BIGINT},
+      </if>
+      <if test="houseresid != null">
+        houseResId = #{houseresid,jdbcType=BIGINT},
+      </if>
+      <if test="newsid != null">
+        newsId = #{newsid,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zoe.starfish_server.domain.Collect">
+    update my_collect
+    set collectType = #{collecttype,jdbcType=INTEGER},
+      collectTime = #{collecttime,jdbcType=BIGINT},
+      houseResId = #{houseresid,jdbcType=BIGINT},
+      newsId = #{newsid,jdbcType=BIGINT},
+      userId = #{userid,jdbcType=BIGINT},
+      title = #{title,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

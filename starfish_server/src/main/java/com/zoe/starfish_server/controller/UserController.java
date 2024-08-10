@@ -123,4 +123,22 @@ public class UserController {
         return CommonResp.success(userService.updateUser(user) == 1);
 
     }
+
+    /**
+     * 是否开启消息
+     *
+     * @param request
+     * @param openFlag
+     * @return
+     */
+    @UserLoginToken
+    @PostMapping("/openMsg")
+    public CommonResp openMsg(HttpServletRequest request, @RequestParam("openFlag") Boolean openFlag) {
+        User user = userService.getUser(TokenUtils.getUserId(request));
+        if (user != null) {
+            user.setOpenMsg(openFlag ? 1 : 0);
+        }
+        int i = userService.updateUser(user);
+        return CommonResp.success(i == 1);
+    }
 }

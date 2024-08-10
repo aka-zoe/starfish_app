@@ -2,6 +2,7 @@ drop table if exists `house_res`;
 create table `house_res`
 (
     `id`               bigint not null auto_increment comment 'id',
+    `name`             varchar(255) comment '房源名称',
     `image`            varchar(255) comment '缩略图',
     `house_image_id`   bigint comment '房源图片id',
     `house_desc`       varchar(255) comment '比如近地铁、距离地铁1.5km等',
@@ -47,14 +48,18 @@ create table `house_res`
 ) engine = innodb
   default charset = utf8mb4 comment '房源表';
 
-insert into house_res (image, house_image_id, house_desc, lease_type, rent, service_charge, house_type_id, house_type,
+insert into house_res (name, image, house_image_id, house_desc, lease_type, rent, service_charge, house_type_id,
+                       house_type,
                        direction, check_in_date, total_floor, current_floor, house_area_id, acreage, publish_date,
                        fitment, payment_type, bed, washing_machine, refrigerator, air_conditioner, wifi,
-                       sofa, table_chair, tv,water_heater, cook, heating, balcony, carport, longitude, latitude, publisher,
+                       sofa, table_chair, tv, water_heater, cook, heating, balcony, carport, longitude, latitude,
+                       publisher,
                        publisher_number,
                        tag_id,
                        publisher_id, publisher_type, publisher_head, create_time, status)
-values ('https://n.sinaimg.cn/sinacn16/112/w1557h955/20180510/7270-haichqz7292785.jpg', -1, '近地铁', 0, 3000, 150, 1,
+values ('翻斗花园三期32幢三室一厅', 'https://n.sinaimg.cn/sinacn16/112/w1557h955/20180510/7270-haichqz7292785.jpg', -1,
+        '近地铁', 0, 3000, 150, 1,
         2,
-        '朝南', '2024-06-14 12:12:12', 32, 10, -1, 110, '2024-04-13 00:00:00', '精装修', 0, 0, 0, 0, 0, 0, 0, 0,1, 1, 1,
+        '朝南', '2024-06-14 12:12:12', 32, 10, -1, 110, '2024-04-13 00:00:00', '精装修', 0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
+        1,
         1, 1, 1, '经度', '纬度', '小明', '12344441111', -1, 1, '中介', '', '2024-05-13 11:43:00', 0);

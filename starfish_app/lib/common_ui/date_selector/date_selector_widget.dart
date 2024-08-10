@@ -1,10 +1,16 @@
+import 'package:flustars/flustars.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:starfish_tenement_app/common_ui/title/app_text.dart';
 
+typedef DateTimeSelectBuilder = Function(String date, String time);
+
 ///房源预约时间选择组件
 class DateTimeSelector extends StatefulWidget {
-  const DateTimeSelector({super.key});
+  const DateTimeSelector({super.key, this.builder});
+
+  final DateTimeSelectBuilder? builder;
 
   @override
   _DateTimeSelectorState createState() => _DateTimeSelectorState();
@@ -16,17 +22,27 @@ class _DateTimeSelectorState extends State<DateTimeSelector> {
   int selectedTimeIndex = 0;
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    if (widget.builder != null) {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+        _dateTimeBuild();
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
         height: 150.h,
-        child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
+        child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
           20.horizontalSpace,
-          Image.asset("assets/images/icon_red_arrow_right.png",width: 12.w,height: 10.h),
+          Image.asset("assets/images/icon_red_arrow_right.png", width: 12.w, height: 10.h),
           Expanded(flex: 3, child: _leftDateListWidget()),
           Expanded(flex: 2, child: _rightTimeListWidget()),
-          Image.asset("assets/images/icon_red_arrow_left.png",width: 12.w,height: 10.h),
+          Image.asset("assets/images/icon_red_arrow_left.png", width: 12.w, height: 10.h),
           20.horizontalSpace,
         ]));
   }
@@ -40,8 +56,11 @@ class _DateTimeSelectorState extends State<DateTimeSelector> {
         onSelectedItemChanged: (index) {
           setState(() {
             selectedDateIndex = index;
+            _dateTimeBuild();
             //示例：2024-08-09 20:50:55.086911
-            print(dateTimeModels[selectedDateIndex].date);
+            if (kDebugMode) {
+              print(dateTimeModels[selectedDateIndex].date);
+            }
           });
         },
         childDelegate: ListWheelChildBuilderDelegate(
@@ -70,9 +89,11 @@ class _DateTimeSelectorState extends State<DateTimeSelector> {
         onSelectedItemChanged: (index) {
           setState(() {
             selectedTimeIndex = index;
-
+            _dateTimeBuild();
             //示例：08:30
-            print(dateTimeModels[selectedDateIndex].times[selectedTimeIndex]);
+            if (kDebugMode) {
+              print(dateTimeModels[selectedDateIndex].times[selectedTimeIndex]);
+            }
           });
         },
         childDelegate: ListWheelChildBuilderDelegate(
@@ -88,6 +109,16 @@ class _DateTimeSelectorState extends State<DateTimeSelector> {
                           selectedTimeIndex == index ? FontWeight.w600 : FontWeight.normal));
             },
             childCount: dateTimeModels[selectedDateIndex].times.length));
+  }
+
+  ///将选择的时间格式化后回调出去
+  void _dateTimeBuild() {
+    if (widget.builder != null) {
+      var date = dateTimeModels[selectedDateIndex].date;
+      var formatDate = DateUtil.formatDate(date, format: "yyyy-MM-dd");
+      var time = dateTimeModels[selectedDateIndex].times[selectedTimeIndex];
+      widget.builder?.call(formatDate, time);
+    }
   }
 }
 

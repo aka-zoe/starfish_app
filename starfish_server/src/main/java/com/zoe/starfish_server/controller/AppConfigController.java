@@ -1,11 +1,14 @@
 package com.zoe.starfish_server.controller;
 
 import com.zoe.starfish_server.common.RespCodeEnum;
+import com.zoe.starfish_server.common.resp.AppInfoResp;
+import com.zoe.starfish_server.common.resp.BookedListResp;
 import com.zoe.starfish_server.common.resp.CommonResp;
 import com.zoe.starfish_server.domain.AppConfig;
 import com.zoe.starfish_server.domain.User;
 import com.zoe.starfish_server.push.PushInstance;
 import com.zoe.starfish_server.service.AppConfigService;
+import com.zoe.starfish_server.service.BookedHouseService;
 import com.zoe.starfish_server.service.UserService;
 import com.zoe.starfish_server.utils.PassToken;
 import com.zoe.starfish_server.utils.StringUtils;
@@ -15,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,6 +33,9 @@ public class AppConfigController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    BookedHouseService bookedHouseService;
 
     /**
      * 查看配置信息
@@ -56,6 +63,7 @@ public class AppConfigController {
 
     /**
      * 测试推送
+     *
      * @param paramMap
      * @param request
      * @return
@@ -79,5 +87,42 @@ public class AppConfigController {
         }
         Boolean success = PushInstance.getInstance().pushNotification(user.getUmToken(), paramMap, null);
         return CommonResp.success(success);
+    }
+
+    /**
+     * 获取当前用户相关的APP信息
+     *
+     * @param request
+     * @return
+     */
+    @UserLoginToken
+    @PostMapping("/getAppInfo")
+    public CommonResp getAppInfo(HttpServletRequest request) {
+        Long userId = TokenUtils.getUserId(request);
+        AppInfoResp appInfoResp = new AppInfoResp();
+        if (userId == null) {
+            return CommonResp.success(appInfoResp);
+        }
+        List<BookedListResp> bookedHouseList = bookedHouseService.getBookedHouseList(userId);
+        //状态（1=待处理、2=超时未处理、3=已处理、4=已关闭）
+        int bookedCount = 0;
+        for (BookedListResp booked : bookedHouseList) {
+            Integer status = booked.getStatus();
+            if (status != null && status == 1 | status == 2) {
+                bookedCount++;
+            }
+        }
+        appInfoResp.setBookedCount(bookedCount);
+        appInfoResp.setCollectHouseCount(0);
+        appInfoResp.setCollectNewsCount(0);
+        appInfoResp.setUnreadMsgCount(0);
+        User user = userService.getUser(userId);
+        if (user != null) {
+            appInfoResp.setOpenMsg(user.getOpenMsg() == 1);
+        } else {
+            appInfoResp.setOpenMsg(false);
+        }
+
+        return CommonResp.success(appInfoResp);
     }
 }

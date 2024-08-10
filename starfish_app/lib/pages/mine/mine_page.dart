@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:starfish_tenement_app/common_ui/title/app_text.dart';
 import 'package:starfish_tenement_app/pages/auth/auth_page.dart';
+import 'package:starfish_tenement_app/pages/booked/list/my_booked_list_page.dart';
+import 'package:starfish_tenement_app/pages/mine/mine_vm.dart';
 import 'package:starfish_tenement_app/route/route_utils.dart';
 import 'package:starfish_tenement_app/styles/app_colors.dart';
 
@@ -14,69 +17,91 @@ class MinePage extends StatefulWidget {
 }
 
 class _MinePageState extends State<MinePage> {
-  bool switchValue = false;
+  final MineViewModel _viewModel = MineViewModel();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _viewModel.getAppInfo();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            _header(onMessageTap: (){
-              RouteUtils.push(context, AuthPage());
-            }),
-            15.verticalSpace,
-            Padding(
-                padding: EdgeInsets.only(left: 20.w, right: 20.w),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      AppText(
-                        text: "房源管理",
-                        textColor: const Color(0xFFb7b7b4),
-                        fontSize: 14.sp,
-                      ),
-                      _mineItemWidget(
-                          title: "预约中心",
-                          subtitle: "已预约2家",
-                          subTitleColor: AppColors.textColor62,
-                          showBottomLine: true,
-                          onItemTap: () {}),
-                      _mineItemWidget(
-                          title: "房源收藏",
-                          subtitle: "已收藏4套",
-                          subTitleColor: AppColors.textColorAE,
-                          showBottomLine: true),
-                      _mineItemWidget(title: "资讯收藏", onItemTap: () {}),
-                      AppText(
-                        text: "通知管理",
-                        textColor: const Color(0xFFb7b7b4),
-                        fontSize: 14.sp,
-                      ),
-                      _mineItemWidget(
-                          title: "消息中心",
-                          showSwitch: true,
-                          switchValue: switchValue,
-                          switchCallback: (value) {
-                            switchValue = value;
-                            setState(() {});
-                          }),
-                      AppText(
-                        text: "其它",
-                        textColor: const Color(0xFFb7b7b4),
-                        fontSize: 14.sp,
-                      ),
-                      _mineItemWidget(title: "意见反馈", showBottomLine: true, onItemTap: () {}),
-                      _mineItemWidget(title: "关于我们", showBottomLine: true, onItemTap: () {}),
-                      _mineItemWidget(title: "设置", onItemTap: () {}),
-                    ]))
-          ],
-        ),),
-      ),
-    );
+    return ChangeNotifierProvider<MineViewModel>(
+        create: (context) {
+          return _viewModel;
+        },
+        child: Scaffold(
+          body: SafeArea(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  _header(onMessageTap: () {
+                    RouteUtils.push(context, AuthPage());
+                  }),
+                  15.verticalSpace,
+                  Padding(
+                      padding: EdgeInsets.only(left: 20.w, right: 20.w),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            AppText(
+                              text: "房源管理",
+                              textColor: const Color(0xFFb7b7b4),
+                              fontSize: 14.sp,
+                            ),
+                            Consumer<MineViewModel>(builder: (context, vm, child) {
+                              return _mineItemWidget(
+                                  title: "预约中心",
+                                  subtitle: "已预约${vm.infoData?.bookedCount ?? 0}家",
+                                  subTitleColor: AppColors.textColor62,
+                                  showBottomLine: true,
+                                  onItemTap: () {
+                                    RouteUtils.push(context, const MyBookedListPage());
+                                  });
+                            }),
+                            Consumer<MineViewModel>(builder: (context, vm, child) {
+                              return _mineItemWidget(
+                                  title: "房源收藏",
+                                  subtitle: "已收藏${vm.infoData?.collectHouseCount ?? 0}套",
+                                  subTitleColor: AppColors.textColorAE,
+                                  showBottomLine: true);
+                            }),
+                            _mineItemWidget(title: "资讯收藏", onItemTap: () {}),
+                            AppText(
+                              text: "通知管理",
+                              textColor: const Color(0xFFb7b7b4),
+                              fontSize: 14.sp,
+                            ),
+                            Consumer<MineViewModel>(builder: (context, vm, child) {
+                              return _mineItemWidget(
+                                  title: "消息中心",
+                                  showSwitch: true,
+                                  switchValue: vm.infoData?.openMsg,
+                                  switchCallback: (value) {
+                                    //是否开启消息事件
+                                    vm.setOpenMsg(value);
+                                  });
+                            }),
+                            AppText(
+                              text: "其它",
+                              textColor: const Color(0xFFb7b7b4),
+                              fontSize: 14.sp,
+                            ),
+                            _mineItemWidget(title: "意见反馈", showBottomLine: true, onItemTap: () {}),
+                            _mineItemWidget(title: "关于我们", showBottomLine: true, onItemTap: () {}),
+                            _mineItemWidget(title: "设置", onItemTap: () {}),
+                          ]))
+                ],
+              ),
+            ),
+          ),
+        ));
   }
 
   ///头布局

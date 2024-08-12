@@ -1,7 +1,10 @@
 package com.zoe.starfish_server.controller;
 
 import com.zoe.starfish_server.common.resp.CommonResp;
+import com.zoe.starfish_server.domain.AppConfig;
+import com.zoe.starfish_server.service.AppConfigService;
 import com.zoe.starfish_server.service.FileService;
+import com.zoe.starfish_server.utils.PassToken;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -24,9 +27,20 @@ public class FileController {
     @Autowired
     FileService fileService;
 
+    @Autowired
+    AppConfigService configService;
 
+    @PassToken
     @PostMapping("/upload")
     public CommonResp uploadFiles(@RequestParam("files") MultipartFile[] files) {
+
+        if (fileService.getFileStorageLocation() == null) {
+            AppConfig config = configService.getConfig();
+            if (config != null) {
+                fileService.setFileStorageLocation(config.getUploadFilePath());
+            }
+        }
+
         List<String> fileDownloadUris = new ArrayList<>();
         for (MultipartFile file : files) {
             fileService.storeFile(file);
@@ -39,8 +53,15 @@ public class FileController {
         return CommonResp.success(fileDownloadUris);
     }
 
+    @PassToken
     @GetMapping("/download/{filename:.+}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String filename) {
+        if (fileService.getFileStorageLocation() == null) {
+            AppConfig config = configService.getConfig();
+            if (config != null) {
+                fileService.setFileStorageLocation(config.getUploadFilePath());
+            }
+        }
         try {
             Path filePath = fileService.loadFile(filename);
             Resource resource = new UrlResource(filePath.toUri());

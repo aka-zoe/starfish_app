@@ -5,10 +5,12 @@ import com.zoe.starfish_server.common.resp.AppInfoResp;
 import com.zoe.starfish_server.common.resp.BookedListResp;
 import com.zoe.starfish_server.common.resp.CommonResp;
 import com.zoe.starfish_server.domain.AppConfig;
+import com.zoe.starfish_server.domain.Collect;
 import com.zoe.starfish_server.domain.User;
 import com.zoe.starfish_server.push.PushInstance;
 import com.zoe.starfish_server.service.AppConfigService;
 import com.zoe.starfish_server.service.BookedHouseService;
+import com.zoe.starfish_server.service.CollectService;
 import com.zoe.starfish_server.service.UserService;
 import com.zoe.starfish_server.utils.PassToken;
 import com.zoe.starfish_server.utils.StringUtils;
@@ -36,6 +38,9 @@ public class AppConfigController {
 
     @Autowired
     BookedHouseService bookedHouseService;
+
+    @Autowired
+    CollectService collectService;
 
     /**
      * 查看配置信息
@@ -113,8 +118,19 @@ public class AppConfigController {
             }
         }
         appInfoResp.setBookedCount(bookedCount);
-        appInfoResp.setCollectHouseCount(0);
-        appInfoResp.setCollectNewsCount(0);
+        List<Collect> collectsHouse = collectService.collectList(userId, 1);
+        List<Collect> collectsNews = collectService.collectList(userId, 2);
+        if (collectsHouse != null && !collectsHouse.isEmpty()) {
+            appInfoResp.setCollectHouseCount(collectsHouse.size());
+        } else {
+            appInfoResp.setCollectHouseCount(0);
+        }
+        if (collectsNews != null && !collectsNews.isEmpty()) {
+            appInfoResp.setCollectNewsCount(collectsNews.size());
+        } else {
+            appInfoResp.setCollectNewsCount(0);
+        }
+
         appInfoResp.setUnreadMsgCount(0);
         User user = userService.getUser(userId);
         if (user != null) {

@@ -6,6 +6,7 @@
     <result column="um_host" jdbcType="VARCHAR" property="umHost" />
     <result column="um_app_master_secret" jdbcType="VARCHAR" property="umAppMasterSecret" />
     <result column="um_app_key" jdbcType="VARCHAR" property="umAppKey" />
+    <result column="upload_file_path" jdbcType="VARCHAR" property="uploadFilePath" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, um_host, um_app_master_secret, um_app_key
+    id, um_host, um_app_master_secret, um_app_key, upload_file_path
   </sql>
   <select id="selectByExample" parameterType="com.zoe.starfish_server.domain.AppConfigExample" resultMap="BaseResultMap">
     select
@@ -100,9 +101,9 @@
   </delete>
   <insert id="insert" parameterType="com.zoe.starfish_server.domain.AppConfig">
     insert into config (id, um_host, um_app_master_secret, 
-      um_app_key)
+      um_app_key, upload_file_path)
     values (#{id,jdbcType=BIGINT}, #{umHost,jdbcType=VARCHAR}, #{umAppMasterSecret,jdbcType=VARCHAR}, 
-      #{umAppKey,jdbcType=VARCHAR})
+      #{umAppKey,jdbcType=VARCHAR}, #{uploadFilePath,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zoe.starfish_server.domain.AppConfig">
     insert into config
@@ -119,6 +120,9 @@
       <if test="umAppKey != null">
         um_app_key,
       </if>
+      <if test="uploadFilePath != null">
+        upload_file_path,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -132,6 +136,9 @@
       </if>
       <if test="umAppKey != null">
         #{umAppKey,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadFilePath != null">
+        #{uploadFilePath,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -156,6 +163,9 @@
       <if test="record.umAppKey != null">
         um_app_key = #{record.umAppKey,jdbcType=VARCHAR},
       </if>
+      <if test="record.uploadFilePath != null">
+        upload_file_path = #{record.uploadFilePath,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -166,7 +176,8 @@
     set id = #{record.id,jdbcType=BIGINT},
       um_host = #{record.umHost,jdbcType=VARCHAR},
       um_app_master_secret = #{record.umAppMasterSecret,jdbcType=VARCHAR},
-      um_app_key = #{record.umAppKey,jdbcType=VARCHAR}
+      um_app_key = #{record.umAppKey,jdbcType=VARCHAR},
+      upload_file_path = #{record.uploadFilePath,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -183,6 +194,9 @@
       <if test="umAppKey != null">
         um_app_key = #{umAppKey,jdbcType=VARCHAR},
       </if>
+      <if test="uploadFilePath != null">
+        upload_file_path = #{uploadFilePath,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -190,7 +204,8 @@
     update config
     set um_host = #{umHost,jdbcType=VARCHAR},
       um_app_master_secret = #{umAppMasterSecret,jdbcType=VARCHAR},
-      um_app_key = #{umAppKey,jdbcType=VARCHAR}
+      um_app_key = #{umAppKey,jdbcType=VARCHAR},
+      upload_file_path = #{uploadFilePath,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

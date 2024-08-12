@@ -373,6 +373,76 @@ public class AppConfigExample {
             addCriterion("um_app_key not between", value1, value2, "umAppKey");
             return (Criteria) this;
         }
+
+        public Criteria andUploadFilePathIsNull() {
+            addCriterion("upload_file_path is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUploadFilePathIsNotNull() {
+            addCriterion("upload_file_path is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUploadFilePathEqualTo(String value) {
+            addCriterion("upload_file_path =", value, "uploadFilePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andUploadFilePathNotEqualTo(String value) {
+            addCriterion("upload_file_path <>", value, "uploadFilePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andUploadFilePathGreaterThan(String value) {
+            addCriterion("upload_file_path >", value, "uploadFilePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andUploadFilePathGreaterThanOrEqualTo(String value) {
+            addCriterion("upload_file_path >=", value, "uploadFilePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andUploadFilePathLessThan(String value) {
+            addCriterion("upload_file_path <", value, "uploadFilePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andUploadFilePathLessThanOrEqualTo(String value) {
+            addCriterion("upload_file_path <=", value, "uploadFilePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andUploadFilePathLike(String value) {
+            addCriterion("upload_file_path like", value, "uploadFilePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andUploadFilePathNotLike(String value) {
+            addCriterion("upload_file_path not like", value, "uploadFilePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andUploadFilePathIn(List<String> values) {
+            addCriterion("upload_file_path in", values, "uploadFilePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andUploadFilePathNotIn(List<String> values) {
+            addCriterion("upload_file_path not in", values, "uploadFilePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andUploadFilePathBetween(String value1, String value2) {
+            addCriterion("upload_file_path between", value1, value2, "uploadFilePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andUploadFilePathNotBetween(String value1, String value2) {
+            addCriterion("upload_file_path not between", value1, value2, "uploadFilePath");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

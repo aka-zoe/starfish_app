@@ -9,6 +9,8 @@ public class AppConfig {
 
     private String umAppKey;
 
+    private String uploadFilePath;
+
     public Long getId() {
         return id;
     }
@@ -41,6 +43,14 @@ public class AppConfig {
         this.umAppKey = umAppKey;
     }
 
+    public String getUploadFilePath() {
+        return uploadFilePath;
+    }
+
+    public void setUploadFilePath(String uploadFilePath) {
+        this.uploadFilePath = uploadFilePath;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -51,6 +61,7 @@ public class AppConfig {
         sb.append(", umHost=").append(umHost);
         sb.append(", umAppMasterSecret=").append(umAppMasterSecret);
         sb.append(", umAppKey=").append(umAppKey);
+        sb.append(", uploadFilePath=").append(uploadFilePath);
         sb.append("]");
         return sb.toString();
     }

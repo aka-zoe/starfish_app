@@ -1,5 +1,6 @@
 package com.zoe.starfish_server.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,10 +13,25 @@ import java.util.stream.Stream;
 
 @Service
 public class FileService {
-    private final Path fileStorageLocation;
 
-    public FileService(@Value("${file.upload.url}") String uploadDir) {
-        this.fileStorageLocation = Paths.get(uploadDir).toAbsolutePath().normalize();
+
+    private Path fileStorageLocation;
+
+//    public FileService(@Value("${file.upload.url}") String uploadDir) {
+//        this.fileStorageLocation = Paths.get(uploadDir).toAbsolutePath().normalize();
+//        try {
+//            Files.createDirectories(this.fileStorageLocation);
+//        } catch (IOException ex) {
+//            throw new RuntimeException("Could not create the directory where the uploaded files will be stored.", ex);
+//        }
+//    }
+
+    public Path getFileStorageLocation() {
+        return fileStorageLocation;
+    }
+
+    public void setFileStorageLocation(String path) {
+        this.fileStorageLocation = Paths.get(path).toAbsolutePath().normalize();
         try {
             Files.createDirectories(this.fileStorageLocation);
         } catch (IOException ex) {

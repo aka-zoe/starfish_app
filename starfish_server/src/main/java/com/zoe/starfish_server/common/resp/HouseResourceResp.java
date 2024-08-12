@@ -1,10 +1,13 @@
 package com.zoe.starfish_server.common.resp;
 
+import com.zoe.starfish_server.domain.HouseResource;
 import com.zoe.starfish_server.domain.HouseTag;
+import com.zoe.starfish_server.domain.HouseType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**

@@ -30,10 +30,18 @@ class ApiMine {
   }
 
   ///根据类型获取收藏列表
-  Future<MyBookedListData> getCollectList({int? type = 1}) async {
+  Future getCollectList({required int type}) async {
     Response response = await DioInstance.instance()
         .post(path: "/collect/collectList", queryParameters: {"type": type});
-    return MyBookedListData.fromJson(response.data);
+    //房源
+    if (type == 1) {
+      return HouseResListData.fromJson(response.data);
+
+      //资讯
+    } else if (type == 2) {
+      return AppNewsData.fromJson(response.data);
+    }
+    return null;
   }
 
   ///添加收藏

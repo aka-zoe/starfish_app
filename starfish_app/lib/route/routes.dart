@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:starfish_tenement_app/pages/collect/my_collect_house_page.dart';
+import 'package:starfish_tenement_app/pages/collect/my_collect_news_page.dart';
 import 'package:starfish_tenement_app/pages/house_res/detail/house_res_detail_page.dart';
 import 'package:starfish_tenement_app/pages/auth/auth_page.dart';
 import 'package:starfish_tenement_app/pages/news_type/news_type_page.dart';
@@ -30,6 +32,12 @@ class Routes {
       //房源预定页
       case RoutePath.subscribeHousePage:
         return pageRoute(SubscribeHousePage(), settings: settings);
+      //房源收藏页
+      case RoutePath.myCollectHousePage:
+        return pageRoute(MyCollectHousePage(), settings: settings);
+      //资讯收藏页
+      case RoutePath.myCollectNewsPage:
+        return pageRoute(MyCollectNewsPage(), settings: settings);
     }
     return MaterialPageRoute(
         builder: (context) =>
@@ -86,4 +94,10 @@ class RoutePath {
 
   //房源预定页
   static const String subscribeHousePage = "/subscribeHousePage";
+
+  //资讯收藏
+  static const String myCollectNewsPage = "/myCollectNewsPage";
+
+  //房源收藏
+  static const String myCollectHousePage = "/myCollectHousePage";
 }

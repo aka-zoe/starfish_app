@@ -5,7 +5,7 @@
 /// rent : 3000
 /// tagList : [{"id":1,"houseResId":1,"name":"近地铁","type":"0","createTime":"2024-05-12T16:00:00.000+00:00","status":0},{"id":2,"houseResId":1,"name":"在线签约","type":"0","createTime":"2024-05-12T16:00:00.000+00:00","status":0},{"id":3,"houseResId":1,"name":"整租","type":"1","createTime":"2024-05-12T16:00:00.000+00:00","status":0},{"id":4,"houseResId":1,"name":"不要钱22","type":"0","createTime":"2024-05-12T16:00:00.000+00:00","status":0},{"id":6,"houseResId":1,"name":"不要钱2","type":"0","createTime":null,"status":0}]
 
-///房源列表数据
+///房源列表数据，收藏接口也是这个实体
 class HouseResListData {
   List<HouseResData>? houseResList;
 

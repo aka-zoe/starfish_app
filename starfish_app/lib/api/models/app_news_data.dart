@@ -13,7 +13,7 @@
 /// editby : 1
 /// status : 1
 
-///APP资讯返回数据
+///APP资讯返回数据，收藏接口也是这个实体
 class AppNewsData {
   List<AppNewsItemData>? newList;
 

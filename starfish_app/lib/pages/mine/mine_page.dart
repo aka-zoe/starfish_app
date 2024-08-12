@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:starfish_tenement_app/common_ui/title/app_text.dart';
 import 'package:starfish_tenement_app/pages/auth/auth_page.dart';
 import 'package:starfish_tenement_app/pages/booked/list/my_booked_list_page.dart';
+import 'package:starfish_tenement_app/pages/collect/my_collect_house_page.dart';
+import 'package:starfish_tenement_app/pages/collect/my_collect_news_page.dart';
 import 'package:starfish_tenement_app/pages/mine/mine_vm.dart';
 import 'package:starfish_tenement_app/route/route_utils.dart';
 import 'package:starfish_tenement_app/styles/app_colors.dart';
@@ -41,7 +43,7 @@ class _MinePageState extends State<MinePage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   _header(onMessageTap: () {
-                    RouteUtils.push(context, AuthPage());
+
                   }),
                   15.verticalSpace,
                   Padding(
@@ -70,9 +72,18 @@ class _MinePageState extends State<MinePage> {
                                   title: "房源收藏",
                                   subtitle: "已收藏${vm.infoData?.collectHouseCount ?? 0}套",
                                   subTitleColor: AppColors.textColorAE,
-                                  showBottomLine: true);
+                                  showBottomLine: true,
+                                  onItemTap: () {
+                                    RouteUtils.push(context, const MyCollectHousePage());
+                                  });
                             }),
-                            _mineItemWidget(title: "资讯收藏", onItemTap: () {}),
+                            Consumer<MineViewModel>(builder: (context, vm, child) {
+                              return _mineItemWidget(
+                                  title: "资讯收藏",
+                                  onItemTap: () {
+                                    RouteUtils.push(context, const MyCollectNewsPage());
+                                  });
+                            }),
                             AppText(
                               text: "通知管理",
                               textColor: const Color(0xFFb7b7b4),

@@ -66,8 +66,10 @@ public class NewsService {
         //1=正常、-1=隐藏/下架
         criteria.andStatusEqualTo(1);
         //1=最新咨询、2=热门资讯、3=雷区、4=行情、5=科普
-        criteria.andTypeEqualTo(type);
-
+        if (type != null) {
+            //为空就查全部类型
+            criteria.andTypeEqualTo(type);
+        }
         List<News> newsList = mapper.selectByExample(example);
         List<NewsResp> respList = new ArrayList<>();
         List<Collect> collects = null;

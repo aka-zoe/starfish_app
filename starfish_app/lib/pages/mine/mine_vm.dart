@@ -7,8 +7,12 @@ class MineViewModel with ChangeNotifier {
 
   ///获取当前用户相关的APP信息
   Future getAppInfo() async {
-    infoData = await ApiMine.api.getAppInfo();
-    notifyListeners();
+    try {
+      infoData = await ApiMine.api.getAppInfo();
+      notifyListeners();
+    } catch (e) {
+      print("MineViewModel getAppInfo $e 当前未登录");
+    }
   }
 
   ///是否开启消息
@@ -18,6 +22,4 @@ class MineViewModel with ChangeNotifier {
     ApiMine.api.setOpenMsg(openFlag);
     notifyListeners();
   }
-
-
 }

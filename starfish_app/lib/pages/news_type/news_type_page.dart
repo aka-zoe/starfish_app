@@ -82,83 +82,87 @@ class _NewsTypePageState extends State<NewsTypePage> with SingleTickerProviderSt
     );
   }
 
-  Widget _typeListView(int tabIndex, {List<AppNewsItemData>? listData}) {
+  Widget _typeListView(
+    int tabIndex, {
+    List<AppNewsItemData>? listData,
+  }) {
     return ListView.builder(
         itemBuilder: (context, index) {
-          return _itemView(listData?[index], index, tabIndex);
+          var item = listData?[index];
+          return newsItemView(
+              item: item,
+              onCollectTap: () {
+                _viewModel.setCollect(
+                    tabIndex: tabIndex,
+                    index: index,
+                    collected: item?.collected ?? false,
+                    newsId: item?.id,
+                    name: item?.title);
+              });
         },
         itemCount: listData?.length ?? 0);
   }
+}
 
-  Widget _itemView(AppNewsItemData? item, int index, int tabIndex) {
-    return Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-            border: Border(bottom: BorderSide(color: AppColors.lineColorFA, width: 1.r))),
-        padding: EdgeInsets.only(top: 15.h, bottom: 14.h),
-        child: Row(children: [
-          Expanded(
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            AppText(
-                text: item?.title ?? "",
-                fontSize: 20.sp,
-                textColor: AppColors.textColor20,
-                maxLines: 2),
-            //三张图
-            if (item?.imageList?.length == 3)
-              Container(
-                  width: double.infinity,
-                  margin: EdgeInsets.only(top: 20.h),
-                  height: 90.h,
-                  child: Row(children: [
-                    Expanded(
-                        flex: 1,
-                        child: Image.network(StringUtils.takeStrForList(item?.imageList),
-                            fit: BoxFit.fill)),
-                    7.horizontalSpace,
-                    Expanded(
-                        flex: 1,
-                        child: Image.network(StringUtils.takeStrForList(item?.imageList, index: 1),
-                            fit: BoxFit.fill)),
-                    7.horizontalSpace,
-                    Expanded(
-                        flex: 1,
-                        child: Image.network(StringUtils.takeStrForList(item?.imageList, index: 2),
-                            fit: BoxFit.fill)),
-                  ])),
-            20.verticalSpace,
-            Row(children: [
-              AppText(text: "大谈房屋知识 2019.08.08", fontSize: 12.sp, textColor: AppColors.textColorB7),
-              const Expanded(child: SizedBox()),
-              Image.asset("assets/images/icon_news_type_zhuanfa.png", width: 13.r, height: 13.r),
-              13.horizontalSpace,
-              Image.asset("assets/images/icon_news_type_dianzan.png", width: 13.r, height: 13.r),
-              13.horizontalSpace,
-              Consumer<NewsTypeViewModel>(builder: (context, vm, child) {
-                return GestureDetector(
-                    onTap: () {
-                      vm.setCollect(
-                          tabIndex: tabIndex,
-                          index: index,
-                          collected: item?.collected ?? false,
-                          newsId: item?.id,
-                          name: item?.title);
-                    },
-                    child: Image.asset(
-                      "assets/images/icon_news_type_collect.png",
-                      width: 13.r,
-                      height: 13.r,
-                      color: item?.collected == true ? AppColors.collectColor : null,
-                    ));
-              })
-            ])
-          ])),
-          //单张图
-          if (item?.imageList?.length == 1)
+Widget newsItemView({AppNewsItemData? item, GestureTapCallback? onCollectTap}) {
+  return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: AppColors.lineColorFA, width: 1.r))),
+      padding: EdgeInsets.only(top: 15.h, bottom: 14.h),
+      child: Row(children: [
+        Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          AppText(
+              text: item?.title ?? "",
+              fontSize: 20.sp,
+              textColor: AppColors.textColor20,
+              maxLines: 2),
+          //三张图
+          if (item?.imageList?.length == 3)
             Container(
-                padding: EdgeInsets.only(left: 14.w, right: 3.w),
-                child: Image.network(StringUtils.takeStrForList(item?.imageList),
-                    width: 110.w, height: 86.h, fit: BoxFit.fill))
-        ]));
-  }
+                width: double.infinity,
+                margin: EdgeInsets.only(top: 20.h),
+                height: 90.h,
+                child: Row(children: [
+                  Expanded(
+                      flex: 1,
+                      child: Image.network(StringUtils.takeStrForList(item?.imageList),
+                          fit: BoxFit.fill)),
+                  7.horizontalSpace,
+                  Expanded(
+                      flex: 1,
+                      child: Image.network(StringUtils.takeStrForList(item?.imageList, index: 1),
+                          fit: BoxFit.fill)),
+                  7.horizontalSpace,
+                  Expanded(
+                      flex: 1,
+                      child: Image.network(StringUtils.takeStrForList(item?.imageList, index: 2),
+                          fit: BoxFit.fill)),
+                ])),
+          20.verticalSpace,
+          Row(children: [
+            AppText(text: "大谈房屋知识 2019.08.08", fontSize: 12.sp, textColor: AppColors.textColorB7),
+            const Expanded(child: SizedBox()),
+            Image.asset("assets/images/icon_news_type_zhuanfa.png", width: 13.r, height: 13.r),
+            13.horizontalSpace,
+            Image.asset("assets/images/icon_news_type_dianzan.png", width: 13.r, height: 13.r),
+            13.horizontalSpace,
+            GestureDetector(
+                onTap: onCollectTap,
+                child: Image.asset(
+                  "assets/images/icon_news_type_collect.png",
+                  width: 13.r,
+                  height: 13.r,
+                  color: item?.collected == true ? AppColors.collectColor : null,
+                ))
+          ])
+        ])),
+        //单张图
+        if (item?.imageList?.length == 1)
+          Container(
+              padding: EdgeInsets.only(left: 14.w, right: 3.w),
+              child: Image.network(StringUtils.takeStrForList(item?.imageList),
+                  width: 110.w, height: 86.h, fit: BoxFit.fill))
+      ]));
 }

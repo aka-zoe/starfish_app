@@ -1,6 +1,8 @@
-package com.zoe.starfish_server.domain;
+package com.zoe.starfish_server.common.resp;
 
-public class News {
+import java.util.List;
+
+public class NewsResp {
     private Long id;
 
     private String title;
@@ -15,8 +17,6 @@ public class News {
 
     private Long pinglun;
 
-    private String imageurl;
-
     private String contenturl;
 
     private Long createtime;
@@ -28,6 +28,39 @@ public class News {
     private Long editby;
 
     private Integer status;
+
+    private List<String> imageList;
+
+    private boolean collected;
+
+    @Override
+    public String toString() {
+        return "NewsResp{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", subtitle='" + subtitle + '\'' +
+                ", type=" + type +
+                ", tag='" + tag + '\'' +
+                ", dianzan=" + dianzan +
+                ", pinglun=" + pinglun +
+                ", contenturl='" + contenturl + '\'' +
+                ", createtime=" + createtime +
+                ", operationtime=" + operationtime +
+                ", createby=" + createby +
+                ", editby=" + editby +
+                ", status=" + status +
+                ", imageList=" + imageList +
+                ", collected=" + collected +
+                '}';
+    }
+
+    public boolean isCollected() {
+        return collected;
+    }
+
+    public void setCollected(boolean collected) {
+        this.collected = collected;
+    }
 
     public Long getId() {
         return id;
@@ -85,14 +118,6 @@ public class News {
         this.pinglun = pinglun;
     }
 
-    public String getImageurl() {
-        return imageurl;
-    }
-
-    public void setImageurl(String imageurl) {
-        this.imageurl = imageurl;
-    }
-
     public String getContenturl() {
         return contenturl;
     }
@@ -141,27 +166,11 @@ public class News {
         this.status = status;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", title=").append(title);
-        sb.append(", subtitle=").append(subtitle);
-        sb.append(", type=").append(type);
-        sb.append(", tag=").append(tag);
-        sb.append(", dianzan=").append(dianzan);
-        sb.append(", pinglun=").append(pinglun);
-        sb.append(", imageurl=").append(imageurl);
-        sb.append(", contenturl=").append(contenturl);
-        sb.append(", createtime=").append(createtime);
-        sb.append(", operationtime=").append(operationtime);
-        sb.append(", createby=").append(createby);
-        sb.append(", editby=").append(editby);
-        sb.append(", status=").append(status);
-        sb.append("]");
-        return sb.toString();
+    public List<String> getImageList() {
+        return imageList;
+    }
+
+    public void setImageList(List<String> imageList) {
+        this.imageList = imageList;
     }
 }

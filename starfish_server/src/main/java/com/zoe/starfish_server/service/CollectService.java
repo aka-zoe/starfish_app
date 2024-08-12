@@ -2,10 +2,7 @@ package com.zoe.starfish_server.service;
 
 import com.zoe.starfish_server.domain.Collect;
 import com.zoe.starfish_server.domain.CollectExample;
-import com.zoe.starfish_server.domain.News;
-import com.zoe.starfish_server.domain.NewsExample;
 import com.zoe.starfish_server.mapper.CollectMapper;
-import com.zoe.starfish_server.mapper.NewsMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

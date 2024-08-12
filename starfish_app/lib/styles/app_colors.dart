@@ -57,4 +57,5 @@ class AppColors {
   static const textRedColor3D = Color(0xFFff3b3d);
   static const textRedColor30 = Color(0xFFff2e30);
   static const textColor7c = Color(0xFFfbac7c);
+  static const collectColor = Color(0xffef742a);
 }

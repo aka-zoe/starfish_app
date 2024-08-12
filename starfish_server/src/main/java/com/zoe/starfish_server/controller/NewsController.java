@@ -63,12 +63,12 @@ public class NewsController {
      */
     @PassToken
     @PostMapping("getNewList")
-    public CommonResp getNewList(@RequestBody News news) {
-        if (news.getType() == null) {
+    public CommonResp getNewList(HttpServletRequest request, @RequestParam Integer type) {
+        if (type == null) {
             return CommonResp.error(RespCodeEnum.PARAMERR);
         }
-        //1=最新咨询、2=热门资讯、3=雷区、4=行情、5=科普
-        return CommonResp.success(service.newsList(news.getType()));
+        Long userId = TokenUtils.getUserId(request);
+        return CommonResp.success(service.newsList(userId, type));
     }
 
     /**
@@ -86,4 +86,6 @@ public class NewsController {
         news.setEditby(userId);
         return CommonResp.success(service.updateNews(news));
     }
+
+
 }

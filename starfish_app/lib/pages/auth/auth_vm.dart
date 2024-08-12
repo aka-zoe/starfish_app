@@ -32,8 +32,8 @@ class AuthViewModel with ChangeNotifier {
   ///登录
   Future<bool> login(bool autoCheck) async {
     Loading.showLoading();
-    if (StringUtils.isEmptyByTDController(inputName) ||
-        StringUtils.isEmptyByTDController(inputPwd)) {
+    if (StringUtils.isEmptyByTEditController(inputName) ||
+        StringUtils.isEmptyByTEditController(inputPwd)) {
       if (!autoCheck) {
         showToast("请检查用户名或密码");
       }
@@ -58,9 +58,9 @@ class AuthViewModel with ChangeNotifier {
   ///注册
   Future register() async {
     Loading.showLoading();
-    if (StringUtils.isEmptyByTDController(inputName) ||
-        StringUtils.isEmptyByTDController(inputPwd) ||
-        StringUtils.isEmptyByTDController(inputRePwd)) {
+    if (StringUtils.isEmptyByTEditController(inputName) ||
+        StringUtils.isEmptyByTEditController(inputPwd) ||
+        StringUtils.isEmptyByTEditController(inputRePwd)) {
       showToast("请检查用户名或密码");
       Loading.dismissAll();
     }

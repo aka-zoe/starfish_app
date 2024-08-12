@@ -49,11 +49,11 @@
 <!--        <table tableName="house_tag" domainObjectName="HouseTag"/>-->
 <!--        <table tableName="house_type" domainObjectName="HouseType"/>-->
 <!--        <table tableName="living_area" domainObjectName="LivingArea"/>-->
-<!--        <table tableName="news" domainObjectName="News"/>-->
+        <table tableName="news" domainObjectName="News"/>
 <!--        <table tableName="dianzan" domainObjectName="DianZan"/>-->
 <!--        <table tableName="pinglun" domainObjectName="PingLun"/>-->
 <!--        <table tableName="booked_house" domainObjectName="BookedHouse"/>-->
-        <table tableName="my_collect" domainObjectName="Collect"/>
+<!--        <table tableName="my_collect" domainObjectName="Collect"/>-->
 <!--        <table tableName="config" domainObjectName="AppConfig"/>-->
     </context>
 </generatorConfiguration>

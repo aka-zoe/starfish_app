@@ -36,13 +36,15 @@ class AppNewsItemData {
     this.tag,
     this.dianzan,
     this.pinglun,
-    this.imageurl,
+    this.imageList,
     this.contenturl,
     this.createtime,
     this.operationtime,
     this.createby,
     this.editby,
     this.status,
+    this.collected,
+
   });
 
   AppNewsItemData.fromJson(dynamic json) {
@@ -53,13 +55,21 @@ class AppNewsItemData {
     tag = json['tag'];
     dianzan = json['dianzan'];
     pinglun = json['pinglun'];
-    imageurl = json['imageurl'];
+    if (json['imageList'] is List) {
+      imageList = [];
+      for (var image in json['imageList']) {
+        imageList?.add(image ?? "");
+      }
+    } else {
+      imageList = [];
+    }
     contenturl = json['contenturl'];
     createtime = json['createtime'];
     operationtime = json['operationtime'];
     createby = json['createby'];
     editby = json['editby'];
     status = json['status'];
+    collected = json['collected'];
   }
 
   num? id;
@@ -69,13 +79,14 @@ class AppNewsItemData {
   String? tag;
   num? dianzan;
   num? pinglun;
-  String? imageurl;
+  List<String?>? imageList;
   String? contenturl;
   num? createtime;
   num? operationtime;
   num? createby;
   num? editby;
   num? status;
+  bool? collected;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -86,13 +97,14 @@ class AppNewsItemData {
     map['tag'] = tag;
     map['dianzan'] = dianzan;
     map['pinglun'] = pinglun;
-    map['imageurl'] = imageurl;
+    map['imageList'] = imageList;
     map['contenturl'] = contenturl;
     map['createtime'] = createtime;
     map['operationtime'] = operationtime;
     map['createby'] = createby;
     map['editby'] = editby;
     map['status'] = status;
+    map['collected'] = collected;
     return map;
   }
 }

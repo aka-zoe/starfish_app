@@ -26,8 +26,8 @@ class BookedHouseViewModel with ChangeNotifier {
     num? houseresid,
     num? bookeduserid,
   }) async {
-    if (StringUtils.isEmptyByTDController(phoneInputController) ||
-        StringUtils.isEmptyByTDController(nameInputController)) {
+    if (StringUtils.isEmptyByTEditController(phoneInputController) ||
+        StringUtils.isEmptyByTEditController(nameInputController)) {
       showToast("请检查联系方式和姓名");
       return false;
     }

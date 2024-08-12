@@ -15,7 +15,7 @@ class ApiNews {
   ///[type] 1=最新咨询、2=热门资讯、3=雷区、4=行情、5=科普
   Future<AppNewsData> getAppNews(int type) async {
     Response resp =
-        await DioInstance.instance().post(path: "/news/getNewList", data: {"type": type});
+        await DioInstance.instance().post(path: "/news/getNewList", queryParameters: {"type": type});
     return AppNewsData.fromJson(resp.data);
   }
 }

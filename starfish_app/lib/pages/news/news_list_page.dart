@@ -11,6 +11,7 @@ import 'package:starfish_tenement_app/mock/datas/news_banner_data.dart';
 import 'package:starfish_tenement_app/route/Routes.dart';
 import 'package:starfish_tenement_app/route/route_utils.dart';
 import 'package:starfish_tenement_app/styles/app_colors.dart';
+import 'package:starfish_tenement_app/utils/string_utils.dart';
 
 import 'news_list_vm.dart';
 
@@ -103,7 +104,7 @@ class _NewsListPageState extends State<NewsListPage> {
             children: [
               ClipRRect(
                   borderRadius: BorderRadius.circular(8.r),
-                  child: Image.network(item?.imageurl ?? "",
+                  child: Image.network(StringUtils.takeStrForList(item?.imageList),
                       width: 103.w, height: 76.h, fit: BoxFit.fill)),
               14.horizontalSpace,
               Expanded(
@@ -180,7 +181,7 @@ class _NewsListPageState extends State<NewsListPage> {
           child: ClipRRect(
               borderRadius: BorderRadius.circular(8.r),
               child: Image.network(
-                item?.imageurl ?? "",
+                StringUtils.takeStrForList(item?.imageList),
                 height: 201.h,
                 width: double.infinity,
                 fit: BoxFit.fill,

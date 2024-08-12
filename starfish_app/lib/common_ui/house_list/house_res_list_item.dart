@@ -27,39 +27,37 @@ class HouseListItem extends StatelessWidget {
             border: Border(bottom: BorderSide(color: AppColors.lineColor, width: 1.r))),
         padding: EdgeInsets.symmetric(vertical: 21.h),
         width: double.infinity,
-        child: Expanded(
-          child: Row(children: [
-            Image.network(data?.image ?? "", width: 122.w, height: 96.h, fit: BoxFit.fill),
-            SizedBox(width: 17.w),
-            Expanded(
-                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              AppText(
-                text: data?.title ?? "",
-                textColor: AppColors.textColor2b,
-                fontSize: 19.sp,
-                maxLines: 2,
-              ),
-              AppText(
-                  text: data?.subTitle ?? "", textColor: AppColors.textColorB6, fontSize: 13.sp),
-              //要给固定高度在column内，否则报错
-              tagList.isEmpty
-                  ? const SizedBox()
-                  : SizedBox(
-                      height: 30.h,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: tagList,
-                      )),
-              Row(
-                children: [
-                  AppText(
-                      text: "${data?.rent}", textColor: AppColors.textRedColor39, fontSize: 19.sp),
-                  AppText(text: "元/月", textColor: AppColors.textRedColor6d, fontSize: 11.sp)
-                ],
-              )
-            ]))
-          ]),
-        ));
+        child: Row(children: [
+          Image.network(data?.image ?? "", width: 122.w, height: 96.h, fit: BoxFit.fill),
+          SizedBox(width: 17.w),
+          Expanded(
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                AppText(
+                  text: data?.title ?? "",
+                  textColor: AppColors.textColor2b,
+                  fontSize: 19.sp,
+                  maxLines: 2,
+                ),
+                AppText(
+                    text: data?.subTitle ?? "", textColor: AppColors.textColorB6, fontSize: 13.sp),
+                //要给固定高度在column内，否则报错
+                tagList.isEmpty
+                    ? const SizedBox()
+                    : SizedBox(
+                    height: 30.h,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: tagList,
+                    )),
+                Row(
+                  children: [
+                    AppText(
+                        text: "${data?.rent}", textColor: AppColors.textRedColor39, fontSize: 19.sp),
+                    AppText(text: "元/月", textColor: AppColors.textRedColor6d, fontSize: 11.sp)
+                  ],
+                )
+              ]))
+        ]));
   }
 
   ///生成标签列表

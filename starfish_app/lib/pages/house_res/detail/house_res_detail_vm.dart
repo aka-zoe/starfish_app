@@ -1,6 +1,7 @@
 import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:starfish_tenement_app/api/api_house.dart';
+import 'package:starfish_tenement_app/api/api_mine.dart';
 import 'package:starfish_tenement_app/api/models/house_res_detail_data.dart';
 
 import '../../../api/models/house_res_data.dart';
@@ -14,9 +15,12 @@ class HouseResDetailViewModel with ChangeNotifier {
   //当前banner下标
   int currBannerIndex = 1;
 
+  bool collected = false;
+
   ///获取房源明细
   Future getDetailData(num? id) async {
     detailData = await ApiHouse.api.getHouseResDetail(id);
+    collected = detailData?.collected ?? false;
     notifyListeners();
   }
 
@@ -24,6 +28,21 @@ class HouseResDetailViewModel with ChangeNotifier {
   Future getHouseRes() async {
     var houseRes = await ApiHouse.api.getHouseRes();
     houseResList = houseRes.houseResList ?? [];
+    notifyListeners();
+  }
+
+  ///设置收藏
+  Future setCollect(bool value) async {
+    detailData?.collected = value;
+    collected = detailData?.collected ?? false;
+    if (value) {
+      //添加收藏
+      ApiMine.api.addCollect(collecttype: 1, houseresid: detailData?.id, title: detailData?.name);
+    } else {
+      //取消收藏
+      ApiMine.api.cancelCollect(type: 1, houseResId: detailData?.id);
+    }
+
     notifyListeners();
   }
 
@@ -59,6 +78,6 @@ class HouseResDetailViewModel with ChangeNotifier {
   }
 
   String getDate(String? date) {
-    return DateUtil.formatDate(DateTime.tryParse(date ?? ""), format: "yyyy/MM/dd");
+    return DateUtil.formatDate(DateTime.tryParse(date ?? ""), format: "yyyy-MM-dd");
   }
 }

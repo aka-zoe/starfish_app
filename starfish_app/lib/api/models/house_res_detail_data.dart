@@ -40,6 +40,7 @@
 class HouseResDetailData {
   HouseResDetailData({
     this.id,
+    this.name,
     this.imageList,
     this.houseDesc,
     this.leaseType,
@@ -77,10 +78,12 @@ class HouseResDetailData {
     this.publisherId,
     this.publisherType,
     this.publisherHead,
+    this.collected,
   });
 
   HouseResDetailData.fromJson(dynamic json) {
     id = json['id'];
+    name = json['name'];
     if (json['imageList'] != null && json['imageList'] is List) {
       imageList = json['imageList'].cast<String>();
     } else {
@@ -131,9 +134,11 @@ class HouseResDetailData {
     publisherId = json['publisherId'];
     publisherType = json['publisherType'];
     publisherHead = json['publisherHead'];
+    collected = json['collected'];
   }
 
   num? id;
+  String? name;
   List<String?>? imageList;
   String? houseDesc;
   num? leaseType;
@@ -172,10 +177,12 @@ class HouseResDetailData {
   num? publisherId;
   String? publisherType;
   String? publisherHead;
+  bool? collected;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['id'] = id;
+    map['name'] = name;
     map['imageList'] = imageList;
     map['houseDesc'] = houseDesc;
     map['leaseType'] = leaseType;
@@ -216,6 +223,7 @@ class HouseResDetailData {
     map['publisherId'] = publisherId;
     map['publisherType'] = publisherType;
     map['publisherHead'] = publisherHead;
+    map['collected'] = collected;
     return map;
   }
 }

@@ -103,10 +103,23 @@ class _HouseResDetailPageState extends State<HouseResDetailPage> {
                 child: Image.asset("assets/images/icon_house_detail_close.png",
                     width: 32.r, height: 32.r)),
             Expanded(child: SizedBox()),
-            GestureDetector(
-                onTap: () {},
-                child: Image.asset("assets/images/icon_house_detail_collect.png",
-                    width: 32.r, height: 32.r)),
+            //收藏按钮
+            Selector<HouseResDetailViewModel, bool>(builder: (context, collected, child) {
+              return GestureDetector(
+                  onTap: () {
+                    //设置收藏
+                    viewModel.setCollect(!collected);
+                  },
+                  child: Image.asset(
+                    "assets/images/icon_house_detail_collect.png",
+                    width: 32.r,
+                    height: 32.r,
+                    //收藏状态显示黄色
+                    color: collected == true ? AppColors.collectColor : null,
+                  ));
+            }, selector: (context, vm) {
+              return vm.collected;
+            }),
             10.horizontalSpace,
             GestureDetector(
                 onTap: () {},

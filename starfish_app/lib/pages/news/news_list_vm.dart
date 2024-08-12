@@ -39,4 +39,5 @@ class NewsListViewModel with ChangeNotifier {
     AppNewsData data = await ApiNews.api.getAppNews(type);
     return data.newList;
   }
+
 }

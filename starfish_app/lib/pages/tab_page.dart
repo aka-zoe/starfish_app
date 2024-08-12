@@ -38,7 +38,7 @@ class _TabPageState extends State<TabPage> {
   @override
   void initState() {
     super.initState();
-    WebSocketInstance.instance.connectSocket();
+    // WebSocketInstance.instance.connectSocket();
     initTabPage();
   }
 

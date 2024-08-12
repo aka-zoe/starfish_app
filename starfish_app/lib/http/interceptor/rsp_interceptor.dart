@@ -13,24 +13,24 @@ class RspInterceptor extends Interceptor {
         var baseData = BaseModel.fromJson(response.data);
 
         int? code = baseData.code;
-        if(code==null){
+        if (code == null) {
           handler.reject(DioException(requestOptions: response.requestOptions));
-        }else{
-          if(code == 200){
+        } else {
+          if (code == 200) {
             handler.next(Response(requestOptions: response.requestOptions, data: baseData.content));
-          }else if(code == 210){
+          } else if (code == 210 && response.requestOptions.path.contains("getAppInfo") == false) {
             //需要登录
             handler.reject(DioException(requestOptions: response.requestOptions));
             showToast(baseData.message ?? "系统错误");
             RouteUtils.push(RouteUtils.context, const AuthPage());
-          }else{
+          } else {
             //其他错误
-            showToast(baseData.message ?? "系统错误");
+            if (response.requestOptions.path.contains("getAppInfo") == false) {
+              showToast(baseData.message ?? "系统错误");
+            }
             handler.reject(DioException(requestOptions: response.requestOptions));
           }
         }
-
-
       } catch (e) {
         handler.reject(DioException(requestOptions: response.requestOptions));
       }

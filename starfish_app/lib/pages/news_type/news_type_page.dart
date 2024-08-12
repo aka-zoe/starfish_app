@@ -2,13 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:starfish_tenement_app/api/models/app_news_data.dart';
 import 'package:starfish_tenement_app/common_ui/app_bar/app_title_bar.dart';
 import 'package:starfish_tenement_app/common_ui/title/app_text.dart';
 import 'package:starfish_tenement_app/mock/datas/news_type_data.dart';
 import 'package:starfish_tenement_app/styles/app_colors.dart';
+import 'package:starfish_tenement_app/utils/string_utils.dart';
 
 import 'news_type_vm.dart';
 
+///资讯分类页面
 class NewsTypePage extends StatefulWidget {
   const NewsTypePage({super.key});
 
@@ -61,34 +64,33 @@ class _NewsTypePageState extends State<NewsTypePage> with SingleTickerProviderSt
                   padding: EdgeInsets.only(left: 17.w, right: 14.w),
                   child: TabBarView(
                       controller: tabController,
-                      children: [_tabPageView(), _tabPageView(), _tabPageView()]))),
+                      children: [_tabPageView(0), _tabPageView(1), _tabPageView(2)]))),
         ]))));
   }
 
-  Widget _tabPageView() {
+  Widget _tabPageView(int tabIndex) {
     return Consumer<NewsTypeViewModel>(
       builder: (context, vm, child) {
-        return NewsTypeListPage(listData: vm.data);
+        if (tabIndex == 0) {
+          return _typeListView(tabIndex, listData: vm.mineFieldList);
+        } else if (tabIndex == 1) {
+          return _typeListView(tabIndex, listData: vm.marketList);
+        } else {
+          return _typeListView(tabIndex, listData: vm.scienceList);
+        }
       },
     );
   }
-}
 
-class NewsTypeListPage extends StatelessWidget {
-  const NewsTypeListPage({super.key, required this.listData});
-
-  final List<NewsTypeListData?>? listData;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _typeListView(int tabIndex, {List<AppNewsItemData>? listData}) {
     return ListView.builder(
         itemBuilder: (context, index) {
-          return _itemView(listData?[index]);
+          return _itemView(listData?[index], index, tabIndex);
         },
         itemCount: listData?.length ?? 0);
   }
 
-  Widget _itemView(NewsTypeListData? item) {
+  Widget _itemView(AppNewsItemData? item, int index, int tabIndex) {
     return Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -103,20 +105,26 @@ class NewsTypeListPage extends StatelessWidget {
                 textColor: AppColors.textColor20,
                 maxLines: 2),
             //三张图
-            if (item?.type == "0")
+            if (item?.imageList?.length == 3)
               Container(
                   width: double.infinity,
                   margin: EdgeInsets.only(top: 20.h),
                   height: 90.h,
                   child: Row(children: [
                     Expanded(
-                        flex: 1, child: Image.network(item?.imageList?[0] ?? "", fit: BoxFit.fill)),
+                        flex: 1,
+                        child: Image.network(StringUtils.takeStrForList(item?.imageList),
+                            fit: BoxFit.fill)),
                     7.horizontalSpace,
                     Expanded(
-                        flex: 1, child: Image.network(item?.imageList?[1] ?? "", fit: BoxFit.fill)),
+                        flex: 1,
+                        child: Image.network(StringUtils.takeStrForList(item?.imageList, index: 1),
+                            fit: BoxFit.fill)),
                     7.horizontalSpace,
                     Expanded(
-                        flex: 1, child: Image.network(item?.imageList?[2] ?? "", fit: BoxFit.fill)),
+                        flex: 1,
+                        child: Image.network(StringUtils.takeStrForList(item?.imageList, index: 2),
+                            fit: BoxFit.fill)),
                   ])),
             20.verticalSpace,
             Row(children: [
@@ -126,14 +134,30 @@ class NewsTypeListPage extends StatelessWidget {
               13.horizontalSpace,
               Image.asset("assets/images/icon_news_type_dianzan.png", width: 13.r, height: 13.r),
               13.horizontalSpace,
-              Image.asset("assets/images/icon_news_type_collect.png", width: 13.r, height: 13.r),
+              Consumer<NewsTypeViewModel>(builder: (context, vm, child) {
+                return GestureDetector(
+                    onTap: () {
+                      vm.setCollect(
+                          tabIndex: tabIndex,
+                          index: index,
+                          collected: item?.collected ?? false,
+                          newsId: item?.id,
+                          name: item?.title);
+                    },
+                    child: Image.asset(
+                      "assets/images/icon_news_type_collect.png",
+                      width: 13.r,
+                      height: 13.r,
+                      color: item?.collected == true ? AppColors.collectColor : null,
+                    ));
+              })
             ])
           ])),
           //单张图
-          if (item?.type == "2")
+          if (item?.imageList?.length == 1)
             Container(
                 padding: EdgeInsets.only(left: 14.w, right: 3.w),
-                child: Image.network(item?.singleImage ?? "",
+                child: Image.network(StringUtils.takeStrForList(item?.imageList),
                     width: 110.w, height: 86.h, fit: BoxFit.fill))
         ]));
   }

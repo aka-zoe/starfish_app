@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:starfish_tenement_app/api/models/my_booked_list_data.dart';
 import 'package:starfish_tenement_app/common_ui/title/app_text.dart';
-import 'package:starfish_tenement_app/pages/booked/list/my_booked_list_vm.dart';
+import 'package:starfish_tenement_app/pages/mine/booked/list/my_booked_list_vm.dart';
 import 'package:starfish_tenement_app/styles/app_colors.dart';
 
 ///我的预约记录页面

@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:starfish_tenement_app/common_ui/title/app_text.dart';
-import 'package:starfish_tenement_app/pages/auth/auth_page.dart';
-import 'package:starfish_tenement_app/pages/booked/list/my_booked_list_page.dart';
-import 'package:starfish_tenement_app/pages/collect/my_collect_house_page.dart';
-import 'package:starfish_tenement_app/pages/collect/my_collect_news_page.dart';
+import 'package:starfish_tenement_app/pages/mine/about_us/about_us_page.dart';
+import 'package:starfish_tenement_app/pages/mine/booked/list/my_booked_list_page.dart';
+import 'package:starfish_tenement_app/pages/mine/collect/my_collect_house_page.dart';
+import 'package:starfish_tenement_app/pages/mine/collect/my_collect_news_page.dart';
+import 'package:starfish_tenement_app/pages/mine/feedback/feedback_page.dart';
 import 'package:starfish_tenement_app/pages/mine/mine_vm.dart';
+import 'package:starfish_tenement_app/pages/mine/settings/settings_page.dart';
 import 'package:starfish_tenement_app/route/route_utils.dart';
 import 'package:starfish_tenement_app/styles/app_colors.dart';
 
@@ -42,9 +44,7 @@ class _MinePageState extends State<MinePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  _header(onMessageTap: () {
-
-                  }),
+                  _header(onMessageTap: () {}),
                   15.verticalSpace,
                   Padding(
                       padding: EdgeInsets.only(left: 20.w, right: 20.w),
@@ -104,9 +104,23 @@ class _MinePageState extends State<MinePage> {
                               textColor: const Color(0xFFb7b7b4),
                               fontSize: 14.sp,
                             ),
-                            _mineItemWidget(title: "意见反馈", showBottomLine: true, onItemTap: () {}),
-                            _mineItemWidget(title: "关于我们", showBottomLine: true, onItemTap: () {}),
-                            _mineItemWidget(title: "设置", onItemTap: () {}),
+                            _mineItemWidget(
+                                title: "意见反馈",
+                                showBottomLine: true,
+                                onItemTap: () {
+                                  RouteUtils.push(context, FeedbackPage());
+                                }),
+                            _mineItemWidget(
+                                title: "关于我们",
+                                showBottomLine: true,
+                                onItemTap: () {
+                                  RouteUtils.push(context, AboutUsPage());
+                                }),
+                            _mineItemWidget(
+                                title: "设置",
+                                onItemTap: () {
+                                  RouteUtils.push(context, SettingsPage());
+                                }),
                           ]))
                 ],
               ),

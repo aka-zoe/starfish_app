@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:starfish_tenement_app/pages/collect/my_collect_vm.dart';
-import 'package:starfish_tenement_app/pages/news_type/news_type_page.dart';
+import 'package:starfish_tenement_app/pages/mine/collect/my_collect_vm.dart';
+import 'package:starfish_tenement_app/pages/news/news_type/news_type_page.dart';
 
 ///资讯收藏
 class MyCollectNewsPage extends StatefulWidget {

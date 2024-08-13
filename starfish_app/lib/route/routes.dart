@@ -1,13 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:starfish_tenement_app/pages/collect/my_collect_house_page.dart';
-import 'package:starfish_tenement_app/pages/collect/my_collect_news_page.dart';
 import 'package:starfish_tenement_app/pages/house_res/detail/house_res_detail_page.dart';
 import 'package:starfish_tenement_app/pages/auth/auth_page.dart';
-import 'package:starfish_tenement_app/pages/news_type/news_type_page.dart';
-import 'package:starfish_tenement_app/pages/booked/booked_house_page.dart';
+import 'package:starfish_tenement_app/pages/mine/about_us/about_us_page.dart';
+import 'package:starfish_tenement_app/pages/mine/collect/my_collect_house_page.dart';
+import 'package:starfish_tenement_app/pages/mine/collect/my_collect_news_page.dart';
+import 'package:starfish_tenement_app/pages/mine/feedback/feedback_page.dart';
+import 'package:starfish_tenement_app/pages/mine/settings/settings_page.dart';
+import 'package:starfish_tenement_app/pages/news/news_type/news_type_page.dart';
 
 import '../pages/apartment/apartment_page.dart';
+import '../pages/mine/booked/booked_house_page.dart';
 import '../pages/tab_page.dart';
 
 ///路由注册管理类
@@ -38,6 +41,15 @@ class Routes {
       //资讯收藏页
       case RoutePath.myCollectNewsPage:
         return pageRoute(MyCollectNewsPage(), settings: settings);
+      //关于我们
+      case RoutePath.aboutUsPage:
+        return pageRoute(AboutUsPage(), settings: settings);
+      //反馈页面
+      case RoutePath.feedbackPage:
+        return pageRoute(FeedbackPage(), settings: settings);
+      //设置页面
+      case RoutePath.settingsPage:
+        return pageRoute(SettingsPage(), settings: settings);
     }
     return MaterialPageRoute(
         builder: (context) =>
@@ -71,9 +83,6 @@ class RoutePath {
   //注册
   static const String register = "/register";
 
-  //关于我们
-  static const String about_us = "/about_us";
-
   //搜索页
   static const String search = "/search";
 
@@ -100,4 +109,13 @@ class RoutePath {
 
   //房源收藏
   static const String myCollectHousePage = "/myCollectHousePage";
+
+  //关于我们
+  static const String aboutUsPage = "/aboutUsPage";
+
+  //反馈页面
+  static const String feedbackPage = "/feedbackPage";
+
+  //设置页面
+  static const String settingsPage = "/settingsPage";
 }

@@ -3,17 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
+import 'package:starfish_tenement_app/api/models/house_res_detail_data.dart';
 import 'package:starfish_tenement_app/common_ui/app_bar/app_title_bar.dart';
 import 'package:starfish_tenement_app/common_ui/buttons/red_button.dart';
 import 'package:starfish_tenement_app/common_ui/date_selector/date_selector_widget.dart';
+import 'package:starfish_tenement_app/common_ui/title/app_text.dart';
 import 'package:starfish_tenement_app/common_ui/title/big_title.dart';
-import 'package:starfish_tenement_app/pages/booked/booked_house_vm.dart';
+import 'package:starfish_tenement_app/pages/mine/booked/booked_house_vm.dart';
 import 'package:starfish_tenement_app/route/route_utils.dart';
+import 'package:starfish_tenement_app/styles/app_colors.dart';
 import 'package:starfish_tenement_app/utils/string_utils.dart';
-
-import '../../api/models/house_res_detail_data.dart';
-import '../../common_ui/title/app_text.dart';
-import '../../styles/app_colors.dart';
 
 ///房源预定页
 class SubscribeHousePage extends StatefulWidget {

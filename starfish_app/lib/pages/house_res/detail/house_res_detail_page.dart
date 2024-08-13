@@ -10,7 +10,7 @@ import 'package:starfish_tenement_app/common_ui/house_list/house_res_list_item.d
 import 'package:starfish_tenement_app/common_ui/title/app_text.dart';
 import 'package:starfish_tenement_app/common_ui/title/big_title.dart';
 import 'package:starfish_tenement_app/pages/house_res/detail/house_res_detail_vm.dart';
-import 'package:starfish_tenement_app/pages/booked/booked_house_page.dart';
+import 'package:starfish_tenement_app/pages/mine/booked/booked_house_page.dart';
 import 'package:starfish_tenement_app/route/route_utils.dart';
 import 'package:starfish_tenement_app/styles/app_colors.dart';
 

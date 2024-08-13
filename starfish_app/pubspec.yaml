@@ -33,8 +33,6 @@ dependencies:
     permission_handler: ^10.2.0
     # 跳转到外部应用、scheme
     url_launcher: ^6.1.6
-    # webview
-    #    webview_flutter: ^4.2.2
     # 本地化存储
     shared_preferences: ^2.0.15
     # banner轮播图组件

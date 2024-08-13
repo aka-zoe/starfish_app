@@ -21,7 +21,6 @@ import 'package:starfish_tenement_app/styles/app_colors.dart';
 
 import '../../common_ui/filter/filter_menu_widget.dart';
 import '../../common_ui/title/big_title.dart';
-import '../booked/booked_house_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

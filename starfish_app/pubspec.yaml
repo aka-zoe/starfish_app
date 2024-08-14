@@ -59,6 +59,8 @@ dependencies:
 #    flutter_model_viewer: ^0.0.7
     # 扫描二维码
     qr_code_scanner: 1.0.1
+    # 获取文件
+    path_provider: ^2.1.4
 dev_dependencies:
     flutter_test:
         sdk: flutter

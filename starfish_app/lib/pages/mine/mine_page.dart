@@ -38,6 +38,7 @@ class _MinePageState extends State<MinePage> {
           return _viewModel;
         },
         child: Scaffold(
+          backgroundColor: Colors.white,
           body: SafeArea(
             child: SingleChildScrollView(
               child: Column(

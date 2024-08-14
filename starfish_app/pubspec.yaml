@@ -16,7 +16,7 @@ dependencies:
     # 状态管理
     provider: ^6.1.2
     # 屏幕适配相关
-    flutter_screenutil: 5.7.0
+    flutter_screenutil: ^5.9.3
     # 网络请求
     dio: ^5.3.4
     # cookie持久化
@@ -30,7 +30,7 @@ dependencies:
     package_info_plus: ^4.0.2
     device_info_plus: ^8.1.0
     # 权限申请
-    permission_handler: ^10.2.0
+    permission_handler: ^11.3.1
     # 跳转到外部应用、scheme
     url_launcher: ^6.1.6
     # 本地化存储

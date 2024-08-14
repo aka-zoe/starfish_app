@@ -64,6 +64,7 @@ class _HomePageState extends State<HomePage> {
           return _homeVM;
         },
         child: Scaffold(
+            backgroundColor: Colors.white,
             body: SafeArea(
           child: Padding(
               padding: EdgeInsets.only(left: 16.w, right: 15.w),

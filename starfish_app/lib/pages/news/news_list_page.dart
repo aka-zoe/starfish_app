@@ -43,6 +43,7 @@ class _NewsListPageState extends State<NewsListPage> {
           return _vm;
         },
         child: Scaffold(
+            backgroundColor: Colors.white,
             body: SafeArea(
                 child: Padding(
           padding: EdgeInsets.only(left: 20.w),
@@ -156,7 +157,7 @@ class _NewsListPageState extends State<NewsListPage> {
 
   Widget _bannerItemView(AppNewsItemData? item, int index, int itemCount) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      12.verticalSpace,
+      10.verticalSpace,
       Row(
         children: [
           AppText(text: item?.tag ?? "", fontSize: 14.sp, textColor: AppColors.textColor7c),

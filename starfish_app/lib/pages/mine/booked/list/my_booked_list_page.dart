@@ -34,6 +34,7 @@ class _MyBookedListPageState extends State<MyBookedListPage> {
           return _viewModel;
         },
         child: Scaffold(
+          backgroundColor: Colors.white,
           appBar: AppBar(
             title: const Text("我的预约"),
           ),
@@ -59,14 +60,10 @@ class _MyBookedListPageState extends State<MyBookedListPage> {
             decoration: BoxDecoration(
                 border: Border(bottom: BorderSide(color: AppColors.textColorF6, width: 1.h))),
             padding: EdgeInsets.only(top: 23.h, bottom: 23.h),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
+            child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
               17.horizontalSpace,
               //标题
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 AppText(
                     text: data?.houseName ?? "", textColor: AppColors.textColor40, fontSize: 18.sp),
                 10.verticalSpace,
@@ -81,7 +78,7 @@ class _MyBookedListPageState extends State<MyBookedListPage> {
                   text: _viewModel.getStatus(data?.status),
                   textColor: AppColors.textRedColor39,
                   fontSize: 15.sp),
-                  17.horizontalSpace
+              17.horizontalSpace
             ])));
   }
 }

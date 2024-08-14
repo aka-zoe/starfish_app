@@ -23,18 +23,19 @@ class _ApartmentPageState extends State<ApartmentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.white,
         body: SafeArea(
             child: Column(
-      children: [
-        AppTitleBar(title: "品牌公寓", onRightTap: () {}),
-        //位置、搜索栏
-        _locationSearchBar(),
-        //筛选组件
-        _filterArea(),
-        //公寓列表
-        _apartmentListWidget()
-      ],
-    )));
+          children: [
+            AppTitleBar(title: "品牌公寓", onRightTap: () {}),
+            //位置、搜索栏
+            _locationSearchBar(),
+            //筛选组件
+            _filterArea(),
+            //公寓列表
+            _apartmentListWidget()
+          ],
+        )));
   }
 
   ///位置、搜索栏
@@ -86,21 +87,20 @@ class _ApartmentPageState extends State<ApartmentPage> {
   }
 
   ///公寓列表
-  Widget _apartmentListWidget(){
-    return Expanded(child: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (context,index){
-          return _apartmentItem();
-        }));
+  Widget _apartmentListWidget() {
+    return Expanded(
+        child: ListView.builder(
+            itemCount: 10,
+            itemBuilder: (context, index) {
+              return _apartmentItem();
+            }));
   }
 
   ///公寓item
   Widget _apartmentItem() {
     return Container(
         padding: EdgeInsets.only(top: 22.h, bottom: 12.h, left: 15.w, right: 15.w),
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Container(
               height: 142.h,
               child: Row(children: [
@@ -108,21 +108,39 @@ class _ApartmentPageState extends State<ApartmentPage> {
                     flex: 1,
                     child: Column(
                       children: [
-                        Expanded(flex: 1, child: Image.network("https://n.sinaimg.cn/sinacn16/112/w1557h955/20180510/7270-haichqz7292785.jpg",fit: BoxFit.fill)),
+                        Expanded(
+                            flex: 1,
+                            child: Image.network(
+                                "https://n.sinaimg.cn/sinacn16/112/w1557h955/20180510/7270-haichqz7292785.jpg",
+                                fit: BoxFit.fill)),
                         5.verticalSpace,
-                        Expanded(flex: 1, child: Image.network("https://pic.616pic"
-                            ".com/photoone/00/06/56/61975de20f1487757.jpg",fit: BoxFit.fill,))
+                        Expanded(
+                            flex: 1,
+                            child: Image.network(
+                              "https://pic.616pic"
+                              ".com/photoone/00/06/56/61975de20f1487757.jpg",
+                              fit: BoxFit.fill,
+                            ))
                       ],
                     )),
                 7.horizontalSpace,
-                Expanded(flex: 3, child: Image.network("https://pic.616pic.com/photoone/00/06/37/61975c8c74872813.jpg",fit: BoxFit.fill)),
+                Expanded(
+                    flex: 3,
+                    child: Image.network(
+                        "https://pic.616pic.com/photoone/00/06/37/61975c8c74872813.jpg",
+                        fit: BoxFit.fill)),
               ])),
           10.verticalSpace,
-          AppText(text: "翻斗花园",fontSize: 21.sp,textColor: AppColors.textColor3a,fontWeight:
-          FontWeight.w600,),
+          AppText(
+            text: "翻斗花园",
+            fontSize: 21.sp,
+            textColor: AppColors.textColor3a,
+            fontWeight: FontWeight.w600,
+          ),
           3.verticalSpace,
-          AppText(text: "套一  50m2  距华府大道地铁站1.2km",fontSize: 12.sp,textColor: AppColors.textColorAd),
-              3.verticalSpace,
+          AppText(
+              text: "套一  50m2  距华府大道地铁站1.2km", fontSize: 12.sp, textColor: AppColors.textColorAd),
+          3.verticalSpace,
           Row(
             children: [
               TagWidget(name: "在线签约", color: AppColors.textColorA9),

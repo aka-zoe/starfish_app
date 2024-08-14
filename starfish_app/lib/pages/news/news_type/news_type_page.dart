@@ -39,33 +39,37 @@ class _NewsTypePageState extends State<NewsTypePage> with SingleTickerProviderSt
           return _viewModel;
         },
         child: Scaffold(
+            backgroundColor: Colors.white,
             body: SafeArea(
                 child: Column(children: [
-          AppTitleBar(title: "资讯", onRightTap: () {}),
-          SizedBox(
-              width: double.infinity,
-              child: TabBar(
-                  controller: tabController,
-                  isScrollable: true,
-                  labelColor: AppColors.textColor20,
-                  indicator: const BoxDecoration(),
-                  indicatorColor: Colors.transparent,
-                  indicatorSize: TabBarIndicatorSize.tab,
-                  labelStyle: TextStyle(
-                      fontSize: 24.sp, color: AppColors.textColor20, fontWeight: FontWeight.w600),
-                  unselectedLabelStyle: TextStyle(fontSize: 17.sp, color: AppColors.textColor8B),
-                  tabs: [
-                    Tab(text: "雷区"),
-                    Tab(text: "行情"),
-                    Tab(text: "科普"),
-                  ])),
-          Expanded(
-              child: Padding(
-                  padding: EdgeInsets.only(left: 17.w, right: 14.w),
-                  child: TabBarView(
+              AppTitleBar(title: "资讯", onRightTap: () {}),
+              SizedBox(
+                  width: double.infinity,
+                  child: TabBar(
                       controller: tabController,
-                      children: [_tabPageView(0), _tabPageView(1), _tabPageView(2)]))),
-        ]))));
+                      isScrollable: true,
+                      labelColor: AppColors.textColor20,
+                      indicator: const BoxDecoration(),
+                      indicatorColor: Colors.transparent,
+                      indicatorSize: TabBarIndicatorSize.tab,
+                      labelStyle: TextStyle(
+                          fontSize: 24.sp,
+                          color: AppColors.textColor20,
+                          fontWeight: FontWeight.w600),
+                      unselectedLabelStyle:
+                          TextStyle(fontSize: 17.sp, color: AppColors.textColor8B),
+                      tabs: [
+                        Tab(text: "雷区"),
+                        Tab(text: "行情"),
+                        Tab(text: "科普"),
+                      ])),
+              Expanded(
+                  child: Padding(
+                      padding: EdgeInsets.only(left: 17.w, right: 14.w),
+                      child: TabBarView(
+                          controller: tabController,
+                          children: [_tabPageView(0), _tabPageView(1), _tabPageView(2)]))),
+            ]))));
   }
 
   Widget _tabPageView(int tabIndex) {

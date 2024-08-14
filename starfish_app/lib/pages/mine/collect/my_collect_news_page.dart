@@ -31,6 +31,7 @@ class _MyCollectNewsPageState extends State<MyCollectNewsPage> {
           return _viewModel;
         },
         child: Scaffold(
+          backgroundColor: Colors.white,
           appBar: AppBar(
             title: const Text("资讯收藏"),
           ),

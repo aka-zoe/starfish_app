@@ -31,6 +31,7 @@ class _MyCollectHousePageState extends State<MyCollectHousePage> {
           return _viewModel;
         },
         child: Scaffold(
+          backgroundColor: Colors.white,
           appBar: AppBar(
             title: const Text("房源收藏"),
           ),

@@ -46,46 +46,48 @@ class _HouseResDetailPageState extends State<HouseResDetailPage> {
         return viewModel;
       },
       child: Scaffold(
+          backgroundColor: Colors.white,
           body: SafeArea(
-        child: Scaffold(
-            body: SingleChildScrollView(
-                child: Column(children: [
-              SizedBox(
-                  height: 210.h,
-                  child: Stack(children: [
-                    //房源图片banner
-                    _banner(),
-                    //顶部关闭、分享、收藏按钮
-                    _titleOperationBar(),
-                    //banner组件的页码指示器
-                    _bannerPageCount()
-                  ])),
-              //顶部房源信息
-              _totalHouseInfo(),
-              BigTitle(bigTitle: "基本信息", padding: EdgeInsets.only(left: 14.w)),
-              //房源基本信息
-              _houseBasicInfo(),
-              BigTitle(bigTitle: "配套设施", padding: EdgeInsets.only(left: 14.w)),
-              //配套设施网格布局
-              Consumer<HouseResDetailViewModel>(builder: (context, vm, child) {
-                return _facilityGridWidget(vm.detailData);
-              }),
-              BigTitle(bigTitle: "附近位置", padding: EdgeInsets.only(left: 14.w)),
-              //地图缩略图
-              _mapView(),
-              BigTitle(bigTitle: "附近房源", padding: EdgeInsets.only(left: 14.w)),
-              //附近房源列表
-              _nearbyHouseResList()
-            ])),
+            child: Scaffold(
+                backgroundColor: Colors.white,
+                body: SingleChildScrollView(
+                    child: Column(children: [
+                  SizedBox(
+                      height: 210.h,
+                      child: Stack(children: [
+                        //房源图片banner
+                        _banner(),
+                        //顶部关闭、分享、收藏按钮
+                        _titleOperationBar(),
+                        //banner组件的页码指示器
+                        _bannerPageCount()
+                      ])),
+                  //顶部房源信息
+                  _totalHouseInfo(),
+                  BigTitle(bigTitle: "基本信息", padding: EdgeInsets.only(left: 14.w)),
+                  //房源基本信息
+                  _houseBasicInfo(),
+                  BigTitle(bigTitle: "配套设施", padding: EdgeInsets.only(left: 14.w)),
+                  //配套设施网格布局
+                  Consumer<HouseResDetailViewModel>(builder: (context, vm, child) {
+                    return _facilityGridWidget(vm.detailData);
+                  }),
+                  BigTitle(bigTitle: "附近位置", padding: EdgeInsets.only(left: 14.w)),
+                  //地图缩略图
+                  _mapView(),
+                  BigTitle(bigTitle: "附近房源", padding: EdgeInsets.only(left: 14.w)),
+                  //附近房源列表
+                  _nearbyHouseResList()
+                ])),
 
-            //底部按钮操作栏
-            bottomNavigationBar: Container(
-                decoration: BoxDecoration(
-                    border: Border(top: BorderSide(width: 1.h, color: Color(0xFFf5f4f4)))),
-                height: 51.h,
-                //房源联系人以及电话资讯和立即预约
-                child: _callOrSubscribe())),
-      )),
+                //底部按钮操作栏
+                bottomNavigationBar: Container(
+                    decoration: BoxDecoration(
+                        border: Border(top: BorderSide(width: 1.h, color: Color(0xFFf5f4f4)))),
+                    height: 51.h,
+                    //房源联系人以及电话资讯和立即预约
+                    child: _callOrSubscribe())),
+          )),
     );
   }
 

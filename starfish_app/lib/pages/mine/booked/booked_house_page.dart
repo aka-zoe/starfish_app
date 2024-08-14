@@ -36,6 +36,7 @@ class _SubscribeHousePageState extends State<SubscribeHousePage> {
           return _viewModel;
         },
         child: Scaffold(
+          backgroundColor: Colors.white,
           body: SafeArea(
               child: Column(
             children: [

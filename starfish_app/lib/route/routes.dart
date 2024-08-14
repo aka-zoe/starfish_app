@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:starfish_tenement_app/common_ui/scan/scan_page.dart';
 import 'package:starfish_tenement_app/pages/house_res/detail/house_res_detail_page.dart';
 import 'package:starfish_tenement_app/pages/auth/auth_page.dart';
 import 'package:starfish_tenement_app/pages/mine/about_us/about_us_page.dart';
@@ -50,6 +51,9 @@ class Routes {
       //设置页面
       case RoutePath.settingsPage:
         return pageRoute(SettingsPage(), settings: settings);
+      //扫码页面
+      case RoutePath.scanPage:
+        return pageRoute(ScanPage(), settings: settings);
     }
     return MaterialPageRoute(
         builder: (context) =>
@@ -118,4 +122,7 @@ class RoutePath {
 
   //设置页面
   static const String settingsPage = "/settingsPage";
+
+  //扫码页面
+  static const String scanPage = "/scanPage";
 }

@@ -57,6 +57,8 @@ dependencies:
     flustars: ^2.0.1
 #     显示3D模型
 #    flutter_model_viewer: ^0.0.7
+    # 扫描二维码
+    qr_code_scanner: 1.0.1
 dev_dependencies:
     flutter_test:
         sdk: flutter

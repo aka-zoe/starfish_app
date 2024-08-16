@@ -13,4 +13,4 @@ create table `config`
 
 insert into config (um_host, um_app_master_secret, um_app_key, upload_file_path)
 values ('https://msgapi.umeng.com', 'amonmll8fkzbqbab0f7vz5xptyobd3x1', '66a64da0192e0574e74d5585',
-        '/Users/gongsensen/Downloads/UploadImageForStarfish/fileUploadPath');
+        '文件上传的路径，指定你服务器的文件绝对路径');

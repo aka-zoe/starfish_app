@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   borderRadius: BorderRadius.circular(40.r)),
               5.verticalSpace,
-              AppText(text: "海星租房管理后台", fontSize: 9.sp, textColor: AppColors.white),
+              AppText(text: "海星租房管理后台", fontSize: 9.sp),
               40.verticalSpace,
               Consumer<HomeViewModel>(builder: (context, vm, child) {
                 return _menuList(vm.menuList);
@@ -107,16 +107,15 @@ class _HomePageState extends State<HomePage> {
         onTap: onTap,
         child: Container(
           width: double.infinity,
-          color: select == true ? AppColors.menuItemSelectBg : AppColors.transparent,
+          color: select == true ? AppColors.buttonBg : AppColors.transparent,
           padding: EdgeInsets.only(top: 20.h, bottom: 20.h),
           child: Row(
             children: [
               10.horizontalSpace,
-              Image.asset("assets/images/menu.png", width: 40.r, height: 40.r),
+              Image.asset("assets/images/menu.png", width: 40.r, height: 40.r,color: AppColors.textColor5a,),
               5.horizontalSpace,
               AppText(
                 text: title ?? "",
-                textColor: AppColors.white,
                 fontSize: 10.sp,
               )
             ],

@@ -6,12 +6,10 @@ import com.zoe.starfish_server.common.resp.BookedListResp;
 import com.zoe.starfish_server.common.resp.CommonResp;
 import com.zoe.starfish_server.domain.AppConfig;
 import com.zoe.starfish_server.domain.Collect;
+import com.zoe.starfish_server.domain.Message;
 import com.zoe.starfish_server.domain.User;
 import com.zoe.starfish_server.push.PushInstance;
-import com.zoe.starfish_server.service.AppConfigService;
-import com.zoe.starfish_server.service.BookedHouseService;
-import com.zoe.starfish_server.service.CollectService;
-import com.zoe.starfish_server.service.UserService;
+import com.zoe.starfish_server.service.*;
 import com.zoe.starfish_server.utils.PassToken;
 import com.zoe.starfish_server.utils.StringUtils;
 import com.zoe.starfish_server.utils.TokenUtils;
@@ -41,6 +39,9 @@ public class AppConfigController {
 
     @Autowired
     CollectService collectService;
+
+    @Autowired
+    MessageService messageService;
 
     /**
      * 查看配置信息
@@ -91,6 +92,15 @@ public class AppConfigController {
             PushInstance.getInstance().init(config.getUmAppMasterSecret(), config.getUmAppKey(), config.getUmHost());
         }
         Boolean success = PushInstance.getInstance().pushNotification(user.getUmToken(), paramMap, null);
+        //保存消息
+        Message message = new Message();
+        message.setUserid(userId);
+        message.setCreatetime(System.currentTimeMillis());
+        message.setTitle("测试消息标题");
+        message.setSubtitle("测试消息副标题");
+        message.setContent("测试消息内容测试消息内容测试消息内容测试消息内容测试消息内容测试消息内容测试消息内容测试消息内容");
+        message.setStatus(1);
+        messageService.addMessage(message);
         return CommonResp.success(success);
     }
 

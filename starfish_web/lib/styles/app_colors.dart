@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   AppColors._();
-  static const menuBg = Color(0xFF3561FF);
+
+  static Color menuBg = Colors.blue.shade50;
   static const buttonBg = Color(0xFF11B3F2);
   static const menuItemSelectBg = Color(0x36FFFFFF);
   static const transparent = Colors.transparent;
-
 
   //按钮红色背景
   static const redBtnColor = Color(0xFFFF3B3D);

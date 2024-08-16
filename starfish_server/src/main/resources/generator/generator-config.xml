@@ -54,6 +54,7 @@
 <!--        <table tableName="pinglun" domainObjectName="PingLun"/>-->
 <!--        <table tableName="booked_house" domainObjectName="BookedHouse"/>-->
 <!--        <table tableName="my_collect" domainObjectName="Collect"/>-->
-        <table tableName="config" domainObjectName="AppConfig"/>
+<!--        <table tableName="config" domainObjectName="AppConfig"/>-->
+        <table tableName="message" domainObjectName="Message"/>
     </context>
 </generatorConfiguration>

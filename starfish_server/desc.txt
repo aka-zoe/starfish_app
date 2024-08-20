@@ -1,0 +1,19 @@
+腾讯云IM秘钥：
+a48e36d57a381aa27260ed545ac8cd4c6c8e5b68e3273000d1388a25af840100
+腾讯云应用SDKAppID：
+1600049996
+中国：console.tim.qq.com，备域名 adminapi.my-imcloud.com
+接口文档：https://cloud.tencent.com/document/product/269/1520
+IM业务逻辑：
+1、用户注册后，注册IM账户
+2、APP获取当前应用ID、UserSIG
+
+
+
+友盟应用注册后的MasterSecret：
+amonmll8fkzbqbab0f7vz5xptyobd3x1
+友盟应用注册后的APPKey：
+66a64da0192e0574e74d5585
+友盟的域名：
+https://msgapi.umeng.com
+

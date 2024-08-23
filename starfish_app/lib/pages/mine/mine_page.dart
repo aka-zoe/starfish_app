@@ -10,7 +10,7 @@ import 'package:starfish_tenement_app/pages/mine/collect/my_collect_news_page.da
 import 'package:starfish_tenement_app/pages/mine/feedback/feedback_page.dart';
 import 'package:starfish_tenement_app/pages/mine/mine_vm.dart';
 import 'package:starfish_tenement_app/pages/mine/settings/settings_page.dart';
-import 'package:starfish_tenement_app/route/route_utils.dart';
+import 'package:starfish_route/route/route_utils.dart';
 import 'package:starfish_tenement_app/styles/app_colors.dart';
 
 class MinePage extends StatefulWidget {

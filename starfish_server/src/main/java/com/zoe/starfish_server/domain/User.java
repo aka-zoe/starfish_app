@@ -13,6 +13,8 @@ public class User {
 
     private String workNumber;
 
+    private String pid;
+
     private String email;
 
     private String address;
@@ -42,6 +44,7 @@ public class User {
                 ", role='" + role + '\'' +
                 ", createTime='" + createTime + '\'' +
                 ", workNumber='" + workNumber + '\'' +
+                ", pid='" + pid + '\'' +
                 ", email='" + email + '\'' +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
@@ -109,6 +112,14 @@ public class User {
 
     public void setWorkNumber(String workNumber) {
         this.workNumber = workNumber;
+    }
+
+    public String getPid() {
+        return pid;
+    }
+
+    public void setPid(String pid) {
+        this.pid = pid;
     }
 
     public String getEmail() {

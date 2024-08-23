@@ -1,4 +1,4 @@
-package com.zoe.starfish_server.tencent_im;
+package com.zoe.starfish_server.tencent_im.utils;
 
 import java.util.Base64;
 

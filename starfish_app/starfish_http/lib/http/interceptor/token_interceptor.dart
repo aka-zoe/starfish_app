@@ -1,8 +1,6 @@
-
 import 'package:dio/dio.dart';
-
-import '../../constants.dart';
-import '../../utils/sp_utils.dart';
+import 'package:starfish_utils/utils/sp_utils.dart';
+import 'package:starfish_utils/utils/constants.dart';
 
 class TokenInterceptor extends Interceptor {
   @override

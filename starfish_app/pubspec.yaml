@@ -46,27 +46,40 @@ dependencies:
     # 下拉刷新上拉加载
     pull_to_refresh: ^2.0.0
     intl: ^0.17.0
-    # 自己封装的高德定位插件
-    amap_location:
-        path: /Users/gongsensen/AndroidStudioProjects/Powersen_Personal/starfish_tenement_app/starfish_app/amap_location
     # 显示3D模型
     model_viewer_plus: ^1.5.1
     # 友盟推送、埋点
     umeng_push_sdk: ^2.3.0
     # 工具类库
     flustars: ^2.0.1
-#     显示3D模型
-#    flutter_model_viewer: ^0.0.7
+    #     显示3D模型
+    #    flutter_model_viewer: ^0.0.7
     # 扫描二维码
     qr_code_scanner: 1.0.1
     # 获取文件
     path_provider: ^2.1.4
+    # 腾讯云IM SDK
+    #    tencent_cloud_chat_sdk: ^8.0.5903
+    starfish_im:
+        path: starfish_im
+    starfish_http:
+        path: starfish_http
+    starfish_route:
+        path: starfish_route
+    starfish_utils:
+        path: starfish_utils
+    # 自己封装的高德定位插件
+    amap_location:
+        path: amap_location
 dev_dependencies:
     flutter_test:
         sdk: flutter
 
     flutter_lints: ^2.0.0
-
+dependency_overrides:
+    # 权限申请
+    permission_handler: ^11.3.1
+    http: ^1.0.0
 flutter:
 
     uses-material-design: true

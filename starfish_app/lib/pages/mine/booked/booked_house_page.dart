@@ -10,9 +10,9 @@ import 'package:starfish_tenement_app/common_ui/date_selector/date_selector_widg
 import 'package:starfish_tenement_app/common_ui/title/app_text.dart';
 import 'package:starfish_tenement_app/common_ui/title/big_title.dart';
 import 'package:starfish_tenement_app/pages/mine/booked/booked_house_vm.dart';
-import 'package:starfish_tenement_app/route/route_utils.dart';
+import 'package:starfish_route/route/route_utils.dart';
 import 'package:starfish_tenement_app/styles/app_colors.dart';
-import 'package:starfish_tenement_app/utils/string_utils.dart';
+import 'package:starfish_utils/utils/string_utils.dart';
 
 ///房源预定页
 class SubscribeHousePage extends StatefulWidget {

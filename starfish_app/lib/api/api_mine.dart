@@ -1,12 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:starfish_tenement_app/api/models/app_info_data.dart';
 import 'package:starfish_tenement_app/api/models/app_news_data.dart';
-import 'package:starfish_tenement_app/api/models/better_choice_data.dart';
-import 'package:starfish_tenement_app/api/models/home_banner_data.dart';
 import 'package:starfish_tenement_app/api/models/house_res_data.dart';
-import 'package:starfish_tenement_app/api/models/house_res_detail_data.dart';
-import 'package:starfish_tenement_app/api/models/my_booked_list_data.dart';
-import 'package:starfish_tenement_app/http/dio_instance.dart';
+import 'package:starfish_http/http/dio_instance.dart';
 
 class ApiMine {
   ApiMine._();

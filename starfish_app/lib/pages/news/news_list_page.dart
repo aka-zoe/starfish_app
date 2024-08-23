@@ -3,16 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:provider/provider.dart';
+import 'package:starfish_route/route/route_path.dart';
 import 'package:starfish_tenement_app/api/models/app_news_data.dart';
 import 'package:starfish_tenement_app/common_ui/tag/tag_widget.dart';
 import 'package:starfish_tenement_app/common_ui/title/app_text.dart';
 import 'package:starfish_tenement_app/common_ui/title/big_title.dart';
-import 'package:starfish_tenement_app/mock/datas/news_banner_data.dart';
-import 'package:starfish_tenement_app/route/Routes.dart';
-import 'package:starfish_tenement_app/route/route_utils.dart';
 import 'package:starfish_tenement_app/styles/app_colors.dart';
-import 'package:starfish_tenement_app/utils/string_utils.dart';
-
+import 'package:starfish_utils/utils/string_utils.dart';
+import 'package:starfish_route/route/route_utils.dart';
 import 'news_list_vm.dart';
 
 ///资讯页
@@ -46,34 +44,34 @@ class _NewsListPageState extends State<NewsListPage> {
             backgroundColor: Colors.white,
             body: SafeArea(
                 child: Padding(
-          padding: EdgeInsets.only(left: 20.w),
-          child: SingleChildScrollView(
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              //大标题
-              BigTitle(
-                bigTitle: "房产资讯",
-                titleSize: 24.sp,
-                padding: EdgeInsets.only(top: 21.h, bottom: 17.h),
+              padding: EdgeInsets.only(left: 20.w),
+              child: SingleChildScrollView(
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  //大标题
+                  BigTitle(
+                    bigTitle: "房产资讯",
+                    titleSize: 24.sp,
+                    padding: EdgeInsets.only(top: 21.h, bottom: 17.h),
+                  ),
+                  //分割线
+                  Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.only(right: 19.w, top: 17.h),
+                    height: 1.h,
+                    color: AppColors.lineColorF8,
+                  ),
+                  //最新资讯banner
+                  _newsBannerWidget(),
+                  25.verticalSpace,
+                  //热门资讯标题
+                  Container(
+                      padding: EdgeInsets.only(right: 18.w),
+                      child: BigTitle(bigTitle: "热门资讯", showRight: true, onRightTap: () {})),
+                  //资讯列表
+                  _hotNewsListView(),
+                ]),
               ),
-              //分割线
-              Container(
-                width: double.infinity,
-                padding: EdgeInsets.only(right: 19.w, top: 17.h),
-                height: 1.h,
-                color: AppColors.lineColorF8,
-              ),
-              //最新资讯banner
-              _newsBannerWidget(),
-              25.verticalSpace,
-              //热门资讯标题
-              Container(
-                  padding: EdgeInsets.only(right: 18.w),
-                  child: BigTitle(bigTitle: "热门资讯", showRight: true, onRightTap: () {})),
-              //资讯列表
-              _hotNewsListView(),
-            ]),
-          ),
-        ))));
+            ))));
   }
 
   ///热门资讯列表

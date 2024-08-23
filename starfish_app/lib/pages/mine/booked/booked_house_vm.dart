@@ -2,7 +2,7 @@ import 'package:flustars/flustars.dart';
 import 'package:flutter/widgets.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:starfish_tenement_app/api/api_house.dart';
-import 'package:starfish_tenement_app/utils/string_utils.dart';
+import 'package:starfish_utils/utils/string_utils.dart';
 
 class BookedHouseViewModel with ChangeNotifier {
   num? selectBookedDate = 0;

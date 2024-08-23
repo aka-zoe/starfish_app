@@ -63,12 +63,13 @@ public class UserService {
      * @param user
      * @return
      */
-    public int insertUser(User user) {
-        return userMapper.insert(user);
+    public boolean insertUser(User user) {
+        return userMapper.insert(user) == 1;
     }
 
     /**
      * 更新用户信息
+     *
      * @param user
      * @return
      */

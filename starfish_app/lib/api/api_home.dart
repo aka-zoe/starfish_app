@@ -1,8 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:starfish_tenement_app/api/models/better_choice_data.dart';
 import 'package:starfish_tenement_app/api/models/home_banner_data.dart';
-import 'package:starfish_tenement_app/api/models/house_res_data.dart';
-import 'package:starfish_tenement_app/http/dio_instance.dart';
+import 'package:starfish_http/http/dio_instance.dart';
 
 class ApiHome {
   ApiHome._();

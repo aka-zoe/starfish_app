@@ -6,7 +6,7 @@ import 'package:starfish_tenement_app/api/models/house_res_data.dart';
 import 'package:starfish_tenement_app/common_ui/sliver/sliver_header.dart';
 import 'package:starfish_tenement_app/pages/house_res/detail/house_res_detail_page.dart';
 import 'package:starfish_tenement_app/pages/house_res/house_resource_vm.dart';
-import 'package:starfish_tenement_app/route/route_utils.dart';
+import 'package:starfish_route/route/route_utils.dart';
 
 import '../../api/models/home_banner_data.dart';
 import '../../common_ui/app_bar/app_search_bar.dart';

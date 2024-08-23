@@ -14,11 +14,10 @@ import 'package:starfish_tenement_app/common_ui/icon_text/icon_text.dart';
 import 'package:starfish_tenement_app/common_ui/scan/scan_page.dart';
 import 'package:starfish_tenement_app/common_ui/sliver/sliver_header.dart';
 import 'package:starfish_tenement_app/common_ui/title/app_text.dart';
-import 'package:starfish_tenement_app/http/socket/web_socket_instance.dart';
 import 'package:starfish_tenement_app/pages/apartment/apartment_page.dart';
 import 'package:starfish_tenement_app/pages/home/home_vm.dart';
 import 'package:starfish_tenement_app/pages/house_res/detail/house_res_detail_page.dart';
-import 'package:starfish_tenement_app/route/route_utils.dart';
+import 'package:starfish_route/route/route_utils.dart';
 import 'package:starfish_tenement_app/styles/app_colors.dart';
 
 import '../../common_ui/filter/filter_menu_widget.dart';
@@ -125,7 +124,7 @@ class _HomePageState extends State<HomePage> {
           GestureDetector(
               onTap: () {
                 //点击切换当前位置
-                WebSocketInstance.instance.sendMessage("点击切换当前位置");
+                // WebSocketInstance.instance.sendMessage("点击切换当前位置");
               },
               child: Container(
                   child: Row(children: [

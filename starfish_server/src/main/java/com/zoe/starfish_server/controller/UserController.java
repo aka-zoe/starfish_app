@@ -6,10 +6,8 @@ import com.zoe.starfish_server.common.req.ReqRegister;
 import com.zoe.starfish_server.common.resp.CommonResp;
 import com.zoe.starfish_server.domain.User;
 import com.zoe.starfish_server.service.UserService;
-import com.zoe.starfish_server.utils.PassToken;
-import com.zoe.starfish_server.utils.StringUtils;
-import com.zoe.starfish_server.utils.TokenUtils;
-import com.zoe.starfish_server.utils.UserLoginToken;
+import com.zoe.starfish_server.tencent_im.IMInstance;
+import com.zoe.starfish_server.utils.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,6 +40,10 @@ public class UserController {
             if (user.getName().equals(name) && user.getPassword().equals(password)) {
                 String token = TokenUtils.token(user.getName(), user.getPassword(), user.getId());
                 user.setToken(token);
+                //登录后默认调一次添加IM用户接口
+                if (user.getPid() != null) {
+                    IMInstance.getInstance().importAccount(user.getPid(), user.getName(), "");
+                }
                 return CommonResp.success(user);
             }
         }
@@ -90,8 +92,15 @@ public class UserController {
         User user = new User();
         user.setName(name);
         user.setPassword(password);
+        String pid = PIDUtils.generatePID();
+        user.setPid(pid);
         //插入用户
-        return CommonResp.success(userService.insertUser(user) == 1);
+        boolean b = userService.insertUser(user);
+        if (b) {
+            //注册为IM账户
+            IMInstance.getInstance().importAccount(pid, name, "");
+        }
+        return CommonResp.success(b);
     }
 
     /**

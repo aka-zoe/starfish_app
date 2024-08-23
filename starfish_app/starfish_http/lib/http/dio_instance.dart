@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:starfish_tenement_app/http/interceptor/token_interceptor.dart';
+import 'package:starfish_http/http/interceptor/token_interceptor.dart';
 
 import 'http_method.dart';
 import 'interceptor/print_log_interceptor.dart';

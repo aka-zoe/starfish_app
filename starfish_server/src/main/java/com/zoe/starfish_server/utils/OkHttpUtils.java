@@ -1,6 +1,7 @@
 package com.zoe.starfish_server.utils;
 
 import okhttp3.*;
+import org.json.JSONObject;
 
 
 import java.io.File;
@@ -75,7 +76,7 @@ public class OkHttpUtils {
         mOkHttpClient.newCall(request).enqueue(callback);
     }
 
-    public void postFroJson(String url,String json, Callback callback){
+    public void postFroJson(String url, String json, Callback callback) {
         RequestBody body = RequestBody.create(MediaType.parse("application/json"), json);
         Request request = new Request.Builder()
                 .post(body)
@@ -132,5 +133,16 @@ public class OkHttpUtils {
 
         public abstract void onSuccess(Call call, String response);
 
+        public JSONObject getResponseJson(Call call) throws Exception {
+            try (Response execute = call.execute()) {
+                String str = execute.body().string();
+                return new JSONObject(str);
+            }
+        }
+
+        public String getResponseStr(Call call) throws IOException {
+            Response execute = call.execute();
+            return execute.body().string();
+        }
     }
 }

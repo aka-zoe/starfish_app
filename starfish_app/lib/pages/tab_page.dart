@@ -6,7 +6,6 @@ import 'package:starfish_tenement_app/pages/mine/mine_page.dart';
 import 'package:starfish_tenement_app/pages/news/news_list_page.dart';
 
 import '../common_ui/navigation/navigation_bar_widget.dart';
-import '../http/socket/web_socket_instance.dart';
 
 class TabPage extends StatefulWidget {
   const TabPage({super.key});
@@ -44,7 +43,7 @@ class _TabPageState extends State<TabPage> {
 
   @override
   void dispose() {
-    WebSocketInstance.instance.close();
+    // WebSocketInstance.instance.close();
     super.dispose();
   }
 

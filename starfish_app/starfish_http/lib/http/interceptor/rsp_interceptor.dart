@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:oktoast/oktoast.dart';
-import 'package:starfish_tenement_app/http/base_model.dart';
-import 'package:starfish_tenement_app/pages/auth/auth_page.dart';
-import 'package:starfish_tenement_app/route/route_utils.dart';
+import 'package:starfish_http/http/base_model.dart';
+import 'package:starfish_route/route/route_utils.dart';
+import 'package:starfish_route/route/route_path.dart';
 
 ///处理返回值拦截器
 class RspInterceptor extends Interceptor {
@@ -22,7 +22,7 @@ class RspInterceptor extends Interceptor {
             //需要登录
             handler.reject(DioException(requestOptions: response.requestOptions));
             showToast(baseData.message ?? "系统错误");
-            RouteUtils.push(RouteUtils.context, const AuthPage());
+            RouteUtils.pushForNamed(RouteUtils.context, RoutePath.auth);
           } else {
             //其他错误
             if (response.requestOptions.path.contains("getAppInfo") == false) {

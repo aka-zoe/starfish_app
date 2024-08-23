@@ -7,6 +7,7 @@ create table `user`
     `role`        varchar(50) comment '角色',
     `create_time` varchar(50) comment '创建时间',
     `work_number` varchar(50) comment '工号',
+    `pid`         varchar(50) comment '用户的唯一ID用于IM注册',
     `email`       varchar(255) comment '邮箱',
     `address`     varchar(255) comment '地址',
     `phone`       varchar(18) comment '手机号',
@@ -21,8 +22,8 @@ create table `user`
 ) engine = innodb
   default charset = utf8mb4 comment '用户表';
 
-insert into user (name, password, role, create_time, work_number, email, address, phone, gender, um_token, tag, age,
+insert into user (name, password, role, create_time, work_number,pid, email, address, phone, gender, um_token, tag, age,
                   open_msg, status)
-values ('Zoe', '123456', 'admin', '2023-10-21 22:24:00', '23789', 'sensen.gong@alpha-ess.com', '苏州', '15061442013',
-        '男', 'AjVGvmpMkTnTwdMFopxl1k-aBT2gLAuhcPjli2v1EbgK', 'normal', 25,
+values ('admin', '123456', 'admin', '2023-10-21 22:24:00', '23789', '32387155', 'asd.asd@asd.com', '苏州', '15012345432',
+        '男', 'AjVGvmpMkTnTwdMFopxl1k-aBT2gLAuhcPjli2v1EbgK', 'normal', 12,
         0, 0);

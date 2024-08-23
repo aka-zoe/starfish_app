@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:starfish_tenement_app/http/dio_instance.dart';
+import 'package:starfish_http/http/dio_instance.dart';
 
 import 'models/user_info.dart';
 

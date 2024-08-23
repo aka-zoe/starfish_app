@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:starfish_route/route/route_path.dart';
 import 'package:starfish_tenement_app/common_ui/input/app_input.dart';
 import 'package:starfish_tenement_app/common_ui/buttons/red_button.dart';
 import 'package:starfish_tenement_app/common_ui/title/app_text.dart';
 import 'package:starfish_tenement_app/pages/auth/auth_vm.dart';
 import 'package:starfish_tenement_app/pages/tab_page.dart';
-import 'package:starfish_tenement_app/route/Routes.dart';
-import 'package:starfish_tenement_app/route/route_utils.dart';
+import 'package:starfish_route/route/route_utils.dart';
 
 ///登录或者注册页
 class AuthPage extends StatefulWidget {

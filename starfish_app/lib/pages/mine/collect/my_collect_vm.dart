@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:starfish_tenement_app/api/api_mine.dart';
-import 'package:starfish_tenement_app/api/models/app_news_data.dart';
-import 'package:starfish_tenement_app/api/models/house_res_data.dart';
+import 'package:starfish_api/api/api_mine.dart';
+import 'package:starfish_api/api/models/app_news_data.dart';
+import 'package:starfish_api/api/models/house_res_data.dart';
 
 class MyCollectViewModel with ChangeNotifier {
   List<HouseResData>? houseResList;

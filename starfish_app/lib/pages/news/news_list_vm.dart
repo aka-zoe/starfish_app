@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:starfish_tenement_app/api/api_news.dart';
-import 'package:starfish_tenement_app/api/models/app_news_data.dart';
-import 'package:starfish_tenement_app/mock/datas/news_banner_data.dart';
-import 'package:starfish_tenement_app/mock/mock_api.dart';
+import 'package:starfish_api/api/api_news.dart';
+import 'package:starfish_api/api/models/app_news_data.dart';
 
 ///咨询列表页业务逻辑层
 class NewsListViewModel with ChangeNotifier {

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:starfish_tenement_app/api/api_mine.dart';
-import 'package:starfish_tenement_app/api/api_news.dart';
-import 'package:starfish_tenement_app/api/models/app_news_data.dart';
+import 'package:starfish_api/api/api_mine.dart';
+import 'package:starfish_api/api/api_news.dart';
+import 'package:starfish_api/api/models/app_news_data.dart';
 
 class NewsTypeViewModel with ChangeNotifier {
   //雷区

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:starfish_tenement_app/common_ui/house_list/house_res_list_item.dart';
+import 'package:starfish_common_ui/common_ui/house_list/house_res_list_item.dart';
 import 'package:starfish_tenement_app/pages/mine/collect/my_collect_vm.dart';
 
 ///房源收藏

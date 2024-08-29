@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:starfish_tenement_app/common_ui/title/app_text.dart';
+import 'package:starfish_common_ui/common_ui/styles/app_colors.dart';
+import 'package:starfish_common_ui/common_ui/title/app_text.dart';
 import 'package:starfish_tenement_app/pages/mine/about_us/about_us_page.dart';
 import 'package:starfish_tenement_app/pages/mine/booked/list/my_booked_list_page.dart';
 import 'package:starfish_tenement_app/pages/mine/collect/my_collect_house_page.dart';
@@ -11,7 +12,6 @@ import 'package:starfish_tenement_app/pages/mine/feedback/feedback_page.dart';
 import 'package:starfish_tenement_app/pages/mine/mine_vm.dart';
 import 'package:starfish_tenement_app/pages/mine/settings/settings_page.dart';
 import 'package:starfish_route/route/route_utils.dart';
-import 'package:starfish_tenement_app/styles/app_colors.dart';
 
 class MinePage extends StatefulWidget {
   @override

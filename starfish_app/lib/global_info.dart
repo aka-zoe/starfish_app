@@ -1,4 +1,4 @@
-import 'package:starfish_tenement_app/api/models/user_info.dart';
+import 'package:starfish_api/api/models/user_info.dart';
 import 'package:starfish_utils/utils/string_utils.dart';
 class GlobalInfo {
   GlobalInfo._();

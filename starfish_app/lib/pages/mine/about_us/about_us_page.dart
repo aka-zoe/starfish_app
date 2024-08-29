@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:starfish_tenement_app/common_ui/web/webview_widget.dart';
+import 'package:starfish_common_ui/common_ui/web/webview_widget.dart';
 
 class AboutUsPage extends StatefulWidget {
   const AboutUsPage({super.key});

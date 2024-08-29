@@ -47,7 +47,7 @@ dependencies:
     pull_to_refresh: ^2.0.0
     intl: ^0.17.0
     # 显示3D模型
-    model_viewer_plus: ^1.5.1
+#    model_viewer_plus: ^1.5.1
     # 友盟推送、埋点
     umeng_push_sdk: ^2.3.0
     # 工具类库
@@ -68,6 +68,10 @@ dependencies:
         path: starfish_route
     starfish_utils:
         path: starfish_utils
+    starfish_api:
+        path: starfish_api
+    starfish_common_ui:
+        path: starfish_common_ui
     # 自己封装的高德定位插件
     amap_location:
         path: amap_location

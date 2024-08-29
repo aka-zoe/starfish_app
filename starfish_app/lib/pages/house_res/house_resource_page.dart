@@ -2,18 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:starfish_tenement_app/api/models/house_res_data.dart';
-import 'package:starfish_tenement_app/common_ui/sliver/sliver_header.dart';
+import 'package:starfish_api/api/models/home_banner_data.dart';
+import 'package:starfish_api/api/models/house_res_data.dart';
+import 'package:starfish_common_ui/common_ui/app_bar/app_search_bar.dart';
+import 'package:starfish_common_ui/common_ui/banner/home_banner_widget.dart';
+import 'package:starfish_common_ui/common_ui/filter/filter_menu_widget.dart';
+import 'package:starfish_common_ui/common_ui/house_list/house_res_list_item.dart';
+import 'package:starfish_common_ui/common_ui/sliver/sliver_header.dart';
+import 'package:starfish_common_ui/common_ui/title/big_title.dart';
 import 'package:starfish_tenement_app/pages/house_res/detail/house_res_detail_page.dart';
 import 'package:starfish_tenement_app/pages/house_res/house_resource_vm.dart';
 import 'package:starfish_route/route/route_utils.dart';
 
-import '../../api/models/home_banner_data.dart';
-import '../../common_ui/app_bar/app_search_bar.dart';
-import '../../common_ui/banner/home_banner_widget.dart';
-import '../../common_ui/filter/filter_menu_widget.dart';
-import '../../common_ui/house_list/house_res_list_item.dart';
-import '../../common_ui/title/big_title.dart';
 
 ///房源列表页面
 class HouseResourcePage extends StatefulWidget {

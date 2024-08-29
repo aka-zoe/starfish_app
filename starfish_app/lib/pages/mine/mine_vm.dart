@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:starfish_tenement_app/api/api_mine.dart';
-import 'package:starfish_tenement_app/api/models/app_info_data.dart';
+import 'package:starfish_api/api/api_mine.dart';
+import 'package:starfish_api/api/models/app_info_data.dart';
 
 class MineViewModel with ChangeNotifier {
   AppInfoData? infoData;

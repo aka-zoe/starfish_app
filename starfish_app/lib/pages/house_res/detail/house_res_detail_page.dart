@@ -2,17 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:starfish_tenement_app/api/models/house_res_data.dart';
-import 'package:starfish_tenement_app/api/models/house_res_detail_data.dart';
-import 'package:starfish_tenement_app/common_ui/banner/home_banner_widget.dart';
-import 'package:starfish_tenement_app/common_ui/buttons/red_button.dart';
-import 'package:starfish_tenement_app/common_ui/house_list/house_res_list_item.dart';
-import 'package:starfish_tenement_app/common_ui/title/app_text.dart';
-import 'package:starfish_tenement_app/common_ui/title/big_title.dart';
+import 'package:starfish_api/api/models/house_res_data.dart';
+import 'package:starfish_api/api/models/house_res_detail_data.dart';
+import 'package:starfish_common_ui/common_ui/banner/home_banner_widget.dart';
+import 'package:starfish_common_ui/common_ui/buttons/red_button.dart';
+import 'package:starfish_common_ui/common_ui/house_list/house_res_list_item.dart';
+import 'package:starfish_common_ui/common_ui/styles/app_colors.dart';
+import 'package:starfish_common_ui/common_ui/title/app_text.dart';
+import 'package:starfish_common_ui/common_ui/title/big_title.dart';
 import 'package:starfish_tenement_app/pages/house_res/detail/house_res_detail_vm.dart';
 import 'package:starfish_tenement_app/pages/mine/booked/booked_house_page.dart';
 import 'package:starfish_route/route/route_utils.dart';
-import 'package:starfish_tenement_app/styles/app_colors.dart';
 
 ///房源明细页
 class HouseResDetailPage extends StatefulWidget {

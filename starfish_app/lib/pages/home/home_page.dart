@@ -4,24 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
-import 'package:starfish_tenement_app/api/models/better_choice_data.dart';
-import 'package:starfish_tenement_app/api/models/home_banner_data.dart';
-import 'package:starfish_tenement_app/api/models/house_res_data.dart';
-import 'package:starfish_tenement_app/common_ui/app_bar/app_search_bar.dart';
-import 'package:starfish_tenement_app/common_ui/banner/home_banner_widget.dart';
-import 'package:starfish_tenement_app/common_ui/house_list/house_res_list_item.dart';
-import 'package:starfish_tenement_app/common_ui/icon_text/icon_text.dart';
-import 'package:starfish_tenement_app/common_ui/scan/scan_page.dart';
-import 'package:starfish_tenement_app/common_ui/sliver/sliver_header.dart';
-import 'package:starfish_tenement_app/common_ui/title/app_text.dart';
+import 'package:starfish_api/api/models/better_choice_data.dart';
+import 'package:starfish_api/api/models/home_banner_data.dart';
+import 'package:starfish_api/api/models/house_res_data.dart';
+import 'package:starfish_common_ui/common_ui/app_bar/app_search_bar.dart';
+import 'package:starfish_common_ui/common_ui/banner/home_banner_widget.dart';
+import 'package:starfish_common_ui/common_ui/filter/filter_menu_widget.dart';
+import 'package:starfish_common_ui/common_ui/house_list/house_res_list_item.dart';
+import 'package:starfish_common_ui/common_ui/scan/scan_page.dart';
+import 'package:starfish_common_ui/common_ui/sliver/sliver_header.dart';
+import 'package:starfish_common_ui/common_ui/styles/app_colors.dart';
+import 'package:starfish_common_ui/common_ui/title/app_text.dart';
+import 'package:starfish_common_ui/common_ui/title/big_title.dart';
+import 'package:starfish_common_ui/common_ui/icon_text/icon_text.dart';
 import 'package:starfish_tenement_app/pages/apartment/apartment_page.dart';
 import 'package:starfish_tenement_app/pages/home/home_vm.dart';
 import 'package:starfish_tenement_app/pages/house_res/detail/house_res_detail_page.dart';
 import 'package:starfish_route/route/route_utils.dart';
-import 'package:starfish_tenement_app/styles/app_colors.dart';
-
-import '../../common_ui/filter/filter_menu_widget.dart';
-import '../../common_ui/title/big_title.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -65,52 +64,52 @@ class _HomePageState extends State<HomePage> {
         child: Scaffold(
             backgroundColor: Colors.white,
             body: SafeArea(
-          child: Padding(
-              padding: EdgeInsets.only(left: 16.w, right: 15.w),
-              child: CustomScrollView(slivers: [
-                SliverToBoxAdapter(
-                    child: Column(children: [
-                  //位置、搜索栏、扫码
-                  _titleBar(),
-                  22.verticalSpace,
-                  //banner轮播
-                  _banner(),
-                  21.verticalSpace,
-                  //金刚位按钮
-                  _jinGangView(),
-                  BigTitle(bigTitle: "本期优选"),
-                  //本期优选
-                  _betterChoice(),
-                  BigTitle(bigTitle: "周边推荐", showRight: true, onRightTap: () {}),
-                  //地图缩略图
-                  _mapView(),
-                ])),
+              child: Padding(
+                  padding: EdgeInsets.only(left: 16.w, right: 15.w),
+                  child: CustomScrollView(slivers: [
+                    SliverToBoxAdapter(
+                        child: Column(children: [
+                      //位置、搜索栏、扫码
+                      _titleBar(),
+                      22.verticalSpace,
+                      //banner轮播
+                      _banner(),
+                      21.verticalSpace,
+                      //金刚位按钮
+                      _jinGangView(),
+                      BigTitle(bigTitle: "本期优选"),
+                      //本期优选
+                      _betterChoice(),
+                      BigTitle(bigTitle: "周边推荐", showRight: true, onRightTap: () {}),
+                      //地图缩略图
+                      _mapView(),
+                    ])),
 
-                //吸顶布局
-                SliverHeader(
-                  children: [
-                    BigTitle(bigTitle: "精选好房"),
-                    //筛选条件区域
-                    _filterArea()
-                  ],
-                ),
-                //房源列表
-                Selector<HomeVM, List<HouseResData>?>(builder: (context, houseResList, child) {
-                  return SliverList(
-                      delegate: SliverChildBuilderDelegate((context, index) {
-                    var item = houseResList?[index];
-                    return HouseListItem(
-                      data: item,
-                      onTap: () {
-                        RouteUtils.push(context, HouseResDetailPage(id: item?.id));
-                      },
-                    );
-                  }, childCount: houseResList?.length ?? 0));
-                }, selector: (context, vm) {
-                  return vm.houseResList;
-                }),
-              ])),
-        )));
+                    //吸顶布局
+                    SliverHeader(
+                      children: [
+                        BigTitle(bigTitle: "精选好房"),
+                        //筛选条件区域
+                        _filterArea()
+                      ],
+                    ),
+                    //房源列表
+                    Selector<HomeVM, List<HouseResData>?>(builder: (context, houseResList, child) {
+                      return SliverList(
+                          delegate: SliverChildBuilderDelegate((context, index) {
+                        var item = houseResList?[index];
+                        return HouseListItem(
+                          data: item,
+                          onTap: () {
+                            RouteUtils.push(context, HouseResDetailPage(id: item?.id));
+                          },
+                        );
+                      }, childCount: houseResList?.length ?? 0));
+                    }, selector: (context, vm) {
+                      return vm.houseResList;
+                    }),
+                  ])),
+            )));
   }
 
   ///位置、搜索栏、扫码

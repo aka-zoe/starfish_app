@@ -1,10 +1,9 @@
 import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:starfish_tenement_app/api/api_house.dart';
-import 'package:starfish_tenement_app/api/api_mine.dart';
-import 'package:starfish_tenement_app/api/models/house_res_detail_data.dart';
-
-import '../../../api/models/house_res_data.dart';
+import 'package:starfish_api/api/api_house.dart';
+import 'package:starfish_api/api/api_mine.dart';
+import 'package:starfish_api/api/models/house_res_data.dart';
+import 'package:starfish_api/api/models/house_res_detail_data.dart';
 
 class HouseResDetailViewModel with ChangeNotifier {
   HouseResDetailData? detailData;

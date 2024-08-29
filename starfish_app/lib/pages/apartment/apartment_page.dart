@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:starfish_tenement_app/common_ui/app_bar/app_search_bar.dart';
-import 'package:starfish_tenement_app/common_ui/title/app_text.dart';
-
-import '../../common_ui/app_bar/app_title_bar.dart';
-import '../../common_ui/filter/filter_menu_widget.dart';
-import '../../common_ui/tag/tag_widget.dart';
-import '../../styles/app_colors.dart';
+import 'package:starfish_common_ui/common_ui/app_bar/app_search_bar.dart';
+import 'package:starfish_common_ui/common_ui/app_bar/app_title_bar.dart';
+import 'package:starfish_common_ui/common_ui/filter/filter_menu_widget.dart';
+import 'package:starfish_common_ui/common_ui/styles/app_colors.dart';
+import 'package:starfish_common_ui/common_ui/tag/tag_widget.dart';
+import 'package:starfish_common_ui/common_ui/title/app_text.dart';
 
 ///品牌公寓页面
 class ApartmentPage extends StatefulWidget {

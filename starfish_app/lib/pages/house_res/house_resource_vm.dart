@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:starfish_tenement_app/api/api_home.dart';
-import 'package:starfish_tenement_app/api/api_house.dart';
-import 'package:starfish_tenement_app/api/models/home_banner_data.dart';
-import 'package:starfish_tenement_app/api/models/house_res_data.dart';
+import 'package:starfish_api/api/api_home.dart';
+import 'package:starfish_api/api/api_house.dart';
+import 'package:starfish_api/api/models/home_banner_data.dart';
+import 'package:starfish_api/api/models/house_res_data.dart';
 
 
 class HouseResourceVM with ChangeNotifier {

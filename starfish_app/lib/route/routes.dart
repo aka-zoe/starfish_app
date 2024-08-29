@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:starfish_common_ui/common_ui/scan/scan_page.dart';
 import 'package:starfish_route/route/route_path.dart';
-import 'package:starfish_tenement_app/common_ui/scan/scan_page.dart';
 import 'package:starfish_tenement_app/pages/house_res/detail/house_res_detail_page.dart';
 import 'package:starfish_tenement_app/pages/auth/auth_page.dart';
 import 'package:starfish_tenement_app/pages/mine/about_us/about_us_page.dart';

@@ -2,11 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:starfish_tenement_app/api/models/app_news_data.dart';
-import 'package:starfish_tenement_app/common_ui/app_bar/app_title_bar.dart';
-import 'package:starfish_tenement_app/common_ui/title/app_text.dart';
-import 'package:starfish_tenement_app/mock/datas/news_type_data.dart';
-import 'package:starfish_tenement_app/styles/app_colors.dart';
+import 'package:starfish_api/api/models/app_news_data.dart';
+import 'package:starfish_common_ui/common_ui/app_bar/app_title_bar.dart';
+import 'package:starfish_common_ui/common_ui/styles/app_colors.dart';
+import 'package:starfish_common_ui/common_ui/title/app_text.dart';
 import 'package:starfish_utils/utils/string_utils.dart';
 
 import 'news_type_vm.dart';

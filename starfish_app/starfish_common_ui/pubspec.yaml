@@ -1,0 +1,38 @@
+name: starfish_common_ui
+description: "A new Flutter project."
+version: 0.0.1
+homepage:
+
+environment:
+    sdk: '>=3.4.0 <4.0.0'
+    flutter: ">=1.17.0"
+
+dependencies:
+    flutter:
+        sdk: flutter
+
+dev_dependencies:
+    flutter_test:
+        sdk: flutter
+    flutter_lints: ^3.0.0
+    # 屏幕适配相关
+    flutter_screenutil: ^5.9.3
+    # webview：基于原生webview封装的
+    flutter_inappwebview: ^5.8.0
+    # 显示html文本内容的组件
+    flutter_html: ^3.0.0-alpha.6
+    # 下拉刷新上拉加载
+    pull_to_refresh: ^2.0.0
+    # banner轮播图组件
+    flutter_swiper_view: ^1.1.8
+    # 图片缓存加载
+    cached_network_image: ^3.2.2
+    # 工具类库
+    flustars: ^2.0.1
+    # toast提示
+    oktoast: ^3.3.1
+    # 扫描二维码
+    qr_code_scanner: 1.0.1
+    starfish_api:
+        path: ../starfish_api
+flutter:

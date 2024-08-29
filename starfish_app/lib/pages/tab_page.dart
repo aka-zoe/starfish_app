@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:starfish_common_ui/common_ui/navigation/navigation_bar_widget.dart';
 import 'package:starfish_tenement_app/pages/home/home_page.dart';
 import 'package:starfish_tenement_app/pages/house_res/house_resource_page.dart';
 import 'package:starfish_tenement_app/pages/mine/mine_page.dart';
 import 'package:starfish_tenement_app/pages/news/news_list_page.dart';
 
-import '../common_ui/navigation/navigation_bar_widget.dart';
 
 class TabPage extends StatefulWidget {
   const TabPage({super.key});

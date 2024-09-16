@@ -4,11 +4,11 @@ import 'package:starfish_common_ui/common_ui/scan/scan_page.dart';
 import 'package:starfish_route/route/route_path.dart';
 import 'package:starfish_tenement_app/pages/house_res/detail/house_res_detail_page.dart';
 import 'package:starfish_tenement_app/pages/auth/auth_page.dart';
-import 'package:starfish_tenement_app/pages/message/message_page.dart';
 import 'package:starfish_tenement_app/pages/mine/about_us/about_us_page.dart';
 import 'package:starfish_tenement_app/pages/mine/collect/my_collect_house_page.dart';
 import 'package:starfish_tenement_app/pages/mine/collect/my_collect_news_page.dart';
 import 'package:starfish_tenement_app/pages/mine/feedback/feedback_page.dart';
+import 'package:starfish_tenement_app/pages/mine/message/message_page.dart';
 import 'package:starfish_tenement_app/pages/mine/settings/settings_page.dart';
 import 'package:starfish_tenement_app/pages/news/news_type/news_type_page.dart';
 

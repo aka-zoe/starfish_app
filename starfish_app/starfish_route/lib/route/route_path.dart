@@ -47,4 +47,7 @@ class RoutePath {
 
   //扫码页面
   static const String scanPage = "/scanPage";
+
+  //消息通知页面
+  static const String messagePage = "/messagePage";
 }

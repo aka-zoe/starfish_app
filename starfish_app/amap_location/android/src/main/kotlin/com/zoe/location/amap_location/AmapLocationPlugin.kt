@@ -44,6 +44,7 @@ class AmapLocationPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Stream
                     LocationInstance.instance().updatePrivacy(it)
                 }
                 result.success(true)
+                return
             }
 
             //初始化
@@ -72,35 +73,36 @@ class AmapLocationPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Stream
                         })
                 }
                 result.success(true)
+                return
             }
 
             //开启定位
             METHOD_START_LOCATION -> {
                 LocationInstance.instance().startLocation()
                 result.success(true)
+                return
             }
 
             //停止定位
             METHOD_STOP_LOCATION -> {
                 LocationInstance.instance().stopLocation()
                 result.success(true)
+                return
             }
 
             //销毁定位
             METHOD_DESTROY_LOCATION -> {
                 LocationInstance.instance().destroyLocation()
                 result.success(true)
+                return
             }
 
-            else ->
+            else ->{
                 result.notImplemented()
+            }
+
         }
 
-        if (call.method == METHOD_INIT_LOCATION) {
-            result.success(true)
-        } else {
-            result.notImplemented()
-        }
     }
 
     override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {

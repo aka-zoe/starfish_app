@@ -45,7 +45,9 @@ class _HomePageState extends State<HomePage> {
     AmapLocation.instance.updatePrivacy().then((value) {
       AmapLocation.instance.initLocation().then((value) {
         AmapLocation.instance.startLocation();
-        AmapLocation.instance.locationEventCallback((event) {});
+        AmapLocation.instance.locationEventCallback((event) {
+          print("定位：event=$event");
+        });
       });
     });
   }

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:starfish_common_ui/common_ui/styles/app_colors.dart';
 import 'package:starfish_common_ui/common_ui/title/app_text.dart';
+import 'package:starfish_route/route/route_path.dart';
 import 'package:starfish_tenement_app/pages/mine/about_us/about_us_page.dart';
 import 'package:starfish_tenement_app/pages/mine/booked/list/my_booked_list_page.dart';
 import 'package:starfish_tenement_app/pages/mine/collect/my_collect_house_page.dart';
@@ -14,6 +15,8 @@ import 'package:starfish_tenement_app/pages/mine/settings/settings_page.dart';
 import 'package:starfish_route/route/route_utils.dart';
 
 class MinePage extends StatefulWidget {
+  const MinePage({super.key});
+
   @override
   State createState() {
     return _MinePageState();
@@ -44,7 +47,10 @@ class _MinePageState extends State<MinePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                _header(onMessageTap: () {}),
+                _header(onMessageTap: () {
+                  //点击进入消息通知页面
+                  RouteUtils.pushForNamed(context, RoutePath.messagePage);
+                }),
                 15.verticalSpace,
                 Padding(
                     padding: EdgeInsets.only(left: 20.w, right: 20.w),
@@ -132,12 +138,12 @@ class _MinePageState extends State<MinePage> {
   Widget _header({GestureTapCallback? onMessageTap}) {
     return SizedBox(
         width: double.infinity,
-        height: 121.h+ScreenUtil().statusBarHeight,
+        height: 121.h + ScreenUtil().statusBarHeight,
         child: Stack(children: [
           //红色背景色块
           Container(
               width: double.infinity,
-              height: 121+ScreenUtil().statusBarHeight,
+              height: 121 + ScreenUtil().statusBarHeight,
               padding: EdgeInsets.only(right: 110.w),
               child: Stack(
                 children: [

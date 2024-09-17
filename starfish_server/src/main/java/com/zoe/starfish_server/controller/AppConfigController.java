@@ -96,9 +96,12 @@ public class AppConfigController {
         Message message = new Message();
         message.setUserid(userId);
         message.setCreatetime(System.currentTimeMillis());
-        message.setTitle("测试消息标题");
-        message.setSubtitle("测试消息副标题");
-        message.setContent("测试消息内容测试消息内容测试消息内容测试消息内容测试消息内容测试消息内容测试消息内容测试消息内容");
+        // 必填，通知标题
+        message.setTitle(paramMap.get("title"));
+        // 必填，通知文字描述
+        message.setSubtitle(paramMap.get("text"));
+        //可选, 通知栏提示文字
+        message.setContent(paramMap.get("ticker"));
         message.setStatus(1);
         messageService.addMessage(message);
         return CommonResp.success(success);

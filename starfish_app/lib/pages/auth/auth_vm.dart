@@ -47,6 +47,7 @@ class AuthViewModel with ChangeNotifier {
       await SpUtils.saveString(Constants.SP_USER_PWD, userInfo.password ?? "");
       //添加缓存
       GlobalInfo.info.setUser(userInfo);
+      ApiAuth.api.bindPushToken();
       Loading.dismissAll();
       return true;
     }

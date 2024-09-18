@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
+import 'package:starfish_api/api/api_auth.dart';
 import 'package:starfish_api/api/models/better_choice_data.dart';
 import 'package:starfish_api/api/models/home_banner_data.dart';
 import 'package:starfish_api/api/models/house_res_data.dart';
@@ -41,7 +42,7 @@ class _HomePageState extends State<HomePage> {
     _homeVM.getHomeData();
     _homeVM.getBetterChoice();
     _homeVM.getHouseRes();
-
+    ApiAuth.api.bindPushToken();
     AmapLocation.instance.updatePrivacy().then((value) {
       AmapLocation.instance.initLocation().then((value) {
         AmapLocation.instance.startLocation();

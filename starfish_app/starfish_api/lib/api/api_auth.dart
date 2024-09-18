@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:starfish_http/http/dio_instance.dart';
 
 import 'models/user_info.dart';
+import 'package:starfish_utils/utils/push_utils.dart';
 
 class ApiAuth {
   ApiAuth._();
@@ -27,5 +28,10 @@ class ApiAuth {
     return false;
   }
 
-
+  Future bindPushToken() async {
+    PushUtils.getDeviceToken((token) {
+      DioInstance.instance()
+          .post(path: "auth/user/bindToken", queryParameters: {"umToken": token, "tag": ""});
+    });
+  }
 }

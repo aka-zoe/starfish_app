@@ -5,6 +5,11 @@ class AmapLocation {
 
   static AmapLocation instance = AmapLocation._();
 
+  ///设置高德APIkey
+  Future<bool?> setApiKey({required String key}) {
+    return AmapLocationPlatform.instance.setApiKey(key: key);
+  }
+
   ///更新用户隐私政策
   Future<bool?> updatePrivacy() {
     return AmapLocationPlatform.instance.updatePrivacy();

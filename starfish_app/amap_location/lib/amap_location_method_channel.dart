@@ -8,6 +8,12 @@ class MethodChannelAmapLocation extends AmapLocationPlatform {
   final methodChannel = const MethodChannel(LocationConstants.METHOD_NAME);
   final eventChannel = const EventChannel(LocationConstants.EVENT_NAME);
 
+  ///设置高德APIkey
+  @override
+  Future<bool?> setApiKey({required String key}) {
+    return methodChannel.invokeMethod(LocationConstants.METHOD_SET_API_KEY, {"key": key});
+  }
+
   ///初始化
   ///[interval]    定位间隔，默认2秒
   ///[httpTimeOut] 定位超时时间，默认30秒
@@ -41,7 +47,10 @@ class MethodChannelAmapLocation extends AmapLocationPlatform {
       {Function? onError, void Function()? onDone, bool? cancelOnError}) async {
     eventChannel
         .receiveBroadcastStream()
-        .listen(onData, onError: onError, onDone: onDone, cancelOnError: cancelOnError);
+        .listen((data){
+          print("locationEventCallback data=${data.toString()}");
+      onData?.call(data);
+    }, onError: onError, onDone: onDone, cancelOnError: cancelOnError);
   }
 
   ///更新用户隐私政策

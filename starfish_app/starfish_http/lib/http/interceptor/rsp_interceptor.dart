@@ -18,7 +18,9 @@ class RspInterceptor extends Interceptor {
         } else {
           if (code == 200) {
             handler.next(Response(requestOptions: response.requestOptions, data: baseData.content));
-          } else if (code == 210 && response.requestOptions.path.contains("getAppInfo") == false) {
+          } else if (code == 210 &&
+              response.requestOptions.path.contains("getAppInfo") == false &&
+              response.requestOptions.path.contains("bindToken") == false) {
             //需要登录
             handler.reject(DioException(requestOptions: response.requestOptions));
             showToast(baseData.message ?? "系统错误");

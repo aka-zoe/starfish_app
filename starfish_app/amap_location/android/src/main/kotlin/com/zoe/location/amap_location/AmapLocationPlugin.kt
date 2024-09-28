@@ -1,14 +1,19 @@
 package com.zoe.location.amap_location
 
 import android.content.Context
+import android.util.Log
 import androidx.annotation.NonNull
 import com.amap.api.location.AMapLocation
+import com.amap.api.location.AMapLocationClient
 import com.blankj.utilcode.util.GsonUtils
+import com.blankj.utilcode.util.LogUtils
+import com.blankj.utilcode.util.Utils
 import com.zoe.location.amap_location.PluginConstants.EVENT_CALLBACK_LOCATION
 import com.zoe.location.amap_location.PluginConstants.EVENT_NAME
 import com.zoe.location.amap_location.PluginConstants.METHOD_DESTROY_LOCATION
 import com.zoe.location.amap_location.PluginConstants.METHOD_INIT_LOCATION
 import com.zoe.location.amap_location.PluginConstants.METHOD_NAME
+import com.zoe.location.amap_location.PluginConstants.METHOD_SET_API_KEY
 import com.zoe.location.amap_location.PluginConstants.METHOD_START_LOCATION
 import com.zoe.location.amap_location.PluginConstants.METHOD_STOP_LOCATION
 import com.zoe.location.amap_location.PluginConstants.METHOD_UPDATE_PRIVACY
@@ -38,6 +43,15 @@ class AmapLocationPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Stream
     override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
 
         when (call.method) {
+
+            METHOD_SET_API_KEY -> {
+                val key: String? = call.argument("key")
+                Log.d("METHOD_SET_API_KEY", key.toString())
+                AMapLocationClient.setApiKey(key)
+                result.success(true)
+                return
+            }
+
             //更新用户隐私政策
             METHOD_UPDATE_PRIVACY -> {
                 context?.let {
@@ -58,17 +72,16 @@ class AmapLocationPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Stream
                         option = LocationOption(
                             interval = (interval?.toLong()) ?: 2000,
                             httpTimeOut = (httpTimeOut?.toLong()) ?: 30000
-                        ),
-                        listener = object
-                            : LocationInstance.LocationChangeListener {
-                            override fun onLocationChanged(location: AMapLocation?) {
-                                runCatching {
-                                    //将返回的定位数据转为json处理，回调给flutter
-                                    val json: String = GsonUtils.toJson(location)
-                                    val map = mutableMapOf<String, String>()
-                                    map[EVENT_CALLBACK_LOCATION] = json
-                                    eventSink?.success(map)
-                                }
+                        ), locationCallback = {location->
+                            LogUtils.i("METHOD_INIT_LOCATION  location=${location.toString()}")
+                            try {
+                                //将返回的定位数据转为json处理，回调给flutter
+                                val json: String = GsonUtils.toJson(location)
+                                val map = mutableMapOf<String, String>()
+                                map[EVENT_CALLBACK_LOCATION] = json
+                                eventSink?.success(map)
+                            } catch (e: Exception) {
+                                LogUtils.i("METHOD_INIT_LOCATION  error=${e.toString()}")
                             }
                         })
                 }
@@ -97,7 +110,7 @@ class AmapLocationPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Stream
                 return
             }
 
-            else ->{
+            else -> {
                 result.notImplemented()
             }
 
@@ -111,6 +124,7 @@ class AmapLocationPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Stream
     }
 
     override fun onListen(arguments: Any?, events: EventChannel.EventSink?) {
+        LogUtils.i("onListen eventSink=$events")
         eventSink = events
     }
 

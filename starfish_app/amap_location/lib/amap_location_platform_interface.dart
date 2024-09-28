@@ -15,6 +15,10 @@ abstract class AmapLocationPlatform extends PlatformInterface {
     PlatformInterface.verifyToken(instance, _token);
     _instance = instance;
   }
+  ///调用通过SDK提供的setApiKey(String key)
+  Future<bool?> setApiKey({required String key}) {
+    throw UnimplementedError('setApiKey() has not been implemented.');
+  }
 
   ///初始化
   ///[interval]    定位间隔，默认2秒
@@ -40,7 +44,7 @@ abstract class AmapLocationPlatform extends PlatformInterface {
 
   ///注册event回调
   Future locationEventCallback(void Function(dynamic event)? onData,
-      {Function? onError, void Function()? onDone, bool? cancelOnError})   {
+      {Function? onError, void Function()? onDone, bool? cancelOnError}) {
     throw UnimplementedError('eventCallback() has not been implemented.');
   }
 

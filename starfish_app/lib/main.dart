@@ -7,8 +7,8 @@ import 'package:starfish_http/http/dio_instance.dart';
 import 'app.dart';
 
 void main() async{
-  // DioInstance.instance().initDio(baseUrl: "http://172.25.12.71:9900/");
-  DioInstance.instance().initDio(baseUrl: "http://192.168.3.4:9900/");
+  // DioInstance.instance().initDio(baseUrl: "http://192.168.31.34:9900/");
+  DioInstance.instance().initDio(baseUrl: "http://192.168.3.32:9900/");
   await ScreenUtil.ensureScreenSize();
   PushUtils.registerPush();
   if(kDebugMode&& openDebugPage){

@@ -4,11 +4,13 @@ import 'package:starfish_api/api/api_house.dart';
 import 'package:starfish_api/api/models/better_choice_data.dart';
 import 'package:starfish_api/api/models/home_banner_data.dart';
 import 'package:starfish_api/api/models/house_res_data.dart';
+import 'package:starfish_utils/utils/string_utils.dart';
 
 class HomeVM extends ChangeNotifier {
   List<HomeBannerData>? banner = [];
   List<BetterChoiceData>? betterChoice = [];
   List<HouseResData>? houseResList = [];
+  String currentCity = "";
 
   ///首页banner
   Future getHomeData() async {
@@ -41,6 +43,15 @@ class HomeVM extends ChangeNotifier {
       }
       notifyListeners();
     }
+  }
+
+  void changeLocation(String city) {
+    //去重
+    if (currentCity == city) {
+      return;
+    }
+    currentCity = city;
+    notifyListeners();
   }
 
   List<String?> generalBannerList(List<HomeBannerData>? banner) {

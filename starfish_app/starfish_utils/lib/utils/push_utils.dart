@@ -6,7 +6,7 @@ import 'package:umeng_common_sdk/umeng_common_sdk.dart';
 
 class PushUtils {
   static Future registerPush() async {
-    // UmengPushSdk.setLogEnable(kDebugMode);
+    UmengPushSdk.setLogEnable(true);
     UmengCommonSdk.initCommon(
             "66a64da0192e0574e74d5585", "", "Android", "7331b564a2a0a49cd576addeec74c024")
         .then((value) async {

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:amap_location/amap_location.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -43,11 +45,18 @@ class _HomePageState extends State<HomePage> {
     _homeVM.getBetterChoice();
     _homeVM.getHouseRes();
     ApiAuth.api.bindPushToken();
-    AmapLocation.instance.updatePrivacy().then((value) {
-      AmapLocation.instance.initLocation().then((value) {
-        AmapLocation.instance.startLocation();
-        AmapLocation.instance.locationEventCallback((event) {
-          print("定位：event=$event");
+    AmapLocation.instance.setApiKey(key: "e705eaaace29381df2fd225f6b3224cc").then((value) {
+      AmapLocation.instance.updatePrivacy().then((value) {
+        AmapLocation.instance.initLocation().then((value) {
+          AmapLocation.instance.startLocation();
+          AmapLocation.instance.locationEventCallback((event) {
+            // print("定位：event=$event");
+            dynamic location = event["event_callback_location"];
+            var decode = json.decode(location);
+            dynamic city = decode["e"];
+            _homeVM.changeLocation(city);
+            print("定位：city=$city");
+          });
         });
       });
     });
@@ -130,7 +139,10 @@ class _HomePageState extends State<HomePage> {
               },
               child: Container(
                   child: Row(children: [
-                Text("苏州", style: TextStyle(fontSize: 14.sp, color: AppColors.textColor5a)),
+                Consumer<HomeVM>(builder: (context, vm, child) {
+                  return Text(vm.currentCity,
+                      style: TextStyle(fontSize: 14.sp, color: AppColors.textColor5a));
+                }),
                 4.horizontalSpace,
                 Image.asset(
                   "assets/images/icon_daosanjiao.png",

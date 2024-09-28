@@ -8,6 +8,7 @@ import com.amap.api.location.AMapLocationClientOption.AMapLocationMode
 import com.amap.api.location.AMapLocationClientOption.AMapLocationProtocol
 import com.amap.api.location.AMapLocationListener
 import com.blankj.utilcode.util.LogUtils
+import com.blankj.utilcode.util.Utils
 
 /**
  * 定位工具
@@ -29,16 +30,16 @@ class LocationInstance private constructor() {
 
     private var locationClient: AMapLocationClient? = null
     private var locationOption: AMapLocationClientOption? = null
-    private var locationListener: LocationChangeListener? = null
 
     interface LocationChangeListener {
         fun onLocationChanged(location: AMapLocation?)
     }
 
-    fun updatePrivacy(context: Context){
+    fun updatePrivacy(context: Context) {
         //隐私合规更新
         AMapLocationClient.updatePrivacyShow(context.applicationContext, true, true)
         AMapLocationClient.updatePrivacyAgree(context.applicationContext, true)
+        LogUtils.i("LocationInstance updatePrivacy")
     }
 
     /**
@@ -48,8 +49,8 @@ class LocationInstance private constructor() {
      * [listener]  定位回调
      */
     fun setLocation(
-        context: Context, option: LocationOption? = buildDefaultOption(), listener:
-        LocationChangeListener?
+        context: Context, option: LocationOption? = buildDefaultOption(),
+        locationCallback: (AMapLocation?) -> Unit,
     ) {
 
         try {
@@ -58,12 +59,12 @@ class LocationInstance private constructor() {
 
             locationOption = getDefaultOption(option ?: buildDefaultOption())
             locationClient?.setLocationOption(locationOption)
-            if (null != locationListener) {
-                this.locationListener = listener
-            }
+
+            LogUtils.i("LocationInstance setLocation")
             locationClient?.setLocationListener(object : AMapLocationListener {
                 override fun onLocationChanged(location: AMapLocation?) {
-                    locationListener?.onLocationChanged(location)
+                    LogUtils.i("LocationInstance onLocationChanged location=${location.toString()}")
+                    locationCallback.invoke(location)
                 }
             })
         } catch (e: Exception) {
@@ -79,6 +80,7 @@ class LocationInstance private constructor() {
         try {
             locationClient?.setLocationOption(locationOption)
             locationClient?.startLocation()
+            LogUtils.i("LocationInstance startLocation")
         } catch (e: Exception) {
             LogUtils.e("LocationInstance startLocation error=$e")
         }
@@ -90,6 +92,7 @@ class LocationInstance private constructor() {
     fun stopLocation() {
         try {
             locationClient?.stopLocation()
+            LogUtils.i("LocationInstance stopLocation")
         } catch (e: Exception) {
             LogUtils.e("LocationInstance stopLocation error=$e")
         }
@@ -103,7 +106,6 @@ class LocationInstance private constructor() {
             locationClient?.onDestroy()
             locationClient = null
             locationOption = null
-            locationListener = null
         }
     }
 

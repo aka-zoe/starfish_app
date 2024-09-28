@@ -2,6 +2,9 @@ class LocationConstants {
   static const String METHOD_NAME = "method_location_name";
   static const String EVENT_NAME = "event_location_name";
 
+  //设置高德APIkey
+  static const String METHOD_SET_API_KEY = "method_set_api_key";
+
   //更新用户隐私政策
   static const String METHOD_UPDATE_PRIVACY = "method_update_privacy";
 

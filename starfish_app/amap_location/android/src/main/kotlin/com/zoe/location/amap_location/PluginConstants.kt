@@ -5,6 +5,9 @@ object PluginConstants {
     const val METHOD_NAME = "method_location_name"
     const val EVENT_NAME = "event_location_name"
 
+    //设置高德APIkey
+    const val METHOD_SET_API_KEY = "method_set_api_key"
+
     //更新用户隐私政策
     const val METHOD_UPDATE_PRIVACY = "method_update_privacy"
 

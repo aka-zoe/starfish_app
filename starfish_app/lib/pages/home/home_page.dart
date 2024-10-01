@@ -12,6 +12,7 @@ import 'package:starfish_api/api/models/home_banner_data.dart';
 import 'package:starfish_api/api/models/house_res_data.dart';
 import 'package:starfish_common_ui/common_ui/app_bar/app_search_bar.dart';
 import 'package:starfish_common_ui/common_ui/banner/home_banner_widget.dart';
+import 'package:starfish_common_ui/common_ui/dialog/dialog_factory.dart';
 import 'package:starfish_common_ui/common_ui/filter/filter_menu_widget.dart';
 import 'package:starfish_common_ui/common_ui/house_list/house_res_list_item.dart';
 import 'package:starfish_common_ui/common_ui/scan/scan_page.dart';
@@ -20,10 +21,13 @@ import 'package:starfish_common_ui/common_ui/styles/app_colors.dart';
 import 'package:starfish_common_ui/common_ui/title/app_text.dart';
 import 'package:starfish_common_ui/common_ui/title/big_title.dart';
 import 'package:starfish_common_ui/common_ui/icon_text/icon_text.dart';
+import 'package:starfish_tenement_app/common/location.dart';
+import 'package:starfish_tenement_app/common/permission.dart';
 import 'package:starfish_tenement_app/pages/apartment/apartment_page.dart';
 import 'package:starfish_tenement_app/pages/home/home_vm.dart';
 import 'package:starfish_tenement_app/pages/house_res/detail/house_res_detail_page.dart';
 import 'package:starfish_route/route/route_utils.dart';
+import 'package:starfish_utils/utils/permission_utils.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -34,36 +38,53 @@ class HomePage extends StatefulWidget {
   }
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   final HomeVM _homeVM = HomeVM();
+  var _first = true;
+  var _firstCheck = true;
 
   @override
   void initState() {
     super.initState();
-
+    WidgetsBinding.instance.addObserver(this);
+    checkPermission();
     _homeVM.getHomeData();
     _homeVM.getBetterChoice();
     _homeVM.getHouseRes();
     ApiAuth.api.bindPushToken();
-    AmapLocation.instance.setApiKey(key: "e705eaaace29381df2fd225f6b3224cc").then((value) {
-      AmapLocation.instance.updatePrivacy().then((value) {
-        AmapLocation.instance.initLocation().then((value) {
-          AmapLocation.instance.startLocation();
-          AmapLocation.instance.locationEventCallback((event) {
-            // print("定位：event=$event");
-            dynamic location = event["event_callback_location"];
-            var decode = json.decode(location);
-            dynamic city = decode["e"];
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    if (state == AppLifecycleState.resumed) {
+      if (!_first) {
+        if (_firstCheck) {
+          checkPermission();
+        }
+        _firstCheck = false;
+      }
+      _first = false;
+    }
+  }
+
+  Future checkPermission() async {
+    AppPermission.requestAppPermission(context, (status) {
+      if (status) {
+        //开启定位
+        Location.initLocationSDK().then((value) {
+          Location.startLocationOnce((json) {
+            var city = json['e'];
             _homeVM.changeLocation(city);
-            print("定位：city=$city");
           });
         });
-      });
+      }
     });
   }
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
@@ -135,7 +156,7 @@ class _HomePageState extends State<HomePage> {
           GestureDetector(
               onTap: () {
                 //点击切换当前位置
-                // WebSocketInstance.instance.sendMessage("点击切换当前位置");
+                checkPermission();
               },
               child: Container(
                   child: Row(children: [

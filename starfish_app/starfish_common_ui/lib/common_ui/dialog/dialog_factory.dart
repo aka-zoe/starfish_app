@@ -78,4 +78,28 @@ class DialogFactory {
         ),
         touchOutsideDismiss: false);
   }
+
+  ///展示请求网络权限弹窗
+  Future showRequestPermissionDialog(
+      {required BuildContext context,
+      String? content,
+      GestureTapCallback? cancelClick,
+      GestureTapCallback? confirmClick}) async {
+    return await showParentDialog(
+        context: context,
+        child: TipsCommonDialog(
+          title: content ?? "是否进入设置打开权限？",
+          dialogContentType: DialogContentType.Normal,
+          dialogButtonType: DialogButtonType.DoubleButton,
+          leftOnTap: () {
+            Navigator.pop(context);
+            cancelClick?.call();
+          },
+          rightOnTap: () {
+            Navigator.pop(context);
+            confirmClick?.call();
+          },
+        ),
+        touchOutsideDismiss: false);
+  }
 }

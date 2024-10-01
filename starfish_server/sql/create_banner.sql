@@ -13,13 +13,13 @@ create table `banner`
   default charset = utf8mb4 comment '活动表';
 
 insert into banner (imgUrl, link, type, activeName, status)
-values ('https://q7.itc.cn/images01/20240312/ae5f3266aeb6408db22ad354f1168883.jpeg', 'https://www.baidu.com',
+values ('https://ww4.sinaimg.cn/mw690/006joT8tgy1hofwddmarzj30j60nxq6d.jpg', 'https://www.baidu.com',
         0, '搞笑活动', 0),
-       ('https://q9.itc.cn/images01/20240312/6012df31dff3413bb7815b136e98207e.png', 'https://www.baidu.com',
+       ('https://wx3.sinaimg.cn/orj480/006iiEhUly1hitpet5bglj30u00gvgox.jpg', 'https://www.baidu.com',
         0, '搞笑活动', 0),
-       ('https://q7.itc.cn/images01/20240312/ae5f3266aeb6408db22ad354f1168883.jpeg', 'https://www.baidu.com',
+       ('https://ww4.sinaimg.cn/mw690/006joT8tgy1hofwddmarzj30j60nxq6d.jpg', 'https://www.baidu.com',
         0, '搞笑活动', 0),
-       ('https://q9.itc.cn/images01/20240312/6012df31dff3413bb7815b136e98207e.png', 'https://www.baidu.com',
+       ('https://wx3.sinaimg.cn/orj480/006iiEhUly1hitpet5bglj30u00gvgox.jpg', 'https://www.baidu.com',
         0, '搞笑活动', 0);
 
 # select * from banner where id=1;

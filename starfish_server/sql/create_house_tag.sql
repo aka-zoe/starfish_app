@@ -4,7 +4,7 @@ create table `house_tag`
     `id`           bigint not null auto_increment comment 'id',
     `house_res_id` bigint comment '房源id',
     `name`         varchar(50) comment '标签名称',
-    `type`         varchar(50) comment '标签类型：0=hot',
+    `type`         int comment '标签类型：0=hot',
     `create_time`  date comment '创建时间',
     `status`       int comment '状态：0=正常 1=停用 -1=删除',
     primary key (`id`)

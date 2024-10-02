@@ -10,10 +10,10 @@ import 'package:starfish_common_ui/common_ui/filter/filter_menu_widget.dart';
 import 'package:starfish_common_ui/common_ui/house_list/house_res_list_item.dart';
 import 'package:starfish_common_ui/common_ui/sliver/sliver_header.dart';
 import 'package:starfish_common_ui/common_ui/title/big_title.dart';
+import 'package:starfish_route/route/route_path.dart';
 import 'package:starfish_tenement_app/pages/house_res/detail/house_res_detail_page.dart';
 import 'package:starfish_tenement_app/pages/house_res/house_resource_vm.dart';
 import 'package:starfish_route/route/route_utils.dart';
-
 
 ///房源列表页面
 class HouseResourcePage extends StatefulWidget {
@@ -61,6 +61,7 @@ class _HouseResourcePageState extends State<HouseResourcePage> {
                         showRightIcon: true,
                         onRightIconTap: () {
                           //点击消息按钮
+                          RouteUtils.pushForNamed(context, RoutePath.conversationPage);
                         },
                       ),
                       SizedBox(height: 21.h),

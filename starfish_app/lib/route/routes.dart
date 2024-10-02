@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:starfish_common_ui/common_ui/scan/scan_page.dart';
+import 'package:starfish_im/pages/conversation_page.dart';
 import 'package:starfish_route/route/route_path.dart';
 import 'package:starfish_tenement_app/pages/house_res/detail/house_res_detail_page.dart';
 import 'package:starfish_tenement_app/pages/auth/auth_page.dart';
@@ -56,9 +57,12 @@ class Routes {
       //扫码页面
       case RoutePath.scanPage:
         return pageRoute(ScanPage(), settings: settings);
-        //消息通知页面
+      //消息通知页面
       case RoutePath.messagePage:
         return pageRoute(MessagePage(), settings: settings);
+      //IM会话页面
+      case RoutePath.conversationPage:
+        return pageRoute(ConversationPage(), settings: settings);
     }
     return MaterialPageRoute(
         builder: (context) =>
@@ -80,5 +84,3 @@ class Routes {
         allowSnapshotting: allowSnapshotting ?? true);
   }
 }
-
-

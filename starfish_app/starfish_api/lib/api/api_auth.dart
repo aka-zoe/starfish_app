@@ -34,4 +34,13 @@ class ApiAuth {
           .post(path: "auth/user/bindToken", queryParameters: {"umToken": token, "tag": ""});
     });
   }
+
+  ///获取IM签名
+  Future<String> getIMSig() async {
+    Response response = await DioInstance.instance().post(path: "appConfig/getImSign");
+    if (response.data is String) {
+      return response.data;
+    }
+    return "";
+  }
 }

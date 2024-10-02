@@ -27,6 +27,7 @@ class UserInfo {
     this.age,
     this.status,
     this.token,
+    this.pid,
   });
 
   UserInfo.fromJson(dynamic json) {
@@ -43,6 +44,7 @@ class UserInfo {
     age = json['age'];
     status = json['status'];
     token = json['token'];
+    pid = json['pid'];
   }
 
   num? id;
@@ -58,6 +60,7 @@ class UserInfo {
   num? age;
   num? status;
   String? token;
+  String? pid;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -74,6 +77,7 @@ class UserInfo {
     map['age'] = age;
     map['status'] = status;
     map['token'] = token;
+    map['pid'] = pid;
     return map;
   }
 }

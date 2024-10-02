@@ -21,10 +21,14 @@ public class IMConfigInfo {
      * @return
      */
     public static String generateUrl(String url) {
-        TLSSigAPIv2 tlsSigAPIv2 = new TLSSigAPIv2(SDKAPPID, IMSecretKey);
-        String sig = tlsSigAPIv2.genUserSig(AdministratorUserId, 86400);
+        String sig = generateSign(AdministratorUserId);
         url = url + "?sdkappid=" + SDKAPPID + "&identifier=" + AdministratorUserId + "&usersig=" + sig + "&random=99999999&contenttype=json";
         return TencentHost + url;
+    }
+
+    public static String generateSign(String uid) {
+        TLSSigAPIv2 tlsSigAPIv2 = new TLSSigAPIv2(SDKAPPID, IMSecretKey);
+        return tlsSigAPIv2.genUserSig(uid, 86400);
     }
 
     /**

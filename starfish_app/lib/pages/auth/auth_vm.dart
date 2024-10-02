@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:starfish_common_ui/common_ui/dialog/loading.dart';
 import 'package:starfish_tenement_app/constants.dart';
-import 'package:starfish_tenement_app/global_info.dart';
+import 'package:starfish_utils/utils/global_info.dart';
 import 'package:starfish_utils/utils/sp_utils.dart';
 import 'package:starfish_utils/utils/string_utils.dart';
 import 'package:starfish_api/api/api_auth.dart';
@@ -13,7 +13,7 @@ class AuthViewModel with ChangeNotifier {
   //软键盘是否弹出
   bool keyboardShow = false;
 
-  TextEditingController inputName = TextEditingController(text: "Zoe");
+  TextEditingController inputName = TextEditingController(text: "admin");
   TextEditingController inputPwd = TextEditingController(text: "123456");
   TextEditingController inputRePwd = TextEditingController(text: "123456");
 

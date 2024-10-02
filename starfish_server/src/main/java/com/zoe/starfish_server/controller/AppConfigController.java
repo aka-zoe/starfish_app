@@ -10,6 +10,7 @@ import com.zoe.starfish_server.domain.Message;
 import com.zoe.starfish_server.domain.User;
 import com.zoe.starfish_server.push.PushInstance;
 import com.zoe.starfish_server.service.*;
+import com.zoe.starfish_server.tencent_im.IMConfigInfo;
 import com.zoe.starfish_server.utils.PassToken;
 import com.zoe.starfish_server.utils.StringUtils;
 import com.zoe.starfish_server.utils.TokenUtils;
@@ -18,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -153,5 +155,25 @@ public class AppConfigController {
         }
 
         return CommonResp.success(appInfoResp);
+    }
+
+    /**
+     * 获取IM签名
+     *
+     * @return
+     */
+    @UserLoginToken
+    @PostMapping("/getImSign")
+    public CommonResp getImSign(HttpServletRequest request) {
+        Long userId = TokenUtils.getUserId(request);
+        User user = userService.getUser(userId);
+        if (user == null) {
+            return CommonResp.success(null);
+        }
+        if (StringUtils.isNotEmpty(user.getPid())) {
+            String sign = IMConfigInfo.generateSign(user.getPid());
+            return CommonResp.success(sign);
+        }
+        return CommonResp.success(null);
     }
 }

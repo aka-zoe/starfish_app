@@ -1,10 +1,10 @@
 ///路由地址
 class RoutePath {
   //首页tab
-  static const String tab = "/";
+  static const String tab = "/tab";
 
   //登录/注册
-  static const String auth = "/auth";
+  static const String auth = "/";
 
   //注册
   static const String register = "/register";
@@ -50,4 +50,7 @@ class RoutePath {
 
   //消息通知页面
   static const String messagePage = "/messagePage";
+
+  //IM会话页面
+  static const String conversationPage = "/conversationPage";
 }

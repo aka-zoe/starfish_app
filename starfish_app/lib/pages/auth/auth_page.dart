@@ -26,14 +26,14 @@ class _AuthPageState extends State<AuthPage> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
-    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-    //   viewModel.checkAutoLogin().then((value) {
-    //     if (value) {
-    //       //登录成功，进入首页
-    //       RouteUtils.pushNamedAndRemoveUntil(context, RoutePath.tab);
-    //     }
-    //   });
-    // });
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      viewModel.checkAutoLogin().then((value) {
+        if (value) {
+          //登录成功，进入首页
+          RouteUtils.pushNamedAndRemoveUntil(context, RoutePath.tab);
+        }
+      });
+    });
 
     /// 初始化
     WidgetsBinding.instance.addObserver(this);

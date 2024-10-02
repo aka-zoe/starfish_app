@@ -21,6 +21,7 @@ import 'package:starfish_common_ui/common_ui/styles/app_colors.dart';
 import 'package:starfish_common_ui/common_ui/title/app_text.dart';
 import 'package:starfish_common_ui/common_ui/title/big_title.dart';
 import 'package:starfish_common_ui/common_ui/icon_text/icon_text.dart';
+import 'package:starfish_im/im_core.dart';
 import 'package:starfish_tenement_app/common/location.dart';
 import 'package:starfish_tenement_app/common/permission.dart';
 import 'package:starfish_tenement_app/pages/apartment/apartment_page.dart';
@@ -52,6 +53,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     _homeVM.getBetterChoice();
     _homeVM.getHouseRes();
     ApiAuth.api.bindPushToken();
+    IMCore.instance.initIM();
   }
 
   @override

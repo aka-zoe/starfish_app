@@ -1,5 +1,7 @@
+import 'package:starfish_api/api/api_auth.dart';
 import 'package:starfish_api/api/models/user_info.dart';
 import 'package:starfish_utils/utils/string_utils.dart';
+
 class GlobalInfo {
   GlobalInfo._();
 
@@ -18,5 +20,10 @@ class GlobalInfo {
   ///检查当前是否已登录
   bool checkLogin() {
     return _userInfo == null || StringUtils.isEmpty(_userInfo?.name);
+  }
+
+  ///获取IM签名
+  Future<String> getIMSig() async {
+    return await ApiAuth.api.getIMSig();
   }
 }

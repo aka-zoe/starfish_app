@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:starfish_im/im_config_info.dart';
+import 'package:starfish_utils/utils/global_info.dart';
 import 'package:tencent_calls_uikit/tuicall_kit.dart';
 import 'package:tencent_cloud_chat_uikit/data_services/conversation/conversation_services.dart';
 import 'package:tencent_cloud_chat_uikit/data_services/core/core_services_implements.dart';
@@ -12,8 +13,10 @@ class IMCore {
   final CoreServicesImpl _coreInstance = TIMUIKitCore.getInstance();
   final V2TIMManager _sdkInstance = TIMUIKitCore.getSDKInstance();
   final ConversationService _conversationService = serviceLocator<ConversationService>();
-  final CoreServicesImpl coreInstance = TIMUIKitCore.getInstance();
 
+  IMCore._();
+
+  static final instance = IMCore._();
 
   Future initIM() async {
     _coreInstance.init(
@@ -61,6 +64,7 @@ class IMCore {
         onConnectSuccess: () {
           // localSetting.connectStatus = ConnectStatus.success;
           debugPrint(TIM_t("即时通信服务连接成功"));
+          userLogin();
         },
         onConnecting: () {
           // localSetting.connectStatus = ConnectStatus.connecting;
@@ -78,20 +82,18 @@ class IMCore {
   }
 
   Future userLogin() async {
-
-
     String key = IMConfigInfo.key;
     int sdkAppId = IMConfigInfo.sdkappid;
 
+    String userSig = await GlobalInfo.info.getIMSig();
 
-    String userSig = "";
-
-    await TUICallKit.instance.login(sdkAppId, "userID", userSig);
-
-    var data = await coreInstance.login(
-      userID: "userID",
+    String userId = GlobalInfo.info.getUserInfo()?.pid ?? "";
+    await TUICallKit.instance.login(sdkAppId, userId, userSig);
+    var data = await _coreInstance.login(
+      userID: userId,
       userSig: userSig,
     );
+    debugPrint("IM登录返回：${data.toLogString()}");
     if (data.code != 0) {
       final option1 = data.desc;
       debugPrint(TIM_t_para("登录失败{{option1}}", "登录失败$option1")(option1: option1));
@@ -100,6 +102,5 @@ class IMCore {
 
     // Initialize the poll plug-in
     TencentCloudChatVotePlugin.initPlugin();
-
   }
 }

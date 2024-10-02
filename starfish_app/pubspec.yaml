@@ -59,7 +59,7 @@ dependencies:
     # 获取文件
     path_provider: ^2.1.4
     # 腾讯云IM SDK
-    #    tencent_cloud_chat_sdk: ^8.0.5903
+    tencent_cloud_chat_sdk: ^8.0.5903
     starfish_im:
         path: starfish_im
     starfish_http:
@@ -84,6 +84,14 @@ dependency_overrides:
     # 权限申请
     permission_handler: ^11.3.1
     http: ^1.0.0
+    tencent_cloud_chat_uikit: 2.7.1
+    tencent_calls_uikit: 2.5.0
+    tencent_cloud_chat_push: 8.1.6906
+    tencent_im_base: 8.0.0
+    tencent_cloud_chat_vote_plugin: 1.2.0
+    tencent_cloud_chat_customer_service_plugin: 0.1.0
+    tencent_cloud_av_chat_room: 0.1.0
+    extended_image: 8.2.4
 flutter:
 
     uses-material-design: true

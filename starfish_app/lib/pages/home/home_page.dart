@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:amap_location/amap_location.dart';
+import 'package:amap_location/map/amap_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -75,6 +76,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       if (status) {
         //开启定位
         Location.initLocationSDK().then((value) {
+          _homeVM.setShowMap();
           Location.startLocationOnce((json) {
             var city = json['e'];
             _homeVM.changeLocation(city);
@@ -405,8 +407,11 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         height: 162.h,
         width: double.infinity,
         alignment: Alignment.center,
-        child: Image.asset("assets/images/image_map.png",
-            width: double.infinity, height: double.infinity, fit: BoxFit.fill));
+        child: Consumer<HomeVM>(
+          builder: (context, vm, child) {
+            return AMapView();
+          },
+        ));
   }
 
   ///筛选条件区域

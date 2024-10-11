@@ -11,6 +11,7 @@ class HomeVM extends ChangeNotifier {
   List<BetterChoiceData>? betterChoice = [];
   List<HouseResData>? houseResList = [];
   String currentCity = "";
+  bool showMap = false;
 
   ///首页banner
   Future getHomeData() async {
@@ -51,6 +52,11 @@ class HomeVM extends ChangeNotifier {
       return;
     }
     currentCity = city;
+    notifyListeners();
+  }
+
+  void setShowMap() {
+    showMap = !showMap;
     notifyListeners();
   }
 

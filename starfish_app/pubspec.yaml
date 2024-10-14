@@ -75,6 +75,8 @@ dependencies:
     # 自己封装的高德定位插件
     amap_location:
         path: amap_location
+#    amap_flutter_map: ^3.0.0
+
 dev_dependencies:
     flutter_test:
         sdk: flutter

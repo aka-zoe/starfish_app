@@ -41,17 +41,21 @@
                                 console.log("把食材叠在一起，成功！")
                             }
 
-                            function startMakerBurger() {
-                                burgerMakerV2(1)
-                                burgerMakerV2(2)
-                                burgerMakerV2(3)
 
+                            /**
+                             * 开始制作汉堡er
+                             */
+                            function startMakerBurger() {
+
+                                //制作牛肉汉堡
                                 burgerMakeV3(beef)
+                                //制作鸡肉汉堡
                                 burgerMakeV3(chicken)
+                                //制作鱼肉汉堡
                                 burgerMakeV3(fish)
                             }
 
-
+                            //汉堡制作函数3.0
                             function burgerMakeV3(func) {
                                 console.log("把面包加热至金黄色")
                                 func.call()
@@ -61,6 +65,14 @@
                                 console.log("清洗生菜并切碎")
                                 console.log("把食材叠在一起，成功！")
                             }
+
+
+
+
+
+
+
+
 
                             function beef() {
                                 console.log("将牛肉饼煎至完美熟度")
@@ -74,6 +86,19 @@
                                 console.log("将鱼肉饼煎至完美熟度")
                             }
 
+
+
+
+
+
+
+
+
+
+
+
+
                             function main(){
 
                             }
+

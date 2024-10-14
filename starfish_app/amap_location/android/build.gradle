@@ -26,11 +26,11 @@ apply plugin: 'kotlin-android'
 apply from: "./resolve_dependencies.gradle"
 
 android {
-    sourceSets {
-        main {
-            jniLibs.srcDirs = ['libs']
-        }
-    }
+//    sourceSets {
+//        main {
+//            jniLibs.srcDirs = ['libs']
+//        }
+//    }
 
     compileSdkVersion 31
 

@@ -4,4 +4,6 @@ class AMapConstants {
 
   //通信channel地址
   static const String Method_AMap_channelPath = "com.zoe.location.map.platform/MapViewChannel";
+
+  static const String Method_init = "amap_init";
 }

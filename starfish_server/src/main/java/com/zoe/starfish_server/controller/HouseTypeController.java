@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
  * 户型控制器
  */
 @RestController
-@RequestMapping("/houseType")
+@RequestMapping("/api/houseType")
 public class HouseTypeController {
     @Autowired
     HouseTypeService service;

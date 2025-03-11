@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
  * 房源小区控制器
  */
 @RestController
-@RequestMapping("/livingArea")
+@RequestMapping("/api/livingArea")
 public class LivingAreaController {
     @Autowired
     LivingAreaService service;

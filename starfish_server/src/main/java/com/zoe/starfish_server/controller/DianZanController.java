@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 资讯、评论的点赞逻辑
  */
-@RequestMapping("/dianZan/")
+@RequestMapping("/api/dianZan/")
 @RestController
 public class DianZanController {
     @Autowired

@@ -22,7 +22,7 @@ import java.util.Objects;
  * 房源控制器
  */
 @RestController
-@RequestMapping("/houseResource")
+@RequestMapping("/api/houseResource")
 public class HouseResourceController {
     //房源服务
     @Autowired

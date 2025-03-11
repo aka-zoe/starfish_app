@@ -20,7 +20,7 @@ import java.util.List;
  * 消息通知控制器
  */
 @RestController
-@RequestMapping("/message/")
+@RequestMapping("/api/message/")
 public class MessageController {
     @Autowired
     MessageService service;

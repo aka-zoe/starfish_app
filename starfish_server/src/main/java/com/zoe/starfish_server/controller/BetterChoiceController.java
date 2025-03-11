@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
  * 优选数据控制器
  */
 @RestController
-@RequestMapping("/betterChoice")
+@RequestMapping("/api/betterChoice")
 public class BetterChoiceController {
 
     @Autowired

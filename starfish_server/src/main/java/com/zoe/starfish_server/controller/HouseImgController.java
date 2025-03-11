@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
  * 房源图片控制器
  */
 @RestController
-@RequestMapping("/houseImg")
+@RequestMapping("/api/houseImg")
 public class HouseImgController {
     @Autowired
     HouseImgService service;

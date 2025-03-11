@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
  * 评论逻辑层
  */
 @RestController
-@RequestMapping("/pingLun/")
+@RequestMapping("/api/pingLun/")
 public class PingLunController {
     @Autowired
     PingLunService service;

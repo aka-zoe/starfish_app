@@ -18,7 +18,7 @@ import java.util.List;
  * 用户管理控制器
  */
 @RestController
-@RequestMapping("/auth/user")
+@RequestMapping("/api/auth/user")
 public class UserController {
     @Autowired
     private UserService userService;

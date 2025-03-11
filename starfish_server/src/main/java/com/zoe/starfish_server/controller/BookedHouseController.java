@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
  * 房源预约
  */
 @RestController
-@RequestMapping("/bookedHouse/")
+@RequestMapping("/api/bookedHouse/")
 public class BookedHouseController {
     @Autowired
     BookedHouseService service;

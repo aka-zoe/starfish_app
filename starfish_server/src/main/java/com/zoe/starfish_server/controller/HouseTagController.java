@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
  * 房源标签控制器
  */
 @RestController
-@RequestMapping("/houseTag")
+@RequestMapping("/api/houseTag")
 public class HouseTagController {
     @Autowired
     HouseTagService service;

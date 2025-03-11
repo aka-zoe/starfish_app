@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
  * 资讯逻辑层
  */
 @RestController
-@RequestMapping("/news/")
+@RequestMapping("/api/news/")
 public class NewsController {
     @Autowired
     NewsService service;
@@ -63,12 +63,12 @@ public class NewsController {
      */
     @PassToken
     @PostMapping("getNewList")
-    public CommonResp getNewList(HttpServletRequest request, @RequestParam Integer type) {
-        if (type == null) {
+    public CommonResp getNewList(HttpServletRequest request, @RequestBody News news) {
+        if (news == null || news.getType() == null) {
             return CommonResp.error(RespCodeEnum.PARAMERR);
         }
         Long userId = TokenUtils.getUserId(request);
-        return CommonResp.success(service.newsList(userId, type));
+        return CommonResp.success(service.newsList(userId, news.getType()));
     }
 
     /**

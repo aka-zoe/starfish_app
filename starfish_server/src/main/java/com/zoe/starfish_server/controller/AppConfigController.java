@@ -28,7 +28,7 @@ import java.util.Map;
  * 当前只有友盟推送的配置信息
  */
 @RestController
-@RequestMapping("/appConfig")
+@RequestMapping("/api/appConfig")
 public class AppConfigController {
     @Autowired
     AppConfigService service;

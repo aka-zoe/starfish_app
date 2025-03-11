@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/files")
+@RequestMapping("/api/files")
 @Slf4j
 public class FileController {
     @Autowired
@@ -45,7 +45,7 @@ public class FileController {
         for (MultipartFile file : files) {
             fileService.storeFile(file);
             String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                    .path("/files/download/")
+                    .path("/api/files/download/")
                     .path(file.getOriginalFilename())
                     .toUriString();
             fileDownloadUris.add(fileDownloadUri);

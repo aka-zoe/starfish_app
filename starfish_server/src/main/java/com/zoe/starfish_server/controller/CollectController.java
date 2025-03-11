@@ -24,7 +24,7 @@ import java.util.Objects;
  * 收藏逻辑层
  */
 @RestController
-@RequestMapping("/collect/")
+@RequestMapping("/api/collect/")
 public class CollectController {
     @Autowired
     CollectService service;

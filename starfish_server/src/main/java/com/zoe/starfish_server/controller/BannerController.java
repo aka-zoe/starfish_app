@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
  * banner推广控制器
  */
 @RestController
-@RequestMapping("/banner")
+@RequestMapping("/api/banner")
 public class BannerController {
     @Autowired
     BannerService service;

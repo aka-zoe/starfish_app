@@ -12,21 +12,21 @@ class ApiHouse {
 
   ///获取房源
   Future<HouseResListData> getHouseRes() async {
-    Response resp = await DioInstance.instance().post(path: "/houseResource/houseResources");
+    Response resp = await DioInstance.instance().post(path: "/api/houseResource/houseResources");
     return HouseResListData.fromJson(resp.data);
   }
 
   ///获取房源明细
   Future<HouseResDetailData> getHouseResDetail(num? id) async {
     Response resp = await DioInstance.instance()
-        .post(path: "/houseResource/houseResourceDetail", queryParameters: {"id": id});
+        .post(path: "/api/houseResource/houseResourceDetail", queryParameters: {"id": id});
 
     return HouseResDetailData.fromJson(resp.data);
   }
 
   ///获取我的房源预约记录
   Future<MyBookedListData> bookedHouseList() async {
-    Response resp = await DioInstance.instance().post(path: "/bookedHouse/bookedHouseList");
+    Response resp = await DioInstance.instance().post(path: "/api/bookedHouse/bookedHouseList");
 
     return MyBookedListData.fromJson(resp.data);
   }
@@ -38,7 +38,7 @@ class ApiHouse {
       num? bookeduserid,
       String? userphone,
       String? username}) async {
-    Response resp = await DioInstance.instance().post(path: "/bookedHouse/saveBookedHouse", data: {
+    Response resp = await DioInstance.instance().post(path: "/api/bookedHouse/saveBookedHouse", data: {
       "houseresid": houseresid, //房源id
       "bookedtime": bookedtime, //预约时间戳
       "bookeduserid": bookeduserid, //被预约人/中介

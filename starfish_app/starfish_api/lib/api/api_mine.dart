@@ -12,14 +12,14 @@ class ApiMine {
 
   ///获取当前用户相关的APP信息
   Future<AppInfoData> getAppInfo() async {
-    Response resp = await DioInstance.instance().post(path: "/appConfig/getAppInfo");
+    Response resp = await DioInstance.instance().post(path: "/api/appConfig/getAppInfo");
     return AppInfoData.fromJson(resp.data);
   }
 
   ///是否开启消息
   Future<bool> setOpenMsg(bool? openFlag) async {
     Response response = await DioInstance.instance()
-        .post(path: "auth/user/openMsg", queryParameters: {"openFlag": openFlag});
+        .post(path: "/api/auth/user/openMsg", queryParameters: {"openFlag": openFlag});
     if (response.data is bool) {
       return response.data;
     }
@@ -29,7 +29,7 @@ class ApiMine {
   ///根据类型获取收藏列表
   Future getCollectList({required int type}) async {
     Response response = await DioInstance.instance()
-        .post(path: "/collect/collectList", queryParameters: {"type": type});
+        .post(path: "/api/collect/collectList", queryParameters: {"type": type});
     //房源
     if (type == 1) {
       return HouseResListData.fromJson(response.data);
@@ -48,7 +48,7 @@ class ApiMine {
     num? newsid,
     String? title,
   }) async {
-    Response response = await DioInstance.instance().post(path: "/collect/insertCollect", data: {
+    Response response = await DioInstance.instance().post(path: "/api/collect/insertCollect", data: {
       "collecttype": collecttype, //收藏分类：1=房源，2=资讯
       "houseresid": houseresid, //房源id
       "newsid": newsid, //资讯id
@@ -63,7 +63,7 @@ class ApiMine {
   ///取消收藏
   Future<bool> cancelCollect({int? type, num? houseResId, num? newsId, num? id}) async {
     Response response =
-        await DioInstance.instance().post(path: "/collect/cancelCollect", queryParameters: {
+        await DioInstance.instance().post(path: "/api/collect/cancelCollect", queryParameters: {
       "type": type,
       "houseResId": houseResId,
       "newsId": newsId,

@@ -6,17 +6,13 @@ import 'package:starfish_utils/utils/push_utils.dart';
 import 'package:starfish_http/http/dio_instance.dart';
 import 'app.dart';
 
-void main() async{
-  // DioInstance.instance().initDio(baseUrl: "http://192.168.31.34:9900/");
-  // DioInstance.instance().initDio(baseUrl: "http://192.168.3.32:9900/");
-  // DioInstance.instance().initDio(baseUrl: "http://192.168.1.83:9900/");
-  DioInstance.instance().initDio(baseUrl: "http://121.40.172.196:9900/");
+void main() async {
+  DioInstance.instance().initDio(baseUrl: "https://fullstackpa.com");
   await ScreenUtil.ensureScreenSize();
   PushUtils.registerPush();
-  if(kDebugMode&& openDebugPage){
+  if (kDebugMode && openDebugPage) {
     runApp(const DebugMyApp());
-  }else{
+  } else {
     runApp(const MyApp());
   }
-
 }

@@ -11,27 +11,27 @@ class ApiMessage {
 
   ///获取消息列表
   Future<MessageListData> getMessages() async {
-    Response resp = await DioInstance.instance().post(path: "/message/getMessages");
+    Response resp = await DioInstance.instance().post(path: "/api/message/getMessages");
     return MessageListData.fromJson(resp.data);
   }
 
   ///删除消息
   Future<bool> deleteMessage(num? id) async {
     Response resp = await DioInstance.instance()
-        .post(path: "/message/deleteMessage", queryParameters: {"id": id});
+        .post(path: "/api/message/deleteMessage", queryParameters: {"id": id});
     return takeResp(resp.data);
   }
 
   ///单条消息已读
   Future<bool> setReadMessage(num? id) async {
     Response resp = await DioInstance.instance()
-        .post(path: "/message/setReadMessage", queryParameters: {"id": id});
+        .post(path: "/api/message/setReadMessage", queryParameters: {"id": id});
     return takeResp(resp.data);
   }
 
   ///全部消息已读
   Future<bool> setAllMessageRead() async {
-    Response resp = await DioInstance.instance().post(path: "/message/setAllMessageRead");
+    Response resp = await DioInstance.instance().post(path: "/api/message/setAllMessageRead");
     return takeResp(resp.data);
   }
 

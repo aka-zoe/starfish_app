@@ -12,7 +12,7 @@ class ApiAuth {
   ///登录
   Future<UserInfo?> login({required String name, required String password}) async {
     Response response = await DioInstance.instance()
-        .post(path: "auth/user/login", data: {"name": name, "password": password});
+        .post(path: "/api/auth/user/login", data: {"name": name, "password": password});
     return UserInfo.fromJson(response.data);
   }
 
@@ -20,7 +20,7 @@ class ApiAuth {
   Future<bool> register(
       {required String name, required String password, required String rePassword}) async {
     Response response = await DioInstance.instance().post(
-        path: "auth/user/register",
+        path: "/api/auth/user/register",
         data: {"name": name, "password": password, "rePassword": rePassword});
     if (response.data is bool) {
       return response.data;
@@ -31,13 +31,13 @@ class ApiAuth {
   Future bindPushToken() async {
     PushUtils.getDeviceToken((token) {
       DioInstance.instance()
-          .post(path: "auth/user/bindToken", queryParameters: {"umToken": token, "tag": ""});
+          .post(path: "/api/auth/user/bindToken", queryParameters: {"umToken": token, "tag": ""});
     });
   }
 
   ///获取IM签名
   Future<String> getIMSig() async {
-    Response response = await DioInstance.instance().post(path: "appConfig/getImSign");
+    Response response = await DioInstance.instance().post(path: "/api/appConfig/getImSign");
     if (response.data is String) {
       return response.data;
     }

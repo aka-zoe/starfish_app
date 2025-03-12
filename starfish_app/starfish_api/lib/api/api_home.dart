@@ -11,13 +11,13 @@ class ApiHome {
 
   ///首页本期优选
   Future<BetterChoiceListData> getBetterChoice() async {
-    Response resp = await DioInstance.instance().post(path: "/betterChoice/choiceList");
+    Response resp = await DioInstance.instance().post(path: "/api/betterChoice/choiceList");
     return BetterChoiceListData.fromJson(resp.data);
   }
 
   ///首页banner
   Future<HomeBannerListData> getHomeBanner() async {
-    Response resp = await DioInstance.instance().post(path: "/banner/bannerList");
+    Response resp = await DioInstance.instance().post(path: "/api/banner/bannerList");
     return HomeBannerListData.fromJson(resp.data);
   }
 }

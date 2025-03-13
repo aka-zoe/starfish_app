@@ -52,6 +52,7 @@ public class LoginInterceptor implements HandlerInterceptor {
                 // 执行认证
                 if (token == null) {
 //                    throw new RuntimeException("无token，请重新登录");
+                    System.out.println("无token，请重新登录");
                     throw new NeedLoginException(RespCodeEnum.NEEDLOGIN);
                 }
                 // 获取 token 中的 user id
@@ -61,6 +62,7 @@ public class LoginInterceptor implements HandlerInterceptor {
                     username = JWT.decode(token).getClaim("username").asString();
                     password = JWT.decode(token).getClaim("password").asString();
                 } catch (JWTDecodeException j) {
+                    System.out.println("token不正确:" + token);
 //                    throw new RuntimeException("token不正确");
                     throw new NeedLoginException(RespCodeEnum.NEEDLOGIN);
                 }
@@ -68,6 +70,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 //                log.info("从token里获取password=" + password);
                 User user = userService.selectUser(username, password);
                 if (user == null) {
+                    System.out.println("用户不存在，请重新登录");
 //                    throw new RuntimeException("用户不存在，请重新登录");
                     throw new NeedLoginException(RespCodeEnum.NEEDLOGIN);
                 }
@@ -75,6 +78,7 @@ public class LoginInterceptor implements HandlerInterceptor {
                 if (TokenUtils.verify(token)) {
                     return true;
                 } else {
+                    System.out.println("token过期或不正确，请重新登录");
 //                    throw new RuntimeException("token过期或不正确，请重新登录");
                     throw new NeedLoginException(RespCodeEnum.NEEDLOGIN);
                 }
